@@ -1,17 +1,23 @@
 package webTest;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public final class MysqlConnect {
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class MysqlConnect {
 	
+	private final String DATASOURCE_CONTEXT = "java:/MySqlDS";
     public Connection conn;
     private Statement statement;
     public MysqlConnect() {
     	
+    	/*
         String url= "jdbc:mysql://songhohem.ddns.net:3306/";
         String dbName = "shopdb";
         String driver = "com.mysql.jdbc.Driver";
@@ -25,9 +31,29 @@ public final class MysqlConnect {
         }
         catch (Exception sqle) {
             sqle.printStackTrace();
-        }
+        }*/
+    	
+    	
+		Context initialContext;
+		try {
+			initialContext = new InitialContext();
+			DataSource ds;
+			
+			ds = (DataSource)initialContext.lookup(DATASOURCE_CONTEXT);
+			
+			if(ds==null)
+				throw new SQLException("Can't get data source");
+			
+			conn = ds.getConnection();
+			if(conn==null)
+				throw new SQLException("Can't get database connection");
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
     }
-    
     /**
      *
      * @param query String The query to be executed
