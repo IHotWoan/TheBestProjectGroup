@@ -83,6 +83,23 @@ ul#menu li a:hover {
 	color: purple;
 }
 
+
+table, th, td{
+	width: 500px;
+	border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: 350px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+
+}
+
+th, td{
+	
+	padding: 6px;
+}
+
+
 footer {
 	position: fixed;
 	bottom: 0px;

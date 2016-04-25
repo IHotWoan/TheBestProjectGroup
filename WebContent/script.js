@@ -1,6 +1,6 @@
 document.getElementById("nav01").innerHTML =
 "<header id='header'>"+
-"<a href='Test.html'><img src='best.jpg' alt='Logo placeholder' style='width: 300px; height: 200px;' /></a>"+
+"<a href='dashboard.xhtml'><img src='best.jpg' alt='Logo placeholder' style='width: 300px; height: 200px;' /></a>"+
 "<h1> Administrator </h1>"+
 "<h1> Username </h1>"+
 "<p id='demo'></p>"+
