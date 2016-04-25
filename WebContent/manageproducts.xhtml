@@ -12,22 +12,81 @@
 
 <h:body>
 
-<nav id="nav01"></nav>
-
+	<!--Javascript-->
+	<nav id="nav01"></nav>
 	<nav id="nav02"></nav>
 
-	<p>Nulla massa nunc, faucibus et purus vel, posuere fringilla urna. Duis lacinia magna sed luctus dapibus. Integer at accumsan turpis, vel luctus nibh. Nulla lacinia sit amet dolor in auctor. Phasellus eu condimentum sapien, id dictum justo. Mauris non mi sit amet eros molestie egestas. Ut consectetur fringilla interdum. Nam vel turpis faucibus, commodo mi quis, sollicitudin erat. Etiam gravida erat ullamcorper sem ultricies, nec iaculis leo semper. Duis quis blandit mi, vitae ultricies lorem. Suspendisse finibus urna a finibus maximus. Aenean ac maximus nulla.</p>
-	
-	<nav id="nav01"></nav>
-	
-	<p id="demo">JavaScript can change HTML content.</p>
+	<h3>List of categories</h3>
+	<div id="button">
+		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Add new category</button>
+	</div>
 
-	<button type="button"
-		onclick="document.getElementById('demo').innerHTML = 'Hello JavaScript!'">
-		Click Me!</button>
-	
+	<h:form>
+		<table>
+			<tr>
+				<td>Categories</td>
+				<td>number of products</td>
+				<td id="delete"></td>
+			</tr>
+			<tr>
+				<td>category 1</td>
+				<td>##</td>
+				<td id="delete"><a href="nohref">Delete</a></td>
+			</tr>
+			<tr>
+				<td>category 2</td>
+				<td>##</td>
+				<td id="delete"><a href="nohref">Delete</a></td>
+			</tr>
+			<tr>
+				<td>category 3</td>
+				<td>##</td>
+				<td id="delete"><a href="nohref">Delete</a></td>
+			</tr>
+		</table>
+	</h:form>
+
+	<h:form id="search">
+		<p>Search product:</p>
+		<input type="text" name="searchInput" />
+		<input type="submit" value="Search" />
+		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Add new</button>
+	</h:form>
+
+	<table>
+		<tr>
+			<td>Name of product:</td>
+			<td>Category</td>
+			<td>Stock</td>
+			<td id="delete"></td>
+		</tr>
+		<tr>
+			<td>Samsung SSD 840</td>
+			<td>Storage</td>
+			<td>0</td>
+			<td id="delete"><a href="nohref">Delete</a></td>
+		</tr>
+		<tr>
+			<td>Corsair DDR3 2 GB</td>
+			<td>Memory</td>
+			<td>3</td>
+			<td id="delete"><a href="nohref">Delete</a></td>
+		</tr>
+		<tr>
+			<td>Dell ultrshark 4K display</td>
+			<td>Monitor</td>
+			<td>2</td>
+			<td id="delete"><a href="nohref">Delete</a></td>
+		</tr>
+		<tr>
+			<td>product 4</td>
+			<td>category</td>
+			<td>1</td>
+			<td id="delete"><a href="nohref">Delete</a></td>
+		</tr>
+	</table>
+
 	<script src="script.js"></script>
-	
 
 </h:body>
 </html>

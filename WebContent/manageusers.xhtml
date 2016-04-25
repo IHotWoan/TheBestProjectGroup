@@ -12,22 +12,57 @@
 
 <h:body>
 
-<nav id="nav01"></nav>
-
+	<!--Javascript-->
+	<nav id="nav01"></nav>
 	<nav id="nav02"></nav>
 
-	<p>Aliquam sed enim quis massa rhoncus tincidunt. In dapibus tempor blandit. Curabitur odio turpis, pharetra vel ligula eu, porta tincidunt ex. Quisque eu lectus felis. In scelerisque justo sed lectus semper, a volutpat nibh imperdiet. Cras nec metus eleifend, consectetur turpis eu, facilisis odio. Suspendisse potenti. Donec faucibus justo nec ligula euismod tempus. Aliquam eleifend risus diam, at venenatis sem imperdiet in. Vivamus interdum felis vitae dui hendrerit dictum. Proin quis metus efficitur, iaculis purus quis, sagittis quam.</p>
-	
-	<nav id="nav01"></nav>
-	
-	<p id="demo">JavaScript can change HTML content.</p>
+	<h3>List of users</h3>
+	<div id="button">
+		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Add new user</button>
+	</div>
 
-	<button type="button"
-		onclick="document.getElementById('demo').innerHTML = 'Hello JavaScript!'">
-		Click Me!</button>
-	
+	<h:form>
+		<table>
+			<tr>
+				<td>User name</td>
+				<td>Last access date</td>
+				<td id="resetpw"></td>
+				<td id="delete"></td>
+			</tr>
+			<tr>
+				<td>Fredrik</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref">reset pw</a></td>
+				<td id="delete"><a href="nohref">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Songhokun</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref">reset pw</a></td>
+				<td id="delete"><a href="nohref">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Jonathan</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
+				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Felix</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
+				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Christofer</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
+				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
+			</tr>
+		</table>
+	</h:form>
+
 	<script src="script.js"></script>
-	
 
 </h:body>
 </html>

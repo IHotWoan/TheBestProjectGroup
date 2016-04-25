@@ -38,67 +38,42 @@ ul#menu li a {
 }
 
 ul#menu li a:hover {
-    background-color: #555;
-    color: white;
+	background-color: #555;
+	color: white;
 }
 
-#content, h3 {
+h3, #search, #button {
+	margin-left: 350px;
+}
 
+#button {
+	margin-top: 30px;
+}
+
+table, th, td, #costumer {
+	width: 500px;
+	border: 1px solid black;
+	border-collapse: collapse;
 	margin-left: 350px;
 	margin-top: 20px;
 	margin-bottom: 30px;
 }
 
-#content ul {
-	
-	display: inline-block;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-#content ul li {
-	
-	border: 1px solid #73AD21;
-	border-collapse: collapse;
-	padding: 5px;
-	width: 96%;
-}
-
-#content ul li a {
-	
-	color: black;
-	padding: 7px 7px 7px 7px;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-#content ul li p {
-	padding: 7px 7px 7px 7px;
-	font-size: 120%;
-	font-weight: bold;
-}
-
-#content a:hover {
-	color: purple;
-}
-
-
-table, th, td{
-	width: 500px;
-	border: 1px solid black;
-    border-collapse: collapse;
-    margin-left: 350px;
-	margin-top: 20px;
-	margin-bottom: 30px;
-
-}
-
-th, td{
-	
+table th, td, #costumer li {
 	padding: 6px;
 }
 
+#checkbox {
+	width: 10px;
+}
+
+#delete {
+	width: 20px;
+}
+
+#resetpw {
+	width: 40px;
+}
 
 footer {
 	position: fixed;

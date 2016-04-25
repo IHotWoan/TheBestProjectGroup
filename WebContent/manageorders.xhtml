@@ -12,22 +12,86 @@
 
 <h:body>
 
-<nav id="nav01"></nav>
-
+	<!--Javascript-->
+	<nav id="nav01"></nav>
 	<nav id="nav02"></nav>
 
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra rutrum scelerisque. Donec luctus tincidunt nibh, in dapibus tellus faucibus id. Cras vel viverra mauris, a commodo urna. Vivamus condimentum cursus cursus. Phasellus molestie eros tortor, eu facilisis ex sagittis in. Nunc placerat id lectus eget ultrices. Nunc sed laoreet nibh. Praesent vulputate hendrerit risus quis pellentesque.</p>
-	
-	<nav id="nav01"></nav>
-	
-	<p id="demo">JavaScript can change HTML content.</p>
 
-	<button type="button"
-		onclick="document.getElementById('demo').innerHTML = 'Hello JavaScript!'">
-		Click Me!</button>
-	
+	<h3>Undelivered orders</h3>
+	<div id="button">
+		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Set marked as delayed</button>
+		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Set marked as rejected</button>
+	</div>
+
+	<h:form>
+		<table>
+			<tr>
+				<td id="checkbox"></td>
+				<td>Order number</td>
+				<td>ordered products</td>
+				<td>costumer name</td>
+			</tr>
+			<tr>
+				<td id="checkbox"><input type="checkbox" name="item"
+					value="value" /></td>
+				<td><a href="ordernumbers.xhtml">l201604020001</a></td>
+				<td>item1, item2, item3, ...</td>
+				<td>### Kr</td>
+			</tr>
+			<tr>
+				<td id="checkbox"><input type="checkbox" name="item"
+					value="value" /></td>
+				<td>201604020002</td>
+				<td>item1, item 2, item 3, ...</td>
+				<td>### Kr</td>
+			</tr>
+			<tr>
+				<td id="checkbox"><input type="checkbox" name="item"
+					value="value" /></td>
+				<td>201604020003</td>
+				<td>item1</td>
+				<td>### Kr</td>
+			</tr>
+		</table>
+	</h:form>
+
+	<h3>Delivered orders</h3>
+
+	<h:form id="search">
+		<p>Search by order number</p>
+		<input type="text" name="searchInput" />
+		<input type="submit" value="Search" />
+	</h:form>
+
+	<table>
+		<tr>
+			<td>Order number</td>
+			<td>date</td>
+			<td>amount</td>
+		</tr>
+		<tr>
+			<td>201603020001</td>
+			<td>##</td>
+			<td>### Kr</td>
+		</tr>
+		<tr>
+			<td>201603020002</td>
+			<td>##</td>
+			<td>### Kr</td>
+		</tr>
+		<tr>
+			<td>201603020003</td>
+			<td>##</td>
+			<td>### Kr</td>
+		</tr>
+		<tr>
+			<td>201603020004</td>
+			<td>##</td>
+			<td>### Kr</td>
+		</tr>
+	</table>
+
 	<script src="script.js"></script>
-	
 
 </h:body>
 </html>
