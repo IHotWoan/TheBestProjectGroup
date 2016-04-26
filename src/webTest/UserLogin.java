@@ -14,7 +14,7 @@ public class UserLogin implements Serializable {
 	
 	private String userName;
 	private String password;
-	private String message;
+	private boolean loginStatus;
 	
 	//@Resource(name="java:/MySqlDS")
 	//private DataSource ds;
@@ -31,21 +31,35 @@ public class UserLogin implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String getMessage() throws SQLException{
+	/**
+	 * Ask songho if there is a problem in this part;
+	 * 
+	 * @return "success" if id&pw matches. otherwise returns "failure"
+	 */
+	public String verifyUser(){
 		MysqlConnect db = new MysqlConnect();
-		message = "Login Failed";
+		ResultSet rs;
 		
-		ResultSet rs = db.query("SELECT * FROM users");
-	
+		try {
+			rs = db.query("SELECT EXISTS (SELECT username, password from users where username='"+userName+"' and password = '"+password+"' is TRUE);");
 			while(rs.next()){
-				if ((rs.getString("username").equals(userName)) && (rs.getString("password").equals(password))){
-
-					return message = "Login Successful";
+				if(rs.getBoolean(1))
+				{
+					loginStatus=true;
+					return "success";
 				}
 			}
-		
-		return message;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "failure";
+		}
+
+		return "failure";
 	}
-	
+	public String getMessage() throws SQLException{
+		return verifyUser();
+	}
+	public boolean getLoginStatus(){
+		return loginStatus;
+	}
 }

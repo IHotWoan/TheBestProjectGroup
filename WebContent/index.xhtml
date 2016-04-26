@@ -14,7 +14,7 @@
 			User name: <h:inputText value= "#{userLogin.userName}" /> <br/>
 			Password: <h:inputSecret value="#{userLogin.password}"/> <br/>
 			<br/>
-			<h:commandButton action="adminpage" value="Login" />
+			<h:commandButton action="#{userLogin.verifyUser}" value="Login" />
 		</h:form>
 	</h:body>
 </html>
