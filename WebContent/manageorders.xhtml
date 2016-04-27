@@ -13,8 +13,21 @@
 <h:body>
 
 	<!--Javascript-->
-	<nav id="nav01"></nav>
-	<nav id="nav02"></nav>
+	<nav id="nav01">
+		<header id="header">
+			<a href="dashboard.xhtml">
+				<img style="width: 300px; height: 200px;" alt="Logo placeholder" src="best.jpg"> </img>
+			</a>
+			<h1> Administrator </h1>
+			<h1><h:outputText value="#{userLogin.userName}" /></h1>
+			<p id="date"></p>
+			<h2>
+				<a href="otherpage.xhtml"> Log out</a>
+			</h2>
+		</header>
+	</nav>
+	<nav id="nav02">
+	</nav>
 
 
 	<h3>Undelivered orders</h3>

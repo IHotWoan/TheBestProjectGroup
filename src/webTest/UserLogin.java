@@ -41,10 +41,9 @@ public class UserLogin implements Serializable {
 		ResultSet rs;
 		
 		try {
-			rs = db.query("SELECT EXISTS (SELECT username, password from users where username='"+userName+"' and password = '"+password+"' is TRUE);");
+			rs = db.query("SELECT username, password from users where username='"+userName+"' and password = '"+password+"' is TRUE");
 			while(rs.next()){
-				if(rs.getBoolean(1))
-				{
+				if ((rs.getString("username").equals(userName)) && (rs.getString("password").equals(password))){
 					loginStatus=true;
 					return "success";
 				}

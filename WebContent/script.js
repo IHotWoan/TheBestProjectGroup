@@ -1,6 +1,8 @@
 
 //header
 
+
+/*
 document.getElementById("nav01").innerHTML =
 "<header id='header'>"+
 "<a href='dashboard.xhtml'><img src='best.jpg' alt='Logo placeholder' style='width: 300px; height: 200px;' /></a>"+
@@ -9,7 +11,7 @@ document.getElementById("nav01").innerHTML =
 "<p id='date'></p>"+
 "<h2><a href='otherpage.xhtml'> Log out</a></h2>"+
 "</header>";
-
+*/
 document.getElementById('date').innerHTML = Date();
 
 
