@@ -5,7 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 
 @Named
@@ -14,7 +17,6 @@ public class UserLogin implements Serializable {
 	
 	private String userName;
 	private String password;
-	private boolean loginStatus;
 	
 	//@Resource(name="java:/MySqlDS")
 	//private DataSource ds;
@@ -32,11 +34,24 @@ public class UserLogin implements Serializable {
 		this.password = password;
 	}
 	/**
-	 * Ask songho if there is a problem in this part;
 	 * 
 	 * @return "success" if id&pw matches. otherwise returns "failure"
 	 */
 	public String verifyUser(){
+		if (isValidIDPW()) {
+            HttpSession session = SessionBean.getSession();
+            session.setAttribute("username", userName);
+            return "success";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect Username and Passowrd",
+                            "Please enter correct username and Password"));
+            return "index";
+        }
+	}
+	private boolean isValidIDPW(){
 		MysqlConnect db = new MysqlConnect();
 		ResultSet rs;
 		
@@ -44,21 +59,25 @@ public class UserLogin implements Serializable {
 			rs = db.query("SELECT username, password from users where username='"+userName+"' and password = '"+password+"' is TRUE");
 			while(rs.next()){
 				if ((rs.getString("username").equals(userName)) && (rs.getString("password").equals(password))){
-					loginStatus=true;
-					return "success";
+					return true;
 				}
 			}
+			db.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "failure";
+			return false;
 		}
-
-		return "failure";
+		db=null;
+		
+		return false;
 	}
 	public String getMessage() throws SQLException{
 		return verifyUser();
 	}
-	public boolean getLoginStatus(){
-		return loginStatus;
+	public String logout(){
+		 HttpSession session = SessionBean.getSession();
+		 session.invalidate();
+		 
+		 return "index";
 	}
 }

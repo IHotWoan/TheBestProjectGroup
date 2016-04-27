@@ -22,7 +22,9 @@
 			<h1><h:outputText value="#{userLogin.userName}" /></h1>
 			<p id="date"></p>
 			<h2>
-				<a href="otherpage.xhtml"> Log out</a>
+				<h:form>
+					<h:commandLink action="#{userLogin.logout}" value="log out" />
+				</h:form>
 			</h2>
 		</header>
 	</nav>

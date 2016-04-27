@@ -65,7 +65,6 @@ public class MysqlConnect {
         statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
         return rs;
-        
     }
     
     /**
@@ -80,6 +79,9 @@ public class MysqlConnect {
         int result = statement.executeUpdate(insertQuery);
         return result;
         
+    }
+    public void close() throws SQLException{
+    	conn.close();
     }
  
     

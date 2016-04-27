@@ -7,10 +7,6 @@
    <from-outcome>success</from-outcome>
    <to-view-id>/dashboard.xhtml</to-view-id>
   </navigation-case>
-  <navigation-case>
-   <from-outcome>failure</from-outcome>
-   <to-view-id>/failure.xhtml</to-view-id>
-  </navigation-case>
  </navigation-rule>
  <application>
   <message-bundle>resources.application</message-bundle>
