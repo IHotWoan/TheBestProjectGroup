@@ -26,18 +26,17 @@ public class OrderTable implements Serializable{
 		ResultSet rs;
 		
 		try {
-			rs = db.query("SELECT * FROM orders;");
+			rs = db.query("SELECT * FROM customers;");
 			while(rs.next()){
 				Order temp = new Order();
 				
-				temp.setOrderID(rs.getString("order_ID"));
-				temp.setCustomerName(rs.getString("CustomerName"));
-				temp.setCustomerAddress(rs.getString("streetaddress"));
-				temp.setZipCode(rs.getString("zipcode"));
-				temp.setCity(rs.getString("city"));
-				temp.setPhone(rs.getString("phone"));
-				temp.setEmail(rs.getString("email"));
-				
+				temp.setOrderID(rs.getString("customer_order_ID"));
+				temp.setCustomerName(rs.getString("customer_name"));
+				temp.setCustomerAddress(rs.getString("customer_streetaddress"));
+				temp.setZipCode(rs.getString("customer_zipcode"));
+				temp.setCity(rs.getString("customer_city"));
+				temp.setPhone(rs.getString("customer_phone"));
+				temp.setEmail(rs.getString("customer_email"));
 				orders.add(temp);
 			}
 			
