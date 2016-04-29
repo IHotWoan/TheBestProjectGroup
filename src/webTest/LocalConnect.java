@@ -59,6 +59,5 @@ public class LocalConnect {
     public void close() throws SQLException{
     	conn.close();
     }
- 
     
 }
