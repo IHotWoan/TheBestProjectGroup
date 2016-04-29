@@ -39,6 +39,13 @@
 	</div>
 
 	<h:form>
+		<h:dataTable value="#{orderTable.orderarray}" var = "order">
+			<h:column>#{order.orderID}</h:column>
+			<h:column>#{order.customerName}</h:column>
+			<h:column>#{order.customerAddress}</h:column>
+			<h:column>#{order.city}</h:column>
+			<h:column>#{order.orderID}</h:column>
+		</h:dataTable>
 		<table>
 			<tr>
 				<td id="checkbox"></td>
