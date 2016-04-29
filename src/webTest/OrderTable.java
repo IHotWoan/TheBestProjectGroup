@@ -16,7 +16,7 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class OrderBean implements Serializable{
+public class OrderTable implements Serializable{
 	private Order[] orderarray;
 	
 	private void retrieveOrders(){

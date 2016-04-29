@@ -48,6 +48,7 @@ public class UserLogin implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Incorrect Username and Passowrd",
                             "Please enter correct username and Password"));
+            
             return "index";
         }
 	}
@@ -56,9 +57,9 @@ public class UserLogin implements Serializable {
 		ResultSet rs;
 		
 		try {
-			rs = db.query("SELECT username, password from users where username='"+userName+"' and password = '"+password+"' is TRUE");
+			rs = db.query("SELECT user_username, user_password from users where user_username='"+userName+"' and user_password = '"+password+"' is TRUE");
 			while(rs.next()){
-				if ((rs.getString("username").equals(userName)) && (rs.getString("password").equals(password))){
+				if ((rs.getString("user_username").equals(userName)) && (rs.getString("user_password").equals(password))){
 					return true;
 				}
 			}
