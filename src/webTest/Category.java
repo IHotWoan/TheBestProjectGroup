@@ -27,6 +27,9 @@ public class Category implements Serializable{
 	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
 	
+	public Category(){
+		
+	}
 	public Category(String categoryName){
 		
 		setCategoryName(categoryName);
