@@ -35,7 +35,7 @@
 		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Add new user</button>
 	</div>
 
-	<h:form>
+	<h:form id="form">
 		<h:dataTable value="#{admin.userArray}" var = "user">
 			<h:column>
     				<f:facet name="header">Username</f:facet>
@@ -47,11 +47,9 @@
     		</h:column>
     		<h:column>
     				<f:facet name="header">Change Password</f:facet>
-    				<h:form id="form">
-	    				<h:commandButton action="changepassword" value="Change">
-						    <f:setPropertyActionListener target="#{admin.userName}" value="#{user.userName}" />
-						</h:commandButton>
-					</h:form>
+    				<h:commandButton action="changepassword" value="Change">
+					    <f:setPropertyActionListener target="#{admin.userName}" value="#{user.userName}" />
+					</h:commandButton>
     		</h:column>
     		<h:column>
     				<f:facet name="header">Delete User</f:facet>
