@@ -20,11 +20,21 @@ import javax.inject.Named;
 public class OrderTable implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private Order[] orderarray;
+	private ArrayList<Order> orderarray = new ArrayList<Order>();
+
+	public OrderTable(){
+		retrieveOrders();
+	}
+	
+	public ArrayList<Order> getOrderarray() {
+		return orderarray;
+	}
+
+	public void setOrderarray(ArrayList<Order> orderarray) {
+		this.orderarray = orderarray;
+	}
 	
 	private void retrieveOrders(){
-		ArrayList<Order> orders = new ArrayList<Order>();
-		
 		MysqlConnect db = new MysqlConnect();
 		ResultSet rs;
 		
@@ -41,22 +51,11 @@ public class OrderTable implements Serializable{
 				temp.setPhone(rs.getString("customer_phone"));
 				temp.setEmail(rs.getString("customer_email"));
 				
-				orders.add(temp);
+				orderarray.add(temp);
 			}
 			
-			orderarray = orders.toArray(new Order[orders.size()]);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public Order[] getOrderarray() {
-		retrieveOrders();
-		
-		return orderarray;
-	}
-
-	public void setOrderarray(Order[] orderarray) {
-		this.orderarray = orderarray;
 	}
 }
