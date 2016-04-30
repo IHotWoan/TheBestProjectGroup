@@ -71,29 +71,40 @@
 		<h:dataTable value="#{supercategory.productArray}" var = "product">
 			<h:column>
     				<f:facet name="header">Product ID</f:facet>
-    				#{product.productID}
+    				<h:inputText value="#{product.productID}" size="10" rendered="#{product.editable}" />
+    				<h:outputText value="#{product.productID}" rendered="#{not product.editable}" />
     		</h:column>
     		<h:column>
     				<f:facet name="header">Product Name</f:facet>
-    				#{product.name}
+    				<h:inputText value="#{product.name}" size="10" rendered="#{product.editable}" />
+    				<h:outputText value="#{product.name}" rendered="#{not product.editable}" />
     		</h:column>
     		<h:column>
     				<f:facet name="header">Product Category ID</f:facet>
-    				#{product.categoryID}
+    				<h:inputText value="#{product.productID}" size="10" rendered="#{product.editable}" />
+    				<h:outputText value="#{product.productID}" rendered="#{not product.editable}" />
     		</h:column>
     		<h:column>
     				<f:facet name="header">Product Description</f:facet>
-    				#{product.description}
+    				<h:inputText value="#{product.description}" size="10" rendered="#{product.editable}" />
+    				<h:outputText value="#{product.description}" rendered="#{not product.editable}" />
     		</h:column>
     		<h:column>
     				<f:facet name="header">Product Price</f:facet>
-    				#{product.price}
+    				<h:inputText value="#{product.price}" size="10" rendered="#{product.editable}" />
+    				<h:outputText value="#{product.price}" rendered="#{not product.editable}" />
     		</h:column>
     		<h:column>
     				<f:facet name="header">Product Quantity</f:facet>
-    				#{product.quantity}
+    				<h:inputText value="#{product.quantity}" size="10" rendered="#{product.editable}" />
+    				<h:outputText value="#{product.quantity}" rendered="#{not product.editable}" />
+    		</h:column>
+    		<h:column>	
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandLink value="Edit" action="#{supercategory.editAction(product)}" rendered="#{not product.editable}" />
     		</h:column>
 		</h:dataTable>
+		<h:commandButton value="Save Changes" action="#{supercategory.saveAction}" />
 	</h:form>
 	<table>
 		<tr>

@@ -61,4 +61,20 @@ public class SuperCategory implements Serializable{
 		return productArray;
 	}
 	
+	public String saveAction() {
+	    
+		//get all existing value but set "editable" to false 
+		for (Product product : productArray){
+			product.setEditable(false);
+		}
+		//return to current page
+		return null;
+		
+	}
+	
+	public String editAction(Product product) {
+	    
+		product.setEditable(true);
+		return null;
+	}
 }

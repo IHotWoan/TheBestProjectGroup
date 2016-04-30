@@ -13,6 +13,7 @@ public class Product {
 	private String description;
 	private Double price;
 	private int quantity;
+	private boolean editable;
 	
 	public String getProductID() {
 		return productID;
@@ -49,6 +50,12 @@ public class Product {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 	
 	
