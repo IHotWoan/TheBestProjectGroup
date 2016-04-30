@@ -4,6 +4,7 @@
 package webTest;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -21,7 +22,16 @@ public class Order implements Serializable{
 	private String zipCode;
 	private String phone;
 	private String email;
-	//private Status orderstatus;
+	private Status orderstatus;
+	
+	public ArrayList<Product> getProductarray() {
+		return productarray;
+	}
+	public void setProductarray(ArrayList<Product> productarray) {
+		this.productarray = productarray;
+	}
+	private ArrayList<Product> productarray = new ArrayList<Product>();
+	
 	//private Date orderPlaced;
 	
 	public Order(){
@@ -103,4 +113,24 @@ public class Order implements Serializable{
 		this.orderPlaced = orderPlaced;
 	}
 	*/
+	public Status getOrderstatus() {
+		return orderstatus;
+	}
+	public void setOrderstatus(Status orderstatus) {
+		this.orderstatus = orderstatus;
+	}
+	public void setOrderstatus(String orderstatus) {
+		if(orderstatus.equals("neworder"))
+			this.orderstatus = Status.neworder;
+		else if(orderstatus.equals("delivered"))
+			this.orderstatus = Status.delivered;
+		else if(orderstatus.equals("delayed"))
+			this.orderstatus = Status.delayed;
+		else if(orderstatus.equals("cancelled"))
+			this.orderstatus = Status.cancelled;
+		else if(orderstatus.equals("rejected"))
+			this.orderstatus = Status.rejected;
+		
+	}
+	
 }
