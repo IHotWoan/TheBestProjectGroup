@@ -9,14 +9,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 /**
  * @author songhokun
  *
  */
-@Named
+@ManagedBean(name="ordertable")
 @SessionScoped
 public class OrderTable implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private Order[] orderarray;
 	
 	private void retrieveOrders(){
@@ -37,6 +40,7 @@ public class OrderTable implements Serializable{
 				temp.setCity(rs.getString("customer_city"));
 				temp.setPhone(rs.getString("customer_phone"));
 				temp.setEmail(rs.getString("customer_email"));
+				
 				orders.add(temp);
 			}
 			

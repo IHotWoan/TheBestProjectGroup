@@ -28,7 +28,7 @@ public class Order implements Serializable{
 		
 	}
 	public Order(String inOrderID){
-		this.orderID=inOrderID;
+		this.orderID = inOrderID;
 	}
 
 	public String getCartID() {

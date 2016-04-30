@@ -23,7 +23,6 @@ public class LocalConnect {
         try {
             Class.forName(driver).newInstance();
             this.conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
-            System.out.println("Connection Success");
         }
         catch (Exception sqle) {
             sqle.printStackTrace();

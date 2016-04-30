@@ -67,7 +67,34 @@
 		<input type="submit" value="Search" />
 		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Add new</button>
 	</h:form>
-
+	<h:form>
+		<h:dataTable value="#{supercategory.productArray}" var = "product">
+			<h:column>
+    				<f:facet name="header">Product ID</f:facet>
+    				#{product.productID}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Product Name</f:facet>
+    				#{product.name}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Product Category ID</f:facet>
+    				#{product.categoryID}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Product Description</f:facet>
+    				#{product.description}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Product Price</f:facet>
+    				#{product.price}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Product Quantity</f:facet>
+    				#{product.quantity}
+    		</h:column>
+		</h:dataTable>
+	</h:form>
 	<table>
 		<tr>
 			<td>Name of product:</td>

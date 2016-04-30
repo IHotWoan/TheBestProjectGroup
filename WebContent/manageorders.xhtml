@@ -39,12 +39,35 @@
 	</div>
 
 	<h:form>
-		<h:dataTable value="#{orderTable.orderarray}" var = "order">
-			<h:column>#{order.orderID}</h:column>
-			<h:column>#{order.customerName}</h:column>
-			<h:column>#{order.customerAddress}</h:column>
-			<h:column>#{order.city}</h:column>
-			<h:column>#{order.orderID}</h:column>
+		<h:dataTable value="#{ordertable.orderarray}" var = "order">
+			<h:column>
+    				<f:facet name="header">Order ID</f:facet>
+    				#{order.orderID}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Name</f:facet>
+    				#{order.customerName}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Address</f:facet>
+    				#{order.customerAddress}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Zipcode</f:facet>
+    				#{order.zipCode}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer City</f:facet>
+    				#{order.city}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Phone</f:facet>
+    				#{order.phone}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Email</f:facet>
+    				#{order.email}
+    		</h:column>
 		</h:dataTable>
 		<table>
 			<tr>

@@ -1,33 +1,42 @@
 package webTest;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  * @author Jonathan
  *
  */
-public class SubCategory {
+
+@ManagedBean(name="subcategory")
+@SessionScoped
+public class SubCategory implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private String subCategoryName;
 	
 	private ArrayList<Product> productArray = new ArrayList<Product>();
 	
-	private LocalConnect db = new LocalConnect();
+	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
 	
 	public SubCategory(String subCategoryName){
-			
-		this.subCategoryName = subCategoryName;
+		
+		setSubCategoryName(subCategoryName);
 		
 		try{
-		rs = db.query("SELECT brand_ID from brands where brand_name='"+this.subCategoryName+"' is TRUE");
-		
-		rs.next();
-		String ID = rs.getString(1);
-		
-		rs= db.query("SELECT * from products where product_brand='"+ID+"'");
+			rs = db.query("SELECT brand_ID from brands where brand_name='"+this.subCategoryName+"' is TRUE");
+			
+			rs.next();
+			String ID = rs.getString(1);
+			
+			rs= db.query("SELECT * from products where product_brand='"+ID+"'");
 		
 		while(rs.next()){
 			
@@ -41,6 +50,8 @@ public class SubCategory {
 			product.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
 			
 			productArray.add(product);
+			Category.addToProductArray(product);
+			SuperCategory.addToProductArray(product);
 			
 		}
 		
@@ -50,6 +61,14 @@ public class SubCategory {
 			
 	}
 		
+	public String getSubCategoryName() {
+		return subCategoryName;
+	}
+
+	public void setSubCategoryName(String subCategoryName) {
+		this.subCategoryName = subCategoryName;
+	}
+
 	public ArrayList<Product> getProductArray(){
 		
 		return productArray;
