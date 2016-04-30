@@ -4,16 +4,21 @@
 package webTest;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+
+import webTest.Order.Status;
 
 /**
  * @author songhokun
  *
  */
 public class Order implements Serializable{
-	public enum Status{neworder, delivered, delayed, cancelled, rejected};
+	//public enum Status{neworder, delivered, delayed, cancelled, rejected};
 	
+	private ArrayList<OrderedProduct> productarray = new ArrayList<OrderedProduct>();
 	private String cartID;
 	private String orderID;
 	private String customerName;
@@ -22,15 +27,17 @@ public class Order implements Serializable{
 	private String zipCode;
 	private String phone;
 	private String email;
-	private Status orderstatus;
+	//private Status orderstatus;
+	private String orderstatus;
+	private String summary;
 	
-	public ArrayList<Product> getProductarray() {
+	public ArrayList<OrderedProduct> getProductarray() {
 		return productarray;
 	}
-	public void setProductarray(ArrayList<Product> productarray) {
+	public void setProductarray(ArrayList<OrderedProduct> productarray) {
 		this.productarray = productarray;
 	}
-	private ArrayList<Product> productarray = new ArrayList<Product>();
+	
 	
 	//private Date orderPlaced;
 	
@@ -39,6 +46,34 @@ public class Order implements Serializable{
 	}
 	public Order(String inOrderID){
 		this.orderID = inOrderID;
+		
+		try {
+			MysqlConnect db = new MysqlConnect();
+			ResultSet rs1;
+			
+			rs1 = db.query("SELECT products.product_name, brands.brand_name, category.category_name, ordereditems.ordereditems_quantity, ordereditems.ordereditems_price FROM ordereditems "
+					+ "inner join products on ordereditems.ordereditems_product = products.product_id " +
+				"inner join brands on products.product_brand = brands.brand_ID " +
+				"inner join category on products.product_category = category.category_ID " +
+				"where ordereditems.ordereditems_order_ID = '"+this.orderID+"'");
+			while(rs1.next()){
+				OrderedProduct temp = new OrderedProduct();
+				
+				temp.setProductName(rs1.getString("product_name"));
+				temp.setCategoryName(rs1.getString("category_name"));
+				temp.setBrandName(rs1.getString("brand_name"));
+				temp.setQuantity(rs1.getInt("ordereditems_quantity"));
+				temp.setPrice(rs1.getDouble("ordereditems_price"));
+				
+				productarray.add(temp);
+			}
+			db.close();
+			db = null;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	public String getCartID() {
@@ -113,6 +148,7 @@ public class Order implements Serializable{
 		this.orderPlaced = orderPlaced;
 	}
 	*/
+	/*
 	public Status getOrderstatus() {
 		return orderstatus;
 	}
@@ -131,6 +167,26 @@ public class Order implements Serializable{
 		else if(orderstatus.equals("rejected"))
 			this.orderstatus = Status.rejected;
 		
+	}
+	*/
+	public String getSummary(){
+		int n = productarray.size();
+		if(n>3)
+			n=3;
+		
+		StringBuilder toReturn = new StringBuilder();
+		for(int i=0;i<n;i++)
+			toReturn.append(productarray.get(i).getProductName()+", ");
+		
+		summary = toReturn.toString();
+		return summary;
+	}
+	public void setOrderstatus(String inOrderstatus) {
+		this.orderstatus=inOrderstatus;
+		
+	}
+	public String getOrderstatus() {
+		return orderstatus;
 	}
 	
 }

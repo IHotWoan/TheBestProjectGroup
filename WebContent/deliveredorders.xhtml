@@ -32,40 +32,45 @@
 	</div>
 
 
-	<h3>Undelivered orders</h3>
-	<div id="button">
-		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Set marked as delayed</button>
-		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Set marked as rejected</button>
-	</div>
-
-	<h:form>
-		<h:dataTable value="#{ordertable.undeliveredOrderarray}" var = "undeliveredorder">
-			<h:column>
-    				<f:facet name="header">Order ID</f:facet>
-    				#{undeliveredorder.orderID}
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Customer Name</f:facet>
-    				#{undeliveredorder.customerName}
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Ordered products</f:facet>
-    				#{undeliveredorder.summary}
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Order status</f:facet>
-    				#{undeliveredorder.orderstatus}
-    		</h:column>
-		</h:dataTable>
-	
-	</h:form>
-
-	<h3>Delivered orders</h3>
-
+	<h3>delivered orders</h3>
 	<h:form id="search">
 		<p>Search by order number</p>
 		<input type="text" name="searchInput" />
 		<input type="submit" value="Search" />
+	</h:form>
+
+
+	<h:form>
+		<h:dataTable value="#{ordertable.deliveredOrderarray}" var = "deliveredorder">
+			<h:column>
+    				<f:facet name="header">Order ID</f:facet>
+    				#{deliveredorder.orderID}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Name</f:facet>
+    				#{deliveredorder.customerName}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Address</f:facet>
+    				#{deliveredorder.customerAddress}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Zipcode</f:facet>
+    				#{deliveredorder.zipCode}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer City</f:facet>
+    				#{deliveredorder.city}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Phone</f:facet>
+    				#{deliveredorder.phone}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Email</f:facet>
+    				#{deliveredorder.email}
+    		</h:column>
+		</h:dataTable>
 	</h:form>
 
 	<script src="script.js"></script>
