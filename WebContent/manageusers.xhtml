@@ -45,47 +45,19 @@
     				<f:facet name="header">Password</f:facet>
     				#{user.password}
     		</h:column>
+    		<h:column>
+    				<f:facet name="header">Change Password</f:facet>
+    				<h:form id="form">
+	    				<h:commandButton action="changepassword" value="Change">
+						    <f:setPropertyActionListener target="#{admin.userName}" value="#{user.userName}" />
+						</h:commandButton>
+					</h:form>
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Delete User</f:facet>
+    		</h:column>
 		</h:dataTable>
-		<table>
-			<tr>
-				<td>User name</td>
-				<td>Last access date</td>
-				<td id="resetpw"></td>
-				<td id="delete"></td>
-			</tr>
-			<tr>
-				<td>Fredrik</td>
-				<td>##</td>
-				<td id="resetpw"><a href="nohref">reset pw</a></td>
-				<td id="delete"><a href="nohref">Delete</a></td>
-			</tr>
-			<tr>
-				<td>Songhokun</td>
-				<td>##</td>
-				<td id="resetpw"><a href="nohref">reset pw</a></td>
-				<td id="delete"><a href="nohref">Delete</a></td>
-			</tr>
-			<tr>
-				<td>Jonathan</td>
-				<td>##</td>
-				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
-				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
-			</tr>
-			<tr>
-				<td>Felix</td>
-				<td>##</td>
-				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
-				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
-			</tr>
-			<tr>
-				<td>Christofer</td>
-				<td>##</td>
-				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
-				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
-			</tr>
-		</table>
 	</h:form>
-
 	<script src="script.js"></script>
 
 </h:body>

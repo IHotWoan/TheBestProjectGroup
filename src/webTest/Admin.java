@@ -21,6 +21,9 @@ public class Admin {
 	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
 	
+	private String userName;
+	private String password;
+
 	public Admin(){
 		
 		try{
@@ -49,4 +52,32 @@ public class Admin {
 		
 	}
 	
+	public String changePassword(){
+		
+		try{
+			db.insert("UPDATE `shopdb`.`users` SET `user_password`='"+getPassword()+"' WHERE `user_username`='"+getUserName()+"'");
+		
+		} catch (SQLException e) {
+		e.printStackTrace();
+		}
+		return "saved";
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }
+

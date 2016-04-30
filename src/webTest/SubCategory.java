@@ -26,7 +26,7 @@ public class SubCategory implements Serializable{
 	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
 	
-	public SubCetegory(){
+	public SubCategory(){
 		
 	}
 	public SubCategory(String subCategoryName){
