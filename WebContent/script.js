@@ -21,7 +21,8 @@ document.getElementById("nav02").innerHTML =
 "<ul id='menu'>" +
 "<li><a href='dashboard.xhtml'>Dashboard</a></li>"+
 "<li><a href='manageorders.xhtml'>Manage orders</a></li>"+
-"<li><a href='manageproducts.xhtml'>Manage products</a></li>"+
+"<li><a href='editcategory.xhtml'>Edit category</a></li>"+
+"<li><a href='editproduct.xhtml'>Edit product</a></li>"+
 "<li><a href='manageusers.xhtml'>Manage users</a></li>"+
 "</ul>";
 
