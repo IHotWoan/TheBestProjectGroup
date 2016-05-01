@@ -37,6 +37,10 @@
 
 	<h:form id="form">
 		<h:dataTable value="#{admin.userArray}" var = "user">
+		    <h:column>
+    				<f:facet name="header">Username</f:facet>
+    				#{user.userID}
+    		</h:column>
 			<h:column>
     				<f:facet name="header">Username</f:facet>
     				#{user.userName}
@@ -53,6 +57,9 @@
     		</h:column>
     		<h:column>
     				<f:facet name="header">Delete User</f:facet>
+    				<h:commandButton action="deleteuser" value="Delete">
+					    <f:setPropertyActionListener target="#{admin.userID}" value="#{user.userID}" />
+					</h:commandButton>
     		</h:column>
 		</h:dataTable>
 	</h:form>
