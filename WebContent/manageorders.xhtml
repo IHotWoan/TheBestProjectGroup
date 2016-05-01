@@ -43,7 +43,7 @@
 			<h:column>
     				<f:facet name="header">Order ID</f:facet>
     				<h:commandLink value="#{undeliveredorder.orderID}" action = "#{ordertable.display(undeliveredorder)}">
-    				<f:param name="selected" value = "#{undeliveredorder.orderID}" />
+    					<f:param name="selected" value = "#{undeliveredorder.orderID}" />
     				</h:commandLink>
     		</h:column>
     		<h:column>

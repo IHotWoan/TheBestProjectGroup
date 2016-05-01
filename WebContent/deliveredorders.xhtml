@@ -44,7 +44,9 @@
 		<h:dataTable value="#{ordertable.deliveredOrderarray}" var = "deliveredorder">
 			<h:column>
     				<f:facet name="header">Order ID</f:facet>
-    				#{deliveredorder.orderID}
+    				<h:commandLink value="#{deliveredorder.orderID}" action = "#{ordertable.display(deliveredorder)}">
+    					<f:param name="selected" value = "#{deliveredorder.orderID}" />
+    				</h:commandLink>
     		</h:column>
     		<h:column>
     				<f:facet name="header">Customer Name</f:facet>

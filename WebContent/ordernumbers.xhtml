@@ -33,17 +33,42 @@
 	<h:form>
 		<h3><h:outputLabel value="#{ordertable.selected}" /></h3>
 		Ordered products: <br />
-		
+		<h:dataTable value="#{ordertable.selectedOrder.productarray}" var = "orderlist">
+			<h:column>
+    				<f:facet name="header">Product name</f:facet>
+    				#{orderlist.productName}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Brand</f:facet>
+    				#{orderlist.brandName}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Category</f:facet>
+    				#{orderlist.categoryName}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Quantity</f:facet>
+    				#{orderlist.quantity}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Price</f:facet>
+    				#{orderlist.price}
+    		</h:column>
+		</h:dataTable>
 	</h:form>
-
-	<ul id="costumer">
-		<li>Custumer Name</li>
-		<li>Street Name</li>
-		<li>Second adress</li>
-		<li>Postcode city</li>
-		<li>Mobile number</li>
-		<li>Email@</li>
-	</ul>
+	
+	<h:form>
+		<ul id="costumer">
+			<li><b>Custumer Name:</b> <h:outputLabel value="#{ordertable.selectedOrder.customerName}" /></li>
+			<li><b>Street address:</b><h:outputLabel value="#{ordertable.selectedOrder.customerAddress}" /></li>
+			<ul>
+				<li><h:outputLabel value="#{ordertable.selectedOrder.zipCode}" /> <h:outputLabel value="#{ordertable.selectedOrder.city}" /> <br /></li>
+			</ul>
+			<li><b>Mobile number:</b> <h:outputLabel value="#{ordertable.selectedOrder.phone}" /></li>
+			<li><b>E-mail:</b> <h:outputLabel value="#{ordertable.selectedOrder.email}" /></li>
+		</ul>
+	</h:form>
+	
 	
 	<script src="script.js"></script>
 
