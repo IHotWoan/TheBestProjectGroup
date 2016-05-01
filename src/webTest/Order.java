@@ -16,7 +16,7 @@ import webTest.Order.Status;
  *
  */
 public class Order implements Serializable{
-	//public enum Status{neworder, delivered, delayed, cancelled, rejected};
+	public enum Status{neworder, delivered, delayed, cancelled, rejected};
 	
 	private ArrayList<OrderedProduct> productarray = new ArrayList<OrderedProduct>();
 	private String cartID;

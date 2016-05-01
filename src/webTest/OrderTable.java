@@ -23,6 +23,25 @@ public class OrderTable implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Order> undeliveredOrderarray = new ArrayList<Order>();
 	private ArrayList<Order> deliveredOrderarray = new ArrayList<Order>();
+	private String selected;
+	private Order selectedOrder;
+	
+	
+	public String getSelected() {
+		return selected;
+	}
+
+	public void setSelected(String selected) {
+		this.selected = selected;
+	}
+
+	public Order getSelectedOrder() {
+		return selectedOrder;
+	}
+
+	public void setSelectedOrder(Order selectedOrder) {
+		this.selectedOrder = selectedOrder;
+	}
 
 	public OrderTable(){
 		retrieveOrders();
@@ -59,6 +78,11 @@ public class OrderTable implements Serializable{
 			e.printStackTrace();
 		}
 		
+	}
+	public String display(Order inOrder){
+		this.selected = inOrder.getOrderID();
+		this.selectedOrder = inOrder;
+		return "ordernumbers";
 	}
 
 	public ArrayList<Order> getUndeliveredOrderarray() {
