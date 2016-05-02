@@ -33,7 +33,10 @@ public class Admin {
 	}
 
 	public Admin(){
-		
+		pullDB();
+	}
+	public void pullDB(){
+		userArray.clear();
 		try{
 			rs = db.query("SELECT * from users");
 		
@@ -52,7 +55,6 @@ public class Admin {
 		} catch (SQLException e) {
 		e.printStackTrace();
 		}
-		
 	}
 	
 	public ArrayList<User> getUserArray(){
@@ -69,6 +71,7 @@ public class Admin {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		pullDB();
 		return "saved";
 	}
 
@@ -80,6 +83,7 @@ public class Admin {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		pullDB();
 		return "saved";
 	}
 	
