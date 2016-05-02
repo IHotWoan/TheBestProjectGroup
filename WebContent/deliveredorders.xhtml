@@ -35,8 +35,9 @@
 	<h3>delivered orders</h3>
 	<h:form id="search">
 		<p>Search by order number</p>
-		<input type="text" name="searchInput" />
-		<input type="submit" value="Search" />
+		<h:inputText value="#{ordertable.selected}" />
+		<h:commandButton action="#{ordertable.searchOrder('deliveredorders')}" value="search" />
+		<h:commandButton action="#{ordertable.clearSearch('deliveredorders')}" value="clear" />
 	</h:form>
 
 

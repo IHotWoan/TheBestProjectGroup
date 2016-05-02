@@ -32,39 +32,33 @@
 	<div id="nav02">
 	</div>
 
-	<h3>Undelivered orders</h3>
-
-	<table>
-		<tr>
-			<td><a href="ordernumbers.xhtml">l201604020001</a></td>
-			<td>item1, item2, item3, ...</td>
-			<td>### Kr</td>
-		</tr>
-		<tr>
-			<td>201604020002</td>
-			<td>item1, item 2, item 3, ...</td>
-			<td>### Kr</td>
-		</tr>
-		<tr>
-			<td>201604020003</td>
-			<td>item1</td>
-			<td>### Kr</td>
-		</tr>
-		<tr>
-			<td>201604020004</td>
-			<td>item1</td>
-			<td>### Kr</td>
-		</tr>
-		<tr>
-			<td>201604020005</td>
-			<td>item1, item 2</td>
-			<td>### Kr</td>
-		</tr>
-	</table>
-
-	<h3>Items need attention</h3>
-
-	<table>
+	<h2>Welcome to dashboard!</h2><br />
+	<p>Here you can find things need your attention.</p>
+	<h3>Unprocessed orders</h3>
+	<h:form>
+		<h:dataTable value="#{ordertable.undeliveredOrderarray}" var = "undeliveredorder">
+			<h:column>
+    				<f:facet name="header">Order ID</f:facet>
+    				<h:commandLink value="#{undeliveredorder.orderID}" action = "ordernumbers">
+    					<f:setPropertyActionListener target="#{ordertable.selectedOrder}" value="#{undeliveredorder}" />
+    					<f:setPropertyActionListener target="#{ordertable.selected}" value="#{undeliveredorder.orderID}" />
+    				</h:commandLink>
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Customer Name</f:facet>
+    				#{undeliveredorder.customerName}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Ordered products</f:facet>
+    				#{undeliveredorder.summary}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Order status</f:facet>
+    				#{undeliveredorder.orderstatus}
+    		</h:column>
+		</h:dataTable>
+		<h3>Items need attention</h3>
+		<table>
 		<tr>
 			<td>Name of product:</td>
 			<td>Category</td>
@@ -92,6 +86,10 @@
 		</tr>
 	</table>
 
+	</h:form>
+	
+
+	
 	<script src="script.js"></script>
 
 	<div id="footer">@2016 The Best Project Group</div>

@@ -61,6 +61,9 @@ public class OrderTable implements Serializable{
 
 	@PostConstruct
 	public void retrieveOrders(){
+		deliveredOrderarray.clear();
+		undeliveredOrderarray.clear();
+		
 		try {
 			MysqlConnect db = new MysqlConnect();
 			ResultSet rs;
@@ -94,13 +97,6 @@ public class OrderTable implements Serializable{
 	public String display(){
 		return "ordernumbers";
 	}
-	/*
-	public String display(Order inOrder){
-		this.selected = inOrder.getOrderID();
-		this.selectedOrder = inOrder;
-		return "ordernumbers";
-	}
-	*/
 
 	public ArrayList<Order> getUndeliveredOrderarray() {
 		return undeliveredOrderarray;
@@ -146,10 +142,10 @@ public class OrderTable implements Serializable{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		deliveredOrderarray.clear();
-		undeliveredOrderarray.clear();
 		retrieveOrders();
+		
+		this.selected=null;
+		this.selectedOrder=null;
 		
 		return "updated";
 	}
@@ -181,8 +177,6 @@ public class OrderTable implements Serializable{
 			e.printStackTrace();
 		}
 		
-		deliveredOrderarray.clear();
-		undeliveredOrderarray.clear();
 		retrieveOrders();
 		checked.clear();
 		return "manageorders";
@@ -208,8 +202,6 @@ public class OrderTable implements Serializable{
 			e.printStackTrace();
 		}
 		
-		deliveredOrderarray.clear();
-		undeliveredOrderarray.clear();
 		retrieveOrders();
 		checked.clear();
 		
@@ -223,5 +215,46 @@ public class OrderTable implements Serializable{
 	public void setChecked(Map<String, Boolean> checked) {
 		this.checked = checked;
 	}
-	
+	/**
+	 * The method overwrites the current array with queried order.
+	 * @param whereToNavigateAfterwards
+	 * @return
+	 */
+	public String searchOrder(String whereToNavigateAfterwards){
+		retrieveOrders();
+		
+		if(whereToNavigateAfterwards.equals("deliveredorders")){
+			for(Order i : deliveredOrderarray)
+			{
+				if(i.getOrderID().equals(selected))
+				{
+					deliveredOrderarray.clear();
+					deliveredOrderarray.add(i);
+					return "deliveredorders";
+				}
+			}
+			//items not found
+			deliveredOrderarray.clear();
+		}
+		else
+		{
+			for(Order i : undeliveredOrderarray)
+			{
+				if(i.getOrderID().equals(selected))
+				{
+					undeliveredOrderarray.clear();
+					undeliveredOrderarray.add(i);
+					return "manageorders";
+				}
+			}
+			//items not found
+			undeliveredOrderarray.clear();
+		}
+		return whereToNavigateAfterwards;
+	}
+	public String clearSearch(String whereToNavigateAfterwards){
+		
+		retrieveOrders();
+		return whereToNavigateAfterwards;
+	}
 }

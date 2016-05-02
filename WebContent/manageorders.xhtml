@@ -33,6 +33,13 @@
 
 
 	<h3>Undelivered orders</h3>
+	<h:form id="search">
+		<p>Search by order number</p>
+		<h:inputText value="#{ordertable.selected}" />
+		<h:commandButton action="#{ordertable.searchOrder('manageorders')}" value="search" />
+		<h:commandButton action="#{ordertable.clearSearch('manageorders')}" value="clear" />
+	</h:form>
+	
 	<h:form>
 		<div id="button">
 			<h:commandButton action="#{ordertable.updateQuickDelayed}" value="Set marked as delayed" />
@@ -65,15 +72,6 @@
 		</h:dataTable>
 	
 	</h:form>
-
-	<h3>Delivered orders</h3>
-
-	<h:form id="search">
-		<p>Search by order number</p>
-		<input type="text" name="searchInput" />
-		<input type="submit" value="Search" />
-	</h:form>
-
 	<script src="script.js"></script>
 
 </h:body>
