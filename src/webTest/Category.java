@@ -30,13 +30,12 @@ public class Category implements Serializable{
 	public Category(){
 		
 	}
+	
 	public Category(String categoryName){
 		
 		setCategoryName(categoryName);
 		
 		try{
-			
-			
 			
 			rs = db.query("SELECT category_ID from category where category_name='"+this.categoryName+"' is TRUE");
 			
@@ -78,9 +77,37 @@ public class Category implements Serializable{
 		productArray.add(n);
 	}
 	
-	public ArrayList<Product> getProductArray(){
+	public ArrayList<Product> getProductArray(String n){
+		
+		setCategoryName(n);
+		
+		populateArray();
 		
 		return productArray;
+	}
+	
+	public void populateArray(){
+		
+		try{
+			rs = db.query("SELECT category_ID from category where category_name='"+this.categoryName+"' is TRUE");
+			
+			rs.next();
+			String ID = rs.getString(1);
+			
+			rs = db.query("SELECT DISTINCT brand_name from brands inner join products on products.product_brand=brands.brand_id where product_category='"+ID+"'");
+			
+		while(rs.next()){
+			
+			SubCategory subCategory = new SubCategory(rs.getString("brand_name"));
+			
+			subCategoryArray.add(subCategory);
+			
+		}
+		
+		} catch (SQLException e) {
+		e.printStackTrace();
+		}
+
 	}
 	
 }

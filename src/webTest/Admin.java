@@ -20,17 +20,10 @@ public class Admin {
 	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
 	
-	private String userName;
-	private String password;
-	private long userID;
-
-	public long getUserID() {
-		return userID;
-	}
-
-	public void setUserID(long userID) {
-		this.userID = userID;
-	}
+	private String newPassword;
+	private String confirmPassword;
+	private String userID;
+	private boolean fail;
 
 	public Admin(){
 		
@@ -41,7 +34,7 @@ public class Admin {
 			
 			User user = new User();
 			
-			user.setUserID(rs.getLong("user_id"));
+			user.setUserID(rs.getString("user_id"));
 			user.setUserName(rs.getString("user_username"));
 			user.setPassword(rs.getString("user_password"));
 			
@@ -63,42 +56,96 @@ public class Admin {
 
 	public String changePassword(){
 
-		try{
-			db.insert("UPDATE `shopdb`.`users` SET `user_password`='"+getPassword()+"' WHERE `user_username`='"+getUserName()+"'");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if(newPassword.equals("")||confirmPassword.equals("")){
+			setFail(true);
+			setNewPassword(null);
+			setConfirmPassword(null);
+			return "failed";
 		}
-		return "saved";
+		else if(newPassword.equals(confirmPassword)){
+			try{
+				db.insert("UPDATE `shopdb`.`users` SET `user_password`='"+getConfirmPassword()+"' WHERE `user_id`='"+getUserID()+"'");
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			for (User user : userArray){
+				
+				if(user.getUserID().equals(getUserID())){
+					
+					user.setPassword(confirmPassword);
+				}	
+			}
+			setFail(false);
+			return "saved";
+		}
+		else{
+			setFail(true);
+			setNewPassword(null);
+			setConfirmPassword(null);
+			return "failed";
+		}
+		
+	}
+	
+	public void setUserID(String userID) {
+		
+		this.userID = userID;
+	}
+	
+	public String getUserID() {
+		
+		return userID;
 	}
 
-	public String deleteUser(){
-
-		try{
-			db.insert("DELETE FROM users WHERE user_id='"+ getUserID() +"'");
+	public String confirmUserDelete(String userID) {
+		
+		for (User user : userArray){
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+			if(user.getUserID().equals(userID)){
+				try {
+					db.insert("DELETE FROM users WHERE user_id='"+userID+"'");
+					user.setDeletable(false);
+					userArray.remove(user);
+					break;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
-		return "saved";
+		
+		return null;
 	}
 	
-	
-
-	public String getUserName() {
-		return userName;
+	public String deleteAction(User user) {
+	    
+		user.setDeletable(true);
+		return null;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public String getNewPassword() {
+		return newPassword;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public boolean isFail() {
+		return fail;
+	}
+
+	public void setFail(boolean fail) {
+		this.fail = fail;
 	}
 	
 }

@@ -29,6 +29,7 @@ public class SubCategory implements Serializable{
 	public SubCategory(){
 		
 	}
+	
 	public SubCategory(String subCategoryName){
 		
 		setSubCategoryName(subCategoryName);
