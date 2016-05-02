@@ -42,8 +42,9 @@
 		<h:dataTable value="#{ordertable.undeliveredOrderarray}" var = "undeliveredorder">
 			<h:column>
     				<f:facet name="header">Order ID</f:facet>
-    				<h:commandLink value="#{undeliveredorder.orderID}" action = "#{ordertable.display(undeliveredorder)}">
-    					<f:param name="selected" value = "#{undeliveredorder.orderID}" />
+    				<h:commandLink value="#{undeliveredorder.orderID}" action = "ordernumbers">
+    					<f:setPropertyActionListener target="#{ordertable.selectedOrder}" value="#{undeliveredorder}" />
+    					<f:setPropertyActionListener target="#{ordertable.selected}" value="#{undeliveredorder.orderID}" />
     				</h:commandLink>
     		</h:column>
     		<h:column>

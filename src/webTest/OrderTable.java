@@ -8,8 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.model.SelectItem;
 
 import webTest.Order.Status;
 /**
@@ -23,9 +25,20 @@ public class OrderTable implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Order> undeliveredOrderarray = new ArrayList<Order>();
 	private ArrayList<Order> deliveredOrderarray = new ArrayList<Order>();
+	
+	//These fields below are used for 'selected products' in ordernumbers page.
 	private String selected;
 	private Order selectedOrder;
+	private Status selectedStatus;
 	
+	public SelectItem[] getStatusValues(){
+		  SelectItem[] items = new SelectItem[Status.values().length];
+		  int i = 0;
+		  for(Status s: Status.values())
+			  items[i++] = new SelectItem(s, s.getLabel());
+		  
+		  return items;
+	}
 	
 	public String getSelected() {
 		return selected;
@@ -43,11 +56,8 @@ public class OrderTable implements Serializable{
 		this.selectedOrder = selectedOrder;
 	}
 
-	public OrderTable(){
-		retrieveOrders();
-	}
-
-	private void retrieveOrders(){
+	@PostConstruct
+	public void retrieveOrders(){
 		try {
 			MysqlConnect db = new MysqlConnect();
 			ResultSet rs;
@@ -65,8 +75,7 @@ public class OrderTable implements Serializable{
 				temp.setEmail(rs.getString("customer_email"));
 				temp.setOrderstatus(rs.getString("customer_orderstatus"));
 				
-				//if(temp.getOrderstatus() == Status.delivered)
-				if(temp.getOrderstatus().equals("delivered"))
+				if(temp.getOrderstatus() == Status.delivered)
 					deliveredOrderarray.add(temp);
 				else
 					undeliveredOrderarray.add(temp);
@@ -79,11 +88,16 @@ public class OrderTable implements Serializable{
 		}
 		
 	}
+	public String display(){
+		return "ordernumbers";
+	}
+	/*
 	public String display(Order inOrder){
 		this.selected = inOrder.getOrderID();
 		this.selectedOrder = inOrder;
 		return "ordernumbers";
 	}
+	*/
 
 	public ArrayList<Order> getUndeliveredOrderarray() {
 		return undeliveredOrderarray;
@@ -99,5 +113,41 @@ public class OrderTable implements Serializable{
 
 	public void setDeliveredOrderarray(ArrayList<Order> deliveredOrderarray) {
 		this.deliveredOrderarray = deliveredOrderarray;
+	}
+
+	/**
+	 * @return the selectedStatus
+	 */
+	public Status getSelectedStatus() {
+		return selectedStatus;
+	}
+
+	/**
+	 * @param selectedStatus the selectedStatus to set
+	 */
+	public void setSelectedStatus(Status selectedStatus) {
+		this.selectedStatus = selectedStatus;
+		
+	}
+	
+	public String updateOrderStatus(){
+		this.selectedOrder.setOrderstatus(selectedStatus);
+		try {
+			MysqlConnect db = new MysqlConnect();
+			String query = "UPDATE customers SET customer_orderstatus='"+selectedStatus.getLabel()+
+					"' WHERE customer_order_ID='"+this.selected+"';";
+			db.insert(query);
+			db.close();
+			db = null;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		deliveredOrderarray.clear();
+		undeliveredOrderarray.clear();
+		retrieveOrders();
+		
+		return "updated";
 	}
 }

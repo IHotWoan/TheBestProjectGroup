@@ -44,8 +44,9 @@
 		<h:dataTable value="#{ordertable.deliveredOrderarray}" var = "deliveredorder">
 			<h:column>
     				<f:facet name="header">Order ID</f:facet>
-    				<h:commandLink value="#{deliveredorder.orderID}" action = "#{ordertable.display(deliveredorder)}">
-    					<f:param name="selected" value = "#{deliveredorder.orderID}" />
+    				<h:commandLink value="#{deliveredorder.orderID}" action = "ordernumbers">
+    					<f:setPropertyActionListener target="#{ordertable.selectedOrder}" value="#{deliveredorder}" />
+    					<f:setPropertyActionListener target="#{ordertable.selected}" value="#{deliveredorder.orderID}" />
     				</h:commandLink>
     		</h:column>
     		<h:column>
@@ -53,24 +54,12 @@
     				#{deliveredorder.customerName}
     		</h:column>
     		<h:column>
-    				<f:facet name="header">Customer Address</f:facet>
-    				#{deliveredorder.customerAddress}
+    				<f:facet name="header">Ordered products</f:facet>
+    				#{deliveredorder.summary}
     		</h:column>
     		<h:column>
-    				<f:facet name="header">Customer Zipcode</f:facet>
-    				#{deliveredorder.zipCode}
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Customer City</f:facet>
-    				#{deliveredorder.city}
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Customer Phone</f:facet>
-    				#{deliveredorder.phone}
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Customer Email</f:facet>
-    				#{deliveredorder.email}
+    				<f:facet name="header">Order status</f:facet>
+    				#{deliveredorder.orderstatus}
     		</h:column>
 		</h:dataTable>
 	</h:form>

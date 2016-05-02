@@ -31,8 +31,16 @@
 	<div id="nav02"></div>
 
 	<h:form>
-		<h3><h:outputLabel value="#{ordertable.selected}" /></h3>
-		Ordered products: <br />
+		<h3>Detailed information of order <h:outputLabel value="#{ordertable.selected}" /></h3>
+		
+		Change order status: 
+		<h:selectOneMenu id="orderstatus" value="#{ordertable.selectedStatus}">
+			<f:selectItems value="#{ordertable.statusValues}" />
+		</h:selectOneMenu>
+		<h:commandButton action="#{ordertable.updateOrderStatus}" value="update">
+		</h:commandButton>
+		<br />
+		Ordered products:
 		<h:dataTable value="#{ordertable.selectedOrder.productarray}" var = "orderlist">
 			<h:column>
     				<f:facet name="header">Product name</f:facet>
@@ -59,11 +67,9 @@
 	
 	<h:form>
 		<ul id="costumer">
-			<li><b>Custumer Name:</b> <h:outputLabel value="#{ordertable.selectedOrder.customerName}" /></li>
-			<li><b>Street address:</b><h:outputLabel value="#{ordertable.selectedOrder.customerAddress}" /></li>
-			<ul>
-				<li><h:outputLabel value="#{ordertable.selectedOrder.zipCode}" /> <h:outputLabel value="#{ordertable.selectedOrder.city}" /> <br /></li>
-			</ul>
+			<li><b>Customer Name:</b> <h:outputLabel value="#{ordertable.selectedOrder.customerName}" /></li>
+			<li><b>Address:</b><h:outputLabel value="#{ordertable.selectedOrder.customerAddress}" /><br />
+				<h:outputLabel value="#{ordertable.selectedOrder.zipCode}" /> <h:outputLabel value="#{ordertable.selectedOrder.city}" /> <br /></li>
 			<li><b>Mobile number:</b> <h:outputLabel value="#{ordertable.selectedOrder.phone}" /></li>
 			<li><b>E-mail:</b> <h:outputLabel value="#{ordertable.selectedOrder.email}" /></li>
 		</ul>

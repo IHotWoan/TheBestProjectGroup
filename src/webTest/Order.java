@@ -7,16 +7,30 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-
-import webTest.Order.Status;
+//import java.util.Date;
 
 /**
  * @author songhokun
  *
  */
 public class Order implements Serializable{
-	public enum Status{neworder, delivered, delayed, cancelled, rejected};
+	
+	public enum Status{
+		neworder("neworder"),
+		delivered("delivered"),
+		delayed("delayed"),
+		cancelled("cancelled"),
+		rejected("rejected");
+		
+		private String label;
+		
+		private Status(String label){
+			this.label = label;
+		}
+		public String getLabel(){
+			return label;
+		}
+		};
 	
 	private ArrayList<OrderedProduct> productarray = new ArrayList<OrderedProduct>();
 	private String cartID;
@@ -27,8 +41,8 @@ public class Order implements Serializable{
 	private String zipCode;
 	private String phone;
 	private String email;
-	//private Status orderstatus;
-	private String orderstatus;
+	private Status orderstatus;
+	//private String orderstatus;
 	private String summary;
 	
 	public ArrayList<OrderedProduct> getProductarray() {
@@ -148,27 +162,42 @@ public class Order implements Serializable{
 		this.orderPlaced = orderPlaced;
 	}
 	*/
-	/*
+	
 	public Status getOrderstatus() {
 		return orderstatus;
 	}
-	public void setOrderstatus(Status orderstatus) {
-		this.orderstatus = orderstatus;
+	public void setOrderstatus(Status inOrderstatus) {
+		this.orderstatus = inOrderstatus;
 	}
-	public void setOrderstatus(String orderstatus) {
-		if(orderstatus.equals("neworder"))
+	public void setOrderstatus(String inOrderstatus) {
+		for(Status i : Status.values())
+		{
+			if(i.label.equals(inOrderstatus))
+				this.orderstatus=i;
+		}
+		/*
+		if(inOrderstatus.equals("neworder"))
 			this.orderstatus = Status.neworder;
-		else if(orderstatus.equals("delivered"))
+		else if(inOrderstatus.equals("delivered"))
 			this.orderstatus = Status.delivered;
-		else if(orderstatus.equals("delayed"))
+		else if(inOrderstatus.equals("delayed"))
 			this.orderstatus = Status.delayed;
-		else if(orderstatus.equals("cancelled"))
+		else if(inOrderstatus.equals("cancelled"))
 			this.orderstatus = Status.cancelled;
-		else if(orderstatus.equals("rejected"))
+		else if(inOrderstatus.equals("rejected"))
 			this.orderstatus = Status.rejected;
+		*/
+	}
+	/*
+	public void setOrderstatus(String inOrderstatus) {
+		this.orderstatus=inOrderstatus;
 		
 	}
+	public String getOrderstatus() {
+		return orderstatus;
+	}
 	*/
+	
 	public String getSummary(){
 		int n = productarray.size();
 		if(n>3)
@@ -181,12 +210,6 @@ public class Order implements Serializable{
 		summary = toReturn.toString();
 		return summary;
 	}
-	public void setOrderstatus(String inOrderstatus) {
-		this.orderstatus=inOrderstatus;
-		
-	}
-	public String getOrderstatus() {
-		return orderstatus;
-	}
+	
 	
 }
