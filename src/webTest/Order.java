@@ -175,29 +175,8 @@ public class Order implements Serializable{
 			if(i.label.equals(inOrderstatus))
 				this.orderstatus=i;
 		}
-		/*
-		if(inOrderstatus.equals("neworder"))
-			this.orderstatus = Status.neworder;
-		else if(inOrderstatus.equals("delivered"))
-			this.orderstatus = Status.delivered;
-		else if(inOrderstatus.equals("delayed"))
-			this.orderstatus = Status.delayed;
-		else if(inOrderstatus.equals("cancelled"))
-			this.orderstatus = Status.cancelled;
-		else if(inOrderstatus.equals("rejected"))
-			this.orderstatus = Status.rejected;
-		*/
 	}
-	/*
-	public void setOrderstatus(String inOrderstatus) {
-		this.orderstatus=inOrderstatus;
 		
-	}
-	public String getOrderstatus() {
-		return orderstatus;
-	}
-	*/
-	
 	public String getSummary(){
 		int n = productarray.size();
 		if(n>3)
@@ -207,9 +186,11 @@ public class Order implements Serializable{
 		for(int i=0;i<n;i++)
 			toReturn.append(productarray.get(i).getProductName()+", ");
 		
+		toReturn.delete(toReturn.length()-2, toReturn.length());
+		if(productarray.size() > 3)
+			toReturn.append(", and MORE!");
+		
 		summary = toReturn.toString();
 		return summary;
 	}
-	
-	
 }

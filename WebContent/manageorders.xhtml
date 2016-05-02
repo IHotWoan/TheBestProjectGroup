@@ -33,13 +33,16 @@
 
 
 	<h3>Undelivered orders</h3>
-	<div id="button">
-		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Set marked as delayed</button>
-		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Set marked as rejected</button>
-	</div>
-
 	<h:form>
+		<div id="button">
+			<h:commandButton action="#{ordertable.updateQuickDelayed}" value="Set marked as delayed" />
+			<h:commandButton action="#{ordertable.updateQuickRejected}" value="Set marked as rejected" />
+		</div>
+		
 		<h:dataTable value="#{ordertable.undeliveredOrderarray}" var = "undeliveredorder">
+			<h:column>
+				<h:selectBooleanCheckbox value="#{ordertable.checked[undeliveredorder.orderID]}"/>
+			</h:column>
 			<h:column>
     				<f:facet name="header">Order ID</f:facet>
     				<h:commandLink value="#{undeliveredorder.orderID}" action = "ordernumbers">

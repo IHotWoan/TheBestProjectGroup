@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
@@ -30,6 +32,7 @@ public class OrderTable implements Serializable{
 	private String selected;
 	private Order selectedOrder;
 	private Status selectedStatus;
+    private Map<String, Boolean> checked = new HashMap<String, Boolean>();
 	
 	public SelectItem[] getStatusValues(){
 		  SelectItem[] items = new SelectItem[Status.values().length];
@@ -150,4 +153,75 @@ public class OrderTable implements Serializable{
 		
 		return "updated";
 	}
+	
+	public String updateQuickDelayed(){
+		
+		ArrayList<String> ordernumbersToUpdate = new ArrayList<String>();
+
+		for(Order i : undeliveredOrderarray)
+			if(checked.get(i.getOrderID()))
+				ordernumbersToUpdate.add(i.getOrderID());
+		
+		/*
+		for(int i=0;i<undeliveredOrderarray.size();i++)
+			if(undeliveredOrderarray.get(i).isQuickselected())
+				ordernumbersToUpdate.add(undeliveredOrderarray.get(i).getOrderID());
+		*/
+		try {
+			MysqlConnect db = new MysqlConnect();
+			for(int i=0;i<ordernumbersToUpdate.size();i++){
+				String query = "UPDATE customers SET customer_orderstatus='"+Status.delayed.getLabel()+
+						"' WHERE customer_order_ID='"+ordernumbersToUpdate.get(i)+"';";
+				db.insert(query);
+			}
+			db.close();
+			db = null;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		deliveredOrderarray.clear();
+		undeliveredOrderarray.clear();
+		retrieveOrders();
+		checked.clear();
+		return "manageorders";
+	}
+	public String updateQuickRejected(){
+		ArrayList<String> ordernumbersToUpdate = new ArrayList<String>();
+
+		for(Order i : undeliveredOrderarray)
+			if(checked.get(i.getOrderID()))
+				ordernumbersToUpdate.add(i.getOrderID());
+		
+		try {
+			MysqlConnect db = new MysqlConnect();
+			for(int i=0;i<ordernumbersToUpdate.size();i++){
+				String query = "UPDATE customers SET customer_orderstatus='"+Status.rejected.getLabel()+
+						"' WHERE customer_order_ID='"+ordernumbersToUpdate.get(i)+"';";
+				db.insert(query);
+			}
+			db.close();
+			db = null;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		deliveredOrderarray.clear();
+		undeliveredOrderarray.clear();
+		retrieveOrders();
+		checked.clear();
+		
+		return "manageorders";
+	}
+
+	public Map<String, Boolean> getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Map<String, Boolean> checked) {
+		this.checked = checked;
+	}
+	
 }
