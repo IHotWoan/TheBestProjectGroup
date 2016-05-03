@@ -25,6 +25,16 @@ public class SuperCategory implements Serializable{
 	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
 	
+	private String productID;
+	
+	public String getProductID() {
+		return productID;
+	}
+
+	public void setProductID(String productID) {
+		this.productID = productID;
+	}
+	
 	public SuperCategory(){
 		
 		try {
@@ -61,13 +71,23 @@ public class SuperCategory implements Serializable{
 		return productArray;
 	}
 	
-	public String saveAction() {
+	public String confirmProductEdit() {
 	    
-		//get all existing value but set "editable" to false 
 		for (Product product : productArray){
+			
+			if(product.getProductID().equals(getProductID())){
+				try {
+					db.insert("UPDATE `shopdb`.`products` SET product_ID='"+product.getProductID()+"', product_name='"+product.getName()+"'"
+							+ ", product_category='"+product.getCategoryID()+"', product_description='"+product.getDescription()+"',"
+									+ " product_price='"+product.getPrice()+"', product_quantity='"+product.getQuantity()+"' where product_ID='"+getProductID()+"'");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			product.setEditable(false);
 		}
-		//return to current page
+		
 		return null;
 		
 	}
@@ -77,4 +97,31 @@ public class SuperCategory implements Serializable{
 		product.setEditable(true);
 		return null;
 	}
+	
+	public String confirmProductDelete(String productID) {
+		
+		for (Product product : productArray){
+			
+			if(product.getProductID().equals(productID)){
+				try {
+					db.insert("DELETE FROM products WHERE product_id='"+productID+"'");
+					product.setDeletable(false);
+					productArray.remove(product);
+					break;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	public String deleteAction(Product product) {
+	    
+		product.setDeletable(true);
+		return null;
+	}
+	
 }

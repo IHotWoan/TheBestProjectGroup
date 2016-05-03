@@ -14,6 +14,7 @@ public class Product {
 	private Double price;
 	private int quantity;
 	private boolean editable;
+	private boolean deletable;
 	
 	public String getProductID() {
 		return productID;
@@ -56,6 +57,12 @@ public class Product {
 	}
 	public void setEditable(boolean editable) {
 		this.editable = editable;
+	}
+	public boolean isDeletable() {
+		return deletable;
+	}
+	public void setDeletable(boolean deleteable) {
+		this.deletable = deleteable;
 	}
 	
 	

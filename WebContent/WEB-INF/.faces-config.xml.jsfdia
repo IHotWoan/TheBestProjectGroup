@@ -19,7 +19,24 @@
     PATH="/manageusers.xhtml" TARGET="rules:#manageusers.xhtml"
     TITLE="saved" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#changepassword.xhtml:1" NAME="item1"
+   PATH="/changepassword.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="failed::#changepassword.xhtml" NAME="output"
+    PATH="/changepassword.xhtml" TARGET="rules:#changepassword.xhtml"
+    TITLE="failed" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#manageusers.xhtml" PATH="/manageusers.xhtml"
   SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ordernumbers.xhtml"
+  PATH="/ordernumbers.xhtml" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#ordernumbers.xhtml:0" NAME="item"
+   PATH="/ordernumbers.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="updated::#manageorders.xhtml" NAME="output"
+    PATH="/manageorders.xhtml" TARGET="rules:#manageorders.xhtml"
+    TITLE="updated" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#manageorders.xhtml"
+  PATH="/manageorders.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

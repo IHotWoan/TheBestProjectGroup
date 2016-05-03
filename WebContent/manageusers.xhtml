@@ -35,10 +35,10 @@
 		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Add new user</button>
 	</div>
 
-	<h:form id="form">
-		<h:dataTable value="#{admin.userArray}" var = "user">
+	<h:form id="userform">
+		<h:dataTable  id="usertable" value="#{admin.userArray}" var = "user">
 		    <h:column>
-    				<f:facet name="header">Username</f:facet>
+    				<f:facet name="header">User ID</f:facet>
     				#{user.userID}
     		</h:column>
 			<h:column>
@@ -52,14 +52,13 @@
     		<h:column>
     				<f:facet name="header">Change Password</f:facet>
     				<h:commandButton action="changepassword" value="Change">
-					    <f:setPropertyActionListener target="#{admin.userName}" value="#{user.userName}" />
+					    <f:setPropertyActionListener target="#{admin.userID}" value="#{user.userID}" />
 					</h:commandButton>
     		</h:column>
     		<h:column>
     				<f:facet name="header">Delete User</f:facet>
-    				<h:commandButton action="deleteuser" value="Delete">
-					    <f:setPropertyActionListener target="#{admin.userID}" value="#{user.userID}" />
-					</h:commandButton>
+					<h:commandButton value="Delete" action="#{admin.deleteAction(user)}" rendered="#{not user.deletable}" />
+    				<h:commandButton value="Confirm delete" action="#{admin.confirmUserDelete(user.userID)}" update="@form" ajax="true" rendered="#{user.deletable}" />
     		</h:column>
 		</h:dataTable>
 	</h:form>

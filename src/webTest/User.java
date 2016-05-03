@@ -9,12 +9,13 @@ public class User {
 
 	private String userName;
 	private String password;
-	private long userID;
+	private String userID;
+	private boolean deletable;
 	
-	public long getUserID() {
+	public String getUserID() {
 		return userID;
 	}
-	public void setUserID(long userID) {
+	public void setUserID(String userID) {
 		this.userID = userID;
 	}
 	public String getUserName() {
@@ -28,5 +29,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isDeletable() {
+		return deletable;
+	}
+	public void setDeletable(boolean deletable) {
+		this.deletable = deletable;
 	}	
 }
