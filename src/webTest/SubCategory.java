@@ -23,7 +23,7 @@ public class SubCategory implements Serializable{
 	
 	private ArrayList<Product> productArray = new ArrayList<Product>();
 	
-	private MysqlConnect db = new MysqlConnect();
+	private MysqlConnect db;
 	private ResultSet rs;
 	
 	public SubCategory(){
@@ -31,7 +31,7 @@ public class SubCategory implements Serializable{
 	}
 	
 	public SubCategory(String subCategoryName, String categoryName){
-		
+		this.db=new MysqlConnect();
 		setSubCategoryName(subCategoryName);
 		
 		try{
@@ -59,12 +59,13 @@ public class SubCategory implements Serializable{
 			product.setPrice(Double.parseDouble(rs.getString("product_price")));
 			product.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
 			
-			productArray.add(product);
+			this.productArray.add(product);
 			Category.addToProductArray(product);
 			SuperCategory.addToProductArray(product);
 			
 		}
-		
+		db.close();
+		db = null;
 		} catch (SQLException e) {
 		e.printStackTrace();
 		}

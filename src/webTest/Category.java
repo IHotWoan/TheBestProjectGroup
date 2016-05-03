@@ -26,7 +26,7 @@ public class Category implements Serializable{
 	private ArrayList<SubCategory> subCategoryArray = new ArrayList<SubCategory>();
 	private static ArrayList<Product> productArray = new ArrayList<Product>();
 	
-	private MysqlConnect db = new MysqlConnect();
+	private MysqlConnect db;
 	private ResultSet rs;
 	
 	public Category(){
@@ -34,7 +34,7 @@ public class Category implements Serializable{
 	}
 	
 	public Category(String categoryName){
-		
+		this.db= new MysqlConnect();
 		setCategoryName(categoryName);
 		
 		try{
@@ -54,6 +54,8 @@ public class Category implements Serializable{
 			subCategoryArray.add(subCategory);
 			
 		}
+		this.db.close();
+		this.db=null;
 		
 		} catch (SQLException e) {
 		e.printStackTrace();
@@ -109,7 +111,7 @@ public class Category implements Serializable{
 	}
 	
 	public void populateArray(){
-		
+		this.db = new MysqlConnect();
 		try{
 			rs = db.query("SELECT category_ID from category where category_name='"+this.categoryName+"' is TRUE");
 			
@@ -125,6 +127,8 @@ public class Category implements Serializable{
 			subCategoryArray.add(subCategory);
 			
 		}
+		this.db.close();
+		this.db=null;
 		
 		} catch (SQLException e) {
 		e.printStackTrace();
