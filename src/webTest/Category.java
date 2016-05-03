@@ -46,7 +46,7 @@ public class Category implements Serializable{
 			
 		while(rs.next()){
 			
-			SubCategory subCategory = new SubCategory(rs.getString("brand_name"));
+			SubCategory subCategory = new SubCategory(rs.getString("brand_name"), getCategoryName());
 			
 			subCategoryArray.add(subCategory);
 			
@@ -98,7 +98,7 @@ public class Category implements Serializable{
 			
 		while(rs.next()){
 			
-			SubCategory subCategory = new SubCategory(rs.getString("brand_name"));
+			SubCategory subCategory = new SubCategory(rs.getString("brand_name"), getCategoryName());
 			
 			subCategoryArray.add(subCategory);
 			

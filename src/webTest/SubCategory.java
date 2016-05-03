@@ -30,17 +30,23 @@ public class SubCategory implements Serializable{
 		
 	}
 	
-	public SubCategory(String subCategoryName){
+	public SubCategory(String subCategoryName, String categoryName){
 		
 		setSubCategoryName(subCategoryName);
 		
 		try{
+			
+			rs = db.query("SELECT category_ID from category where category_name='"+categoryName+"' is TRUE");
+			
+			rs.next();
+			String categoryID = rs.getString(1);
+			
 			rs = db.query("SELECT brand_ID from brands where brand_name='"+this.subCategoryName+"' is TRUE");
 			
 			rs.next();
 			String ID = rs.getString(1);
 			
-			rs= db.query("SELECT * from products where product_brand='"+ID+"'");
+			rs= db.query("SELECT * from products where product_brand='"+ID+"' and product_category='"+categoryID+"'");
 		
 		while(rs.next()){
 			
