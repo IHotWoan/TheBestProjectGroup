@@ -1,12 +1,11 @@
 package webTest;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  * @author Jonathan
@@ -20,6 +19,9 @@ public class Category implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String categoryName;
+	private String categoryID;
+	private boolean editable;
+	private boolean deletable;
 	
 	private ArrayList<SubCategory> subCategoryArray = new ArrayList<SubCategory>();
 	private static ArrayList<Product> productArray = new ArrayList<Product>();
@@ -41,6 +43,7 @@ public class Category implements Serializable{
 			
 			rs.next();
 			String ID = rs.getString(1);
+			categoryID = ID;
 			
 			rs = db.query("SELECT DISTINCT brand_name from brands inner join products on products.product_brand=brands.brand_id where product_category='"+ID+"'");
 			
@@ -61,9 +64,28 @@ public class Category implements Serializable{
 	public String getCategoryName() {
 		return categoryName;
 	}
+	public String getCategoryID() {
+		return categoryID;
+	}
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+	public void setCategoryID(String categoryID) {
+		this.categoryID = categoryID;
+	}
+
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+	public boolean isDeletable() {
+		return deletable;
+	}
+	public void setDeletable(boolean deletable) {
+		this.deletable = deletable;
 	}
 
 	public ArrayList<SubCategory> getSubCategoryArray(){

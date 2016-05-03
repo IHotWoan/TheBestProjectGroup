@@ -31,36 +31,33 @@
 	<div id="nav02">
 	</div>
 
-	<h3>List of categories</h3>
-	<div id="button">
-		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Add new category</button>
-	</div>
 
-	<h:form>
-		<table>
-			<tr>
-				<td>Categories</td>
-				<td>number of products</td>
-				<td id="delete"></td>
-			</tr>
-			<tr>
-				<td>category 1</td>
-				<td>##</td>
-				<td id="delete"><a href="nohref">Delete</a></td>
-			</tr>
-			<tr>
-				<td>category 2</td>
-				<td>##</td>
-				<td id="delete"><a href="nohref">Delete</a></td>
-			</tr>
-			<tr>
-				<td>category 3</td>
-				<td>##</td>
-				<td id="delete"><a href="nohref">Delete</a></td>
-			</tr>
-		</table>
-	</h:form>
-	
+	<h:dataTable value="#{supercategory.categoryArray}" var="category">
+		<h:column>
+			<f:facet name="header">Category name</f:facet>
+			<h:inputText value="#{category.categoryName}" size="10" rendered="#{category.editable}" />
+			<h:outputText value="#{category.categoryName}" rendered="#{not category.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Category ID</f:facet>
+			<h:inputText value="#{category.categoryID}" size="10" rendered="#{category.editable}" />
+			<h:outputText value="#{category.categoryID}" rendered="#{not category.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Edit</f:facet>
+			<h:commandButton value="Edit" action="#{supercategory.editCategory(category)}" rendered="#{not category.editable}" >
+				<f:setPropertyActionListener target="#{supercategory.categoryID}" value="#{category.categoryID}" />
+			</h:commandButton>
+			<h:commandButton value="Save Changes" action="#{supercategory.confirmCategoryEdit}" rendered="#{category.editable}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Delete</f:facet>
+			<h:commandButton value="Delete" action="#{supercategory.deleteCategory(category)}" rendered="#{not category.deletable}" />
+			<h:commandButton value="Confirm delete" action="#{supercategory.confirmProductDelete(category.categoryID)}" update="@form" ajax="true" rendered="#{category.deletable}" />
+		</h:column>
+	</h:dataTable>
+
+
 
 
 	<script src="script.js"></script>

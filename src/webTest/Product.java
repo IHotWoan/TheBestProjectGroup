@@ -64,8 +64,8 @@ public class Product {
 	public boolean isDeletable() {
 		return deletable;
 	}
-	public void setDeletable(boolean deleteable) {
-		this.deletable = deleteable;
+	public void setDeletable(boolean deletable) {
+		this.deletable = deletable;
 	}
 	public String getCategoryName() {
 		return categoryName;

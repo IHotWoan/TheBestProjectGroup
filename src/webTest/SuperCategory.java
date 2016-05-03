@@ -1,12 +1,11 @@
 package webTest;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  * @author Jonathan
@@ -31,6 +30,9 @@ public class SuperCategory implements Serializable{
 	private Double productPrice;
 	private String productDescription;
 	private int productQuantity;
+
+	private String categoryName;
+	private String categoryID;
 	
 	
 	private String productID;
@@ -90,13 +92,28 @@ public class SuperCategory implements Serializable{
 	public void setProductID(String productID) {
 		this.productID = productID;
 	}
-	
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public String getCategoryID() {
+		return categoryID;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public void setCategoryID(String categoryID) {
+		this.categoryID = categoryID;
+	}
+
+
 	public SuperCategory(){
 		
 		try {
-			
-			rs = db.query("SELECT DISTINCT category_name from category left join products on products.product_category=category.category_id where product_category=category_id ORDER BY category_name ASC");
-			
+
+			rs = db.query("SELECT * FROM category");
+
 			while(rs.next()){
 				
 				Category category = new Category(rs.getString("category_name"));
@@ -104,7 +121,6 @@ public class SuperCategory implements Serializable{
 				categoryArray.add(category);
 				
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -153,6 +169,34 @@ public class SuperCategory implements Serializable{
 		product.setEditable(true);
 		return null;
 	}
+
+	public String confirmCategoryEdit() {
+
+		for (Category category : categoryArray){
+
+			if(category.getCategoryID().equals(getCategoryID())){
+				try {
+					db.insert("UPDATE `shopdb`.`category` SET category_ID='"+category.getCategoryID()+"', category_name='"+category.getCategoryName()
+							+"' where category_ID='"+getCategoryID()+"'");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			category.setEditable(false);
+		}
+
+		return null;
+
+	}
+
+	public String editCategory(Category category) {
+
+		category.setEditable(true);
+		return null;
+	}
+
+
 	
 	public String confirmProductDelete(String productID) {
 		
@@ -177,6 +221,33 @@ public class SuperCategory implements Serializable{
 	public String deleteAction(Product product) {
 	    
 		product.setDeletable(true);
+		return null;
+	}
+
+	public String confirmCategoryDelete(String categoryID) {
+
+		for (Category category : categoryArray){
+
+			if(category.getCategoryID().equals(categoryID)){
+				try {
+					db.insert("DELETE FROM category WHERE category_ID='"+categoryID+"'");
+					category.setDeletable(false);
+					categoryArray.remove(category);
+					break;
+				}
+				catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public String deleteCategory(Category category) {
+
+		category.setDeletable(true);
 		return null;
 	}
 	
