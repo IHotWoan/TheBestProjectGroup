@@ -150,7 +150,7 @@ public class OrderTable implements Serializable{
 		return "updated";
 	}
 	
-	public String updateQuickDelayed(){
+	public String updateQuick(String toWhich){
 		
 		ArrayList<String> ordernumbersToUpdate = new ArrayList<String>();
 
@@ -166,8 +166,20 @@ public class OrderTable implements Serializable{
 		try {
 			MysqlConnect db = new MysqlConnect();
 			for(int i=0;i<ordernumbersToUpdate.size();i++){
-				String query = "UPDATE customers SET customer_orderstatus='"+Status.delayed.getLabel()+
+				String query="";
+				if(toWhich.equals("delayed")){
+					query = "UPDATE customers SET customer_orderstatus='"+Status.delayed.getLabel()+
 						"' WHERE customer_order_ID='"+ordernumbersToUpdate.get(i)+"';";
+				}
+				else if(toWhich.equals("rejected")){
+					query = "UPDATE customers SET customer_orderstatus='"+Status.rejected.getLabel()+
+							"' WHERE customer_order_ID='"+ordernumbersToUpdate.get(i)+"';";
+				}
+				else if(toWhich.equals("delivered"))
+				{
+					query = "UPDATE customers SET customer_orderstatus='"+Status.delivered.getLabel()+
+							"' WHERE customer_order_ID='"+ordernumbersToUpdate.get(i)+"';";
+				}
 				db.insert(query);
 			}
 			db.close();
@@ -181,33 +193,6 @@ public class OrderTable implements Serializable{
 		checked.clear();
 		return "manageorders";
 	}
-	public String updateQuickRejected(){
-		ArrayList<String> ordernumbersToUpdate = new ArrayList<String>();
-
-		for(Order i : undeliveredOrderarray)
-			if(checked.get(i.getOrderID()))
-				ordernumbersToUpdate.add(i.getOrderID());
-		
-		try {
-			MysqlConnect db = new MysqlConnect();
-			for(int i=0;i<ordernumbersToUpdate.size();i++){
-				String query = "UPDATE customers SET customer_orderstatus='"+Status.rejected.getLabel()+
-						"' WHERE customer_order_ID='"+ordernumbersToUpdate.get(i)+"';";
-				db.insert(query);
-			}
-			db.close();
-			db = null;
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		retrieveOrders();
-		checked.clear();
-		
-		return "manageorders";
-	}
-
 	public Map<String, Boolean> getChecked() {
 		return checked;
 	}

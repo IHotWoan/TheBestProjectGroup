@@ -37,13 +37,14 @@
 		<p>Search by order number</p>
 		<h:inputText value="#{ordertable.selected}" />
 		<h:commandButton action="#{ordertable.searchOrder('manageorders')}" value="search" />
-		<h:commandButton action="#{ordertable.clearSearch('manageorders')}" value="clear" />
+		<h:commandButton action="#{ordertable.clearSearch('manageorders')}" value="clear search" />
 	</h:form>
 	
 	<h:form>
 		<div id="button">
-			<h:commandButton action="#{ordertable.updateQuickDelayed}" value="Set marked as delayed" />
-			<h:commandButton action="#{ordertable.updateQuickRejected}" value="Set marked as rejected" />
+			<h:commandButton action="#{ordertable.updateQuick('delayed')}" value="Set marked as delayed" />
+			<h:commandButton action="#{ordertable.updateQuick('rejected')}" value="Set marked as rejected" />
+			<h:commandButton action="#{ordertable.updateQuick('delivered')}" value="Set marked as delivered" />
 		</div>
 		
 		<h:dataTable value="#{ordertable.undeliveredOrderarray}" var = "undeliveredorder">
