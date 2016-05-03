@@ -72,15 +72,15 @@
     		</h:column>
     		<h:column>	
     				<f:facet name="header">Edit</f:facet>
-    				<h:commandLink value="Edit" action="#{supercategory.editAction(product)}" rendered="#{not product.editable}" >
+    				<h:commandButton value="Edit" action="#{supercategory.editAction(product)}" rendered="#{not product.editable}" >
     					<f:setPropertyActionListener target="#{supercategory.productID}" value="#{product.productID}" />
-    				</h:commandLink>
-    				<h:commandLink value="Save Changes" action="#{supercategory.confirmProductEdit}" rendered="#{product.editable}" />
+    				</h:commandButton>
+    				<h:commandButton value="Save Changes" action="#{supercategory.confirmProductEdit}" rendered="#{product.editable}" />
     		</h:column>
     		<h:column>	
     				<f:facet name="header">Delete</f:facet>
-    				<h:commandLink value="Delete" action="#{supercategory.deleteAction(product)}" rendered="#{not product.deletable}" />
-    				<h:commandLink value="Confirm delete" action="#{supercategory.confirmProductDelete(product.productID)}" update="@form" ajax="true" rendered="#{product.deletable}" />
+    				<h:commandButton value="Delete" action="#{supercategory.deleteAction(product)}" rendered="#{not product.deletable}" />
+    				<h:commandButton value="Confirm delete" action="#{supercategory.confirmProductDelete(product.productID)}" update="@form" ajax="true" rendered="#{product.deletable}" />
     		</h:column>
 		</h:dataTable>
 	</h:form>
