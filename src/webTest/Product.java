@@ -10,6 +10,9 @@ public class Product {
 	private String productID;
 	private String name;
 	private String categoryID;
+	private String categoryName;
+	private String brandID;
+	private String brandName;
 	private String description;
 	private Double price;
 	private int quantity;
@@ -63,6 +66,24 @@ public class Product {
 	}
 	public void setDeletable(boolean deleteable) {
 		this.deletable = deleteable;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getBrandID() {
+		return brandID;
+	}
+	public void setBrandID(String brandID) {
+		this.brandID = brandID;
+	}
+	public String getBrandName() {
+		return brandName;
+	}
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 	
 	

@@ -32,7 +32,7 @@ public class Order implements Serializable{
 		}
 		};
 	
-	private ArrayList<OrderedProduct> productarray = new ArrayList<OrderedProduct>();
+	private ArrayList<Product> productarray = new ArrayList<Product>();
 	private String cartID;
 	private String orderID;
 	private String customerName;
@@ -45,10 +45,10 @@ public class Order implements Serializable{
 	//private String orderstatus;
 	private String summary;
 	
-	public ArrayList<OrderedProduct> getProductarray() {
+	public ArrayList<Product> getProductarray() {
 		return productarray;
 	}
-	public void setProductarray(ArrayList<OrderedProduct> productarray) {
+	public void setProductarray(ArrayList<Product> productarray) {
 		this.productarray = productarray;
 	}
 	
@@ -71,15 +71,15 @@ public class Order implements Serializable{
 				"inner join category on products.product_category = category.category_ID " +
 				"where ordereditems.ordereditems_order_ID = '"+this.orderID+"'");
 			while(rs1.next()){
-				OrderedProduct temp = new OrderedProduct();
+				Product tmp = new Product();
 				
-				temp.setProductName(rs1.getString("product_name"));
-				temp.setCategoryName(rs1.getString("category_name"));
-				temp.setBrandName(rs1.getString("brand_name"));
-				temp.setQuantity(rs1.getInt("ordereditems_quantity"));
-				temp.setPrice(rs1.getDouble("ordereditems_price"));
+				tmp.setName(rs1.getString("product_name"));
+				tmp.setCategoryName(rs1.getString("category_name"));
+				tmp.setBrandName(rs1.getString("brand_name"));
+				tmp.setQuantity(rs1.getInt("ordereditems_quantity"));
+				tmp.setPrice(rs1.getDouble("ordereditems_price"));
 				
-				productarray.add(temp);
+				productarray.add(tmp);
 			}
 			db.close();
 			db = null;
@@ -184,7 +184,7 @@ public class Order implements Serializable{
 		
 		StringBuilder toReturn = new StringBuilder();
 		for(int i=0;i<n;i++)
-			toReturn.append(productarray.get(i).getProductName()+", ");
+			toReturn.append(productarray.get(i).getName()+", ");
 		
 		toReturn.delete(toReturn.length()-2, toReturn.length());
 		if(productarray.size() > 3)
