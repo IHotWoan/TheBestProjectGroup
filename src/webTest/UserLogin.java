@@ -15,6 +15,10 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class UserLogin implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3690339744194800891L;
 	private String userName;
 	private String password;
 	
@@ -43,8 +47,7 @@ public class UserLogin implements Serializable {
             session.setAttribute("username", userName);
             return "success";
         } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
+            FacesContext.getCurrentInstance().addMessage("loginform",
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Incorrect Username and Passowrd",
                             "Please enter correct username and Password"));
