@@ -25,8 +25,64 @@ public class SuperCategory implements Serializable{
 	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
 	
+	private String productName;
+	private String productCategory;
+	private String productBrand;
+	private Double productPrice;
+	private String productDescription;
+	private int productQuantity;
+	
+	
 	private String productID;
 	
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
+	public String getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+	
+	public String getProductBrand() {
+		return productBrand;
+	}
+
+	public void setProductBrand(String productBrand) {
+		this.productBrand = productBrand;
+	}
+
+	public Double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(Double productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
+
 	public String getProductID() {
 		return productID;
 	}
@@ -121,6 +177,37 @@ public class SuperCategory implements Serializable{
 	public String deleteAction(Product product) {
 	    
 		product.setDeletable(true);
+		return null;
+	}
+	
+	/*
+	 * addProduct() gives error if product name has punctuation in it like apostrophes etc.
+	 */
+	
+	public String addProduct(){
+		
+		try {
+			db.insert("INSERT into `shopdb`.`products` (product_name,product_category,product_brand,product_price,product_description,product_quantity) "
+					+ "VALUES ('"+getProductName()+"', "+Integer.parseInt(getProductCategory())+", "+Integer.parseInt(getProductBrand())+", "+getProductPrice()+", '"+getProductDescription()+"', "+getProductQuantity()+")");
+			
+			Product product = new Product();
+			product.setName(getProductName());
+			product.setCategoryID(getProductCategory());
+			product.setBrandID(getProductBrand());
+			product.setPrice(getProductPrice());
+			product.setDescription(getProductDescription());
+			product.setQuantity(getProductQuantity());
+			
+			rs = db.query("SELECT product_ID from products order by product_ID desc limit 1");
+			rs.next();
+			product.setProductID(rs.getString(1));
+			
+			productArray.add(product);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 	

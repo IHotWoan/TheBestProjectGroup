@@ -20,6 +20,9 @@ public class Admin {
 	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
 	
+	private String userName;
+	private String userPassword;
+	
 	private String newPassword;
 	private String confirmPassword;
 	private String userID;
@@ -124,6 +127,31 @@ public class Admin {
 		return null;
 	}
 
+	public String addUser(){
+		
+		try {
+			db.insert("INSERT into `shopdb`.`users` (user_username,user_password) "
+					+ "VALUES ('"+getUserName()+"','"+getUserPassword()+"')");
+			
+			User user = new User();
+			user.setUserName(getUserName());
+			user.setPassword(getUserPassword());
+		
+			rs = db.query("SELECT user_ID from users order by user_ID desc limit 1");
+			rs.next();
+			user.setUserID(rs.getString(1));
+			
+			userArray.add(user);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
 	public String getNewPassword() {
 		return newPassword;
 	}
@@ -146,6 +174,22 @@ public class Admin {
 
 	public void setFail(boolean fail) {
 		this.fail = fail;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 	
 }

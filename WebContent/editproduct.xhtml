@@ -38,8 +38,8 @@
 		<h:commandButton value="Add new product"/>
 	</h:form>
 	
-	<h:form>
-		<h:dataTable value="#{supercategory.productArray}" var = "product">
+	<h:form id="productsform">
+		<h:dataTable id="productstable" value="#{supercategory.productArray}" var = "product">
 			<h:column>
     				<f:facet name="header">Product ID</f:facet>
     				<h:inputText value="#{product.productID}" size="10" rendered="#{product.editable}" />
@@ -83,8 +83,37 @@
     				<h:commandButton value="Confirm delete" action="#{supercategory.confirmProductDelete(product.productID)}" update="@form" ajax="true" rendered="#{product.deletable}" />
     		</h:column>
 		</h:dataTable>
+	
+		<h2>Add New Product</h2>
+	   		<table>
+	   		<tr>
+	   			<td>Product Name:</td>
+	   			<td><h:inputText size="10" value="#{supercategory.productName}" /></td>
+	   		</tr>
+	   		<tr>
+	   			<td>Product Category:</td>
+	   			<td><h:inputText size="20" value="#{supercategory.productCategory}" /></td>
+	   		</tr>
+	   		<tr>
+	   			<td>Product Brand:</td>
+	   			<td><h:inputText size="5" value="#{supercategory.productBrand}" /></td>
+	   		</tr>
+	   		<tr>
+	   			<td>Product Price:</td>
+	   			<td><h:inputText size="10" value="#{supercategory.productPrice}" /></td>
+	   		</tr>
+	   		<tr>
+	   			<td>Product Description:</td>
+	   			<td><h:inputText size="10" value="#{supercategory.productDescription}" /></td>
+	   		</tr>
+	   		<tr>
+	   			<td>Product Quantity:</td>
+	   			<td><h:inputText size="10" value="#{supercategory.productQuantity}" /></td>
+	   		</tr>
+	   		</table>
+	    		
+		<h:commandButton value="Add Product" action="#{supercategory.addProduct}" update=":productsform:productstable" ajax="true"/>
 	</h:form>
-
 	<script src="script.js"></script>
 
 </h:body>

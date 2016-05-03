@@ -61,6 +61,20 @@
     				<h:commandButton value="Confirm delete" action="#{admin.confirmUserDelete(user.userID)}" update="@form" ajax="true" rendered="#{user.deletable}" />
     		</h:column>
 		</h:dataTable>
+		
+		<h2>Add New User</h2>
+	   		<table>
+	   		<tr>
+	   			<td>User Name:</td>
+	   			<td><h:inputText size="10" value="#{admin.userName}" /></td>
+	   		</tr>
+	   		<tr>
+	   			<td>Password:</td>
+	   			<td><h:inputText size="20" value="#{admin.userPassword}" /></td>
+	   		</tr>
+	   		</table>
+	    		
+		<h:commandButton value="Add User" action="#{admin.addUser}" update=":userform:usertable" ajax="true"/>
 	</h:form>
 	<script src="script.js"></script>
 
