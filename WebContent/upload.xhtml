@@ -31,7 +31,9 @@
 	<div id="nav02">
 	</div>
 
-	<h:form><h1>Upload image file for product id <h:outputLabel value="#{fileuploadbean.productID}" /></h1></h:form>
+	<h:form><h1>Upload image file for product id: <h:outputLabel value="#{fileuploadbean.productID}" /></h1>
+		<br /><br />
+	</h:form>
 	
 	<h:form id="uploadform" enctype="multipart/form-data">
 		<h:inputFile id="file" value="#{fileuploadbean.file}" validator="#{fileuploadbean.validateFile}">

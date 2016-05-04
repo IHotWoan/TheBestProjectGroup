@@ -11,8 +11,6 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -29,8 +27,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/productImageServlet")
 public class ProductImageServlet extends HttpServlet{
-	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        Long productID = Long.valueOf(request.getParameter("id"));
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4410586872804737929L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	        //Long productID = Long.valueOf(request.getParameter("id"));
+		 String productID = request.getParameter("id");
 
 	        MysqlConnect db = new MysqlConnect();
 	        try {
@@ -43,8 +47,10 @@ public class ProductImageServlet extends HttpServlet{
 	                response.setContentLength(resultSet.getInt("imageContentLength"));
 	                response.setHeader("Content-Disposition", "inline;filename=\"" + productID + "\"");
 
+	                /*
 	                ReadableByteChannel input = null;
 	                WritableByteChannel output = null;
+	                */
 	                
 	                Blob imageBlob = resultSet.getBlob("product_image");
 	                

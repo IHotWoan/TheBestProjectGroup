@@ -34,7 +34,7 @@ public class FileUploadBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 3474817816894473632L;
 	private Part file;
-	private int productID=1;
+	private String productID;
 	
 	@Lob
     private byte[] image;
@@ -56,7 +56,7 @@ public class FileUploadBean implements Serializable {
 			  
 			  statement.setBytes(1, this.image);
 			  //statement.setBinaryStream(1, inputStream);
-			  statement.setInt(2, productID);
+			  statement.setInt(2, Integer.parseInt(productID));
 			  statement.executeUpdate();
 			  
 			  db.close();
@@ -67,7 +67,7 @@ public class FileUploadBean implements Serializable {
 			e.printStackTrace();
 		}
 		  
-	        return "success";
+	        return "editproduct";
 		}
 		catch(IOException e){
 			System.err.println("ERROR OCCURRED IN FILE UPLOAING");
@@ -85,11 +85,11 @@ public class FileUploadBean implements Serializable {
 	  public void validateFile(FacesContext ctx, UIComponent comp, Object value) {
 		  List<FacesMessage> msgs = new ArrayList<FacesMessage>();
 		  Part file = (Part)value;
-		  /*
-		  if (file.getSize() > 102400) {
+		  
+		  if (file.getSize() > 10240000) {
 			  msgs.add(new FacesMessage("file too big"));
 		  	}
-		  
+		  /*
 		  if (!"text/plain".equals(file.getContentType())) {
 			  msgs.add(new FacesMessage("not a text file"));
 			  }
@@ -98,11 +98,11 @@ public class FileUploadBean implements Serializable {
 			  throw new ValidatorException(msgs);
 		  }
 	  }
-	public int getProductID() {
+	public String getProductID() {
 		return productID;
 	}
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public void setProductID(String inProductID) {		
+		this.productID = inProductID;
 	}
 	public byte[] getImage() {
 		return image;

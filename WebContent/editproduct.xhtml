@@ -77,6 +77,12 @@
     				</h:commandButton>
     				<h:commandButton value="Save Changes" action="#{supercategory.confirmProductEdit}" rendered="#{product.editable}" />
     		</h:column>
+    		<h:column>
+    			<f:facet name="header">Add image</f:facet>
+    			<h:commandButton value="Change image" action="upload">
+    				<f:setPropertyActionListener target="#{fileuploadbean.productID}" value ="#{product.productID}" />
+    			</h:commandButton>
+    		</h:column>
     		<h:column>	
     				<f:facet name="header">Delete</f:facet>
     				<h:commandButton value="Delete" action="#{supercategory.deleteAction(product)}" rendered="#{not product.deletable}" />

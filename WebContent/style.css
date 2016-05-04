@@ -61,6 +61,8 @@ table, th, td, #costumer {
 table th, td, #costumer li {
 	padding: 6px;
 }
+tab1 { padding-left: 4em; }
+tab2 { padding-left: 2em; }
 
 #checkbox {
 	width: 10px;

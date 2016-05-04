@@ -14,7 +14,8 @@ import java.util.ArrayList;
  *
  */
 public class Order implements Serializable{
-	
+	private static final long serialVersionUID = -6210255905179985756L;
+
 	public enum Status{
 		neworder("neworder"),
 		delivered("delivered"),
@@ -65,7 +66,7 @@ public class Order implements Serializable{
 			MysqlConnect db = new MysqlConnect();
 			ResultSet rs1;
 			
-			rs1 = db.query("SELECT products.product_name, brands.brand_name, category.category_name, ordereditems.ordereditems_quantity, ordereditems.ordereditems_price FROM ordereditems "
+			rs1 = db.query("SELECT products.product_name, products.product_id, brands.brand_name, category.category_name, ordereditems.ordereditems_quantity, ordereditems.ordereditems_price FROM ordereditems "
 					+ "inner join products on ordereditems.ordereditems_product = products.product_id " +
 				"inner join brands on products.product_brand = brands.brand_ID " +
 				"inner join category on products.product_category = category.category_ID " +
@@ -78,6 +79,7 @@ public class Order implements Serializable{
 				tmp.setBrandName(rs1.getString("brand_name"));
 				tmp.setQuantity(rs1.getInt("ordereditems_quantity"));
 				tmp.setPrice(rs1.getDouble("ordereditems_price"));
+				tmp.setProductID(rs1.getString("product_id"));
 				
 				productarray.add(tmp);
 			}
