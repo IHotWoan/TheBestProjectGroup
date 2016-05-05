@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 public class LocalConnect {
 	
+	private final String DATASOURCE_CONTEXT = "java:/MySqlDS";
     public Connection conn;
     private Statement statement;
     public LocalConnect() {

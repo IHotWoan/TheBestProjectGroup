@@ -159,9 +159,8 @@ public class SuperCategory implements Serializable{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				product.setEditable(false);
-				break;
 			}
+			product.setEditable(false);
 		}
 		
 		return null;
@@ -186,9 +185,8 @@ public class SuperCategory implements Serializable{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				category.setEditable(false);
-				break;
 			}
+			category.setEditable(false);
 		}
 
 		return null;

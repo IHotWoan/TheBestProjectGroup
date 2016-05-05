@@ -1,6 +1,7 @@
 package webTest;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +16,23 @@ public class MysqlConnect {
     public Connection conn;
     private Statement statement;
     public MysqlConnect() {
+    	
+    	/*
+        String url= "jdbc:mysql://songhohem.ddns.net:3306/";
+        String dbName = "shopdb";
+        String driver = "com.mysql.jdbc.Driver";
+        String userName = "root";
+        String password = "1DV508Grupp5";
+        
+        try {
+            Class.forName(driver).newInstance();
+            this.conn = (Connection)DriverManager.getConnection(url+dbName,userName,password);
+            System.out.println("Connection Success");
+        }
+        catch (Exception sqle) {
+            sqle.printStackTrace();
+        }*/
+    	
     	
 		Context initialContext;
 		try {
@@ -64,5 +82,7 @@ public class MysqlConnect {
     }
     public void close() throws SQLException{
     	conn.close();
-    }  
+    }
+ 
+    
 }
