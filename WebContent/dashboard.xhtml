@@ -11,23 +11,24 @@
 </h:head>
 
 <h:body>
-	
-	<div id="header">
-		<a href="dashboard.xhtml">
-			<img style="width: 300px; height: 200px;" alt="Logo placeholder" src="best.jpg"> </img>
-	</a>
-	<h1> Administrator </h1>
-	<h1><h:outputText value="#{userLogin.userName}" /></h1>
-	<p id="date">
-	<!-- <h:outputText value="#{session.lastAccessedTime}">
-		<f:convertDateTime pattern="yyyy-MM-dd" type="date" />
-		</h:outputText> -->
-		</p>
-		<h2><h:form><h:commandLink action="#{userLogin.logout}" value="log out" /></h:form>
-			
-		</h2>
+
+	<div id="nav01">
+		<div id="header">
+			<a href="dashboard.xhtml">
+				<img style="width: 300px; height: 200px;" alt="Logo placeholder" src="best.jpg"> </img>
+			</a>
+			<h1> Administrator </h1>
+			<h1><h:outputText value="#{userLogin.userName}" /></h1>
+			<p id="date">
+			<!-- <h:outputText value="#{session.lastAccessedTime}">
+				<f:convertDateTime pattern="yyyy-MM-dd" type="date" />
+				</h:outputText> -->
+			</p>
+			<h2><h:form><h:commandLink action="#{userLogin.logout}" value="log out" /></h:form>
+				
+			</h2>
+		</div>
 	</div>
-		
 	<div id="nav02">
 	</div>
 
@@ -56,6 +57,35 @@
     				#{undeliveredorder.orderstatus}
     		</h:column>
 		</h:dataTable>
+		<h3>Items need attention</h3>
+		<table>
+		<tr>
+			<td>Name of product:</td>
+			<td>Category</td>
+			<td>Stock</td>
+		</tr>
+		<tr>
+			<td>Samsung SSD 840</td>
+			<td>Storage</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>Corsair DDR3 2 GB</td>
+			<td>Memory</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>Dell ultrasharp 4K</td>
+			<td>Monitor</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>product 4</td>
+			<td>category</td>
+			<td>1</td>
+		</tr>
+	</table>
+
 	</h:form>
 	
 
