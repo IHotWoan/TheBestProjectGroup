@@ -83,7 +83,7 @@ public class OrderTable implements Serializable{
 				
 				if(temp.getOrderstatus() == Status.delivered)
 					deliveredOrderarray.add(temp);
-				else
+				else if(temp.getOrderstatus()!= Status.rejected)
 					undeliveredOrderarray.add(temp);
 			}
 			
