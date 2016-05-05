@@ -69,16 +69,15 @@
 		</h:dataTable>
 	</h:form>
 	
-	<h:form>
-		<ul id="costumer">
-			<li><b>Customer Name:</b> <h:outputLabel value="#{ordertable.selectedOrder.customerName}" /></li>
-			<li><b>Address:</b><h:outputLabel value="#{ordertable.selectedOrder.customerAddress}" /><br />
-				<tab1 /><h:outputLabel value="#{ordertable.selectedOrder.zipCode}" /><tab2 /><h:outputLabel value="#{ordertable.selectedOrder.city}" /> <br /></li>
-			<li><b>Mobile number:</b> <h:outputLabel value="#{ordertable.selectedOrder.phone}" /></li>
-			<li><b>E-mail:</b> <h:outputLabel value="#{ordertable.selectedOrder.email}" /></li>
-		</ul>
-	</h:form>
-	
+<h:form>
+	<ul id="customer">
+		<li><b>Customer Name:</b> <h:outputLabel value="#{ordertable.selectedOrder.customerName}" /></li>
+		<li><b>Address:</b><h:outputLabel value="#{ordertable.selectedOrder.customerAddress}" /><br />
+			<h:outputLabel value="#{ordertable.selectedOrder.zipCode}" /><h:outputLabel value="#{ordertable.selectedOrder.city}" /> <br /></li>
+		<li><b>Mobile number:</b> <h:outputLabel value="#{ordertable.selectedOrder.phone}" /></li>
+		<li><b>E-mail:</b> <h:outputLabel value="#{ordertable.selectedOrder.email}" /></li>
+	</ul>
+</h:form>
 	
 	<script src="script.js"></script>
 

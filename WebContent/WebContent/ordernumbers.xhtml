@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+	<title>Test</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</h:head>
+
+<h:body>
+
+	<!--Javascript-->
+	<div id="nav01">
+		<div id="header">
+			<a href="dashboard.xhtml">
+				<img style="width: 300px; height: 200px;" alt="Logo placeholder" src="best.jpg"> </img>
+			</a>
+			<h1> Administrator </h1>
+			<h1><h:outputText value="#{userLogin.userName}" /></h1>
+			<p id="date"></p>
+			<h2>
+				<h:form>
+					<h:commandLink action="#{userLogin.logout}" value="log out" />
+				</h:form>
+			</h2>
+		</div>
+	</div>
+	<div id="nav02"></div>
+
+
+	<h3>Order number: 120160402001</h3>
+	<h:form>
+		<table>
+			<tr>
+				<td>product name</td>
+				<td>Category</td>
+				<td>option</td>
+				<td>Quantity</td>
+				<td id="checkbox"></td>
+			</tr>
+			<tr>
+				<td>item 1</td>
+				<td>category 1</td>
+				<td>option 1</td>
+				<td>1</td>
+				<td id="checkbox"><input type="checkbox" name="item"
+					value="value" /></td>
+			</tr>
+			<tr>
+				<td>item 2</td>
+				<td>category 1</td>
+				<td>option 2</td>
+				<td>5</td>
+				<td id="checkbox"><input type="checkbox" name="item"
+					value="value" /></td>
+			</tr>
+			<tr>
+				<td>item 3</td>
+				<td>category 2</td>
+				<td>option 3</td>
+				<td>2</td>
+				<td id="checkbox"><input type="checkbox" name="item"
+					value="value" /></td>
+			</tr>
+			<tr>
+				<td>item 4</td>
+				<td>category 4</td>
+				<td>256GB</td>
+				<td>7</td>
+				<td id="checkbox"><input type="checkbox" name="item"
+					value="value" /></td>
+			</tr>
+		</table>
+	</h:form>
+
+	<ul id="costumer">
+		<li>Custumer Name</li>
+		<li>Street Name</li>
+		<li>Second adress</li>
+		<li>Postcode city</li>
+		<li>Mobile number</li>
+		<li>Email@</li>
+	</ul>
+
+	<h:form id="search">
+		<p>Enter tracking number</p>
+		<input type="text" name="searchInput" />
+		<input type="submit" value="Search" />
+	</h:form>
+
+	<div id="button">
+		<button type="button"
+			onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Mark it as delivered</button>
+		<button type="button"
+			onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Reject order</button>
+		<button type="button"
+			onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Delayed</button>
+		<button type="button"
+			onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Invoice</button>
+	</div>
+
+	<script src="script.js"></script>
+
+</h:body>
+</html>

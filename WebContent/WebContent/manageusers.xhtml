@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+	<title>Test</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</h:head>
+
+<h:body>
+
+	<!--Javascript-->
+	<div id="nav01">
+		<div id="header">
+			<a href="dashboard.xhtml">
+				<img style="width: 300px; height: 200px;" alt="Logo placeholder" src="best.jpg"> </img>
+			</a>
+			<h1> Administrator </h1>
+			<h1><h:outputText value="#{userLogin.userName}" /></h1>
+			<p id="date"></p>
+			<h2>
+				<h:form>
+					<h:commandLink action="#{userLogin.logout}" value="log out" />
+				</h:form>
+			</h2>
+		</div>
+	</div>
+	<div id="nav02"></div>
+
+	<h3>List of users</h3>
+	<div id="button">
+		<button type="button" onclick="document.getElementById('date').innerHTML = 'Javascript rules!'">Add new user</button>
+	</div>
+
+	<h:form>
+		<h:dataTable value="#{admin.userArray}" var = "user">
+			<h:column>
+    				<f:facet name="header">Username</f:facet>
+    				#{user.userName}
+    		</h:column>
+    		<h:column>
+    				<f:facet name="header">Password</f:facet>
+    				#{user.password}
+    		</h:column>
+		</h:dataTable>
+		<table>
+			<tr>
+				<td>User name</td>
+				<td>Last access date</td>
+				<td id="resetpw"></td>
+				<td id="delete"></td>
+			</tr>
+			<tr>
+				<td>Fredrik</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref">reset pw</a></td>
+				<td id="delete"><a href="nohref">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Songhokun</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref">reset pw</a></td>
+				<td id="delete"><a href="nohref">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Jonathan</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
+				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Felix</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
+				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Christofer</td>
+				<td>##</td>
+				<td id="resetpw"><a href="nohref.xhtml">reset pw</a></td>
+				<td id="delete"><a href="nohref.xhtml">Delete</a></td>
+			</tr>
+		</table>
+	</h:form>
+
+	<script src="script.js"></script>
+
+</h:body>
+</html>
