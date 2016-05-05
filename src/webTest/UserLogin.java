@@ -21,6 +21,9 @@ public class UserLogin implements Serializable {
 	private String userName;
 	private String password;
 	
+	//@Resource(name="java:/MySqlDS")
+	//private DataSource ds;
+	
 	public String getUserName() {
 		return userName;
 	}
