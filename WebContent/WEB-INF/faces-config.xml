@@ -2,31 +2,31 @@
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
  <navigation-rule>
-  <from-view-id>/index.xhtml</from-view-id>
+  <from-view-id>/admin/index.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>success</from-outcome>
-   <to-view-id>/dashboard.xhtml</to-view-id>
+   <to-view-id>/admin/dashboard.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
   <navigation-rule>
-  <from-view-id>/changepassword.xhtml</from-view-id>
+  <from-view-id>/admin/changepassword.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>saved</from-outcome>
-   <to-view-id>/manageusers.xhtml</to-view-id>
+   <to-view-id>/admin/manageusers.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
   <navigation-rule>
-  <from-view-id>/changepassword.xhtml</from-view-id>
+  <from-view-id>/admin/changepassword.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>failed</from-outcome>
-   <to-view-id>/changepassword.xhtml</to-view-id>
+   <to-view-id>/admin/changepassword.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/ordernumbers.xhtml</from-view-id>
+  <from-view-id>/admin/ordernumbers.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>updated</from-outcome>
-   <to-view-id>/manageorders.xhtml</to-view-id>
+   <to-view-id>/admin/manageorders.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application>

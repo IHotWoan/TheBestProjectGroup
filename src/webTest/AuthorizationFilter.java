@@ -19,6 +19,9 @@ import javax.servlet.http.HttpSession;
  * @author songhokun
  *
  */
+public class AuthorizationFilter{
+}
+/*
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
 public class AuthorizationFilter implements Filter {
 
@@ -56,4 +59,5 @@ public class AuthorizationFilter implements Filter {
    public void destroy() {
 
    }
+   */
 }
