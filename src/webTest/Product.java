@@ -41,7 +41,16 @@ public class Product {
 		return description;
 	}
 	public void setDescription(String description) {
-		this.description = description;
+		//Songho: add a method for checking trouble causing characters.
+		
+		StringBuilder make = new StringBuilder(description);
+		for(int i=0;i<make.length();i++)
+		{
+			if(make.charAt(i)=='\\' || make.charAt(i)=='\'' || make.charAt(i)=='\"')
+				make.insert(i++,'\\');
+		}
+		
+		this.description = make.toString();
 	}
 	public Double getPrice() {
 		return price;
