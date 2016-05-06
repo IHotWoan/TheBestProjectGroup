@@ -19,10 +19,7 @@ import javax.servlet.http.HttpSession;
  * @author songhokun
  *
  */
-public class AuthorizationFilter{
-}
-/*
-@WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
+@WebFilter(filterName = "AuthFilter", urlPatterns = "/faces/admin/*")
 public class AuthorizationFilter implements Filter {
 
    public AuthorizationFilter() {
@@ -43,13 +40,13 @@ public class AuthorizationFilter implements Filter {
            HttpSession ses = reqt.getSession(false);
 
            String reqURI = reqt.getRequestURI();
-           if (reqURI.indexOf("/index.xhtml") >= 0
-                   || (ses != null && ses.getAttribute("username") != null)
+           if (reqURI.indexOf("/admin/index.xhtml") >= 0
+                   || (ses != null && ses.getAttribute("username") != null) //if logged in and generated a session
                    || reqURI.indexOf("/public/") >= 0
                    || reqURI.contains("javax.faces.resource"))
                chain.doFilter(request, response);
            else
-               resp.sendRedirect(reqt.getContextPath() + "/faces/index.xhtml");
+               resp.sendRedirect(reqt.getContextPath() + "/faces/admin/index.xhtml");
        } catch (Exception e) {
            System.out.println(e.getMessage());
        }
@@ -61,4 +58,3 @@ public class AuthorizationFilter implements Filter {
    }
    
 }
-*/
