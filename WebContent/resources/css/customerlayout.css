@@ -1,0 +1,86 @@
+/*@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);*/
+
+#container-top{
+	display: inline;
+	position: fixed;
+	top: 0;
+}
+footer
+{
+  font-family: sans-serif;
+  padding:0.5em;
+  color:white;
+  background-color:gray;
+  clear:left;
+  border-bottom:1px solid gray;
+}
+section
+{
+  margin-left:190px;
+
+  padding:1em;
+  height:auto;
+}
+aside{
+  position:fixed;
+  float:left;
+  width:auto;
+  height:100%;
+  overflow-x:hidden;
+  overflow-y:scroll;
+}
+.floating-box {
+    display: inline-block;
+    width: 150px;
+    height: 75px;
+    margin: 10px;
+    border: 3px solid #73AD21;
+}
+aside ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    overflow: auto;
+}
+
+aside li a {
+    display: block;
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+aside li a:hover {
+    background-color: #555;
+    color: white;
+}
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+form{
+  display:inline;
+}
+input[type=text] {
+    width: 70%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+input[type=submit]{
+  margin-left: -5.5%;
+  width: 5%;
+  height:3em;
+  border:none;
+}

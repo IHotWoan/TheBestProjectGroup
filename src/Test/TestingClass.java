@@ -3,6 +3,7 @@ package Test;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import webTest.Category;
 import webTest.LocalConnect;
@@ -14,15 +15,16 @@ public class TestingClass {
 	
 	public static void main(String args[]) throws SQLException{
 		
-		SuperCategory cat = new SuperCategory();
+		Scanner scan = new Scanner(System.in);
+		String input = scan.nextLine();
 		
-		for(int i=0;i<cat.getProductArray().size();i++){
-			
-			System.out.println(cat.getProductArray().get(i).getName());
-			
+		StringBuilder make = new StringBuilder(input);
+		for(int i=0;i<make.length();i++)
+		{
+			if(make.charAt(i)=='\\' || make.charAt(i)=='\'' || make.charAt(i)=='\"')
+				make.insert(i++,'\\');
 		}
-			
-
+		System.out.println(make.toString());
 	}
 	
 }
