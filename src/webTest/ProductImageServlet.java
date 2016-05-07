@@ -35,11 +35,12 @@ public class ProductImageServlet extends HttpServlet{
 	        MysqlConnect db = new MysqlConnect();
 	        if(productID != null){
 	        	try {
-		        	String query="SELECT product_image, LENGTH(product_image) AS imageContentLength FROM products WHERE product_ID="+productID;
+		        	String query="SELECT product_image, LENGTH(product_image) AS imageContentLength, product_imageextension FROM products WHERE product_ID="+productID;
 		            ResultSet resultSet = db.query(query);
 
 		            if (resultSet.next()) {
-		            	response.setContentType("image/jpeg");
+		            	
+		            	response.setContentType(resultSet.getString("product_imageextension"));
 		            	//response.setContentType(getServletContext().getMimeType(String.valueOf(productID)));
 		                response.setContentLength(resultSet.getInt("imageContentLength"));
 		                response.setHeader("Content-Disposition", "inline;filename=\"" + productID + "\"");

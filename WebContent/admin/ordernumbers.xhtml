@@ -7,7 +7,7 @@
 <h:head>
 
 	<title>Detailed Order information</title>
-	<link rel="stylesheet" type="text/css" href="style.css" />
+	<h:outputStylesheet library="css" name="admin.css" />
 </h:head>
 
 <h:body>
@@ -16,7 +16,7 @@
 	<div id="nav01">
 		<div id="header">
 			<a href="dashboard.xhtml">
-				<img style="width: 300px; height: 200px;" alt="Logo placeholder" src="best.jpg"> </img>
+				<h:graphicImage library="images" name="logo.jpg" alt="Logo placeholder" width="300px" height="200px" />
 			</a>
 			<h1> Administrator </h1>
 			<h1><h:outputText value="#{userLogin.userName}" /></h1>

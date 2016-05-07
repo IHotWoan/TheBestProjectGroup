@@ -46,8 +46,11 @@ public class Product {
 		StringBuilder make = new StringBuilder(description);
 		for(int i=0;i<make.length();i++)
 		{
-			if(make.charAt(i)=='\\' || make.charAt(i)=='\'' || make.charAt(i)=='\"')
-				make.insert(i++,'\\');
+			if(make.charAt(i)=='\\' || make.charAt(i)=='\'' || make.charAt(i)=='\"'){
+				if(i-1>0 && make.charAt(i-1)!='\\')
+					make.insert(i++,'\\');
+			}
+				
 		}
 		
 		this.description = make.toString();

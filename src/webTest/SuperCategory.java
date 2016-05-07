@@ -109,7 +109,6 @@ public class SuperCategory implements Serializable{
 
 
 	public SuperCategory(){
-		//Trying to solve the long arraylist issue. :songho.
 		categoryArray.clear();
 		productArray.clear();
 		

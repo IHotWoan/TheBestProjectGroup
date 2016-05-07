@@ -47,16 +47,18 @@ public class FileUploadBean implements Serializable {
 		  byte[] buffer = new byte[10240000];
 		  for (int length = 0; (length = inputStream.read(buffer)) > 0;) output.write(buffer, 0, length);
 		  
+		  String ext= file.getContentType();
 		  this.setImage(output.toByteArray());
 		  
 		  try {
 			  MysqlConnect db = new MysqlConnect();
 			  Connection conn = db.conn;
-			  PreparedStatement statement = conn.prepareStatement("UPDATE products SET product_image =? WHERE product_id=?");
+			  PreparedStatement statement = conn.prepareStatement("UPDATE products SET product_image =?, product_imageextension=? WHERE product_id=?");
 			  
 			  statement.setBytes(1, this.image);
 			  //statement.setBinaryStream(1, inputStream);
-			  statement.setInt(2, Integer.parseInt(productID));
+			  statement.setString(2, ext);
+			  statement.setInt(3, Integer.parseInt(productID));
 			  statement.executeUpdate();
 			  
 			  db.close();
