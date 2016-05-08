@@ -30,6 +30,12 @@ public class ProductBean implements Serializable{
 	public Product getSelectedProduct() {
 		return selectedProduct;
 	}
+	public String stockStatus(){
+		if(selectedProduct.getQuantity()<=10)
+			return "only "+ selectedProduct.getQuantity() + " are left!! Hurry!";
+		else
+			return "";
+	}
 
 	/**
 	 * @param selectedProduct the selectedProduct to set
@@ -43,7 +49,7 @@ public class ProductBean implements Serializable{
 		 if(cart==null){
 			 cart = new ShoppingCart();
 		 }
-		 cart.addProduct(selectedProduct);
+		 cart.add(selectedProduct);
 		 session.setAttribute("CART",cart);
 		return "viewcart";
 	}

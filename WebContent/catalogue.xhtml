@@ -61,6 +61,7 @@
      	   	 	<h:graphicImage value="/productImageServlet?id=#{productbean.selectedProduct.productID}" width="200" class="img-thumbnail" />
      	   	 	<h:outputText value="#{productbean.selectedProduct.description}" /> <br />
      	   	 	Price: <h:outputText value="#{productbean.selectedProduct.price}" /> Kr <br />
+     	   	 	<h:outputText value="#{productbean.stockStatus()}" style="color:red;"/> <br />
      	   	 	<h:commandButton action="#{productbean.addToShoppingCart()}" value="Add to cart" class="label-primary"/>
 	   		</h:form>
           </div>

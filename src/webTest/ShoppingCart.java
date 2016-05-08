@@ -17,6 +17,7 @@ public class ShoppingCart implements Serializable {
 	private String productID;
 	private double totalCost;
 	private ArrayList<Product> products = new ArrayList<Product>();
+	private Map<Product, Integer> selectedQuantity = new HashMap<Product, Integer>();
 	private Order order;
 	
 	/**
@@ -58,32 +59,30 @@ public class ShoppingCart implements Serializable {
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}
-	public void addProduct(Product inProduct){
-		this.products.add(inProduct);
-	}
-	
 	public void add(Product p){
-		products.add(p);
+		if(selectedQuantity.containsKey(p))
+			selectedQuantity.put(p, selectedQuantity.get(p)+1);
+		else{
+			products.add(p);
+			selectedQuantity.put(p, 1);
+		}
 		
 	}
 	public void remove(Product p){
 		products.remove(p);
+		selectedQuantity.remove(p);
 	}
-	public void getCartCount(){
-		products.size();
+	public int getQuantity(Product p){
+		return selectedQuantity.get(p);
+	}
+
+	public Map<Product, Integer> getSelectedQuantity() {
+		return selectedQuantity;
+	}
+
+	public void setSelectedQuantity(Map<Product, Integer> selectedQuantity) {
+		this.selectedQuantity = selectedQuantity;
 	}
 	
-	public Map<Product, Integer> getCartContents(){
-		Map<Product, Integer> cartContents = new HashMap<>();
-		for (Product obj: products){
-			if(cartContents.containsKey(obj)){
-				cartContents.put(obj, cartContents.get(obj) + 1);
-			}
-			else{
-				cartContents.put(obj, 1);
-			}
-		}
-		return cartContents;
-	}
 
 }
