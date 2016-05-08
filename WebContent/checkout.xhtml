@@ -5,33 +5,71 @@
 		xmlns:f="http://xmlns.jcp.org/jsf/core"
 		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 		xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:p="http://primefaces.org/ui">
-<h:head>
-<title>Checkout</title>
-</h:head>
-<h:body>       
-<table id="checkout-cart" class="shopping-cart">
-	<thead>
-		<tr>
-			<th scope="col">Item</th>
-			<th scope="col">Quantity</th>
-			<th scope="col">Price</th>
-		</tr>
-	</thead>
-	<tbody>
-	
-	</tbody>
-</table>
+        xmlns:p="http://primefaces.org/ui">    
+	<h:head>
+		<title>ThePCShop page</title>
+		<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="dashboard.css" />
+	</h:head>
+	<h:body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Products</a></li>            
+              <li><a href="/viewcart.xhtml">Shopping cart</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">About us</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search..." />
+          </form>
+        </div>
+      </div>
+    </nav>
 
-<div id="pricing">
-	<p id="shipping">
-		<strong>Shipping</strong>: <span id="sshipping"></span>
-	</p>
+    <div class="container-fluid">
+      <div class="row">
 
-	<p id="sub-total">
-		<strong>Total</strong>: <span id="stotal"></span>
-	</p>
-</div>
+        </div>
+          <h1 class="page-header">Shopping cart</h1>
+          <div class="table-responsive">
+          	<h:form id="productsform">
+	          	<h:dataTable id="productstable" value="#{shoppingcartbean.cart.products}" var = "items" class="table table-striped">
+					<h:column>
+						<h:graphicImage value="/productImageServlet?id=#{items.productID}" width="100"/>
+					</h:column>
+		    		<h:column>
+		    				<f:facet name="header">Product Name</f:facet>
+		    				<h:outputText value="#{items.name}" />
+		    		</h:column>
+		    		<h:column>
+		    				<f:facet name="header">Product Category</f:facet>
+		    				<h:outputText value="#{items.categoryName}"/>
+		    		</h:column>
+		    		<h:column>
+		    				<f:facet name="header">Product Price</f:facet>
+		    				<h:outputText value="#{items.price}" />
+		    		</h:column>
+		    		<h:column>
+		    			<f:facet name="header">Product Quantity</f:facet>
+		    			<h:outputText value="#{shoppingcartbean.cart.getQuantity(items)}" />
+		    		</h:column>
+		    		
+	   			</h:dataTable>
+	   	
+	   		</h:form>
+          </div>
+          </div>
 
 <h:form action="order.html" method="post" id="checkout-order-form">
 <h2>Your Details</h2>
@@ -59,9 +97,17 @@
 	<br/>
 </div>
 
-<p><input type="submit" id="submit-order" value="Submit" class="btn" /></p>
-
 </fieldset>
+
+<br/><h:commandButton value="Continue shopping" action="index" />
+<p><input type="submit" id="submit-order" value="Submit" class="btn" /></p>
 </h:form>
-</h:body>
+   
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+	</h:body>
 </html>
