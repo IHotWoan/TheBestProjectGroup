@@ -5,6 +5,8 @@ package webTest;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -13,14 +15,15 @@ import javax.faces.bean.SessionScoped;
  * @author songhokun
  *
  */
-//@ManagedBean(name="shoppingcart")
-//@SessionScoped
+@ManagedBean(name="shoppingcart")
+@SessionScoped
 public class ShoppingCart implements Serializable {
 	private static final long serialVersionUID = -7602876105709743261L;
 	private String cartID;
 	private String productID;
 	private double totalCost;
 	private ArrayList<Product> products = new ArrayList<Product>();
+	private Order order;
 	
 	/**
 	 * Constructor class of shopping cart
@@ -28,6 +31,15 @@ public class ShoppingCart implements Serializable {
 	public ShoppingCart(){
 		
 	}
+	
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
 	public String getCartID() {
 		return cartID;
 	}
@@ -56,4 +68,29 @@ public class ShoppingCart implements Serializable {
 		this.products.add(inProduct);
 		return "viewcart";
 	}
+	
+	public void add(Product p){
+		products.add(p);
+		
+	}
+	public void remove(Product p){
+		products.remove(p);
+	}
+	public void getCartCount(){
+		products.size();
+	}
+	
+	public Map<Product, Integer> getCartContents(){
+		Map<Product, Integer> cartContents = new HashMap<>();
+		for (Product obj: products){
+			if(cartContents.containsKey(obj)){
+				cartContents.put(obj, cartContents.get(obj) + 1);
+			}
+			else{
+				cartContents.put(obj, 1);
+			}
+		}
+		return cartContents;
+	}
+
 }
