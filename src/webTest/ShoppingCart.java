@@ -7,16 +7,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 /**
  * @author songhokun
  *
  */
-@ManagedBean(name="shoppingcart")
-@SessionScoped
 public class ShoppingCart implements Serializable {
 	private static final long serialVersionUID = -7602876105709743261L;
 	private String cartID;
@@ -64,9 +58,8 @@ public class ShoppingCart implements Serializable {
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}
-	public String addProduct(Product inProduct){
+	public void addProduct(Product inProduct){
 		this.products.add(inProduct);
-		return "viewcart";
 	}
 	
 	public void add(Product p){

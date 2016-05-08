@@ -5,6 +5,8 @@ package webTest;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpSession;
+
 import java.io.Serializable;
 
 
@@ -34,6 +36,16 @@ public class ProductBean implements Serializable{
 	 */
 	public void setSelectedProduct(Product selectedProduct) {
 		this.selectedProduct = selectedProduct;
+	}
+	public String addToShoppingCart(){
+		HttpSession session = SessionBean.getSession();
+		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
+		 if(cart==null){
+			 cart = new ShoppingCart();
+		 }
+		 cart.addProduct(selectedProduct);
+		 session.setAttribute("CART",cart);
+		return "viewcart";
 	}
 	
 }
