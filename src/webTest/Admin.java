@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Jonathan
@@ -22,6 +23,8 @@ public class Admin {
 	
 	private String userName;
 	private String userPassword;
+	private User currentUser;
+	private boolean permitted=false;
 	
 	private String newPassword;
 	private String confirmPassword;
@@ -40,7 +43,7 @@ public class Admin {
 			user.setUserID(rs.getString("user_id"));
 			user.setUserName(rs.getString("user_username"));
 			user.setPassword(rs.getString("user_password"));
-			
+			user.setSuperuser(rs.getBoolean("user_isSuperUser"));
 			userArray.add(user);
 			
 		}
@@ -48,6 +51,19 @@ public class Admin {
 		} catch (SQLException e) {
 		e.printStackTrace();
 		}
+		
+		//adding current user
+		HttpSession session = SessionBean.getSession();
+		String currentUserName = (String) session.getAttribute("username");
+		for(User u: userArray){
+			if(u.getUserName().equals(currentUserName))
+			{
+				currentUser = u;
+				break;
+			}
+		}
+		if(currentUser.isSuperuser())
+			this.permitted=true;
 		
 	}
 	
@@ -122,16 +138,16 @@ public class Admin {
 	}
 	
 	public String deleteAction(User user) {
-	    
-		user.setDeletable(true);
+		if(!this.currentUser.equals(user))
+			user.setDeletable(true);
 		return null;
 	}
 
 	public String addUser(){
 		
 		try {
-			db.insert("INSERT into `shopdb`.`users` (user_username,user_password) "
-					+ "VALUES ('"+getUserName()+"','"+getUserPassword()+"')");
+			db.insert("INSERT into `shopdb`.`users` (user_username,user_password,user_isSuperUser) "
+					+ "VALUES ('"+getUserName()+"','"+getUserPassword()+"',0)");
 			
 			User user = new User();
 			user.setUserName(getUserName());
@@ -190,6 +206,12 @@ public class Admin {
 
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
+	}
+	public boolean isPermitted(){
+		return permitted;
+	}
+	public User getCurrentUser(){
+		return currentUser;
 	}
 	
 }

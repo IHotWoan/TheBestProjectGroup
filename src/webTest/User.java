@@ -11,6 +11,7 @@ public class User {
 	private String password;
 	private String userID;
 	private boolean deletable;
+	private boolean superuser;
 	
 	public String getUserID() {
 		return userID;
@@ -36,5 +37,12 @@ public class User {
 	}
 	public void setDeletable(boolean deletable) {
 		this.deletable = deletable;
+	}
+	public boolean isSuperuser() {
+		return superuser;
+	}
+	public void setSuperuser(boolean superuser) {
+		this.superuser = superuser;
 	}	
+	
 }

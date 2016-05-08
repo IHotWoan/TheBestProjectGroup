@@ -66,6 +66,7 @@ public class ShoppingCart implements Serializable {
 			products.add(p);
 			selectedQuantity.put(p, 1);
 		}
+		totalCost+=p.getPrice();
 		
 	}
 	public void remove(Product p){

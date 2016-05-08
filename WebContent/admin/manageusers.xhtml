@@ -39,19 +39,19 @@
     				<f:facet name="header">Username</f:facet>
     				#{user.userName}
     		</h:column>
-    		<h:column>
+    		<h:column rendered="#{admin.permitted}">
     				<f:facet name="header">Password</f:facet>
     				#{user.password}
     		</h:column>
-    		<h:column>
+    		<h:column rendered="#{admin.permitted}">
     				<f:facet name="header">Change Password</f:facet>
     				<h:commandButton action="changepassword" value="Change">
 					    <f:setPropertyActionListener target="#{admin.userID}" value="#{user.userID}" />
 					</h:commandButton>
     		</h:column>
-    		<h:column>
+    		<h:column rendered="#{admin.permitted}">
     				<f:facet name="header">Delete User</f:facet>
-					<h:commandButton value="Delete" action="#{admin.deleteAction(user)}" rendered="#{not user.deletable}" />
+					<h:commandButton value="Delete" action="#{admin.deleteAction(user)}" rendered="#{(not user.deletable) and admin.currentUser!=user}" />
     				<h:commandButton value="Confirm delete" action="#{admin.confirmUserDelete(user.userID)}" update="@form" ajax="true" rendered="#{user.deletable}" />
     		</h:column>
 		</h:dataTable>
