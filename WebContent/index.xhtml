@@ -47,6 +47,11 @@
 	            <li>
 	            	<h:commandLink value="#{category.categoryName}" action="#{category.filterProductCategory(category.categoryName)}" update=":productsform:productstable" ajax="true"/>
 	            </li>
+	            	<ui:repeat value="#{category.subCategoryArray}" var="subcategory">
+	            	<li>
+	            		<h:commandLink value="#{subcategory.subCategoryName}" action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}" update=":productsform:productstable" ajax="true"/>
+	            	</li>
+	            	</ui:repeat>
 	            </ui:repeat>
           </ul>
           </h:form>
