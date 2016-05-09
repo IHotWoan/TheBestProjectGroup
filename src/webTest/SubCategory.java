@@ -60,7 +60,6 @@ public class SubCategory implements Serializable{
 			product.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
 			
 			this.productArray.add(product);
-			Category.addToProductArray(product);
 			SuperCategory.addToProductArray(product);
 			
 		}

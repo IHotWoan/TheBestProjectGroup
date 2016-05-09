@@ -24,7 +24,6 @@ public class Category implements Serializable{
 	private boolean deletable;
 	
 	private ArrayList<SubCategory> subCategoryArray = new ArrayList<SubCategory>();
-	private static ArrayList<Product> productArray = new ArrayList<Product>();
 	
 	private MysqlConnect db;
 	private ResultSet rs;
@@ -63,6 +62,13 @@ public class Category implements Serializable{
 			
 	}
 	
+	public void filterProducts(String categoryName){
+		
+		SuperCategory.clearArray();
+		new Category(categoryName);
+		
+	}
+	
 	public String getCategoryName() {
 		return categoryName;
 	}
@@ -95,45 +101,5 @@ public class Category implements Serializable{
 		return subCategoryArray;
 		
 	} 
-	
-	public static void addToProductArray(Product n){
-		
-		productArray.add(n);
-	}
-	
-	public ArrayList<Product> getProductArray(String n){
-		
-		setCategoryName(n);
-		
-		populateArray();
-		
-		return productArray;
-	}
-	
-	public void populateArray(){
-		this.db = new MysqlConnect();
-		try{
-			rs = db.query("SELECT category_ID from category where category_name='"+this.categoryName+"' is TRUE");
-			
-			rs.next();
-			String ID = rs.getString(1);
-			
-			rs = db.query("SELECT DISTINCT brand_name from brands inner join products on products.product_brand=brands.brand_id where product_category='"+ID+"'");
-			
-		while(rs.next()){
-			
-			SubCategory subCategory = new SubCategory(rs.getString("brand_name"), getCategoryName());
-			
-			subCategoryArray.add(subCategory);
-			
-		}
-		this.db.close();
-		this.db=null;
-		
-		} catch (SQLException e) {
-		e.printStackTrace();
-		}
-
-	}
 	
 }
