@@ -45,11 +45,14 @@
           	 <li class="active"><a href="#">Main page <span class="sr-only">(current)</span></a></li>
           	 	<ui:repeat value="#{supercategory.categoryArray}" var="category">
 	            <li>
-	            	<h:commandLink value="#{category.categoryName}" action="#{category.filterProductCategory(category.categoryName)}" update=":productsform:productstable" ajax="true"/>
+	            	<h:commandLink value="#{category.categoryName}" action="#{category.filterProductCategory(category.categoryName)}" update=":productsform:productstable" ajax="true">
+	            		<f:actionListener binding="#{supercategory.hideBrands()}" />
+	            		<f:setPropertyActionListener target="#{category.displayBrands}" value="#{'True'}" />
+	            	</h:commandLink>
 	            	<ul>
 	            		<ui:repeat value="#{category.subCategoryArray}" var="subcategory">
 	            		<li>
-		            		<h:commandLink value="#{subcategory.subCategoryName}" action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}" update=":productsform:productstable" ajax="true"/>
+		            		<h:commandLink value="#{subcategory.subCategoryName}" action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}" rendered="#{category.displayBrands}" update=":productsform:productstable" ajax="true"/>
 	            		</li>
 	            	</ui:repeat>
 	            	</ul>

@@ -22,6 +22,7 @@ public class Category implements Serializable{
 	private String categoryID;
 	private boolean editable;
 	private boolean deletable;
+	private boolean displayBrands;
 	
 	private ArrayList<SubCategory> subCategoryArray = new ArrayList<SubCategory>();
 	
@@ -101,5 +102,13 @@ public class Category implements Serializable{
 		return subCategoryArray;
 		
 	} 
+	
+	public boolean isDisplayBrands() {
+		return displayBrands;
+	}
+
+	public void setDisplayBrands(boolean displayBrands) {
+		this.displayBrands = displayBrands;
+	}
 	
 }

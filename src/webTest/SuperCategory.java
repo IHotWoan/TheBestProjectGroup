@@ -292,4 +292,13 @@ public class SuperCategory implements Serializable{
 		
 	}
 	
+	public void hideBrands(){
+		
+		for(Category category: categoryArray){
+			
+			category.setDisplayBrands(false);
+			
+		}
+		
+	}
 }
