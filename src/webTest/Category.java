@@ -62,9 +62,9 @@ public class Category implements Serializable{
 			
 	}
 	
-	public void filterProducts(String categoryName){
+	public void filterProductCategory(String categoryName){
 		
-		SuperCategory.clearArray();
+		SuperCategory.clearProductArray();
 		new Category(categoryName);
 		
 	}

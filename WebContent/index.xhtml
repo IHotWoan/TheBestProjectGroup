@@ -45,7 +45,7 @@
           	 <li class="active"><a href="#">Main page <span class="sr-only">(current)</span></a></li>
           	 	<ui:repeat value="#{supercategory.categoryArray}" var="category">
 	            <li>
-	            	<h:commandLink value="#{category.categoryName}" action="#{category.filterProducts(category.categoryName)}" update=":productsform:productstable" ajax="true"/>
+	            	<h:commandLink value="#{category.categoryName}" action="#{category.filterProductCategory(category.categoryName)}" update=":productsform:productstable" ajax="true"/>
 	            </li>
 	            </ui:repeat>
           </ul>

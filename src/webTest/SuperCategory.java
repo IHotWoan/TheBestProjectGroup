@@ -286,7 +286,7 @@ public class SuperCategory implements Serializable{
 		return null;
 	}
 
-	public static void clearArray() {
+	public static void clearProductArray() {
 		
 		productArray.clear();
 		

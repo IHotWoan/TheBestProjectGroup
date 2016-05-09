@@ -3,7 +3,6 @@ package webTest;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,8 +19,6 @@ public class SubCategory implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String subCategoryName;
-	
-	private ArrayList<Product> productArray = new ArrayList<Product>();
 	
 	private MysqlConnect db;
 	private ResultSet rs;
@@ -59,7 +56,6 @@ public class SubCategory implements Serializable{
 			product.setPrice(Double.parseDouble(rs.getString("product_price")));
 			product.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
 			
-			this.productArray.add(product);
 			SuperCategory.addToProductArray(product);
 			
 		}
@@ -79,9 +75,10 @@ public class SubCategory implements Serializable{
 		this.subCategoryName = subCategoryName;
 	}
 
-	public ArrayList<Product> getProductArray(){
+	public void filterProductBrand(String brandName, String categoryName){
 		
-		return productArray;
+		SuperCategory.clearProductArray();
+		new SubCategory(brandName, categoryName);
 		
 	}
 	
