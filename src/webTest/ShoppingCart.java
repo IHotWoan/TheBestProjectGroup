@@ -70,6 +70,7 @@ public class ShoppingCart implements Serializable {
 		
 	}
 	public void remove(Product p){
+		totalCost-=p.getPrice()*selectedQuantity.get(p);
 		products.remove(p);
 		selectedQuantity.remove(p);
 	}

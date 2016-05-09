@@ -44,7 +44,17 @@
           	 <ul class="nav nav-sidebar">
           	 <li class="active"><a href="#">Main page <span class="sr-only">(current)</span></a></li>
           	 	<ui:repeat value="#{supercategory.categoryArray}" var="category">
-	            <li><a href="#"><h:outputText value="#{category.categoryName}" /></a></li>
+	            <li>
+	            	<h:commandLink value="#{category.categoryName}" action="#{category.filterProductCategory(category.categoryName)}" update=":productsform:productstable" ajax="true">
+	            		<f:actionListener binding="#{supercategory.hideBrands()}" />
+	            		<f:setPropertyActionListener target="#{category.displayBrands}" value="#{'True'}" />
+	            	</h:commandLink>
+	            		<ui:repeat value="#{category.subCategoryArray}" var="subcategory">
+	            		<li>
+		            		<h:commandLink value="#{subcategory.subCategoryName}" action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}" rendered="#{category.displayBrands}" update=":productsform:productstable" ajax="true"/>
+	            		</li>
+	            	</ui:repeat>
+	            </li>
 	            </ui:repeat>
           </ul>
           </h:form>
@@ -78,6 +88,10 @@
 		    		<h:column>
 		    			<f:facet name="header">Product Quantity</f:facet>
 		    			<h:outputText value="#{shoppingcartbean.cart.getQuantity(items)}" />
+		    		</h:column>
+		    		<h:column>
+		    			<f:facet name="header">Remove</f:facet>
+		    			<h:commandButton value="remove" action="#{shoppingcartbean.cart.remove(items)}" update="productsform" ajax="true"/>
 		    		</h:column>
 		    		
 	   			</h:dataTable>

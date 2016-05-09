@@ -63,11 +63,11 @@ public class Category implements Serializable{
 			
 	}
 	
-	public void filterProductCategory(String categoryName){
+	public String filterProductCategory(String categoryName){
 		
 		SuperCategory.clearProductArray();
 		new Category(categoryName);
-		
+		return "index";
 	}
 	
 	public String getCategoryName() {
