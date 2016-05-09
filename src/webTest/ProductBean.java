@@ -32,7 +32,7 @@ public class ProductBean implements Serializable{
 	}
 	public String stockStatus(){
 		if(selectedProduct.getQuantity()<=10)
-			return "only "+ selectedProduct.getQuantity() + " are left!! Hurry!";
+			return "only "+ selectedProduct.getQuantity() + " are left in our stock. Hurry!";
 		else
 			return "";
 	}

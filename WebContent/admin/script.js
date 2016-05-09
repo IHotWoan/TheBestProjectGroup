@@ -17,6 +17,7 @@ document.getElementById('date').innerHTML = Date();
 
 //navigation menu
 
+/*
 document.getElementById("nav02").innerHTML =
 "<ul id='menu'>" +
 "<li><a href='dashboard.xhtml'>Dashboard</a></li>"+
@@ -26,6 +27,4 @@ document.getElementById("nav02").innerHTML =
 "<li><a href='editproduct.xhtml'>Edit product</a></li>"+
 "<li><a href='manageusers.xhtml'>Manage users</a></li>"+
 "</ul>";
-
-
-
+*/

@@ -29,6 +29,14 @@
 		</div>
 	</div>
 	<div id="nav02">
+		<ul id='menu'>
+			<li><a href='dashboard.xhtml'>Dashboard</a></li>
+			<li><a href='manageorders.xhtml'>Manage orders</a></li>
+			<li><a href='deliveredorders.xhtml'>Manage delivered orders</a></li>
+			<li><a href='editcategory.xhtml'>Edit category</a></li>
+			<li><a href='editproduct.xhtml'>Edit product</a></li>
+			<li><a href='manageusers.xhtml'>Manage users</a></li>
+		</ul>
 	</div>
 
 	<h:form id="search">
@@ -37,7 +45,6 @@
 		<input type="submit" value="Search" />
 		<h:commandButton value="Add new product"/>
 	</h:form>
-	
 	<h:form id="productsform">
 		<h:dataTable id="productstable" value="#{supercategory.productArray}" var = "product">
 			<h:column>

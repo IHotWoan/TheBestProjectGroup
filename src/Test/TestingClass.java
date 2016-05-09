@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import webTest.Category;
-import webTest.LocalConnect;
 import webTest.Product;
 import webTest.SubCategory;
 import webTest.SuperCategory;

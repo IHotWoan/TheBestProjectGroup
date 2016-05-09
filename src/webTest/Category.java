@@ -1,7 +1,7 @@
 package webTest;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+//import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,8 +12,8 @@ import java.util.ArrayList;
  *
  */
 
-@ManagedBean(name="category")
-@SessionScoped
+//@ManagedBean(name="category")
+//@SessionScoped
 public class Category implements Serializable{
 
 	private static final long serialVersionUID = 1L;

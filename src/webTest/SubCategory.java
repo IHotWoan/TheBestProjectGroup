@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+//import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.SessionScoped;
 
 /**
  * @author Jonathan
  *
  */
 
-@ManagedBean(name="subcategory")
-@SessionScoped
+//@ManagedBean(name="subcategory")
+//@SessionScoped
 public class SubCategory implements Serializable{
 
 	private static final long serialVersionUID = 1L;
