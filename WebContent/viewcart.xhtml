@@ -74,6 +74,7 @@
 				<h1 class="page-header">Shopping cart</h1>
 				<div class="table-responsive">
 					<h:form id="productsform">
+						<p:growl id="growl" showDetail="true" sticky="true" />
 						<h:dataTable id="productstable"
 							value="#{shoppingcartbean.cart.products}" var="items"
 							class="table table-striped">
@@ -95,8 +96,10 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">Product Quantity</f:facet>
+								<h:commandLink action="#{shoppingcartbean.cart.decrease(items)}" value="▼ " />
 								<h:outputText
 									value="#{shoppingcartbean.cart.getQuantity(items)}" />
+									<h:commandLink action="#{shoppingcartbean.cart.add(items)}" value=" ▲" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Remove</f:facet>

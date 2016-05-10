@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 /**
  * @author songhokun
  *
@@ -58,8 +61,12 @@ public class ShoppingCart implements Serializable {
 		if(selectedQuantity.containsKey(p)){
 			if(selectedQuantity.get(p)+1 <= p.getQuantity())
 				selectedQuantity.put(p, selectedQuantity.get(p)+1);
-			else
+			else{
+				FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage("Fail!",  "We only have "+p.getQuantity()+" items in stock for "+p.getName()) );
 				return false;
+			}
+				
 		}
 			
 		else{
@@ -72,6 +79,20 @@ public class ShoppingCart implements Serializable {
 		totalCost+=p.getPrice();
 		return true;
 		
+	}
+	public boolean decrease(Product p){
+		if(!selectedQuantity.containsKey(p)){
+			return false;
+		}
+		if(selectedQuantity.get(p)-1 <= 0)
+		{
+			this.remove(p);
+			return true;
+		}
+		selectedQuantity.put(p, selectedQuantity.get(p)-1);	
+		totalCost-=p.getPrice();
+		
+		return true;	
 	}
 	public void remove(Product p){
 		totalCost-=p.getPrice()*selectedQuantity.get(p);

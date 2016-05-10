@@ -103,48 +103,6 @@ public class ShoppingCartBean implements Serializable{
 			return "orderregistered";
 	}
 	
-	//getters and setters of the fields.
-	/*
-	public String getCustomerName() {
-		return customerName;
-	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-	public String getCustomerAddress() {
-		return customerAddress;
-	}
-	public void setCustomerAddress(String customerAddress) {
-		this.customerAddress = customerAddress;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getZipCode() {
-		return zipCode;
-	}
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getOrderID(){
-		return orderID;
-	}
-	*/
 	public Order getOrder() {
 		return order;
 	}
