@@ -43,7 +43,38 @@
 		<h1 class="page-header">Order completed!</h1>
 		<div class="table-responsive">
 			<h:form id="ordersummary">
-				Your ourder number is <h:outputText value="#{shoppingcartbean.order.orderID}" />
+				Your ourder number is <h:outputText value="#{shoppingcartbean.order.orderID}" /> <br/>
+				<h:dataTable id="productstable"
+							value="#{shoppingcartbean.order.productarray}" var="items"
+							class="table table-striped">
+							<h:column>
+								<h:graphicImage
+									value="/productImageServlet?id=#{items.productID}" width="100" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Product Name</f:facet>
+								<h:outputText value="#{items.name}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Product Category</f:facet>
+								<h:outputText value="#{items.categoryName}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Product Price</f:facet>
+								<h:outputText value="#{items.price}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Product Quantity</f:facet>
+								<h:outputText
+									value="#{shoppingcartbean.cart.getQuantity(items)}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Remove</f:facet>
+								<h:commandButton value="remove"
+									action="#{shoppingcartbean.cart.remove(items)}"
+									update="productsform" ajax="true" />
+							</h:column>
+						</h:dataTable>
 			</h:form>
 		</div>
 

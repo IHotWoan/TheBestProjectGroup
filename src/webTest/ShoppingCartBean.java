@@ -26,17 +26,7 @@ public class ShoppingCartBean implements Serializable{
 	private static final long serialVersionUID = -1625821307853226223L;
 	
 	private ShoppingCart cart;
-	private Order order;
-	
-	// These fields below are used to get user inputs for the order.
-	private String orderID;
-	private String customerName;
-	private String customerAddress;
-	private String city;
-	private String zipCode;
-	private String phone;
-	private String email;
-	
+	private Order order = new Order();
 	
 	public ShoppingCartBean(){
 		HttpSession session = SessionBean.getSession();
@@ -72,16 +62,19 @@ public class ShoppingCartBean implements Serializable{
 			}
 			
 			if(!failed){
+				
 				DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
 				Date date = new Date();
-				orderID=dateFormat.format(date)+"-";
+				String orderID=dateFormat.format(date)+"-";
 				ResultSet rs = db.query("SELECT COUNT(*) customer_order_ID FROM customers WHERE customer_order_ID LIKE '"+orderID+"%'");
 				rs.next();
 				orderID+=String.format("%03X", rs.getInt(1)+1);
 				
+				order.setOrderID(orderID);
+				order.setOrderstatus("neworder");
 				
 				db.insert("INSERT into customers (customer_order_ID,customer_name,customer_streetaddress,customer_zipcode,customer_city,customer_phone,customer_email,customer_orderstatus) "
-						+ "VALUES ('"+orderID+"','"+this.getCustomerName()+"','"+this.getCustomerAddress()+"','"+this.getZipCode()+"','"+this.getCity()+"','"+this.getPhone()+"','"+this.getEmail()+"','neworder');");
+						+ "VALUES ('"+orderID+"','"+order.getCustomerName()+"','"+order.getCustomerAddress()+"','"+order.getZipCode()+"','"+order.getCity()+"','"+order.getPhone()+"','"+order.getEmail()+"','neworder');");
 				for(Product p: cart.getProducts())
 				{
 					int selectedq = cart.getSelectedQuantity().get(p);
@@ -91,18 +84,6 @@ public class ShoppingCartBean implements Serializable{
 					db.insert("UPDATE products SET `product_quantity`='"+p.getQuantity()+"' WHERE `product_ID`='"+p.getProductID()+"'");
 					
 				}
-				
-				//move all information to order before empty the shopping cart.
-				order.setProductarray(cart.getProducts());
-				order.setCustomerName(this.customerName);
-				order.setCity(city);
-				order.setCustomerName(customerName);
-				order.setCustomerAddress(customerAddress);
-				order.setEmail(email);
-				order.setOrderID(orderID);
-				order.setOrderstatus("neworder");
-				order.setPhone(phone);
-				order.setZipCode(zipCode);
 				
 				//Emptpying shopping cart.
 				HttpSession session = SessionBean.getSession();
@@ -123,6 +104,7 @@ public class ShoppingCartBean implements Serializable{
 	}
 	
 	//getters and setters of the fields.
+	/*
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -162,6 +144,7 @@ public class ShoppingCartBean implements Serializable{
 	public String getOrderID(){
 		return orderID;
 	}
+	*/
 	public Order getOrder() {
 		return order;
 	}

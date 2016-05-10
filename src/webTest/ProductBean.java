@@ -53,8 +53,10 @@ public class ProductBean implements Serializable{
 		 if(cart==null){
 			 cart = new ShoppingCart();
 		 }
-		 if(!cart.add(selectedProduct))
+		 if(!cart.add(selectedProduct)){
 			 context.addMessage(null, new FacesMessage("Fail!",  "We only have "+selectedProduct.getQuantity()+" items in stock for "+selectedProduct.getName()) );
+			 return "catalogue";
+		 }
 		 session.setAttribute("CART",cart);
 		return "viewcart";
 	}
