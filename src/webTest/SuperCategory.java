@@ -20,6 +20,7 @@ public class SuperCategory implements Serializable{
 	
 	private ArrayList<Category> categoryArray = new ArrayList<Category>();
 	private static ArrayList<Product> productArray = new ArrayList<Product>();
+	private ArrayList<SubCategory> subCategoryArray = new ArrayList<SubCategory>();
 
 	private MysqlConnect db = new MysqlConnect();
 	private ResultSet rs;
@@ -33,6 +34,9 @@ public class SuperCategory implements Serializable{
 
 	private String categoryName;
 	private String categoryID;
+
+	private String subCategoryName;
+	private String subCategoryID;
 	
 	
 	private String productID;
@@ -107,10 +111,25 @@ public class SuperCategory implements Serializable{
 		this.categoryID = categoryID;
 	}
 
+	public String getSubCategoryName() {
+		return subCategoryName;
+	}
+	public String getSubCategoryID() {
+		return subCategoryID;
+	}
+
+	public void setSubCategoryName(String subCategoryName) {
+		this.subCategoryName = subCategoryName;
+	}
+	public void setSubCategoryID(String subCategoryID) {
+		this.subCategoryID = subCategoryID;
+	}
+
 
 	public SuperCategory(){
 		categoryArray.clear();
 		productArray.clear();
+		subCategoryArray.clear();
 		
 		try {
 
@@ -126,6 +145,23 @@ public class SuperCategory implements Serializable{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		try {
+
+			rs = db.query("SELECT * FROM brands");
+
+			while(rs.next()){
+
+				SubCategory subCategory = new SubCategory();
+				subCategory.setSubCategoryName(rs.getString("brand_name"));
+				subCategory.setSubCategoryID(rs.getString("brand_ID"));
+
+				subCategoryArray.add(subCategory);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -133,6 +169,12 @@ public class SuperCategory implements Serializable{
 		
 		return categoryArray;
 		
+	}
+
+	public ArrayList<SubCategory> getSubCategoryArray(){
+
+		return subCategoryArray;
+
 	}
 	
 	public static void addToProductArray(Product n){
@@ -234,7 +276,7 @@ public class SuperCategory implements Serializable{
 
 			if(category.getCategoryID().equals(categoryID)){
 				try {
-					db.insert("DELETE FROM category WHERE category_ID='"+categoryID+"'");
+					db.insert("DELETE FROM category WHERE category_id='"+categoryID+"'");
 					category.setDeletable(false);
 					categoryArray.remove(category);
 					break;
@@ -291,14 +333,110 @@ public class SuperCategory implements Serializable{
 		productArray.clear();
 		
 	}
-	
-	public void hideBrands(){
-		
-		for(Category category: categoryArray){
-			
-			category.setDisplayBrands(false);
-			
+
+	public String addCategory(){
+
+		try {
+			db.insert("INSERT into `shopdb`.`category` (category_name)" + "VALUES ('"+getCategoryName()+"')");
+
+			Category category = new Category();
+			category.setCategoryName(getCategoryName());
+
+			rs = db.query("SELECT category_ID from category order by category_ID desc limit 1");
+			rs.next();
+			category.setCategoryID(rs.getString(1));
+
+			categoryArray.add(category);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+		return null;
 	}
+
+	public String addSubCategory(){
+
+		try {
+			db.insert("INSERT into `shopdb`.`brands` (brand_name)" + "VALUES ('"+getSubCategoryName()+"')");
+
+			SubCategory subcategory = new SubCategory();
+			subcategory.setSubCategoryName(getSubCategoryName());
+
+			rs = db.query("SELECT brand_ID from brands order by brands_ID desc limit 1");
+			rs.next();
+			subcategory.setSubCategoryID(rs.getString(1));
+
+			subCategoryArray.add(subcategory);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String confirmSubCategoryEdit() {
+
+		for (SubCategory subcategory : subCategoryArray){
+
+			if(subcategory.getSubCategoryID().equals(getSubCategoryID())){
+				try {
+					db.insert("UPDATE `shopdb`.`brands` SET brand_ID='"+subcategory.getSubCategoryID()+"', brand_name='"+subcategory.getSubCategoryName()
+							+"' where brand_ID='"+getSubCategoryID()+"'");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				subcategory.setEditable(false);
+				break;
+			}
+		}
+
+		return null;
+
+	}
+
+	public String editSubCategory(SubCategory subcategory) {
+
+		subcategory.setEditable(true);
+		return null;
+	}
+
+
+	public String confirmSubCategoryDelete(String subCategoryID) {
+
+		for (SubCategory subcategory : subCategoryArray){
+
+			if(subcategory.getSubCategoryID().equals(subCategoryID)){
+				try {
+					db.insert("DELETE FROM brands WHERE brand_id='"+subCategoryID+"'");
+					subcategory.setDeletable(false);
+					subCategoryArray.remove(subcategory);
+					break;
+				}
+				catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public String deleteSubCategory(SubCategory subcategory) {
+
+		subcategory.setDeletable(true);
+		return null;
+	}
+
+	public void hideBrands(){
+
+		for(Category category: categoryArray){
+
+			category.setDisplayBrands(false);
+
+		}
+
+	}
+	
 }

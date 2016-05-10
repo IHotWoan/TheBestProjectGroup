@@ -19,6 +19,9 @@ public class SubCategory implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String subCategoryName;
+	private String subCategoryID;
+	private boolean editable;
+	private boolean deletable;
 	
 	private MysqlConnect db;
 	private ResultSet rs;
@@ -66,13 +69,31 @@ public class SubCategory implements Serializable{
 		}
 			
 	}
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+	public boolean isDeletable() {
+		return deletable;
+	}
+	public void setDeletable(boolean deletable) {
+		this.deletable = deletable;
+	}
 		
 	public String getSubCategoryName() {
 		return subCategoryName;
 	}
+	public String getSubCategoryID() {
+		return subCategoryID;
+	}
 
 	public void setSubCategoryName(String subCategoryName) {
 		this.subCategoryName = subCategoryName;
+	}
+	public void setSubCategoryID(String subCategoryID) {
+		this.subCategoryID = subCategoryID;
 	}
 
 	public void filterProductBrand(String brandName, String categoryName){

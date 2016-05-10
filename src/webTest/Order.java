@@ -60,7 +60,7 @@ public class Order implements Serializable{
 		
 	}
 	/**
-	 * This constructor is called when order is received from the database. This shall not be called in generating a new order! 
+	 * This constructor is called when order is received from the database. This shall not be called in generating a new order!
 	 * @param inOrderID
 	 */
 	public Order(String inOrderID){

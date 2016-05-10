@@ -40,30 +40,80 @@
 	</div>
 
 
-	<h:dataTable value="#{supercategory.categoryArray}" var="category">
+	<h:form id="categoryform">
+		<h:dataTable id="categorytable" value="#{supercategory.categoryArray}" var="category">
+			<h:column>
+				<f:facet name="header">Category name</f:facet>
+				<h:inputText value="#{category.categoryName}" size="10" rendered="#{category.editable}" />
+				<h:outputText value="#{category.categoryName}" rendered="#{not category.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Category ID</f:facet>
+				<h:inputText value="#{category.categoryID}" size="10" rendered="#{category.editable}" />
+				<h:outputText value="#{category.categoryID}" rendered="#{not category.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandButton value="Edit" action="#{supercategory.editCategory(category)}" rendered="#{not category.editable}" >
+					<f:setPropertyActionListener target="#{supercategory.categoryID}" value="#{category.categoryID}" />
+				</h:commandButton>
+				<h:commandButton value="Save Changes" action="#{supercategory.confirmCategoryEdit}" rendered="#{category.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:commandButton value="Delete" action="#{supercategory.deleteCategory(category)}" rendered="#{not category.deletable}" />
+				<h:commandButton value="Confirm delete" action="#{supercategory.confirmCategoryDelete(category.categoryID)}" update="@form" ajax="true" rendered="#{category.deletable}" />
+			</h:column>
+		</h:dataTable>
+
+		<h2>Add New Category</h2>
+		<table>
+			<tr>
+				<td>Category Name:</td>
+				<td><h:inputText size="10" value="#{supercategory.categoryName}" /></td>
+			</tr>
+		</table>
+
+		<h:commandButton value="Add Category" action="#{supercategory.addCategory}" update=":categoryform:categorytable" ajax="true"/>
+	</h:form>
+
+
+	<h:form id="subcategoryform">
+	<h:dataTable id="subcategorytable" value="#{supercategory.subCategoryArray}" var="subcategory">
 		<h:column>
-			<f:facet name="header">Category name</f:facet>
-			<h:inputText value="#{category.categoryName}" size="10" rendered="#{category.editable}" />
-			<h:outputText value="#{category.categoryName}" rendered="#{not category.editable}" />
+			<f:facet name="header">Brand name</f:facet>
+			<h:inputText value="#{subcategory.subCategoryName}" size="10" rendered="#{subcategory.editable}" />
+			<h:outputText value="#{subcategory.subCategoryName}" rendered="#{not subcategory.editable}" />
 		</h:column>
 		<h:column>
-			<f:facet name="header">Category ID</f:facet>
-			<h:inputText value="#{category.categoryID}" size="10" rendered="#{category.editable}" />
-			<h:outputText value="#{category.categoryID}" rendered="#{not category.editable}" />
+			<f:facet name="header">Brand ID</f:facet>
+			<h:inputText value="#{subcategory.subCategoryID}" size="10" rendered="#{subcategory.editable}" />
+			<h:outputText value="#{subcategory.subCategoryID}" rendered="#{not subcategory.editable}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Edit</f:facet>
-			<h:commandButton value="Edit" action="#{supercategory.editCategory(category)}" rendered="#{not category.editable}" >
-				<f:setPropertyActionListener target="#{supercategory.categoryID}" value="#{category.categoryID}" />
+			<h:commandButton value="Edit" action="#{supercategory.editSubCategory(subcategory)}" rendered="#{not subcategory.editable}" >
+				<f:setPropertyActionListener target="#{supercategory.subCategoryID}" value="#{subcategory.subCategoryID}" />
 			</h:commandButton>
-			<h:commandButton value="Save Changes" action="#{supercategory.confirmCategoryEdit}" rendered="#{category.editable}" />
+			<h:commandButton value="Save Changes" action="#{supercategory.confirmSubCategoryEdit}" rendered="#{subcategory.editable}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Delete</f:facet>
-			<h:commandButton value="Delete" action="#{supercategory.deleteCategory(category)}" rendered="#{not category.deletable}" />
-			<h:commandButton value="Confirm delete" action="#{supercategory.confirmProductDelete(category.categoryID)}" update="@form" ajax="true" rendered="#{category.deletable}" />
+			<h:commandButton value="Delete" action="#{supercategory.deleteSubCategory(subcategory)}" rendered="#{not subcategory.deletable}" />
+			<h:commandButton value="Confirm delete" action="#{supercategory.confirmSubCategoryDelete(subcategory.subCategoryID)}" update="@form" ajax="true" rendered="#{subcategory.deletable}" />
 		</h:column>
 	</h:dataTable>
+
+		<h2>Add New Brand</h2>
+		<table>
+			<tr>
+				<td>Brand Name:</td>
+				<td><h:inputText size="10" value="#{supercategory.subCategoryName}" /></td>
+			</tr>
+		</table>
+
+		<h:commandButton value="Add Brand" action="#{supercategory.addSubCategory}" update=":subcategoryform:subcategorytable" ajax="true"/>
+	</h:form>
 
 
 

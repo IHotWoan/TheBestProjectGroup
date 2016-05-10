@@ -18,6 +18,7 @@ public class ShoppingCart implements Serializable {
 	private double totalCost;
 	private ArrayList<Product> products = new ArrayList<Product>();
 	private Map<Product, Integer> selectedQuantity = new HashMap<Product, Integer>();
+
 	
 	/**
 	 * Constructor class of shopping cart
@@ -26,7 +27,7 @@ public class ShoppingCart implements Serializable {
 		
 	}
 	
-	
+
 	public String getCartID() {
 		return cartID;
 	}

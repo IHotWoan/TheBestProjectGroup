@@ -68,41 +68,41 @@
 	   	
 	   		</h:form>
           </div>
-          
-          <h:form method="post" id="checkout-order-form">
-          	<p:growl id="growl" showDetail="true" sticky="true" />
+
+		<h:form method="post" id="checkout-order-form">
+			<p:growl id="growl" showDetail="true" sticky="true" />
 			<h2>Your Details</h2>
 			<fieldset id="fieldset-billing">
-			<div>
-				<label for="name">Name</label>
-				<h:inputText name="name" id="name" value="#{shoppingcartbean.order.customerName}" />
-				<br/>
-				<label for="email">Email</label>
-				<h:inputText name="email" id="email" value="#{shoppingcartbean.order.email}" />
-				<br/>
-				<label for="city">City</label>
-				<h:inputText name="city" id="city" value="#{shoppingcartbean.order.city}"  />
-				<br/>
-				<label for="address">Address</label>
-				<h:inputText name="address" id="address" value="#{shoppingcartbean.order.customerAddress}" />
-				<br/>
-				<label for="zip">ZIP Code</label>
-				<h:inputText name="zip" id="zip" value="#{shoppingcartbean.order.zipCode}" />
-				<br/>
-				<label for="zip">Phone number</label>
-				<h:inputText name="phone" id="phone" value="#{shoppingcartbean.order.phone}" />
-				<br/>
-			</div>
-			</fieldset>			
+				<div>
+					<label for="name">Name</label>
+					<h:inputText name="name" id="name" value="#{shoppingcartbean.order.customerName}" />
+					<br/>
+					<label for="email">Email</label>
+					<h:inputText name="email" id="email" value="#{shoppingcartbean.order.email}" />
+					<br/>
+					<label for="city">City</label>
+					<h:inputText name="city" id="city" value="#{shoppingcartbean.order.city}"  />
+					<br/>
+					<label for="address">Address</label>
+					<h:inputText name="address" id="address" value="#{shoppingcartbean.order.customerAddress}" />
+					<br/>
+					<label for="zip">ZIP Code</label>
+					<h:inputText name="zip" id="zip" value="#{shoppingcartbean.order.zipCode}" />
+					<br/>
+					<label for="zip">Phone number</label>
+					<h:inputText name="phone" id="phone" value="#{shoppingcartbean.order.phone}" />
+					<br/>
+				</div>
+			</fieldset>
 			<br/>
 			<h:commandButton value="back to shopping" action="index" />
 			<h:commandButton value="submit" action="#{shoppingcartbean.proceedOrder()}" />
-			</h:form>
-          
-          </div>   
+		</h:form>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
+	</div>
+
+		<!-- Bootstrap core JavaScript
+        ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     

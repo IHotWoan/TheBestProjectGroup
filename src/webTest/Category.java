@@ -67,6 +67,7 @@ public class Category implements Serializable{
 		
 		SuperCategory.clearProductArray();
 		new Category(categoryName);
+
 		return "index";
 	}
 	
@@ -101,8 +102,8 @@ public class Category implements Serializable{
 		
 		return subCategoryArray;
 		
-	} 
-	
+	}
+
 	public boolean isDisplayBrands() {
 		return displayBrands;
 	}
@@ -110,5 +111,6 @@ public class Category implements Serializable{
 	public void setDisplayBrands(boolean displayBrands) {
 		this.displayBrands = displayBrands;
 	}
-	
+
+
 }
