@@ -22,7 +22,7 @@ public class SuperCategory implements Serializable{
 	private static ArrayList<Product> productArray = new ArrayList<Product>();
 	private ArrayList<SubCategory> subCategoryArray = new ArrayList<SubCategory>();
 
-	private MysqlConnect db = new MysqlConnect();
+	private MysqlConnect db;
 	private ResultSet rs;
 	
 	private String productName;
@@ -131,6 +131,7 @@ public class SuperCategory implements Serializable{
 		productArray.clear();
 		subCategoryArray.clear();
 		
+		db = new MysqlConnect();
 		try {
 
 			rs = db.query("SELECT * FROM category");
@@ -159,9 +160,11 @@ public class SuperCategory implements Serializable{
 				subCategoryArray.add(subCategory);
 
 			}
+			db.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		db=null;
 		
 	}
 	
@@ -188,7 +191,7 @@ public class SuperCategory implements Serializable{
 	}
 	
 	public String confirmProductEdit() {
-	    
+		db = new MysqlConnect();
 		for (Product product : productArray){
 			
 			if(product.getProductID().equals(getProductID())){
@@ -204,6 +207,13 @@ public class SuperCategory implements Serializable{
 				break;
 			}
 		}
+		try {
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db = null;
 		
 		return null;
 		
@@ -216,7 +226,7 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String confirmCategoryEdit() {
-
+		db = new MysqlConnect();
 		for (Category category : categoryArray){
 
 			if(category.getCategoryID().equals(getCategoryID())){
@@ -231,6 +241,13 @@ public class SuperCategory implements Serializable{
 				break;
 			}
 		}
+		try {
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db=null;
 
 		return null;
 
@@ -245,7 +262,7 @@ public class SuperCategory implements Serializable{
 
 	
 	public String confirmProductDelete(String productID) {
-		
+		db = new MysqlConnect();
 		for (Product product : productArray){
 			
 			if(product.getProductID().equals(productID)){
@@ -261,6 +278,13 @@ public class SuperCategory implements Serializable{
 			}
 		}
 		
+		try {
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db = null;
 		return null;
 	}
 	
@@ -271,7 +295,7 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String confirmCategoryDelete(String categoryID) {
-
+		db = new MysqlConnect();
 		for (Category category : categoryArray){
 
 			if(category.getCategoryID().equals(categoryID)){
@@ -287,6 +311,13 @@ public class SuperCategory implements Serializable{
 				}
 			}
 		}
+		try {
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db= null;
 
 		return null;
 	}
@@ -302,7 +333,7 @@ public class SuperCategory implements Serializable{
 	 */
 	
 	public String addProduct(){
-		
+		db = new MysqlConnect();
 		try {
 			db.insert("INSERT into `shopdb`.`products` (product_name,product_category,product_brand,product_price,product_description,product_quantity) "
 					+ "VALUES ('"+getProductName()+"', "+Integer.parseInt(getProductCategory())+", "+Integer.parseInt(getProductBrand())+", "+getProductPrice()+", '"+getProductDescription()+"', "+getProductQuantity()+")");
@@ -320,7 +351,8 @@ public class SuperCategory implements Serializable{
 			product.setProductID(rs.getString(1));
 			
 			productArray.add(product);
-			
+			db.close();
+			db = null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -335,7 +367,7 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String addCategory(){
-
+		db= new MysqlConnect();
 		try {
 			db.insert("INSERT into `shopdb`.`category` (category_name)" + "VALUES ('"+getCategoryName()+"')");
 
@@ -347,6 +379,8 @@ public class SuperCategory implements Serializable{
 			category.setCategoryID(rs.getString(1));
 
 			categoryArray.add(category);
+			db.close();
+			db = null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -355,18 +389,20 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String addSubCategory(){
-
+		db = new MysqlConnect();
 		try {
 			db.insert("INSERT into `shopdb`.`brands` (brand_name)" + "VALUES ('"+getSubCategoryName()+"')");
 
 			SubCategory subcategory = new SubCategory();
 			subcategory.setSubCategoryName(getSubCategoryName());
 
-			rs = db.query("SELECT brand_ID from brands order by brands_ID desc limit 1");
+			rs = db.query("SELECT brand_ID from brands order by brand_ID desc limit 1");
 			rs.next();
 			subcategory.setSubCategoryID(rs.getString(1));
 
 			subCategoryArray.add(subcategory);
+			db.close();
+			db=null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -375,7 +411,7 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String confirmSubCategoryEdit() {
-
+		db = new MysqlConnect();
 		for (SubCategory subcategory : subCategoryArray){
 
 			if(subcategory.getSubCategoryID().equals(getSubCategoryID())){
@@ -390,6 +426,13 @@ public class SuperCategory implements Serializable{
 				break;
 			}
 		}
+		try {
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db = null;
 
 		return null;
 
@@ -403,7 +446,7 @@ public class SuperCategory implements Serializable{
 
 
 	public String confirmSubCategoryDelete(String subCategoryID) {
-
+		db = new MysqlConnect();
 		for (SubCategory subcategory : subCategoryArray){
 
 			if(subcategory.getSubCategoryID().equals(subCategoryID)){
@@ -418,6 +461,12 @@ public class SuperCategory implements Serializable{
 					e.printStackTrace();
 				}
 			}
+		}
+		try {
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return null;

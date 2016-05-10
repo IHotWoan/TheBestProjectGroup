@@ -24,6 +24,7 @@ public class TestingClass {
 				make.insert(i++,'\\');
 		}
 		System.out.println(make.toString());
+		scan.close();
 	}
 	
 }

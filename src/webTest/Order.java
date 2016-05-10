@@ -192,7 +192,7 @@ public class Order implements Serializable{
 		for(int i=0;i<n;i++)
 			toReturn.append(productarray.get(i).getName()+", ");
 		
-		toReturn.delete(toReturn.length()-2, toReturn.length());
+		//toReturn.delete(toReturn.length()-1, toReturn.length());
 		if(productarray.size() > 3)
 			toReturn.append(", and MORE!");
 		

@@ -28,6 +28,9 @@ public class ShoppingCartBean implements Serializable{
 	private ShoppingCart cart;
 	private Order order = new Order();
 	
+	/**
+	 * Constructor of shopping cart bean. register cart to session.
+	 */
 	public ShoppingCartBean(){
 		HttpSession session = SessionBean.getSession();
 		cart = (ShoppingCart) session.getAttribute("CART");
@@ -36,12 +39,7 @@ public class ShoppingCartBean implements Serializable{
 		 }
 		 session.setAttribute("CART",cart);
 	}
-	public ShoppingCart getCart() {
-		return cart;
-	}
-	public void setCart(ShoppingCart cart) {
-		this.cart = cart;
-	}
+
 	public String proceedOrder(){
 		FacesContext context = FacesContext.getCurrentInstance();
 		boolean failed=false;
@@ -85,7 +83,7 @@ public class ShoppingCartBean implements Serializable{
 					
 				}
 				
-				//Emptpying shopping cart.
+				//Emptying shopping cart.
 				HttpSession session = SessionBean.getSession();
 				this.cart =null;
 				session.setAttribute("CART",null);
@@ -103,11 +101,18 @@ public class ShoppingCartBean implements Serializable{
 			return "orderregistered";
 	}
 	
+	//Here comes getters and setters.
 	public Order getOrder() {
 		return order;
 	}
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+	public ShoppingCart getCart() {
+		return cart;
+	}
+	public void setCart(ShoppingCart cart) {
+		this.cart = cart;
 	}
 	
 	
