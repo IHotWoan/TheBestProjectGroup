@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>ThePCShop page</title>
+	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="dashboard.css" />
+</h:head>
+<h:body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="checkorder.xhtml">Track order</a></li>
+					<li><a href="index.xhtml">Products</a></li>
+					<li><a href="viewcart.xhtml">Shopping cart</a></li>
+					<li><a href="contactus.xhtml">Contact us</a></li>
+					<li><a href="aboutus.xhtml">About us</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search..." />
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row"></div>
+		<h1 class="page-header">Order summary</h1>
+
+
+		<h:form method="post" id="checkout-order-form">
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<h2>Your Details</h2>
+			<fieldset id="fieldset-billing">
+				<div>
+					<label for="promotioncode">Got promotion code?</label>
+					<h:inputText name="promotioncode" id="promotioncode" value="empty" />
+					<br /> <label for="cost">Final cost: </label>
+					<h:outputText name="cost" id="cost" value="AAA" />
+					<br /> <label for="holder">holder</label>
+					<h:inputText name="holder" id="holder" value="empty" />
+					<br /> <label for="number">number</label>
+					<h:inputText name="number" id="number" value="empty" />
+					<br /> <label for="validity">Validity</label>
+					<h:inputText name="validity" id="validity" value="empty" />
+					<h:inputText name="validity2" id="validity2" value="empty" />
+					<br />
+				</div>
+			</fieldset>
+			<br />
+			<h:commandButton value="cancel" action="index" />
+			<h:commandButton value="submit" action="empty" />
+		</h:form>
+
+	</div>
+
+	<!-- Bootstrap core JavaScript
+        ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</h:body>
+</html>

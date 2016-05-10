@@ -1,73 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:f="http://xmlns.jcp.org/jsf/core"
-		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-		xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:p="http://primefaces.org/ui">    
-	<h:head>
-		<title>ThePCShop page</title>
-		<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
-		<h:outputStylesheet library="css" name="dashboard.css" />
-	</h:head>
-	<h:body>
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>ThePCShop page</title>
+	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="dashboard.css" />
+</h:head>
+<h:body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Products</a></li>            
-              <li><a href="/viewcart.xhtml">Shopping cart</a></li>
-            <li><a href="#">Contact us</a></li>
-            <li><a href="#">About us</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search..." />
-          </form>
-        </div>
-      </div>
-    </nav>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="checkorder.xhtml">Track order</a></li>
+					<li><a href="index.xhtml">Products</a></li>
+					<li><a href="viewcart.xhtml">Shopping cart</a></li>
+					<li><a href="contactus.xhtml">Contact us</a></li>
+					<li><a href="aboutus.xhtml">About us</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search..." />
+				</form>
+			</div>
+		</div>
+	</nav>
 
-    <div class="container-fluid">
-      <div class="row">
-
-        </div>
-          <h1 class="page-header">Shopping cart</h1>
-          <div class="table-responsive">
-          	<h:form id="productsform">
-	          	<h:dataTable id="productstable" value="#{shoppingcartbean.cart.products}" var = "items" class="table table-striped">
+	<div class="container-fluid">
+		<div class="row"></div>
+		<h1 class="page-header">Shopping cart</h1>
+		<div class="table-responsive">
+			<h:form id="productsform">
+				<h:dataTable id="productstable"
+					value="#{shoppingcartbean.cart.products}" var="items"
+					class="table table-striped">
 					<h:column>
-						<h:graphicImage value="/productImageServlet?id=#{items.productID}" width="100"/>
+						<h:graphicImage value="/productImageServlet?id=#{items.productID}"
+							width="100" />
 					</h:column>
-		    		<h:column>
-		    				<f:facet name="header">Product Name</f:facet>
-		    				<h:outputText value="#{items.name}" />
-		    		</h:column>
-		    		<h:column>
-		    				<f:facet name="header">Product Category</f:facet>
-		    				<h:outputText value="#{items.categoryName}"/>
-		    		</h:column>
-		    		<h:column>
-		    				<f:facet name="header">Product Price</f:facet>
-		    				<h:outputText value="#{items.price}" />
-		    		</h:column>
-		    		<h:column>
-		    			<f:facet name="header">Product Quantity</f:facet>
-		    			<h:outputText value="#{shoppingcartbean.cart.getQuantity(items)}" />
-		    		</h:column>
-		    		
-	   			</h:dataTable>
-	   	
-	   		</h:form>
-          </div>
+					<h:column>
+						<f:facet name="header">Product Name</f:facet>
+						<h:outputText value="#{items.name}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Product Category</f:facet>
+						<h:outputText value="#{items.categoryName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Product Price</f:facet>
+						<h:outputText value="#{items.price}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Product Quantity</f:facet>
+						<h:outputText value="#{shoppingcartbean.cart.getQuantity(items)}" />
+					</h:column>
+
+				</h:dataTable>
+
+			</h:form>
+		</div>
 
 		<h:form method="post" id="checkout-order-form">
 			<p:growl id="growl" showDetail="true" sticky="true" />
@@ -75,36 +78,39 @@
 			<fieldset id="fieldset-billing">
 				<div>
 					<label for="name">Name</label>
-					<h:inputText name="name" id="name" value="#{shoppingcartbean.order.customerName}" />
-					<br/>
-					<label for="email">Email</label>
-					<h:inputText name="email" id="email" value="#{shoppingcartbean.order.email}" />
-					<br/>
-					<label for="city">City</label>
-					<h:inputText name="city" id="city" value="#{shoppingcartbean.order.city}"  />
-					<br/>
-					<label for="address">Address</label>
-					<h:inputText name="address" id="address" value="#{shoppingcartbean.order.customerAddress}" />
-					<br/>
-					<label for="zip">ZIP Code</label>
-					<h:inputText name="zip" id="zip" value="#{shoppingcartbean.order.zipCode}" />
-					<br/>
-					<label for="zip">Phone number</label>
-					<h:inputText name="phone" id="phone" value="#{shoppingcartbean.order.phone}" />
-					<br/>
+					<h:inputText name="name" id="name"
+						value="#{shoppingcartbean.order.customerName}" />
+					<br /> <label for="email">Email</label>
+					<h:inputText name="email" id="email"
+						value="#{shoppingcartbean.order.email}" />
+					<br /> <label for="city">City</label>
+					<h:inputText name="city" id="city"
+						value="#{shoppingcartbean.order.city}" />
+					<br /> <label for="address">Address</label>
+					<h:inputText name="address" id="address"
+						value="#{shoppingcartbean.order.customerAddress}" />
+					<br /> <label for="zip">ZIP Code</label>
+					<h:inputText name="zip" id="zip"
+						value="#{shoppingcartbean.order.zipCode}" />
+					<br /> <label for="zip">Phone number</label>
+					<h:inputText name="phone" id="phone"
+						value="#{shoppingcartbean.order.phone}" />
+					<br />
 				</div>
 			</fieldset>
-			<br/>
+			<br />
 			<h:commandButton value="back to shopping" action="index" />
-			<h:commandButton value="submit" action="#{shoppingcartbean.proceedOrder()}" />
+			<h:commandButton value="submit"
+				action="#{shoppingcartbean.proceedOrder()}" />
 		</h:form>
 
 	</div>
 
-		<!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript
         ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    
-	</h:body>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</h:body>
 </html>
