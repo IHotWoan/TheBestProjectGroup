@@ -55,6 +55,8 @@ public class SubCategory implements Serializable{
 			product.setProductID(rs.getString("product_ID"));
 			product.setName(rs.getString("product_name"));
 			product.setCategoryID(rs.getString("product_category"));
+			product.setCategoryName(categoryName);
+			product.setBrandName(subCategoryName);
 			product.setDescription(rs.getString("product_description"));
 			product.setPrice(Double.parseDouble(rs.getString("product_price")));
 			product.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
