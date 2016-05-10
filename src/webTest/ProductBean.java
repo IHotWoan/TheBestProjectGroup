@@ -3,8 +3,10 @@
  */
 package webTest;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import java.io.Serializable;
@@ -44,12 +46,15 @@ public class ProductBean implements Serializable{
 		this.selectedProduct = selectedProduct;
 	}
 	public String addToShoppingCart(){
+		
+		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = SessionBean.getSession();
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
 		 if(cart==null){
 			 cart = new ShoppingCart();
 		 }
-		 cart.add(selectedProduct);
+		 if(!cart.add(selectedProduct))
+			 context.addMessage(null, new FacesMessage("Fail!",  "We only have "+selectedProduct.getQuantity()+" items in stock for "+selectedProduct.getName()) );
 		 session.setAttribute("CART",cart);
 		return "viewcart";
 	}

@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
@@ -24,21 +23,21 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name="shoppingcartbean")
 @SessionScoped
 public class ShoppingCartBean implements Serializable{
+	private static final long serialVersionUID = -1625821307853226223L;
+	
 	private ShoppingCart cart;
 	private Order order;
 	
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1625821307853226223L;
+	// These fields below are used to get user inputs for the order.
+	private String orderID;
+	private String customerName;
+	private String customerAddress;
+	private String city;
+	private String zipCode;
+	private String phone;
+	private String email;
+	
+	
 	public ShoppingCartBean(){
 		HttpSession session = SessionBean.getSession();
 		cart = (ShoppingCart) session.getAttribute("CART");
@@ -55,12 +54,11 @@ public class ShoppingCartBean implements Serializable{
 	}
 	public String proceedOrder(){
 		FacesContext context = FacesContext.getCurrentInstance();
-		order.setProductarray(cart.getProducts());
 		boolean failed=false;
 		
 		try {
 			MysqlConnect db = new MysqlConnect();
-			for(Product p: order.getProductarray())
+			for(Product p: cart.getProducts())
 			{
 				p.getProductID();
 				ResultSet rs = db.query("SELECT products.product_quantity FROM shopdb.products where product_id="+p.getProductID()+";");
@@ -74,26 +72,42 @@ public class ShoppingCartBean implements Serializable{
 			}
 			
 			if(!failed){
-				DateFormat dateFormat = new SimpleDateFormat("yymmdd");
+				DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
 				Date date = new Date();
-				String newID=dateFormat.format(date)+"-";
-				ResultSet rs = db.query("SELECT COUNT(*) customer_order_ID FROM customers WHERE customer_order_ID LIKE "+newID+"%");
+				orderID=dateFormat.format(date)+"-";
+				ResultSet rs = db.query("SELECT COUNT(*) customer_order_ID FROM customers WHERE customer_order_ID LIKE '"+orderID+"%'");
 				rs.next();
-				newID+=String.format("%02X", rs.getInt(1));
+				orderID+=String.format("%03X", rs.getInt(1)+1);
 				
-				order.setOrderID(newID);
+				
 				db.insert("INSERT into customers (customer_order_ID,customer_name,customer_streetaddress,customer_zipcode,customer_city,customer_phone,customer_email,customer_orderstatus) "
-						+ "VALUES ('"+newID+"','"+order.getCustomerName()+"','"+order.getCustomerAddress()+"','"+order.getZipCode()+"','"+order.getCity()+"','"+order.getPhone()+"','"+order.getEmail()+"','neworder');");
-				for(Product p: order.getProductarray())
+						+ "VALUES ('"+orderID+"','"+this.getCustomerName()+"','"+this.getCustomerAddress()+"','"+this.getZipCode()+"','"+this.getCity()+"','"+this.getPhone()+"','"+this.getEmail()+"','neworder');");
+				for(Product p: cart.getProducts())
 				{
 					int selectedq = cart.getSelectedQuantity().get(p);
 					db.insert("INSERT into ordereditems (ordereditems_order_ID,ordereditems_product,ordereditems_quantity,ordereditems_price) "+
-				"VALUES ('"+newID+"','"+p.getProductID()+"','"+selectedq+"','"+p.getPrice()*selectedq+"');");
-					
-					db.insert("UPDATE products SET `product_quantity`='"+selectedq+"' WHERE `product_ID`='"+p.getProductID()+"'");
+				"VALUES ('"+orderID+"','"+p.getProductID()+"','"+selectedq+"','"+p.getPrice()*selectedq+"');");
+					p.setQuantity(p.getQuantity()-selectedq);
+					db.insert("UPDATE products SET `product_quantity`='"+p.getQuantity()+"' WHERE `product_ID`='"+p.getProductID()+"'");
 					
 				}
 				
+				//move all information to order before empty the shopping cart.
+				order.setProductarray(cart.getProducts());
+				order.setCustomerName(this.customerName);
+				order.setCity(city);
+				order.setCustomerName(customerName);
+				order.setCustomerAddress(customerAddress);
+				order.setEmail(email);
+				order.setOrderID(orderID);
+				order.setOrderstatus("neworder");
+				order.setPhone(phone);
+				order.setZipCode(zipCode);
+				
+				//Emptpying shopping cart.
+				HttpSession session = SessionBean.getSession();
+				this.cart =null;
+				session.setAttribute("CART",null);
 			}
 			db.close();
 			db = null;
@@ -102,8 +116,58 @@ public class ShoppingCartBean implements Serializable{
 			e.printStackTrace();
 		}
 		
-		
-		return "checkout";
+		if(failed)
+			return "checkout";
+		else
+			return "orderregistered";
 	}
+	
+	//getters and setters of the fields.
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getCustomerAddress() {
+		return customerAddress;
+	}
+	public void setCustomerAddress(String customerAddress) {
+		this.customerAddress = customerAddress;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getOrderID(){
+		return orderID;
+	}
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	
 	
 }

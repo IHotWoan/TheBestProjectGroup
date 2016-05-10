@@ -70,40 +70,35 @@
 				</h:dataTable>
 
 			</h:form>
-		</div>
-
-		<h:form method="post" id="checkout-order-form">
+			<h:form method="post" id="checkout-order-form">
 			<p:growl id="growl" showDetail="true" sticky="true" />
 			<h2>Your Details</h2>
-			<fieldset id="fieldset-billing">
-				<div>
-					<label for="name">Name</label>
-					<h:inputText name="name" id="name"
-						value="#{shoppingcartbean.order.customerName}" />
-					<br /> <label for="email">Email</label>
-					<h:inputText name="email" id="email"
-						value="#{shoppingcartbean.order.email}" />
-					<br /> <label for="city">City</label>
-					<h:inputText name="city" id="city"
-						value="#{shoppingcartbean.order.city}" />
-					<br /> <label for="address">Address</label>
-					<h:inputText name="address" id="address"
-						value="#{shoppingcartbean.order.customerAddress}" />
-					<br /> <label for="zip">ZIP Code</label>
-					<h:inputText name="zip" id="zip"
-						value="#{shoppingcartbean.order.zipCode}" />
-					<br /> <label for="zip">Phone number</label>
-					<h:inputText name="phone" id="phone"
-						value="#{shoppingcartbean.order.phone}" />
-					<br />
-				</div>
-			</fieldset>
+			<label for="name">Name</label>
+			<h:inputText name="name" id="name"
+				value="#{shoppingcartbean.customerName}" />
+			<br /> <label for="email">Email</label>
+			<h:inputText name="email" id="email"
+				value="#{shoppingcartbean.email}" />
+			<br /> <label for="city">City</label>
+			<h:inputText name="city" id="city"
+				value="#{shoppingcartbean.city}" />
+			<br /> <label for="address">Address</label>
+			<h:inputText name="address" id="address"
+				value="#{shoppingcartbean.customerAddress}" />
+			<br /> <label for="zip">ZIP Code</label>
+			<h:inputText name="zip" id="zip"
+				value="#{shoppingcartbean.zipCode}" />
+			<br /> <label for="zip">Phone number</label>
+			<h:inputText name="phone" id="phone"
+				value="#{shoppingcartbean.phone}" />
+			<br />
 			<br />
 			<h:commandButton value="back to shopping" action="index" />
 			<h:commandButton value="submit"
 				action="#{shoppingcartbean.proceedOrder()}" />
 		</h:form>
-
+			
+		</div>
 	</div>
 
 	<!-- Bootstrap core JavaScript

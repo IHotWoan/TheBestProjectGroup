@@ -52,14 +52,25 @@ public class ShoppingCart implements Serializable {
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}
-	public void add(Product p){
-		if(selectedQuantity.containsKey(p))
-			selectedQuantity.put(p, selectedQuantity.get(p)+1);
+	public boolean add(Product p){
+		
+		
+		if(selectedQuantity.containsKey(p)){
+			if(selectedQuantity.get(p)+1 <= p.getQuantity())
+				selectedQuantity.put(p, selectedQuantity.get(p)+1);
+			else
+				return false;
+		}
+			
 		else{
+			if(p.getQuantity()<1)
+				return false;
+			
 			products.add(p);
 			selectedQuantity.put(p, 1);
 		}
 		totalCost+=p.getPrice();
+		return true;
 		
 	}
 	public void remove(Product p){
