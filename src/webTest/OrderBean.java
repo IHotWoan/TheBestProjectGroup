@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 @ManagedBean(name="orderbean")
 @SessionScoped
 public class OrderBean {
-	public Order selectedOrder;
+	private Order selectedOrder;
+	private String ordernumber;
+	private String email;
 
 	public OrderBean(){
 		HttpSession session = SessionBean.getSession();

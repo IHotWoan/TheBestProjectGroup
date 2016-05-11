@@ -55,6 +55,7 @@ public class ShoppingCartBean implements Serializable{
 				if(actualQuantity-cart.getSelectedQuantity().get(p.getProductID()) < 0){
 					context.addMessage(null, new FacesMessage("Fail!",  "We only have "+actualQuantity+"items in stock for "+p.getName()) );
 					failed=true;
+					p.setQuantity(actualQuantity);
 				}
 				
 			}
@@ -92,10 +93,13 @@ public class ShoppingCartBean implements Serializable{
 				
 				//Emptying shopping cart.
 				HttpSession session = SessionBean.getSession();
-				session.setAttribute("CART",null);
+				this.cart = new ShoppingCart();
+				session.setAttribute("CART",cart);
 				session.setAttribute("selectedOrder", order);
-				this.cart =null;
-				this.order=null;
+				
+				this.order.setProductarray(null);
+				this.order.setTotalcost(0);
+				this.order.setOrderID(null);
 				
 			}
 			db.close();
