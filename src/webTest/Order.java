@@ -45,6 +45,7 @@ public class Order implements Serializable{
 	private Status orderstatus;
 	//private String orderstatus;
 	private String summary;
+	private double totalcost=0;
 	
 	public ArrayList<Product> getProductarray() {
 		return productarray;
@@ -84,6 +85,7 @@ public class Order implements Serializable{
 				tmp.setQuantity(rs1.getInt("ordereditems_quantity"));
 				tmp.setPrice(rs1.getDouble("ordereditems_price"));
 				tmp.setProductID(rs1.getString("product_id"));
+				totalcost+=tmp.getPrice();
 				
 				productarray.add(tmp);
 			}
@@ -159,16 +161,14 @@ public class Order implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	/*
-	public Date getOrderPlaced() {
-		return orderPlaced;
-	}
-
-	public void setOrderPlaced(Date orderPlaced) {
-		this.orderPlaced = orderPlaced;
-	}
-	*/
 	
+	
+	public double getTotalcost() {
+		return totalcost;
+	}
+	public void setTotalcost(double totalcost) {
+		this.totalcost = totalcost;
+	}
 	public Status getOrderstatus() {
 		return orderstatus;
 	}

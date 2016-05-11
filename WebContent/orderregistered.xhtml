@@ -6,7 +6,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>ThePCShop page</title>
+	<title>Order confirmation</title>
 	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="dashboard.css" />
 </h:head>
@@ -40,12 +40,13 @@
 
 	<div class="container-fluid">
 		<div class="row"></div>
-		<h1 class="page-header">Order completed!</h1>
+		<h1 class="page-header">Thank you<h:outputText value="#{orderbean.selectedOrder.customerName}" /> </h1>
 		<div class="table-responsive">
 			<h:form id="ordersummary">
-				Your ourder number is <h:outputText value="#{shoppingcartbean.order.orderID}" /> <br/>
+				Your ourder number is <h:outputText value="#{orderbean.selectedOrder.orderID}" /> <br/>
+				Your items will be processed shortly. The following items will be delivered to  <h:outputText value="#{orderbean.selectedOrder.customerAddress}" /> <br />
 				<h:dataTable id="productstable"
-							value="#{shoppingcartbean.order.productarray}" var="items"
+							value="#{orderbean.selectedOrder.productarray}" var="items"
 							class="table table-striped">
 							<h:column>
 								<h:graphicImage
@@ -66,15 +67,11 @@
 							<h:column>
 								<f:facet name="header">Product Quantity</f:facet>
 								<h:outputText
-									value="#{shoppingcartbean.cart.getQuantity(items)}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Remove</f:facet>
-								<h:commandButton value="remove"
-									action="#{shoppingcartbean.cart.remove(items)}"
-									update="productsform" ajax="true" />
+									value="#{items.quantity}" />
 							</h:column>
 						</h:dataTable>
+						<br />
+						Total cost: <h:outputText value="#{orderbean.selectedOrder.totalcost}" /> 
 			</h:form>
 		</div>
 

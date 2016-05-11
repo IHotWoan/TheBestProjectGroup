@@ -52,7 +52,7 @@ public class ShoppingCartBean implements Serializable{
 				ResultSet rs = db.query("SELECT products.product_quantity FROM shopdb.products where product_id="+p.getProductID()+";");
 				rs.next();
 				int actualQuantity = rs.getInt("product_quantity");
-				if(actualQuantity-cart.getSelectedQuantity().get(p) < 0){
+				if(actualQuantity-cart.getSelectedQuantity().get(p.getProductID()) < 0){
 					context.addMessage(null, new FacesMessage("Fail!",  "We only have "+actualQuantity+"items in stock for "+p.getName()) );
 					failed=true;
 				}
@@ -70,23 +70,33 @@ public class ShoppingCartBean implements Serializable{
 				
 				order.setOrderID(orderID);
 				order.setOrderstatus("neworder");
+				order.setProductarray(cart.getProducts());
+				order.setTotalcost((cart.getTotalCost()));
 				
 				db.insert("INSERT into customers (customer_order_ID,customer_name,customer_streetaddress,customer_zipcode,customer_city,customer_phone,customer_email,customer_orderstatus) "
 						+ "VALUES ('"+orderID+"','"+order.getCustomerName()+"','"+order.getCustomerAddress()+"','"+order.getZipCode()+"','"+order.getCity()+"','"+order.getPhone()+"','"+order.getEmail()+"','neworder');");
-				for(Product p: cart.getProducts())
+				for(Product p: order.getProductarray())
 				{
-					int selectedq = cart.getSelectedQuantity().get(p);
+					int selectedq = cart.getSelectedQuantity().get(p.getProductID());
 					db.insert("INSERT into ordereditems (ordereditems_order_ID,ordereditems_product,ordereditems_quantity,ordereditems_price) "+
 				"VALUES ('"+orderID+"','"+p.getProductID()+"','"+selectedq+"','"+p.getPrice()*selectedq+"');");
+					
+					//Save temporary quantity of the product to update the database. 
 					p.setQuantity(p.getQuantity()-selectedq);
 					db.insert("UPDATE products SET `product_quantity`='"+p.getQuantity()+"' WHERE `product_ID`='"+p.getProductID()+"'");
+					
+					//replace that temporary quantity into user selected quantity to store into array of products in order.
+					p.setQuantity(selectedq);
 					
 				}
 				
 				//Emptying shopping cart.
 				HttpSession session = SessionBean.getSession();
-				this.cart =null;
 				session.setAttribute("CART",null);
+				session.setAttribute("selectedOrder", order);
+				this.cart =null;
+				this.order=null;
+				
 			}
 			db.close();
 			db = null;

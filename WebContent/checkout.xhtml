@@ -68,7 +68,8 @@
 					</h:column>
 
 				</h:dataTable>
-
+				Total cost: <h:outputLabel
+							value="#{shoppingcartbean.cart.totalCost}" /> Kr
 			</h:form>
 			<h:form method="post" id="checkout-order-form">
 			<p:growl id="growl" showDetail="true" sticky="true" />
