@@ -1,47 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
-	<title>Upload page</title>
-	<h:outputStylesheet library="css" name="admin.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Upload image</title>
+
+	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+	<!-- Custom CSS -->
+
+	<h:outputStylesheet library="bootstrap" name="css/sb-admin.css" />
+	<!-- Morris Charts CSS -->
+
+	<h:outputStylesheet library="bootstrap" name="css/plugins/morris.css" />
+	<!-- Custom Fonts -->
+
 </h:head>
 
 <h:body>
+	<div id="wrapper">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
 
-	<!--Javascript-->
-	<div id="nav01">
-		<div id="header">
-			<a href="dashboard.xhtml">
-				<h:graphicImage library="images" name="logo.jpg" alt="Logo placeholder" width="300px" height="200px" />
-			</a>
-			<h1> Administrator </h1>
-			<h1><h:outputText value="#{userLogin.userName}" /></h1>
-			<p id="date"></p>
-			<h2>
-				<h:form>
-					<h:commandLink action="#{userLogin.logout}" value="log out" />
-				</h:form>
-			</h2>
+					<p class="navbar-brand">Administrator</p>
+					<h:outputText class="navbar-brand" value="#{userLogin.userName}" />
+					<p class="navbar-brand" id="date"></p>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<h:form>
+						<h:commandLink class="navbar-brand" action="#{userLogin.logout}"
+							value="log out" />
+					</h:form>
+					<h4 class="navbar-form navbar-center"
+						style="color: #9d9d9d; margin-top: 15px">
+						<script>
+var now = new Date();
+var dayNames = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+var monNames = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + now.getDate() + ", " + now.getFullYear());
+</script>
+					</h4>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav side-nav">
+					<li><a href="dashboard.xhtml"><i
+							class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
+					<li><a href="deliveredorders.xhtml"><i
+							class="fa fa-fw fa-table"></i> Delivered orders</a></li>
+					<li><a href="manageorders.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage orders</a></li>
+					<li><a href="managecategories.xhtml"><i class="fa fa-edit"></i>
+							Manage categories</a></li>
+					<li><a href="manageproducts.xhtml"><i class="fa fa-edit"></i>
+							Manage products</a></li>
+					<li><a href="manageusers.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-10">
+						<h1 class="page-header">
+							Upload image file for product id:
+							<h:outputLabel value="#{fileuploadbean.productID}" />
+						</h1>
+						<ol class="breadcrumb">
+							<li class="active"><i class="fa fa-dashboard"></i> <a
+								href="dashboard.xhtml">Dashboard</a></li>
+							<li class="active"><i class="fa fa-edit"></i><a
+								href="manage products.xhtml">Manage products</a></li>
+							<li class="active"><i class="fa fa-fw fa-wrench"></i> Upload
+								image</li>
+						</ol>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-10">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									<i class="fa fa-fw fa-table"></i> Upload
+								</h3>
+							</div>
+							<div class="panel-body">
+								<div class="table-responsive">
+									<h:form id="uploadform" enctype="multipart/form-data">
+										<h:inputFile id="file" value="#{fileuploadbean.file}"
+											validator="#{fileuploadbean.validateFile}"></h:inputFile>
+										<br />
+										<h:commandButton class="btn btn-lg btn-primary" value="Upload"
+											action="#{fileuploadbean.upload()}" />
+										<h:messages class="error" for="uploadform" style="color:red;" />
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div id="nav02">
-	</div>
 
-	<h:form><h1>Upload image file for product id: <h:outputLabel value="#{fileuploadbean.productID}" /></h1>
-		<br /><br />
-	</h:form>
-	
-	<h:form id="uploadform" enctype="multipart/form-data">
-		<h:inputFile id="file" value="#{fileuploadbean.file}" validator="#{fileuploadbean.validateFile}">
-		</h:inputFile>
-		<h:commandButton value="Upload" action="#{fileuploadbean.upload()}" /> <br />
-		<h:messages class="error" for="uploadform" style="color:red;"/>
-	</h:form>
-	<script src="script.js"></script>
+	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
+	<h:outputScript library="bootstrap" name="js/jquery.js" />
+
+	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/raphael.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/morris.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/morris-data.js" />
 
 </h:body>
 </html>

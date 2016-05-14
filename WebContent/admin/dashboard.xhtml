@@ -1,76 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
+
+
 	<title>Dashboard</title>
-	<h:outputStylesheet library="css" name="admin.css" />
+
+	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+	<!-- Custom CSS -->
+
+	<h:outputStylesheet library="bootstrap" name="css/sb-admin.css" />
+	<!-- Morris Charts CSS -->
+
+	<h:outputStylesheet library="bootstrap" name="css/plugins/morris.css" />
+	<!-- Custom Fonts -->
+
+
 </h:head>
 
 <h:body>
-	
-	<div id="header">
-		<a href="dashboard.xhtml">
-			<h:graphicImage library="images" name="logo.jpg" alt="Logo placeholder" width="300px" height="200px" />
-	</a>
-	<h1> Administrator </h1>
-	<h1><h:outputText value="#{userLogin.userName}" /></h1>
-	<p id="date">
-	<!-- <h:outputText value="#{session.lastAccessedTime}">
-		<f:convertDateTime pattern="yyyy-MM-dd" type="date" />
-		</h:outputText> -->
-		</p>
-		<h2><h:form><h:commandLink action="#{userLogin.logout}" value="log out" /></h:form>
-			
-		</h2>
+	<div id="wrapper">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<p class="navbar-brand">Administrator</p>
+					<a class="navbar-brand" href="dashboard.xhtml"><h:outputText
+							value="#{userLogin.userName}" /></a>
+					<p class="navbar-brand" id="date"></p>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<h:form>
+						<h:commandLink class="navbar-brand" action="#{userLogin.logout}"
+							value="log out" />
+					</h:form>
+					<h4 class="navbar-form navbar-center"
+						style="color: #9d9d9d; margin-top: 15px">
+						<script>
+var now = new Date();
+var dayNames = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+var monNames = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + now.getDate() + ", " + now.getFullYear());
+</script>
+					</h4>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav side-nav">
+					<li><a href="dashboard.xhtml"><i
+							class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
+					<li><a href="deliveredorders.xhtml"><i
+							class="fa fa-fw fa-table"></i> Delivered orders</a></li>
+					<li><a href="manageorders.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage orders</a></li>
+					<li><a href="managecategories.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage categories</a></li>
+					<li><a href="manageproducts.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage products</a></li>
+					<li><a href="manageusers.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">Dashboard</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-10">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Items in need of attention</h3>
+							</div>
+							<div class="panel-body">
+								<div class="table-responsive">
+									<h:form>
+										<h:dataTable
+											class="table table-bordered table-hover table-striped"
+											value="#{ordertable.undeliveredOrderarray}"
+											var="undeliveredorder">
+											<h:column>
+												<f:facet name="header">Order ID</f:facet>
+												<h:commandLink value="#{undeliveredorder.orderID}"
+													action="ordernumbers">
+													<f:setPropertyActionListener
+														target="#{ordertable.selectedOrder}"
+														value="#{undeliveredorder}" />
+													<f:setPropertyActionListener
+														target="#{ordertable.selected}"
+														value="#{undeliveredorder.orderID}" />
+												</h:commandLink>
+											</h:column>
+											<h:column>
+												<f:facet name="header">Customer Name</f:facet>
+    												#{undeliveredorder.customerName}
+    												</h:column>
+											<h:column>
+												<f:facet name="header">Ordered products</f:facet>
+    												#{undeliveredorder.summary}
+    												</h:column>
+											<h:column>
+												<f:facet name="header">Order status</f:facet>
+    													#{undeliveredorder.orderstatus}
+    												</h:column>
+										</h:dataTable>
+									</h:form>
+								</div>
+								<div class="text-right">
+									<a href="manageorders.xhtml">View All Orders <i
+										class="fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-		
-	<div id="nav02">
-		<ul id='menu'>
-			<li><a href='dashboard.xhtml'>Dashboard</a></li>
-			<li><a href='manageorders.xhtml'>Manage orders</a></li>
-			<li><a href='deliveredorders.xhtml'>Manage delivered orders</a></li>
-			<li><a href='editcategory.xhtml'>Edit category</a></li>
-			<li><a href='editproduct.xhtml'>Edit product</a></li>
-			<li><a href='manageusers.xhtml'>Manage users</a></li>
-		</ul>
-	</div>
+	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
+	<h:outputScript library="bootstrap" name="js/jquery.js" />
 
-	<h2>Welcome to dashboard!</h2><br />
-	<p>Here you can find things need your attention.</p>
-	<h3>Unprocessed orders</h3>
-	<h:form>
-		<h:dataTable value="#{ordertable.undeliveredOrderarray}" var = "undeliveredorder">
-			<h:column>
-    				<f:facet name="header">Order ID</f:facet>
-    				<h:commandLink value="#{undeliveredorder.orderID}" action = "ordernumbers">
-    					<f:setPropertyActionListener target="#{ordertable.selectedOrder}" value="#{undeliveredorder}" />
-    					<f:setPropertyActionListener target="#{ordertable.selected}" value="#{undeliveredorder.orderID}" />
-    				</h:commandLink>
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Customer Name</f:facet>
-    				#{undeliveredorder.customerName}
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Ordered products</f:facet>
-    				#{undeliveredorder.summary}
-    		</h:column>
-    		<h:column>
-    				<f:facet name="header">Order status</f:facet>
-    				#{undeliveredorder.orderstatus}
-    		</h:column>
-		</h:dataTable>
-	</h:form>
-	
+	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
 
-	
-	<script src="script.js"></script>
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/raphael.min.js" />
 
-	<div id="footer">@2016 The Best Project Group</div>
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/morris.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/morris-data.js" />
 
 </h:body>
 </html>
