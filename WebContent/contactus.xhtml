@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
-	<h:head>
-		<title>ThePCShop page</title>
-		<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
-		<h:outputStylesheet library="css" name="dashboard.css" />
-	</h:head>
-	<h:body>
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>ThePCShop page</title>
+	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="dashboard.css" />
+	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
+</h:head>
+<h:body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -22,30 +23,114 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Project name</a>
+				<a class="navbar-brand" href="mainpage.xhtml">Computer Equipment</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="checkorder.xhtml">Track order</a></li>
-					<li><a href="index.xhtml">Products</a></li>
-					<li><a href="viewcart.xhtml">Shopping cart</a></li>
-					<li><a href="contactus.xhtml">Contact us</a></li>
-					<li><a href="aboutus.xhtml">About us</a></li>
+					<li><a href="index.xhtml">Products <span
+							class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
+					<li><a href="viewcart.xhtml">Shopping cart <span
+							class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
+					<li><a href="checkorder.xhtml">Track order <span
+							class="fa fa-map-marker" aria-hidden="true"></span></a></li>
+					<li><a href="contactus.xhtml">Contact us <span
+							class="fa fa-fax" aria-hidden="true"></span></a></li>
+					<li><a href="aboutus.xhtml">About us <span
+							class="fa fa-user" aria-hidden="true"></span></a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
 					<input type="text" class="form-control" placeholder="Search..." />
+					<button class="btn btn-success" type="submit">
+						<i class="fa fa-search"></i>
+					</button>
 				</form>
 			</div>
 		</div>
 	</nav>
-	
-	<p>Hello world</p>
-	<p>Hello world 2</p>
-	
-    <!-- Bootstrap core JavaScript
+
+	<div class="jumbotron jumbotron-sm">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-lg-12">
+					<h1 class="h1">
+						Contact Information<small> <br/>
+						Feel free to contact us</small>
+					</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="well well-sm">
+					<form>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name"> Name</label> <input type="text"
+										class="form-control" id="name" placeholder="Enter name"
+										required="required" />
+								</div>
+								<div class="form-group">
+									<label for="email"> Email Address</label>
+									<div class="input-group">
+										<span class="input-group-addon"><span
+											class="glyphicon glyphicon-envelope"></span> </span> <input
+											type="email" class="form-control" id="email"
+											placeholder="Enter email" required="required" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="subject"> Subject</label> <select id="subject"
+										name="subject" class="form-control" required="required">
+										<option value="na">Choose One:</option>
+										<option value="service">General Customer Service</option>
+										<option value="suggestions">Suggestions</option>
+										<option value="product">Product Support</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name"> Message</label>
+									<textarea name="message" id="message" class="form-control"
+										rows="9" cols="25" required="required" placeholder="Message"></textarea>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<button type="submit" class="btn btn-primary pull-right"
+									id="btnContactUs">Send Message</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<form>
+					<h1>
+						<span class="fa fa-globe"></span> Our office
+					</h1>
+					<br />
+					<address>
+						<strong>The best project group</strong> <br /> Norregårdsvägen 1b
+						<br /> VÄXJÖ <br /> <abbr title="Phone"> Phone:</abbr> (46)
+						739409661
+					</address>
+					<address>
+						<strong>Email</strong><br/>
+						<a href="mailto:#">cn222hn@lnu.student.se</a>
+					</address>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    
-	</h:body>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+			<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+</h:body>
 </html>

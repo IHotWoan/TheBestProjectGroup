@@ -14,34 +14,40 @@
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 </h:head>
 <h:body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="mainpage.xhtml">Computer Equipment</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.xhtml">Products <span class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
-						<li><a href="viewcart.xhtml">Shopping cart <span
-								class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
-						<li><a href="checkorder.xhtml">Track order <span class="fa fa-map-marker" aria-hidden="true"></span></a></li>
-						<li><a href="contactus.xhtml">Contact us <span class="fa fa-fax" aria-hidden="true"></span></a></li>
-						<li><a href="aboutus.xhtml">About us <span class="fa fa-user" aria-hidden="true"></span></a></li>
-					</ul>	
-					<form class="navbar-form navbar-right">
-						<input type="text" class="form-control" placeholder="Search..."/>
-                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
-					</form>
-				</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Computer Equipment</a>
 			</div>
-		</nav>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.xhtml">Products <i
+							class="fa fa-product-hunt" aria-hidden="true"></i></a></li>
+					<li><a href="viewcart.xhtml">Shopping cart <span
+							class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
+					<li><a href="checkorder.xhtml">Track order <i
+							class="fa fa-map-marker" aria-hidden="true"></i></a></li>
+					<li><a href="contactus.xhtml">Contact us <i
+							class="fa fa-fax" aria-hidden="true"></i></a></li>
+					<li><a href="aboutus.xhtml">About us <i
+							class="fa fa-user" aria-hidden="true"></i></a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search..." />
+					<button class="btn btn-success" type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+	</nav>
 
 	<div class="container">
 		<div class="row"></div>
@@ -84,11 +90,11 @@
 							<b>Your detail</b>
 						</h4>
 						<hr />
-
-						<form class="form-horizontal" role="form">
-							<fieldset>
+						
+							<form class="form-horizontal" role="form">
+								<fieldset>
 								<h:form method="post" id="checkout-order-form">
-									<p:growl id="growl" showDetail="true" sticky="true" />
+						        <p:growl id="growl" showDetail="true" sticky="true" /> 
 									<!-- Text input-->
 									<div class="form-group">
 										<div class="col-sm-12">
@@ -158,16 +164,14 @@
 											</select>
 										</div>
 									</div>
-									<h:commandButton value="back to shopping" action="index"
-										class="btn btn-danger" />
-									<h:commandButton value="submit"
-										action="#{shoppingcartbean.proceedOrder()}"
-										class="btn btn-success" />
-								</h:form>
-							</fieldset>
-						</form>
+										<h:commandButton value="back to shopping" action="index" class="btn btn-danger"/>
+							       <h:commandButton value="submit"
+								action="#{shoppingcartbean.proceedOrder()}" class="btn btn-success"/>
+						        </h:form>
+								</fieldset>
+							</form>
 
-						<hr />
+							<hr />
 						<!-- /input-group -->
 
 					</div>
@@ -187,7 +191,7 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 </h:body>
 </html>

@@ -2,21 +2,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:f="http://xmlns.jcp.org/jsf/core"
-		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-		xmlns:h="http://xmlns.jcp.org/jsf/html">
-	<h:head>
-		<title>Administrator Login</title>
-		<h:outputStylesheet library="css" name="admin.css" />
-	</h:head>
-	<h:body>
-		<h:form id="loginform">
-			<h1>Login</h1>
-			User name: <h:inputText value= "#{userLogin.userName}" id="adminusername"/> <br/>
-			Password: <h:inputSecret value="#{userLogin.password}" id="adminpassword"/> <br/>
-			<br/>
-			<h:commandButton action="#{userLogin.verifyUser}" value="Login" /> <br/>
-			<h:message class="error" for="loginform" id="errormessage" style="color:red;"/>
-		</h:form>
-	</h:body>
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Administrator Login</title>
+	<h:outputStylesheet library="css" name="admin.css" />
+	<h:outputStylesheet library="css" name="Adminlogin.css" />
+	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
+	<h:outputStylesheet library="bootstrap" name="/js/Login.js" />
+	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
+</h:head>
+<h:body>
+	<div class="text-center" style="padding: 50px 0">
+		<div class="logo">Login as Admin</div>
+		<!-- Main Form -->
+		<div class="login-form-1">
+			<h:form id="loginform" class="text-left">
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="adminusername" class="sr-only">User-name</label>
+								<h:inputText value="#{userLogin.userName}" id="adminusername"
+									a:placeholder="username" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="adminpassword" class="sr-only">Password</label>
+								<h:inputSecret value="#{userLogin.password}" id="adminpassword"
+									a:placeholder="password" class="form-control" />
+							</div>
+						</div>
+						<div style="text-align: center;">
+						<h:commandButton action="#{userLogin.verifyUser}" value="Login"
+							class="btn btn-primary">
+							<i class="fa fa-chevron"></i>
+						</h:commandButton>
+						</div>
+					</div>
+					<h:message class="error" for="loginform" id="errormessage"
+						style="color:red;" />
+			</h:form>
+		</div>
+		<!-- end:Main Form -->
+	</div>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+</h:body>
 </html>
