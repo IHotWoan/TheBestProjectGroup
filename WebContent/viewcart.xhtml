@@ -13,6 +13,7 @@
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 </h:head>
 <h:body>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -41,38 +42,8 @@
 				</div>
 			</div>
 		</nav>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<h:form>
-					<ul class="nav nav-sidebar">
-						<li class="active"><a href="#">Main page <span
-								class="sr-only">(current)</span></a></li>
-						<ui:repeat value="#{supercategory.categoryArray}" var="category">
-							<li><h:commandLink value="#{category.categoryName}"
-									action="#{category.filterProductCategory(category.categoryName)}"
-									update=":productsform:productstable" ajax="true">
-									<f:actionListener binding="#{supercategory.hideBrands()}" />
-									<f:setPropertyActionListener target="#{category.displayBrands}"
-										value="#{'True'}" />
-								</h:commandLink> <ui:repeat value="#{category.subCategoryArray}"
-									var="subcategory">
-									<li><h:commandLink value="#{subcategory.subCategoryName}"
-											action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}"
-											rendered="#{category.displayBrands}"
-											update=":productsform:productstable" ajax="true" /></li>
-								</ui:repeat></li>
-						</ui:repeat>
-					</ul>
-				</h:form>
-
-				<ul class="nav nav-sidebar">
-					<li><a href="">Nav item again</a></li>
-					<li><a href="">One more nav</a></li>
-					<li><a href="">Another nav item</a></li>
-				</ul>
-			</div>
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		
+			<div class="col-sm-12 col-md-12">
 				<h1 class="page-header">Shopping cart</h1>
 				<div class="table-responsive">
 					<h:form id="productsform">
@@ -119,11 +90,7 @@
 					</h:form>
 				</div>
 			</div>
-
-			<h2 class="sub-header">Section title</h2>
-
-		</div>
-	</div>
+	
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

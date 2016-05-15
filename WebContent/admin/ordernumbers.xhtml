@@ -96,12 +96,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											Detailed information of order
 											<h:outputLabel value="#{ordertable.selected}" />
 										</h3>
-										Change order status:
-										<h:selectOneMenu id="orderstatus" value="#{ordertable.selectedStatus}">
-											<f:selectItems value="#{ordertable.statusValues}" />
-										</h:selectOneMenu>
-										<h:commandButton action="#{ordertable.updateOrderStatus}" value="update" />
-										
 										<h:dataTable
 											class="table table-bordered table-hover table-striped"
 											value="#{ordertable.selectedOrder.productarray}"
