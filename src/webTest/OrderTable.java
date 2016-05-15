@@ -27,12 +27,35 @@ public class OrderTable implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Order> undeliveredOrderarray = new ArrayList<Order>();
 	private ArrayList<Order> deliveredOrderarray = new ArrayList<Order>();
+
+	public ArrayList<String> getEmailOrderList() {
+		return emailOrderList;
+	}
+
+	public void setEmailOrderList(ArrayList<String> emailOrderList) {
+		this.emailOrderList = emailOrderList;
+	}
+
+	ArrayList<String> emailOrderList = new ArrayList<String>();
 	
 	//These fields below are used for 'selected products' in ordernumbers page.
 	private String selected;
 	private Order selectedOrder;
 	private Status selectedStatus;
     private Map<String, Boolean> checked = new HashMap<String, Boolean>();
+
+	private Order test;
+	private int totalCost;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	private String email;
 	
 	public SelectItem[] getStatusValues(){
 		  SelectItem[] items = new SelectItem[Status.values().length];
@@ -94,6 +117,64 @@ public class OrderTable implements Serializable{
 		}
 		
 	}
+
+
+	public String retriveOrder(){
+
+
+		try {
+			MysqlConnect db = new MysqlConnect();
+			ResultSet rs;
+
+
+			rs = db.query("SELECT * FROM customers ;");
+			while(rs.next()){
+				if(rs.getString("customer_order_ID").equals(selected)) {
+					Order test = new Order(rs.getString("customer_order_ID"));
+
+					//test.setOrderID(rs.getString("customer_order_ID"));
+					test.setCustomerName(rs.getString("customer_name"));
+					test.setCustomerAddress(rs.getString("customer_streetaddress"));
+					test.setZipCode(rs.getString("customer_zipcode"));
+					test.setCity(rs.getString("customer_city"));
+					test.setPhone(rs.getString("customer_phone"));
+					test.setEmail(rs.getString("customer_email"));
+					test.setOrderstatus(rs.getString("customer_orderstatus"));
+
+					for(Product p : test.getProductarray()){
+						totalCost += p.getPrice();
+					}
+					selectedOrder = test;
+					db.close();
+					return "vieworder";
+				}
+			}
+
+			db.close();
+			db = null;
+		} catch (SQLException e) {
+			return "viewordererror";
+		}
+		return "viewordererror";
+	}
+
+	public String orderIdByMail(){
+		retrieveOrders();
+		emailOrderList = new ArrayList<String>();
+
+		for (Order o : deliveredOrderarray) {
+			if(this.email.equals(o.getEmail()))
+				emailOrderList.add(o.getOrderID());
+		}
+		for (Order o : undeliveredOrderarray) {
+			if(this.email.equals(o.getEmail()))
+				emailOrderList.add(o.getOrderID());
+		}
+		return "vieworders";
+	}
+
+
+
 	public String display(){
 		return "ordernumbers";
 	}

@@ -51,18 +51,13 @@
 
 
 			<label for="ordernumber">Recent orders from: </label>
-			<h:outputText name="email" id="email" value="AAA" />
+			<h:outputText name="email" id="ordernumber" value="#{ordertable.email}" />
 
-			<h:dataTable id="orderstable" value="empty" var="product">
+			<h:dataTable class="table table-bordered table-hover table-striped"
+						 id="orderstable" value="#{ordertable.emailOrderList}" var="orderlist">
 				<h:column>
-					<f:facet name="header">[#]</f:facet>
-					<h:inputText value="empty" size="10" rendered="#empty" />
-					<h:outputText value="empty" rendered="#empty" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">[ order number ]</f:facet>
-					<h:inputText value="empty" size="10" rendered="#empty" />
-					<h:outputText value="empty" rendered="#empty" />
+					<f:facet name="header">[Order:ID]</f:facet>
+					#{orderlist}
 				</h:column>
 			</h:dataTable>
 

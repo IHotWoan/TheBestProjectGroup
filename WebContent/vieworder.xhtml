@@ -41,47 +41,77 @@
 			</div>
 		</nav>
 
-	<div class="container-fluid">
-		<div class="row"></div>
-		<h1 class="page-header">Order summary</h1>
+	<div class="panel-body">
+		<div class="table-responsive">
+
+			<h:form>
+				<h3>
+					Detailed information of order
+					<h:outputLabel value="#{ordertable.selected}" />
+				</h3>
+				<h:dataTable
+						class="table table-bordered table-hover table-striped"
+						value="#{ordertable.selectedOrder.productarray}"
+						var="orderlist">
+					<h:column>
+						<f:facet name="header">Picture</f:facet>
+						<h:graphicImage
+								value="/productImageServlet?id=#{orderlist.productID}"
+								width="200" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Product name</f:facet>
+						#{orderlist.name}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Brand</f:facet>
+						#{orderlist.brandName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Category</f:facet>
+						#{orderlist.categoryName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Quantity</f:facet>
+						#{orderlist.quantity}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Price</f:facet>
+						#{orderlist.price}
+					</h:column>
+				</h:dataTable>
+			</h:form>
+
+			<h:form>
+				<ul class="list-group">
+					<li class="list-group-item">Customer Name: <h:outputLabel
+							value="#{ordertable.selectedOrder.customerName}" /></li>
+					<li class="list-group-item">Address: <h:outputLabel
+							value="#{ordertable.selectedOrder.customerAddress}" /><br />
+						<h:outputLabel value="#{ordertable.selectedOrder.zipCode} " />
+						<br />
+						<h:outputLabel value=" #{ordertable.selectedOrder.city}" />
+						<br /></li>
+					<li class="list-group-item">Mobile number: <h:outputLabel
+							value="#{ordertable.selectedOrder.phone}" /></li>
+					<li class="list-group-item">E-mail: <h:outputLabel
+							value="#{ordertable.selectedOrder.email}" /></li>
+				</ul>
 
 
-		<h:form method="post" id="checkout-order-form">
-			<p:growl id="growl" showDetail="true" sticky="true" />
+
+				<label for="cost">Final cost: </label>
+				<h:outputText name="cost" id="cost" value=" #{ordertable.selectedOrder.totalcost}" />
+				<br />
+				<h2>
+					your product will normally be delivered in 3 working days. <br />
+					If you have problems, please contact ‘PostNord’
+				</h2>
 
 
-			<label for="ordernumber">Your order number: </label>
-			<h:outputText name="ordernumber" id="ordernumber" value="AAA" />
-
-			<h:dataTable id="productstable" value="empty" var="product">
-				<h:column>
-					<f:facet name="header">Products in the order:</f:facet>
-					<h:inputText value="empty" size="10" rendered="#empty" />
-					<h:outputText value="empty" rendered="#empty" />
-				</h:column>
-			</h:dataTable>
-			<label for="cost">Final cost: </label>
-			<h:outputText name="cost" id="cost" value="AAA" />
-			<br />
-
-			<label for="deliverytime">Estimated delivery date: </label>
-			<h:outputText name="deliverytime" id="deliverytime" value="MM/DD/YY" />
-			<br />
-
-			<label for="trackingnumber">Tracking number: </label>
-			<h:outputText name="trackingnumber" id="trackingnumber" value="AAA" />
-			<br />
-
-			<h2>
-				your product will normally be delivered in 3 working days. <br />
-				If you have problems, please contact ‘PostNord’
-			</h2>
-
-
-			<h:commandButton value="Cancel order" action="vieworders" class="btn btn-danger" />
-
-		</h:form>
-
+				<h:commandButton value="Go back" action="checkorder" />
+			</h:form>
+		</div>
 	</div>
 
 	<!-- Bootstrap core JavaScript

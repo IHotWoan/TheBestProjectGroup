@@ -52,13 +52,14 @@
 
 
 			<label for="checkordernumber">Enter your order number:</label>
-			<h:inputText name="promotioncode" id="promotioncode" value="empty" />
-			<h:commandButton value="view" action="vieworder" class="btn btn-primary"/>
+			<h:inputText name="promotioncode" id="checkordernumber" value="#{ordertable.selected}" />
+			<h:commandButton value="view" action="#{ordertable.retriveOrder()}">
+			</h:commandButton>
 
 			<h2>Forgot your order number?</h2>
 			<label for="checkemail">Enter your e-mail address:</label>
-			<h:inputText name="chekcemail" id="checkemail" value="empty" />
-			<h:commandButton value="view" action="vieworders" class="btn btn-primary" />
+			<h:inputText name="chekcemail" id="checkemail" value="#{ordertable.email}" />
+			<h:commandButton value="view" action="#{ordertable.orderIdByMail()}" />
 
 		</h:form>
 
