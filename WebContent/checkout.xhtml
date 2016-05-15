@@ -85,9 +85,8 @@
 						</h4>
 						<hr />
 
-						<form class="form-horizontal" role="form">
-							<fieldset>
-								<h:form method="post" id="checkout-order-form">
+								<h:form method="post" id="checkout-order-form" class="form-horizontal" role="form">
+								<fieldset>
 									<p:growl id="growl" showDetail="true" sticky="true" />
 									<!-- Text input-->
 									<div class="form-group">
@@ -146,26 +145,13 @@
 												a:placeholder="ZIP code" />
 										</div>
 									</div>
-
-									<!-- Select Basic -->
-									<div class="form-group">
-										<div class="col-md-12">
-											<select id="Country" name="Country" class="form-control">
-												<option value="1">Sverige</option>
-												<option value="2">England</option>
-												<option value="3">Tyskland</option>
-												<option value="4">Korea</option>
-											</select>
-										</div>
-									</div>
 									<h:commandButton value="back to shopping" action="index"
 										class="btn btn-danger" />
 									<h:commandButton value="submit"
 										action="#{shoppingcartbean.proceedOrder()}"
 										class="btn btn-success" />
+										</fieldset>
 								</h:form>
-							</fieldset>
-						</form>
 
 						<hr />
 						<!-- /input-group -->
@@ -176,7 +162,6 @@
 		</div>
 	</div>
 	<!-- /container -->
-	<!-- /.container -->
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
