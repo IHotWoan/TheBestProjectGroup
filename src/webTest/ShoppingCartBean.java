@@ -56,6 +56,12 @@ public class ShoppingCartBean implements Serializable{
 					context.addMessage(null, new FacesMessage("Fail!",  "We only have "+actualQuantity+"items in stock for "+p.getName()) );
 					failed=true;
 					p.setQuantity(actualQuantity);
+					
+					//If problem becomes unavailable while a customer tries to place an order, it should be removed from the shopping cart. 
+					//This part is not tested. is going to be tested in testing phrase. - Songho
+					while(cart.getSelectedQuantity().get(p.getProductID()) > actualQuantity){
+						cart.decrease(p);
+					}
 				}
 				
 			}
