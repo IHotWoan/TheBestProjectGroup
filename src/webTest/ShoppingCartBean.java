@@ -97,10 +97,7 @@ public class ShoppingCartBean implements Serializable{
 				session.setAttribute("CART",cart);
 				session.setAttribute("selectedOrder", order);
 				
-				this.order.setProductarray(null);
-				this.order.setTotalcost(0);
-				this.order.setOrderID(null);
-				
+				this.order = new Order();
 			}
 			db.close();
 			db = null;

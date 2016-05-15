@@ -33,6 +33,18 @@ public class OrderBean {
 	public void setSelectedOrder(Order selectedOrder) {
 		this.selectedOrder = selectedOrder;
 	}
+	public String getOrdernumber() {
+		return ordernumber;
+	}
+	public void setOrdernumber(String ordernumber) {
+		this.ordernumber = ordernumber;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	
 }
