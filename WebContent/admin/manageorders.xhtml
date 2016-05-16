@@ -99,26 +99,25 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-10">
-						<div class="form-group">
-							<h:form>
-								<div class="btn-toolbar">
-									<h:commandButton class="btn btn-lg btn-success"
-										action="#{ordertable.updateQuick('delivered')}"
-										value="Set marked as delivered" />
-									<h:commandButton class="btn btn-lg btn-warning"
-										action="#{ordertable.updateQuick('delayed')}"
-										value="Set marked as delayed" />
-									<h:commandButton class="btn btn-lg btn-danger"
-										action="#{ordertable.updateQuick('rejected')}"
-										value="Set marked as rejected" />
-
-								</div>
-							</h:form>
+				<h:form>
+					<div class="row">
+						<div class="col-lg-10">
+							<div class="form-group">
+									<div class="btn-toolbar">
+										<h:commandButton class="btn btn-lg btn-success"
+											action="#{ordertable.updateQuick('delivered')}"
+											value="Set marked as delivered" />
+										<h:commandButton class="btn btn-lg btn-warning"
+											action="#{ordertable.updateQuick('delayed')}"
+											value="Set marked as delayed" />
+										<h:commandButton class="btn btn-lg btn-danger"
+											action="#{ordertable.updateQuick('rejected')}"
+											value="Set marked as rejected" />
+	
+									</div>
+							</div>
 						</div>
 					</div>
-				</div>
 				<div class="row">
 
 					<div class="col-lg-10">
@@ -130,7 +129,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-									<h:form>
 										<h:dataTable
 											class="table table-bordered table-hover table-striped"
 											value="#{ordertable.undeliveredOrderarray}"
@@ -164,12 +162,12 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
     										#{undeliveredorder.orderstatus}
     										</h:column>
 										</h:dataTable>
-									</h:form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				</h:form>
 			</div>
 		</div>
 	</div>
