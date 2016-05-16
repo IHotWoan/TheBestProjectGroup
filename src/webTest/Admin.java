@@ -168,6 +168,9 @@ public class Admin {
 		
 	}
 	
+	public boolean hasPermission(User anotherUser){
+		return currentUser.isSuperuser() || (!currentUser.isSuperuser() && !anotherUser.isSuperuser());
+	}
 	public String getNewPassword() {
 		return newPassword;
 	}
