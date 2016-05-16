@@ -64,7 +64,7 @@
 								<div class="col-sm-6 col-sm-4">
 									<label for="checkordernumber">Enter your order number:</label>
 									<h:inputText name="promotioncode" id="promotioncode"
-										a:placeholder="Order number" class="form-control" size="20" />
+										a:placeholder="Order number" class="form-control" size="20" value="#{ordertable.selected}"/>
 									<h:commandButton value="view" action="#{ordertable.retriveOrder()}"
 										class="btn btn-primary" />
 								</div>
@@ -75,7 +75,7 @@
 									<h2>Forgot your order number?</h2>
 									<label for="checkemail">Enter your e-mail address:</label>
 									<h:inputText name="chekcemail" id="checkemail" a:placeholder="E-mail"
-										class="form-control" size="20" />
+										class="form-control" size="20" value="#{ordertable.email}"/>
 									<h:commandButton value="view" action="#{ordertable.orderIdByMail()}"
 										class="btn btn-primary" />
 								</div>
