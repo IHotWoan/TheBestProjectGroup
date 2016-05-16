@@ -111,10 +111,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												<f:facet name="header">Password</f:facet>
     				#{user.password}
     		</h:column>
-											<h:column rendered="#{admin.permitted}">
+											<h:column><!--rendered="#{admin.permitted}"-->
 												<f:facet name="header">Change Password</f:facet>
 												<h:commandButton class="btn btn-lg btn-info"
-													action="changepassword" value="Change">
+													action="changepassword" value="Change" rendered="#{admin.hasPermission(user)}">
 													<f:setPropertyActionListener target="#{admin.userID}"
 														value="#{user.userID}" />
 												</h:commandButton>

@@ -53,17 +53,7 @@ public class Admin {
 		}
 		
 		//adding current user
-		HttpSession session = SessionBean.getSession();
-		String currentUserName = (String) session.getAttribute("username");
-		for(User u: userArray){
-			if(u.getUserName().equals(currentUserName))
-			{
-				currentUser = u;
-				break;
-			}
-		}
-		if(currentUser.isSuperuser())
-			this.permitted=true;
+		this.setCurrentUser();
 		
 	}
 	
@@ -169,6 +159,9 @@ public class Admin {
 	}
 	
 	public boolean hasPermission(User anotherUser){
+		if(this.currentUser==null)
+			this.setCurrentUser();
+		
 		return currentUser.isSuperuser() || (!currentUser.isSuperuser() && !anotherUser.isSuperuser());
 	}
 	public String getNewPassword() {
@@ -215,6 +208,19 @@ public class Admin {
 	}
 	public User getCurrentUser(){
 		return currentUser;
+	}
+	public void setCurrentUser(){
+		HttpSession session = SessionBean.getSession();
+		String currentUserName = (String) session.getAttribute("username");
+		for(User u: userArray){
+			if(u.getUserName().equals(currentUserName))
+			{
+				currentUser = u;
+				break;
+			}
+		}
+		if(currentUser.isSuperuser())
+			this.permitted=true;
 	}
 	
 }
