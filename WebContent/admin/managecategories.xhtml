@@ -10,7 +10,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Delivered orders</title>
+	<title>Manage categories</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
@@ -136,6 +136,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Confirm delete"
 													action="#{supercategory.confirmCategoryDelete(category.categoryID)}"
 													update="@form" ajax="true" rendered="#{category.deletable}" />
+													<h:commandButton style="margin-left: 30px" class="btn btn-lg btn-primary"
+													value="Cancel"
+													action="#{supercategory.deleteSubCategory(subcategory)}"
+													rendered="#{subcategory.deletable}" />
 											</h:column>
 										</h:dataTable>
 										<div class="form-group">
@@ -195,6 +199,11 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Confirm delete"
 													action="#{supercategory.confirmSubCategoryDelete(subcategory.subCategoryID)}"
 													update="@form" ajax="true"
+													rendered="#{subcategory.deletable}" />
+												
+													<h:commandButton style="margin-left: 30px" class="btn btn-lg btn-primary"
+													value="Cancel"
+													action="#{supercategory.deleteSubCategory(subcategory)}"
 													rendered="#{subcategory.deletable}" />
 											</h:column>
 										</h:dataTable>

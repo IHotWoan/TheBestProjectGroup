@@ -106,7 +106,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">
-									<i class="fa fa-fw fa-table"></i> List of products
+									<i class="fa fa-fw fa-table"></i> Manage products
 								</h3>
 							</div>
 							<div class="panel-body">
@@ -192,6 +192,11 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Confirm delete"
 													action="#{supercategory.confirmProductDelete(product.productID)}"
 													update="@form" ajax="true" rendered="#{product.deletable}" />
+													<h:commandButton style="margin-left: 30px" class="btn btn-lg btn-primary"
+													value="Cancel"
+													action="#{supercategory.deleteSubCategory(subcategory)}"
+													rendered="#{product.deletable}" />
+													
 											</h:column>
 										</h:dataTable>
 

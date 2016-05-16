@@ -10,7 +10,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Delivered orders</title>
+	<title>Manage orders</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
@@ -85,7 +85,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 						<div class="form-group">
 							<h:form>
 								<Label>Search by order ID </Label>
-								<h:inputText class="form-control" value="#{ordertable.selected}" />
+								<h:inputText class="form-control" style="max-width: 300px" value="#{ordertable.selected}" />
 								<div class="btn-toolbar">
 									<br />
 									<h:commandButton class="btn btn-lg btn-primary"

@@ -93,15 +93,17 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 
 									<h:form>
 										<h3>
-											Detailed information of order
+											Detailed information of order:
 											<h:outputLabel value="#{ordertable.selected}" />
 										</h3>
-										Change order status:
-										<h:selectOneMenu id="orderstatus" value="#{ordertable.selectedStatus}">
-											<f:selectItems value="#{ordertable.statusValues}" />
-										</h:selectOneMenu>
-										<h:commandButton action="#{ordertable.updateOrderStatus}" value="update" />
 										
+										<label>Change order status:</label>
+ 										<h:selectOneMenu class="form-control" style="max-width: 150px" id="orderstatus" value="#{ordertable.selectedStatus}">
+ 											<f:selectItems value="#{ordertable.statusValues}" />
+ 										</h:selectOneMenu>
+ 										<br/>
+ 										<h:commandButton class="btn btn-lg btn-primary" action="#{ordertable.updateOrderStatus}" value="update" />
+ 										<hr/>
 										<h:dataTable
 											class="table table-bordered table-hover table-striped"
 											value="#{ordertable.selectedOrder.productarray}"

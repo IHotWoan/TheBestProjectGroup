@@ -128,6 +128,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Confirm delete"
 													action="#{admin.confirmUserDelete(user.userID)}"
 													update="@form" ajax="true" rendered="#{user.deletable}" />
+													<h:commandButton style="margin-left: 30px" class="btn btn-lg btn-primary"
+													value="Cancel"
+													action="#{supercategory.deleteSubCategory(subcategory)}"
+													rendered="#{user.deletable}" />
 											</h:column>
 										</h:dataTable>
 
