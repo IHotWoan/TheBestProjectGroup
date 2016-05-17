@@ -10,10 +10,12 @@
 	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="dashboard.css" />
 	<h:outputStylesheet library="css" name="footer.css" />
+	<h:outputStylesheet library="css" name="alert.css" />
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 </h:head>
 <h:body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div id="wrapper" class="active">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed"
@@ -23,103 +25,106 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="mainpage.xhtml">Computer Equipment</a>
+					<a class="navbar-brand" href="mainpage.xhtml">Computer
+						Equipment</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.xhtml">Products <span class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
+						<li><a href="index.xhtml">Products <span
+								class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
 						<li><a href="viewcart.xhtml">Shopping cart <span
 								class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
-						<li><a href="checkorder.xhtml">Track order <span class="fa fa-map-marker" aria-hidden="true"></span></a></li>
-						<li><a href="contactus.xhtml">Contact us <span class="fa fa-fax" aria-hidden="true"></span></a></li>
-						<li><a href="aboutus.xhtml">About us <span class="fa fa-user" aria-hidden="true"></span></a></li>
-					</ul>	
+						<li><a href="checkorder.xhtml">Track order <span
+								class="fa fa-map-marker" aria-hidden="true"></span></a></li>
+						<li><a href="contactus.xhtml">Contact us <span
+								class="fa fa-fax" aria-hidden="true"></span></a></li>
+						<li><a href="aboutus.xhtml">About us <span
+								class="fa fa-user" aria-hidden="true"></span></a></li>
+					</ul>
 					<form class="navbar-form navbar-right">
-						<input type="text" class="form-control" placeholder="Search..."/>
-                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+						<input type="text" class="form-control" placeholder="Search..." />
+						<button class="btn btn-success" type="submit">
+							<i class="fa fa-search"></i>
+						</button>
 					</form>
 				</div>
 			</div>
 		</nav>
 
-	<div class="panel-body">
-		<div class="table-responsive">
+		<div class="panel-body">
+			<div class="table-responsive">
 
-			<h:form>
-				<h3>
-					Detailed information of order
-					<h:outputLabel value="#{ordertable.selected}" />
-				</h3>
-				<h:dataTable
-						class="table table-bordered table-hover table-striped"
-						value="#{ordertable.selectedOrder.productarray}"
-						var="orderlist">
-					<h:column>
-						<f:facet name="header">Picture</f:facet>
-						<h:graphicImage
+				<h:form>
+					<h3>
+						Detailed information of order
+						<h:outputLabel value="#{ordertable.selected}" />
+					</h3>
+					<h:dataTable class="table table-bordered table-hover table-striped"
+						value="#{ordertable.selectedOrder.productarray}" var="orderlist">
+						<h:column>
+							<f:facet name="header">Picture</f:facet>
+							<h:graphicImage
 								value="/productImageServlet?id=#{orderlist.productID}"
 								width="200" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Product name</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Product name</f:facet>
 						#{orderlist.name}
 					</h:column>
-					<h:column>
-						<f:facet name="header">Brand</f:facet>
+						<h:column>
+							<f:facet name="header">Brand</f:facet>
 						#{orderlist.brandName}
 					</h:column>
-					<h:column>
-						<f:facet name="header">Category</f:facet>
+						<h:column>
+							<f:facet name="header">Category</f:facet>
 						#{orderlist.categoryName}
 					</h:column>
-					<h:column>
-						<f:facet name="header">Quantity</f:facet>
+						<h:column>
+							<f:facet name="header">Quantity</f:facet>
 						#{orderlist.quantity}
 					</h:column>
-					<h:column>
-						<f:facet name="header">Price</f:facet>
+						<h:column>
+							<f:facet name="header">Price</f:facet>
 						#{orderlist.price}
 					</h:column>
-				</h:dataTable>
-			</h:form>
+					</h:dataTable>
+				</h:form>
 
-			<h:form>
-				<ul class="list-group">
-					<li class="list-group-item">Customer Name: <h:outputLabel
-							value="#{ordertable.selectedOrder.customerName}" /></li>
-					<li class="list-group-item">Address: <h:outputLabel
-							value="#{ordertable.selectedOrder.customerAddress}" /><br />
-						<h:outputLabel value="#{ordertable.selectedOrder.zipCode} " />
-						<br />
-						<h:outputLabel value=" #{ordertable.selectedOrder.city}" />
-						<br /></li>
-					<li class="list-group-item">Mobile number: <h:outputLabel
-							value="#{ordertable.selectedOrder.phone}" /></li>
-					<li class="list-group-item">E-mail: <h:outputLabel
-							value="#{ordertable.selectedOrder.email}" /></li>
-				</ul>
-
-
-
-				<label for="cost">Final cost: </label>
-				<h:outputText name="cost" id="cost" value=" #{ordertable.selectedOrder.totalcost}" />
-				<br />
-				<h2>
-					your product will normally be delivered in 3 working days. <br />
-					If you have problems, please contact ‘PostNord’
-				</h2>
-
-
-				<h:commandButton value="Go back" action="checkorder" class="btn btn-danger" />
-			</h:form>
+				<h:form>
+					<ul class="list-group">
+						<li class="list-group-item">Customer Name: <h:outputLabel
+								value="#{ordertable.selectedOrder.customerName}" /></li>
+						<li class="list-group-item">Address: <h:outputLabel
+								value="#{ordertable.selectedOrder.customerAddress}" /><br /> <h:outputLabel
+								value="#{ordertable.selectedOrder.zipCode} " /> <br /> <h:outputLabel
+								value=" #{ordertable.selectedOrder.city}" /> <br /></li>
+						<li class="list-group-item">Mobile number: <h:outputLabel
+								value="#{ordertable.selectedOrder.phone}" /></li>
+						<li class="list-group-item">E-mail: <h:outputLabel
+								value="#{ordertable.selectedOrder.email}" /></li>
+					</ul>
+					<label for="cost">Final cost: </label>
+					<h:outputText name="cost" id="cost"
+						value=" #{ordertable.selectedOrder.totalcost}" />
+					<br />
+					
+					<div class="alert alert-info" id="alert-2">
+						<h2>Product has been succesfully processed!</h2>
+						<hr class="message-inner-separator"/>
+						<strong>Your product will be delivered in 3 working days!</strong> If you have any problems, please contact ‘PostNord’.
+					</div>
+					
+					<h:commandButton value="Go back" action="checkorder"
+						class="btn btn-danger" />
+				</h:form>
+			</div>
 		</div>
-	</div>
-									<footer>
+		<footer>
 			<div class="footer" id="footer">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-						<h2>Track order</h2>
+							<h2>Track order</h2>
 							<h3>Find us at</h3>
 							<ul class="social">
 								<li><a href="#"> <i class=" fa fa-facebook">   </i>
@@ -139,18 +144,21 @@
 
 			<div class="footer-bottom">
 				<div class="container">
-					<p class="pull-left">Copyright © The best project group. All right reserved.</p>
+					<p class="pull-left">Copyright © The best project group. All
+						right reserved.</p>
 				</div>
 			</div>
 			<!--/.footer-bottom-->
 		</footer>
+	</div>
 
 	<!-- Bootstrap core JavaScript
         ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-			<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/bootstrap/js/alert.js"></script>
 
 </h:body>
 </html>

@@ -15,6 +15,7 @@
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 </h:head>
 <h:body>
+<div id="wrapper" class="active">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -46,7 +47,7 @@
 
 	<div class="container">
 		<div class="row"></div>
-		<h1 class="page-header">Your Products</h1>
+		<h1 class="page-header">Your Products<i class="fa fa-shopping-cart" aria-hidden="true fa-4x"></i></h1>
 		<div class="table-responsive">
 			<h:form id="productsform">
 				<h:dataTable id="productstable"
@@ -74,7 +75,7 @@
 					</h:column>
 
 				</h:dataTable>
-				Total cost: <h:outputLabel
+			Total cost:<h:outputLabel
 					value="#{shoppingcartbean.cart.totalCost}" /> Kr
 				</h:form>
 			<div class="container">
@@ -191,6 +192,7 @@
 			</div>
 			<!--/.footer-bottom-->
 		</footer>
+	</div>
 	</div>
 	<!-- /container -->
 

@@ -1,95 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
-	<h:head>
-		<title>ThePCShop page</title>
-		<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
-		<h:outputStylesheet library="css" name="dashboard.css" />
-		<h:outputStylesheet library="css" name="footer.css" />
-		<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
-	</h:head>
-	<h:body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="mainpage.xhtml">Computer Equipment</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.xhtml">Products <span class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
-						<li><a href="viewcart.xhtml">Shopping cart <span
-								class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
-						<li><a href="checkorder.xhtml">Track order <span class="fa fa-map-marker" aria-hidden="true"></span></a></li>
-						<li><a href="contactus.xhtml">Contact us <span class="fa fa-fax" aria-hidden="true"></span></a></li>
-						<li><a href="aboutus.xhtml">About us <span class="fa fa-user" aria-hidden="true"></span></a></li>
-					</ul>	
-					<form class="navbar-form navbar-right">
-						<input type="text" class="form-control" placeholder="Search..."/>
-                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
-					</form>
-				</div>
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>ThePCShop page</title>
+	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="dashboard.css" />
+	<h:outputStylesheet library="css" name="footer.css" />
+	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
+</h:head>
+<h:body>
+<div id="wrapper" class="active">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="mainpage.xhtml">Computer Equipment</a>
 			</div>
-		</nav>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.xhtml">Products <span
+							class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
+					<li><a href="viewcart.xhtml">Shopping cart <span
+							class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
+					<li><a href="checkorder.xhtml">Track order <span
+							class="fa fa-map-marker" aria-hidden="true"></span></a></li>
+					<li><a href="contactus.xhtml">Contact us <span
+							class="fa fa-fax" aria-hidden="true"></span></a></li>
+					<li><a href="aboutus.xhtml">About us <span
+							class="fa fa-user" aria-hidden="true"></span></a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search..." />
+					<button class="btn btn-success" type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+	</nav>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <h:form>
-          	 <ul class="nav nav-sidebar">
-          	 <li class="active"><a href="#">Main page <span class="sr-only">(current)</span></a></li>
-          	 	<ui:repeat value="#{supercategory.categoryArray}" var="category">
-                  <li>
-                    <h:commandLink value="#{category.categoryName}" action="#{category.filterProductCategory(category.categoryName)}" update=":productsform:productstable" ajax="true">
-                      <f:actionListener binding="#{supercategory.hideBrands()}" />
-                      <f:setPropertyActionListener target="#{category.displayBrands}" value="#{'True'}" />
-                    </h:commandLink>
-                    <ui:repeat value="#{category.subCategoryArray}" var="subcategory">
-                      <li>
-                        <h:commandLink value="#{subcategory.subCategoryName}" action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}" rendered="#{category.displayBrands}" update=":productsform:productstable" ajax="true"/>
-                      </li>
-                    </ui:repeat>
-                  </li>
-	            </ui:repeat>
-          </ul>
-          </h:form>
-         
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-     	   <h:form id="productinfo">
-     	   <p:growl id="growl" showDetail="true" sticky="true" />
-     	   	<h1 class="page-header">Product: <h:outputLabel value="#{productbean.selectedProduct.name}" /> </h1>
-     	   	 	<h:graphicImage value="/productImageServlet?id=#{productbean.selectedProduct.productID}" width="200" class="img-thumbnail" />
-     	   	 	<h:outputText value="#{productbean.selectedProduct.description}" /> <br />
-     	   	 	Price: <h:outputText value="#{productbean.selectedProduct.price}" /> Kr <br />
-     	   	 	<h:outputText value="#{productbean.stockStatus()}" style="color:red;"/> <br />
-     	   	 	<h:commandButton action="#{productbean.addToShoppingCart()}" value="Add to cart" class="label-primary"/>
-	   		</h:form>
-          </div>
-        </div>
-      </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h:form>
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="index.xhtml">All products<span
+								class="sr-only">(current)</span></a></li>
+						<ui:repeat value="#{supercategory.categoryArray}" var="category">
+							<li><h:commandLink value="#{category.categoryName}"
+									action="#{category.filterProductCategory(category.categoryName)}"
+									update=":productsform:productstable" ajax="true">
+									<f:actionListener binding="#{supercategory.hideBrands()}" />
+									<f:setPropertyActionListener target="#{category.displayBrands}"
+										value="#{'True'}" />
+								</h:commandLink> <ui:repeat value="#{category.subCategoryArray}"
+									var="subcategory">
+									<li><h:commandLink value="#{subcategory.subCategoryName}"
+											action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}"
+											rendered="#{category.displayBrands}"
+											update=":productsform:productstable" ajax="true" /></li>
+								</ui:repeat></li>
+						</ui:repeat>
+					</ul>
+				</h:form>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h:form id="productinfo">
+					<p:growl id="growl" showDetail="true" sticky="true" />
+					<h1 class="page-header">
+						Product:
+						<h:outputLabel value="#{productbean.selectedProduct.name}" />
+					</h1>
+					<h:graphicImage
+						value="/productImageServlet?id=#{productbean.selectedProduct.productID}"
+						width="200" class="img-thumbnail" />
+					<h:outputText value="#{productbean.selectedProduct.description}" />
+					<br />
+					<strong>Price:</strong>
+					<h:outputText value="#{productbean.selectedProduct.price}" /> Kr <br />
+					<strong><h:outputText value="#{productbean.stockStatus()}"
+							style="color:red;" /></strong>
+					<br/>
+					<br/>
+					<h:commandButton action="#{productbean.addToShoppingCart()}"
+						value="Add to cart" class="btn btn-success" />
+				</h:form>
+				<br />
+				<div class="container-fluid">
+					<div class="col-md-12 product-info">
+						<ul id="myTab" class="nav nav-tabs nav_tabs">
 
-    <!-- Bootstrap core JavaScript
+							<li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
+							<li><a href="#service-two" data-toggle="tab">PRODUCT
+									INFO</a></li>
+							<li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
+
+						</ul>
+						<div id="myTabContent" class="tab-content">
+							<div class="tab-pane fade in active" id="service-one">
+
+								<section class="container product-info"></section>
+
+							</div>
+							<div class="tab-pane fade" id="service-two">
+
+								<section class="container"></section>
+
+							</div>
+							<div class="tab-pane fade" id="service-three"></div>
+						</div>
+						<hr />
+					</div>
+				</div>
+					<footer>
+					<div class="footer" id="footer">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+									<h2>Index</h2>
+									<h3>Find us at</h3>
+									<ul class="social">
+										<li><a href="#"> <i class=" fa fa-facebook"> </i>
+										</a></li>
+										<li><a href="#"> <i class="fa fa-twitter"> </i>
+										</a></li>
+										<li><a href="#"> <i class="fa fa-google-plus"> </i>
+										</a></li>
+									</ul>
+								</div>
+							</div>
+							<!--/.row-->
+						</div>
+						<!--/.container-->
+					</div>
+					<!--/.footer-->
+
+					<div class="footer-bottom">
+						<div class="container">
+							<p class="pull-left">Copyright © The best project group. All
+								right reserved.</p>
+						</div>
+					</div>
+					<!--/.footer-bottom-->
+				</footer>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
-    
-	</h:body>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+
+</h:body>
 </html>

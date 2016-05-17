@@ -9,10 +9,10 @@
 	<title>Order confirmation</title>
 	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="dashboard.css" />
-	<h:outputStylesheet library="css" name="footer.css" />
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 </h:head>
 <h:body>
+<div id="wrapper" class="active">
 <nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -47,7 +47,7 @@
 		<h1 class="page-header">Thank you <h:outputText value="#{orderbean.selectedOrder.customerName}" /> </h1>
 		<div class="table-responsive">
 			<h:form id="ordersummary">
-				Your ourder number is <h:outputText value="#{orderbean.selectedOrder.orderID}" /> <br/>
+				Your order number is <h:outputText value="#{orderbean.selectedOrder.orderID}" /><br/>
 				Your items will be processed shortly. The following items will be delivered to  <h:outputText value="#{orderbean.selectedOrder.customerAddress}" /> <br />
 				<h:dataTable id="productstable"
 							value="#{orderbean.selectedOrder.productarray}" var="items"
@@ -78,38 +78,9 @@
 						Total cost: <h:outputText value="#{orderbean.selectedOrder.totalcost}" /> 
 			</h:form>
 		</div>
-								<footer>
-			<div class="footer" id="footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-						<h2>Checkout</h2>
-							<h3>Find us at</h3>
-							<ul class="social">
-								<li><a href="#"> <i class=" fa fa-facebook">   </i>
-								</a></li>
-								<li><a href="#"> <i class="fa fa-twitter">   </i>
-								</a></li>
-								<li><a href="#"> <i class="fa fa-google-plus">   </i>
-								</a></li>
-							</ul>
-						</div>
-					</div>
-					<!--/.row-->
-				</div>
-				<!--/.container-->
-			</div>
-			<!--/.footer-->
-
-			<div class="footer-bottom">
-				<div class="container">
-					<p class="pull-left">Copyright © The best project group. All right reserved.</p>
-				</div>
-			</div>
-			<!--/.footer-bottom-->
-		</footer>
 	</div>
 
+</div>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
