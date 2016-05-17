@@ -36,7 +36,7 @@ public class OrderTable implements Serializable{
 		this.emailOrderList = emailOrderList;
 	}
 
-	ArrayList<String> emailOrderList = new ArrayList<String>();
+	private ArrayList<String> emailOrderList = new ArrayList<String>();
 	
 	//These fields below are used for 'selected products' in ordernumbers page.
 	private String selected;
@@ -44,7 +44,6 @@ public class OrderTable implements Serializable{
 	private Status selectedStatus;
     private Map<String, Boolean> checked = new HashMap<String, Boolean>();
 
-	private Order test;
 	private int totalCost;
 
 	public String getEmail() {
@@ -120,8 +119,6 @@ public class OrderTable implements Serializable{
 
 
 	public String retriveOrder(){
-
-
 		try {
 			MysqlConnect db = new MysqlConnect();
 			ResultSet rs;
@@ -217,6 +214,16 @@ public class OrderTable implements Serializable{
 			String query = "UPDATE customers SET customer_orderstatus='"+selectedStatus.getLabel()+
 					"' WHERE customer_order_ID='"+this.selected+"';";
 			db.insert(query);
+			if(selectedStatus.equals(Status.rejected))
+			{
+				for(Product p : selectedOrder.getProductarray())
+				{
+					ResultSet rs = db.query("SELECT product_quantity FROM shopdb.products where product_ID="+p.getProductID());
+					rs.next();
+					int updatedQuantity = rs.getInt(1) + p.getQuantity();
+					db.insert("UPDATE products set product_quantity =" +updatedQuantity+" where product_ID ="+p.getProductID());
+				}
+			}
 			db.close();
 			db = null;
 			

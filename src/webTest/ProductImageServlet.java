@@ -40,19 +40,19 @@ public class ProductImageServlet extends HttpServlet{
 	        ResultSet resultSet = db.query(query);
 	
 	        if (resultSet.next()) {
-	        	
+	        	Blob imageBlob = resultSet.getBlob("product_image");
+	        	//tries to improve stability; it becomes unstable if there is no image picture on the product row.
+	        	if(imageBlob == null){
+	        		 response.sendError(HttpServletResponse.SC_NOT_FOUND);
+	        		 db.close();
+	        		 return ;
+	        	}
 	        	response.setContentType(resultSet.getString("product_imageextension"));
 	        	//response.setContentType(getServletContext().getMimeType(String.valueOf(productID)));
 	            response.setContentLength(resultSet.getInt("imageContentLength"));
 	            response.setHeader("Content-Disposition", "inline;filename=\"" + productID + "\"");
 	
-	            /*
-	            ReadableByteChannel input = null;
-	            WritableByteChannel output = null;
-	            */
-	            
-	            Blob imageBlob = resultSet.getBlob("product_image");
-	            
+
 	            InputStream in = imageBlob.getBinaryStream();
 	            OutputStream out = response.getOutputStream();
 	            int b;
