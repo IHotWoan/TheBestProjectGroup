@@ -92,15 +92,15 @@
 				<h:form>
 					<ul class="list-group">
 						<li class="list-group-item">Customer Name: <h:outputLabel
-								value="#{ordertable.selectedOrder.customerName}" /></li>
+								value="#{orderbean.selectedOrder.customerName}" /></li>
 						<li class="list-group-item">Address: <h:outputLabel
-								value="#{ordertable.selectedOrder.customerAddress}" /><br /> <h:outputLabel
-								value="#{ordertable.selectedOrder.zipCode} " /> <br /> <h:outputLabel
-								value=" #{ordertable.selectedOrder.city}" /> <br /></li>
+								value="#{orderbean.selectedOrder.customerAddress}" /><br /> <h:outputLabel
+								value="#{orderbean.selectedOrder.zipCode} " /> <br /> <h:outputLabel
+								value=" #{orderbean.selectedOrder.city}" /> <br /></li>
 						<li class="list-group-item">Mobile number: <h:outputLabel
-								value="#{ordertable.selectedOrder.phone}" /></li>
+								value="#{orderbean.selectedOrder.phone}" /></li>
 						<li class="list-group-item">E-mail: <h:outputLabel
-								value="#{ordertable.selectedOrder.email}" /></li>
+								value="#{orderbean.selectedOrder.email}" /></li>
 					</ul>
 					<label for="cost">Final cost: </label>
 					<h:outputText name="cost" id="cost"
