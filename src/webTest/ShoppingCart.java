@@ -21,6 +21,7 @@ public class ShoppingCart implements Serializable {
 	private double totalCost;
 	private ArrayList<Product> products = new ArrayList<Product>();
 	private Map<String, Integer> selectedQuantity = new HashMap<String, Integer>();
+	private int itemsCounter=0;
 
 	
 	/**
@@ -32,8 +33,10 @@ public class ShoppingCart implements Serializable {
 	//actual functional methods: add /decrease/remove;
 	public boolean add(Product p){
 		if(selectedQuantity.containsKey(p.getProductID())){
-			if(selectedQuantity.get(p.getProductID())+1 <= p.getQuantity())
+			if(selectedQuantity.get(p.getProductID())+1 <= p.getQuantity()){
 				selectedQuantity.put(p.getProductID(), selectedQuantity.get(p.getProductID())+1);
+				itemsCounter++;
+			}
 			else{
 				FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage(null, new FacesMessage("Fail!",  "We only have "+p.getQuantity()+" items in stock for "+p.getName()) );
@@ -48,6 +51,7 @@ public class ShoppingCart implements Serializable {
 			
 			products.add(p);
 			selectedQuantity.put(p.getProductID(), 1);
+			itemsCounter++;
 		}
 		totalCost+=p.getPrice();
 		return true;
@@ -60,15 +64,17 @@ public class ShoppingCart implements Serializable {
 		if(selectedQuantity.get(p.getProductID())-1 <= 0)
 		{
 			this.remove(p);
+			itemsCounter--;
 			return true;
 		}
 		selectedQuantity.put(p.getProductID(), selectedQuantity.get(p.getProductID())-1);	
 		totalCost-=p.getPrice();
-		
+		itemsCounter--;
 		return true;	
 	}
 	public void remove(Product p){
 		totalCost-=p.getPrice()*selectedQuantity.get(p.getProductID());
+		itemsCounter-=selectedQuantity.get(p.getProductID());
 		products.remove(p);
 		selectedQuantity.remove(p.getProductID());
 	}
@@ -116,6 +122,9 @@ public class ShoppingCart implements Serializable {
 
 	public void setSelectedQuantity(Map<String, Integer> selectedQuantity) {
 		this.selectedQuantity = selectedQuantity;
+	}
+	public int getItemsCounter() {
+		return itemsCounter;
 	}
 	
 
