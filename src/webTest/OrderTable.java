@@ -12,6 +12,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
@@ -124,7 +126,7 @@ public class OrderTable implements Serializable{
 			ResultSet rs;
 
 
-			rs = db.query("SELECT * FROM customers ;");
+			rs = db.query("SELECT * FROM customers where customer_order_ID = '"+selected+"'");
 			while(rs.next()){
 				if(rs.getString("customer_order_ID").equals(selected)) {
 					Order test = new Order(rs.getString("customer_order_ID"));
@@ -150,9 +152,14 @@ public class OrderTable implements Serializable{
 			db.close();
 			db = null;
 		} catch (SQLException e) {
-			return "viewordererror";
+			System.err.println("An exception happened during querying SQL for tracking order functions");
 		}
-		return "viewordererror";
+		FacesContext.getCurrentInstance().addMessage("checkout-order-form",
+                new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Provided order number does not exist in our system.",
+                        "Please check your number again."));
+		
+		return "checkorder";
 	}
 
 	public String orderIdByMail(){

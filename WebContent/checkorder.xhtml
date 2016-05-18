@@ -59,15 +59,14 @@
 					<h:form method="post" id="checkout-order-form"
 						class="form-horizontal" role="form">
 						<fieldset>
-							<p:growl id="growl" showDetail="true" sticky="true" />
-
 							<div class="form-group">
 								<div class="col-sm-6 col-sm-4">
 									<label for="checkordernumber">Enter your order number:</label>
-									<h:inputText name="promotioncode" id="promotioncode"
+									<h:inputText name="userinputOrderNumber" id="userinputOrderNumber"
 										a:placeholder="Order number" class="form-control" size="20" value="#{ordertable.selected}"/>
 									<h:commandButton value="view" action="#{ordertable.retriveOrder()}"
-										class="btn btn-primary" />
+										class="btn btn-primary" /> <br />
+									<h:message class="error" for="checkout-order-form" id="errormessage" style="color:red;" />
 								</div>
 							</div>
 
