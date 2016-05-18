@@ -107,10 +107,13 @@
 						value="#{ordertable.selectedOrder.totalcost}" />
 					<br />
 				
-					<div class="alert alert-info" id="alert-2">
-						<h2>Product status is <h:outputText value="#{ordertable.selectedOrder.orderstatus}"/>!</h2> 
+					<div class="alert alert-info alert-dismissable" id="alert-2">
+					<button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true"><i class="fa fa-times" aria-hidden="true"></i></button>
+						<h2><i class="fa fa-exclamation-triangle" aria-hidden="true fa-4x"></i> Product status is <h:outputText value="#{ordertable.selectedOrder.orderstatus}"/>!</h2> 
 						<hr class="message-inner-separator"/>
-						<strong>Your product will be delivered in 3 working days!</strong> If you have any problems, please contact ‘PostNord’.
+						<h3>General</h3>
+						<strong>Note! Your product will be delivered in 3 working days!</strong> If you have any problems, please contact ‘PostNord’.
+						
 					</div>
 					
 					<h:commandButton value="Go back" action="checkorder"
