@@ -100,6 +100,8 @@ public class OrderBean {
 	}
 	public String orderIdByMail(){
 		boolean found = false;
+		foundOrders.clear();
+		
 		try {
 			MysqlConnect db = new MysqlConnect();
 			ResultSet rs;
