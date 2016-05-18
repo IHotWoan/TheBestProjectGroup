@@ -212,13 +212,22 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</tr>
 											<tr>
 												<td>Product Category:</td>
-												<td><h:inputText size="20"
-														value="#{supercategory.productCategory}" /></td>
+												<td><h:selectOneMenu value="#{supercategory.productCategory}" class="form-control" style="max-width: 150px">
+														<f:selectItems value="#{supercategory.categoryArray}" var="category"
+														itemLabel="#{category.categoryName}" itemValue="#{category.categoryID}" />
+														</h:selectOneMenu>
+												<!--<h:inputText size="20" value="#{supercategory.productCategory}" />-->
+												</td>
+												
 											</tr>
 											<tr>
 												<td>Product Brand:</td>
-												<td><h:inputText size="5"
-														value="#{supercategory.productBrand}" /></td>
+												<td><!--<h:inputText size="5" value="#{supercategory.productBrand}" />-->
+													<h:selectOneMenu value="#{supercategory.productBrand}" class="form-control" style="max-width: 150px">
+														<f:selectItems value="#{supercategory.subCategoryArray}" var="brand"
+														itemLabel="#{brand.subCategoryName}" itemValue="#{brand.subCategoryID}" />
+														</h:selectOneMenu>
+														</td>
 											</tr>
 											<tr>
 												<td>Product Price:</td>
