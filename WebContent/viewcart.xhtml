@@ -27,20 +27,14 @@
 					<a class="navbar-brand" href="mainpage.xhtml">Computer Equipment</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
-					<h:form>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="index.xhtml">Products <span
-							class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
-					<li><a href="viewcart.xhtml">Shopping cart <h:outputLabel value="#{shoppingcartbean.cart.itemsCounter}" /><span
-							class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
-					<li><a href="checkorder.xhtml">Track order <span
-							class="fa fa-map-marker" aria-hidden="true"></span></a></li>
-					<li><a href="contactus.xhtml">Contact us <span
-							class="fa fa-fax" aria-hidden="true"></span></a></li>
-					<li><a href="aboutus.xhtml">About us <span
-							class="fa fa-user" aria-hidden="true"></span></a></li>
-				</ul>
-				</h:form>	
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="index.xhtml">Products <span class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
+							<li><a href="viewcart.xhtml">Shopping cart <span
+							class="fa fa-shopping-cart" aria-hidden="true"><h:outputLabel value="#{shoppingcartbean.cart.itemsCounter}" /></span></a></li>
+						<li><a href="checkorder.xhtml">Track order <span class="fa fa-map-marker" aria-hidden="true"></span></a></li>
+						<li><a href="contactus.xhtml">Contact us <span class="fa fa-fax" aria-hidden="true"></span></a></li>
+						<li><a href="aboutus.xhtml">About us <span class="fa fa-user" aria-hidden="true"></span></a></li>
+					</ul>	
 					<form class="navbar-form navbar-right">
 						<input type="text" class="form-control" placeholder="Search..."/>
                         <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
@@ -50,7 +44,7 @@
 		</nav>
 		
 			<div class="col-sm-12 col-md-12">
-				<h1 class="page-header">Your Products</h1>
+				<h1 class="page-header">Your Products<i class="fa fa-shopping-cart" aria-hidden="true fa-4x"></i></h1>
 				<div class="table-responsive">
 					<h:form id="productsform">
 						<p:growl id="growl" showDetail="true" sticky="true" />
@@ -91,8 +85,12 @@
 						<br />
 	   			Total cost: <h:outputLabel
 							value="#{shoppingcartbean.cart.totalCost}" /> Kr
+				<div class="btn-group continue">
 	   			<h:commandButton value="Continue shopping" action="index" class="btn btn-primary" />
+	   			</div>
+	   			<div class="btn-group checkout">
 						<h:commandButton value="Checkout" class="btn btn-success" action="#{shoppingcartbean.cart.checkout()}" />
+						</div>
 					</h:form>
 				</div>	
 			</div>

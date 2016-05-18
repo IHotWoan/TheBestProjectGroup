@@ -27,12 +27,11 @@
 				<a class="navbar-brand" href="mainpage.xhtml">Computer Equipment</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
-				<h:form>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="index.xhtml">Products <span
 							class="fa fa-product-hunt" aria-hidden="true"></span></a></li>
-					<li><a href="viewcart.xhtml">Shopping cart <h:outputLabel value="#{shoppingcartbean.cart.itemsCounter}" /><span
-							class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
+					<li><a href="viewcart.xhtml">Shopping cart <span
+							class="fa fa-shopping-cart" aria-hidden="true"><h:outputLabel value="#{shoppingcartbean.cart.itemsCounter}" /></span></a></li>
 					<li><a href="checkorder.xhtml">Track order <span
 							class="fa fa-map-marker" aria-hidden="true"></span></a></li>
 					<li><a href="contactus.xhtml">Contact us <span
@@ -40,7 +39,6 @@
 					<li><a href="aboutus.xhtml">About us <span
 							class="fa fa-user" aria-hidden="true"></span></a></li>
 				</ul>
-				</h:form>
 				<form class="navbar-form navbar-right">
 					<input type="text" class="form-control" placeholder="Search..." />
 					<button class="btn btn-success" type="submit">
@@ -73,21 +71,6 @@
 								</div>
 							</div>
 					</h:form>
-					<h:form method="post" id="searchOrderNumbers"
-						class="form-horizontal" role="form">
-							<div class="form-group">
-								<div class="col-sm-6 col-sm-4">
-									<h2>Forgot your order number?</h2>
-									<label for="checkemail">Enter your e-mail address:</label>
-									<h:inputText name="checkemail" id="checkemail" a:placeholder="E-mail"
-										class="form-control" size="20" value="#{orderbean.email}"/>
-									<h:commandButton value="view" action="#{orderbean.orderIdByMail()}"
-										class="btn btn-primary" /> <br />
-									<h:message class="error" for="searchOrderNumbers" id="noSuchEmail" style="color:red;" />
-								</div>
-							</div>
-					</h:form>
-
 				</div>
 			</div>
 		</div>
