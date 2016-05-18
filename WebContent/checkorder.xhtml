@@ -58,29 +58,32 @@
 
 					<h:form method="post" id="checkout-order-form"
 						class="form-horizontal" role="form">
-						<fieldset>
 							<div class="form-group">
 								<div class="col-sm-6 col-sm-4">
 									<label for="checkordernumber">Enter your order number:</label>
 									<h:inputText name="userinputOrderNumber" id="userinputOrderNumber"
-										a:placeholder="Order number" class="form-control" size="20" value="#{ordertable.selected}"/>
-									<h:commandButton value="view" action="#{ordertable.retriveOrder()}"
+										a:placeholder="Order number" class="form-control" size="20" value="#{orderbean.ordernumber}"/>
+									<h:inputText name="checkemail" id="checkemail" a:placeholder="E-mail"
+										class="form-control" size="20" value="#{orderbean.email}"/>
+									<h:commandButton value="view" action="#{orderbean.checkExisitingOrder()}"
 										class="btn btn-primary" /> <br />
 									<h:message class="error" for="checkout-order-form" id="errormessage" style="color:red;" />
 								</div>
 							</div>
-
+					</h:form>
+					<h:form method="post" id="searchOrderNumbers"
+						class="form-horizontal" role="form">
 							<div class="form-group">
 								<div class="col-sm-6 col-sm-4">
 									<h2>Forgot your order number?</h2>
 									<label for="checkemail">Enter your e-mail address:</label>
-									<h:inputText name="chekcemail" id="checkemail" a:placeholder="E-mail"
-										class="form-control" size="20" value="#{ordertable.email}"/>
-									<h:commandButton value="view" action="#{ordertable.orderIdByMail()}"
-										class="btn btn-primary" />
+									<h:inputText name="checkemail" id="checkemail" a:placeholder="E-mail"
+										class="form-control" size="20" value="#{orderbean.email}"/>
+									<h:commandButton value="view" action="#{orderbean.orderIdByMail()}"
+										class="btn btn-primary" /> <br />
+									<h:message class="error" for="searchOrderNumbers" id="noSuchEmail" style="color:red;" />
 								</div>
 							</div>
-						</fieldset>
 					</h:form>
 
 				</div>

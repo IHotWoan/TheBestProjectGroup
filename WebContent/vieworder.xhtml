@@ -56,10 +56,10 @@
 				<h:form>
 					<h3>
 						Detailed information of order
-						<h:outputLabel value="#{ordertable.selected}" />
+						<h:outputLabel value="#{orderbean.ordernumber}" />
 					</h3>
 					<h:dataTable class="table table-bordered table-hover table-striped"
-						value="#{ordertable.selectedOrder.productarray}" var="orderlist">
+						value="#{orderbean.selectedOrder.productarray}" var="orderlist">
 						<h:column>
 							<f:facet name="header">Picture</f:facet>
 							<h:graphicImage
@@ -104,12 +104,12 @@
 					</ul>
 					<label for="cost">Final cost: </label>
 					<h:outputText name="cost" id="cost"
-						value="#{ordertable.selectedOrder.totalcost}" />
+						value="#{orderbean.selectedOrder.totalcost}" />
 					<br />
 				
 					<div class="alert alert-info alert-dismissable" id="alert-2">
 					<button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true"><i class="fa fa-times" aria-hidden="true"></i></button>
-						<h2><i class="fa fa-exclamation-triangle" aria-hidden="true fa-4x"></i> Product status is <h:outputText value="#{ordertable.selectedOrder.orderstatus}"/>!</h2> 
+						<h2><i class="fa fa-exclamation-triangle" aria-hidden="true fa-4x"></i> Your order is <h:outputText value="#{orderbean.selectedOrder.orderstatus}"/>!</h2> 
 						<hr class="message-inner-separator"/>
 						<h3>General</h3>
 						<strong>Note! Your product will be delivered in 3 working days!</strong> If you have any problems, please contact ‘PostNord’.

@@ -12,8 +12,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
@@ -46,7 +44,6 @@ public class OrderTable implements Serializable{
 	private Status selectedStatus;
     private Map<String, Boolean> checked = new HashMap<String, Boolean>();
 
-	private int totalCost;
 
 	public String getEmail() {
 		return email;
@@ -117,49 +114,6 @@ public class OrderTable implements Serializable{
 			e.printStackTrace();
 		}
 		
-	}
-
-
-	public String retriveOrder(){
-		try {
-			MysqlConnect db = new MysqlConnect();
-			ResultSet rs;
-
-
-			rs = db.query("SELECT * FROM customers where customer_order_ID = '"+selected+"'");
-			while(rs.next()){
-				if(rs.getString("customer_order_ID").equals(selected)) {
-					Order test = new Order(rs.getString("customer_order_ID"));
-
-					//test.setOrderID(rs.getString("customer_order_ID"));
-					test.setCustomerName(rs.getString("customer_name"));
-					test.setCustomerAddress(rs.getString("customer_streetaddress"));
-					test.setZipCode(rs.getString("customer_zipcode"));
-					test.setCity(rs.getString("customer_city"));
-					test.setPhone(rs.getString("customer_phone"));
-					test.setEmail(rs.getString("customer_email"));
-					test.setOrderstatus(rs.getString("customer_orderstatus"));
-
-					for(Product p : test.getProductarray()){
-						totalCost += p.getPrice();
-					}
-					selectedOrder = test;
-					db.close();
-					return "vieworder";
-				}
-			}
-
-			db.close();
-			db = null;
-		} catch (SQLException e) {
-			System.err.println("An exception happened during querying SQL for tracking order functions");
-		}
-		FacesContext.getCurrentInstance().addMessage("checkout-order-form",
-                new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Provided order number does not exist in our system.",
-                        "Please check your number again."));
-		
-		return "checkorder";
 	}
 
 	public String orderIdByMail(){

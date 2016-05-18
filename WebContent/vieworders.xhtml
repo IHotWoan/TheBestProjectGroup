@@ -53,13 +53,17 @@
 
 
 			<label for="ordernumber">Recent orders from: </label>
-			<h:outputText name="email" id="ordernumber" value="#{ordertable.email}" />
+			<h:outputText name="email" id="ordernumber" value="#{orderbean.email}" />
 
 			<h:dataTable class="table table-bordered table-hover table-striped"
-						 id="orderstable" value="#{ordertable.emailOrderList}" var="orderlist">
+						 id="ordersAssociatedWithEmail" value="#{orderbean.foundOrders}" var="orderlist">
 				<h:column>
 					<f:facet name="header">[Order:ID]</f:facet>
-					#{orderlist}
+					<h:commandLink action="vieworder" value="#{orderlist.orderID}">
+						<f:setPropertyActionListener
+										target="#{orderbean.selectedOrder}"
+										value="#{orderlist}" />
+					</h:commandLink>
 				</h:column>
 			</h:dataTable>
 
