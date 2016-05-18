@@ -198,7 +198,20 @@ public class SuperCategory implements Serializable{
 				try {
 					db.insert("UPDATE `shopdb`.`products` SET product_ID='"+product.getProductID()+"', product_name='"+product.getName()+"'"
 							+ ", product_category='"+product.getCategoryID()+"', product_description='"+product.getDescription()+"',"
-									+ " product_price='"+product.getPrice()+"', product_quantity='"+product.getQuantity()+"' where product_ID='"+getProductID()+"'");
+									+ " product_price='"+product.getPrice()+"', product_quantity='"+product.getQuantity()+"', product_brand='"+product.getBrandID()+"' where product_ID='"+getProductID()+"'");
+					
+					for(Category c: categoryArray){
+						if(c.getCategoryID().equals(product.getCategoryID())){
+							product.setCategoryName(c.getCategoryName());
+							break;
+						}
+					}
+					for(SubCategory s: subCategoryArray){
+						if(s.getSubCategoryID().equals(product.getBrandID())){
+							product.setBrandName(s.getSubCategoryName());
+							break;
+						}
+					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
