@@ -105,11 +105,13 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 										<h:commandButton class="btn btn-lg btn-primary" value="Upload"
 											action="#{fileuploadbean.productUpload()}" />
 											</div>
-												<div class="btn-group cancel">
-										<h:commandButton class="btn btn-lg btn-danger" value="Cancel"
-									     action="managemainpage" />
-									     </div>
 										<strong class="bg-warning"><h:messages class="error" for="uploadform" style="color:red;" /></strong>
+									</h:form>
+									<h:form>
+											<div class="btn-group cancel">
+										<h:commandButton class="btn btn-success" value="Go back to manage products"
+									     action="manageproducts" />
+									     </div>
 									</h:form>
 								</div>
 							</div>

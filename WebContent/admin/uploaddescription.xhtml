@@ -88,7 +88,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 					</div>
 				</div>
 				
-					<form>
+					<h:form>
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 form-group">
@@ -99,10 +99,19 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 						<div class="form-group">
 							<label>Product specification</label>
 							<textarea placeholder="product specification" rows="3" class="form-control"></textarea>
-						</div>	
-					<button type="button" class="btn btn-lg btn-info">Submit</button>					
+						</div>
+					
+						
+						<div class="btn-group submit">	
+					<h:commandButton type="button" class="btn btn-lg btn-info" value="submit"/>
 					</div>
-				</form> 
+					<div class="btn-group cancel">
+						<h:commandButton class="btn btn-lg btn-success" value="Go back to manage products"
+									     action="manageproducts"/>					
+					</div>
+					
+				</div>
+				</h:form> 
 				</div>
 									
 			</div>
