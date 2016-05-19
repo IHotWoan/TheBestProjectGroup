@@ -125,6 +125,8 @@ public class FileUploadBean implements Serializable {
 	  }
 	  public void validateFile(FacesContext ctx, UIComponent comp, Object value) {
 		  List<FacesMessage> msgs = new ArrayList<FacesMessage>();
+		  if(value == null)
+			  throw new ValidatorException(msgs);
 		  Part file = (Part)value;
 		  
 		  if (file.getSize() > 10240000) {
