@@ -129,46 +129,24 @@
 					<!-- /.carousel -->
 
 					<div id="page-wrapper">
-						<div class="container marketing">
-
-							<!-- Three columns of text below the carousel -->
-							<div class="row">
-								<div class="col-lg-4">
-									<img class="img-circle"
-										src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-										alt="Generic placeholder image" width="140" height="140" />
-									<h2>Heading</h2>
-									<p>
-										<a class="btn btn-default" href="#" role="button">View
-											details;</a>
-									</p>
+						<h:form>
+							<div class="container marketing">
+								<!-- Three columns of text below the carousel -->
+								<div class="row">
+								<ui:repeat value="#{highlight.topProducts}" var="topproducts">
+									<div class="col-lg-4">
+										<h:graphicImage class="img-circle" width="140" height="140" value="/productImageServlet?id=#{topproducts.productID}" />
+										<h2><h:outputLabel value="#{topproducts.name}" /> </h2>
+										<p>
+											<a class="btn btn-default" href="#" role="button">View
+												details;</a>
+										</p>
+									</div>
+								</ui:repeat>
 								</div>
-								<!-- /.col-lg-4 -->
-								<div class="col-lg-4">
-									<img class="img-circle"
-										src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-										alt="Generic placeholder image" width="140" height="140" />
-									<h2>Heading</h2>
-									<p>
-										<a class="btn btn-default" href="#" role="button">View
-											details</a>
-									</p>
-								</div>
-								<!-- /.col-lg-4 -->
-								<div class="col-lg-4">
-									<img class="img-circle"
-										src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-										alt="Generic placeholder image" width="140" height="140" />
-									<h2>Heading</h2>
-									<p>
-										<a class="btn btn-default" href="#" role="button">View
-											details</a>
-									</p>
-								</div>
-								<!-- /.col-lg-4 -->
+								<!-- /.row -->
 							</div>
-							<!-- /.row -->
-						</div>
+						</h:form>
 
 					</div>
 					<footer>

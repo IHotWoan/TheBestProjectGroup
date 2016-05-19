@@ -19,10 +19,6 @@ import java.io.Serializable;
 @ManagedBean(name="productbean")
 @SessionScoped
 public class ProductBean implements Serializable{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1463081015373942774L;
 	private Product selectedProduct;
 

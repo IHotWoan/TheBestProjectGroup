@@ -87,7 +87,7 @@
 						</h4>
 						<hr />
 
-								<h:form method="post" id="checkout-order-form" class="form-horizontal" role="form">
+							<h:form method="post" id="checkout-order-form" class="form-horizontal" role="form">
 								<fieldset>
 									<p:growl id="growl" showDetail="true" sticky="true" />
 									<!-- Text input-->
@@ -96,7 +96,7 @@
 											<h:inputText name="email" id="email" type="text"
 												a:placeholder="Email Address" size="100"
 												value="#{shoppingcartbean.order.email}"
-												style=" height : 40px;" class="form-control" required="true"/>
+												style=" height : 40px;" class="form-control" />
 										</div>
 									</div>
 									<hr />
@@ -148,8 +148,7 @@
 										</div>
 									</div>
 									<div class="btn-group cart">
-									<h:commandButton value="back to shopping" action="index"
-										class="btn btn-danger" />
+									<h:commandButton value="back to shopping" action="index" class="btn btn-danger" />
 									</div>
 									<div class="btn-group submit">
 									<h:commandButton value="submit"

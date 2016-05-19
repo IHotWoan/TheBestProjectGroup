@@ -184,7 +184,19 @@ public class SuperCategory implements Serializable{
 		
 		productArray.add(n);
 	}
-	
+	/**
+	 * Songho
+	 * @param name
+	 * @return
+	 */
+	public static Product getSpecificProduct(String id){
+		for(Product p : productArray){
+			if(p.getProductID().equals(id)){
+				return p;
+			}
+		}
+		return null;
+	}
 	public ArrayList<Product> getProductArray(){
 		
 		return productArray;
