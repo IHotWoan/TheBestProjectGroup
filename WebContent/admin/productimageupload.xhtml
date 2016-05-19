@@ -8,9 +8,9 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-
-	<title>Dashboard</title>
+	<title>Upload image</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
@@ -21,7 +21,6 @@
 	<h:outputStylesheet library="bootstrap" name="css/plugins/morris.css" />
 	<!-- Custom Fonts -->
 
-
 </h:head>
 
 <h:body>
@@ -29,9 +28,9 @@
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
+
 					<p class="navbar-brand">Administrator</p>
-					<a class="navbar-brand" href="dashboard.xhtml"><h:outputText
-							value="#{userLogin.userName}" /></a>
+					<h:outputText class="navbar-brand" value="#{userLogin.userName}" />
 					<p class="navbar-brand" id="date"></p>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
@@ -58,14 +57,12 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							class="fa fa-fw fa-table"></i> Delivered orders</a></li>
 					<li><a href="manageorders.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage orders</a></li>
-					<li><a href="managecategories.xhtml"><i
-							class="fa fa-fw fa-wrench"></i> Manage categories</a></li>
-					<li><a href="manageproducts.xhtml"><i
-							class="fa fa-fw fa-wrench"></i> Manage products</a></li>
+					<li><a href="managecategories.xhtml"><i class="fa fa-edit"></i>
+							Manage categories</a></li>
+					<li><a href="manageproducts.xhtml"><i class="fa fa-edit"></i>
+							Manage products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
-							<li><a href="managemainpage.xhtml"><i
-							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -73,53 +70,39 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 			<div class="container-fluid">
 				<!-- Page Heading -->
 				<div class="row">
-					<div class="col-lg-12">
-						<h1 class="page-header">Dashboard</h1>
+					<div class="col-lg-10">
+						<h1 class="page-header">
+							Upload image file for product id:
+							<h:outputLabel value="#{fileuploadbean.productID}" />
+						</h1>
+						<ol class="breadcrumb">
+							<li class="active"><i class="fa fa-dashboard"></i> <a
+								href="dashboard.xhtml">Dashboard</a></li>
+							<li class="active"><i class="fa fa-edit"></i><a
+								href="manage products.xhtml">Manage products</a></li>
+							<li class="active"><i class="fa fa-fw fa-wrench"></i> Upload
+								image</li>
+						</ol>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-10">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title"><i class="fa fa-fw fa-dashboard"></i>Items in need of attention</h3>
+								<h3 class="panel-title">
+									<i class="fa fa-fw fa-table"></i> Upload
+								</h3>
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-									<h:form>
-										<h:dataTable
-											class="table table-bordered table-hover table-striped"
-											value="#{ordertable.undeliveredOrderarray}"
-											var="undeliveredorder">
-											<h:column>
-												<f:facet name="header">Order ID</f:facet>
-												<h:commandLink value="#{undeliveredorder.orderID}"
-													action="ordernumbers">
-													<f:setPropertyActionListener
-														target="#{ordertable.selectedOrder}"
-														value="#{undeliveredorder}" />
-													<f:setPropertyActionListener
-														target="#{ordertable.selected}"
-														value="#{undeliveredorder.orderID}" />
-												</h:commandLink>
-											</h:column>
-											<h:column>
-												<f:facet name="header">Customer Name</f:facet>
-    												#{undeliveredorder.customerName}
-    												</h:column>
-											<h:column>
-												<f:facet name="header">Ordered products</f:facet>
-    												#{undeliveredorder.summary}
-    												</h:column>
-											<h:column>
-												<f:facet name="header">Order status</f:facet>
-    													#{undeliveredorder.orderstatus}
-    												</h:column>
-										</h:dataTable>
+									<h:form id="uploadform" enctype="multipart/form-data">
+										<h:inputFile id="file" value="#{fileuploadbean.file}"
+											validator="#{fileuploadbean.validateFile}"></h:inputFile>
+										<br />
+										<h:commandButton class="btn btn-lg btn-primary" value="Upload"
+											action="#{fileuploadbean.productUpload()}" />
+										<h:messages class="error" for="uploadform" style="color:red;" />
 									</h:form>
-								</div>
-								<div class="text-right">
-									<a href="manageorders.xhtml">View All Orders <i
-										class="fa fa-arrow-circle-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -128,6 +111,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 			</div>
 		</div>
 	</div>
+
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 	<h:outputScript library="bootstrap" name="js/jquery.js" />
 

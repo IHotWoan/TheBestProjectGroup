@@ -65,7 +65,8 @@
 									<f:actionListener binding="#{supercategory.hideBrands()}" />
 									<f:setPropertyActionListener target="#{category.displayBrands}"
 										value="#{'True'}" />
-								</h:commandLink> <ui:repeat value="#{category.subCategoryArray}"
+								</h:commandLink>
+								<ui:repeat value="#{category.subCategoryArray}"
 									var="subcategory">
 									<li><h:commandLink value="#{subcategory.subCategoryName}"
 											action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}"

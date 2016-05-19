@@ -10,7 +10,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Upload image</title>
+	<title>Manage users</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
@@ -71,39 +71,39 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-10">
-						<h1 class="page-header">
-							Upload image file for product id:
-							<h:outputLabel value="#{fileuploadbean.productID}" />
-						</h1>
+						<h1 class="page-header">Manage mainpage</h1>
 						<ol class="breadcrumb">
 							<li class="active"><i class="fa fa-dashboard"></i> <a
 								href="dashboard.xhtml">Dashboard</a></li>
-							<li class="active"><i class="fa fa-edit"></i><a
-								href="manage products.xhtml">Manage products</a></li>
-							<li class="active"><i class="fa fa-fw fa-wrench"></i> Upload
-								image</li>
+							<li class="active"><i class="fa fa-fw fa-table"></i> Manage mainpage</li>
 						</ol>
 					</div>
 				</div>
+
 				<div class="row">
+
 					<div class="col-lg-10">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">
-									<i class="fa fa-fw fa-table"></i> Upload
+									<i class="fa fa-fw fa-table"></i> Manage main page
 								</h3>
 							</div>
 							<div class="panel-body">
-								<div class="table-responsive">
-									<h:form id="uploadform" enctype="multipart/form-data">
-										<h:inputFile id="file" value="#{fileuploadbean.file}"
-											validator="#{fileuploadbean.validateFile}"></h:inputFile>
-										<br />
-										<h:commandButton class="btn btn-lg btn-primary" value="Upload"
-											action="#{fileuploadbean.upload()}" />
-										<h:messages class="error" for="uploadform" style="color:red;" />
-									</h:form>
-								</div>
+								<h:form>
+									<h:commandButton class="btn btn-lg btn-info"
+									value="Change banner 1" action="bannerimageupload">
+										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="1" />
+									</h:commandButton>
+									<h:commandButton class="btn btn-lg btn-info"
+									value="Change banner 2" action="bannerimageupload">
+										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="2" />
+									</h:commandButton>
+									<h:commandButton class="btn btn-lg btn-info"
+									value="Change banner 3" action="bannerimageupload">
+										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="3" />
+									</h:commandButton>
+								</h:form>
 							</div>
 						</div>
 					</div>

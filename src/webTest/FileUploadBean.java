@@ -35,11 +35,12 @@ public class FileUploadBean implements Serializable {
 	private static final long serialVersionUID = 3474817816894473632L;
 	private Part file;
 	private String productID;
+	private int bannerID;
 	
 	@Lob
     private byte[] image;
 	  
-	public String upload(){
+	public String productUpload(){
 		try{
 		  InputStream inputStream = file.getInputStream();   
 		  
@@ -69,13 +70,51 @@ public class FileUploadBean implements Serializable {
 			e.printStackTrace();
 		}
 		  
-	        return "editproduct";
+	        return "manageproducts";
 		}
 		catch(IOException e){
 			System.err.println("ERROR OCCURRED IN FILE UPLOAING");
 			e.printStackTrace();
 		}
-	        return "failure";
+	        return "productimageupload";
+	}
+	public String bannerUpload(){
+		try{
+		  InputStream inputStream = file.getInputStream();   
+		  
+		  ByteArrayOutputStream output = new ByteArrayOutputStream();
+		  byte[] buffer = new byte[10240000];
+		  for (int length = 0; (length = inputStream.read(buffer)) > 0;) output.write(buffer, 0, length);
+		  
+		  String ext= file.getContentType();
+		  this.setImage(output.toByteArray());
+		  
+		  try {
+			  MysqlConnect db = new MysqlConnect();
+			  Connection conn = db.conn;
+			  PreparedStatement statement = conn.prepareStatement("UPDATE banners SET banner_image =?, banner_imageextension=? WHERE banner_id=?");
+			  
+			  statement.setBytes(1, this.image);
+			  //statement.setBinaryStream(1, inputStream);
+			  statement.setString(2, ext);
+			  statement.setInt(3, bannerID);
+			  statement.executeUpdate();
+			  
+			  db.close();
+			  db=null;
+			  
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
+	        return "managemainpage";
+		}
+		catch(IOException e){
+			System.err.println("ERROR OCCURRED IN FILE UPLOAING");
+			e.printStackTrace();
+		}
+	        return "bannerimageupload";
 	}
 	public Part getFile() {
 		  return file;
@@ -105,6 +144,12 @@ public class FileUploadBean implements Serializable {
 	}
 	public void setProductID(String inProductID) {		
 		this.productID = inProductID;
+	}
+	public int getBannerID() {
+		return bannerID;
+	}
+	public void setBannerID(int bannerID) {
+		this.bannerID = bannerID;
 	}
 	public byte[] getImage() {
 		return image;

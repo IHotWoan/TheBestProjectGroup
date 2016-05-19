@@ -191,7 +191,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											<h:column>
 												<f:facet name="header">Add image</f:facet>
 												<h:commandButton class="btn btn-lg btn-info"
-													value="Change image" action="upload">
+													value="Change image" action="productimageupload">
 													<f:setPropertyActionListener
 														target="#{fileuploadbean.productID}"
 														value="#{product.productID}" />
