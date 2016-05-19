@@ -63,6 +63,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							Manage products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
+							<li><a href="managemainpage.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -198,19 +200,31 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												</h:commandButton>
 											</h:column>
 											<h:column>
+											<f:facet name="header">Add information</f:facet>
+												<h:commandButton class="btn btn-lg btn-info"
+													value="Edit info" action="uploaddescription">
+													<f:setPropertyActionListener
+														target="#{fileuploadbean.productID}"
+														value="#{product.productID}" />
+												</h:commandButton>
+											</h:column>
+											<h:column>
 												<f:facet name="header">Delete</f:facet>
 												<h:commandButton class="btn btn-lg btn-warning"
 													value="Delete"
 													action="#{supercategory.deleteAction(product)}"
 													rendered="#{not product.deletable}" />
-												<h:commandButton class="btn btn-lg btn-danger"
+													
+												<div class="btn-group confirmdelete">
+												<h:commandButton class="btn btn-danger"
 													value="Confirm delete"
 													action="#{supercategory.confirmProductDelete(product.productID)}"
 													update="@form" ajax="true" rendered="#{product.deletable}" />
-													<h:commandButton style="margin-left: 30px" class="btn btn-lg btn-primary"
-													value="Cancel"
-													action="#{supercategory.deleteSubCategory(subcategory)}"
-													rendered="#{product.deletable}" />
+													</div>
+													<div class="btn-group cancel">
+													<h:button class="btn btn-primary"
+													value="Cancel"/>
+													</div>
 													
 											</h:column>
 										</h:dataTable>

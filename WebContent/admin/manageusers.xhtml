@@ -63,6 +63,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							Manage products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
+							<li><a href="managemainpage.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -124,14 +126,16 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												<h:commandButton class="btn btn-lg btn-warning"
 													value="Delete" action="#{admin.deleteAction(user)}"
 													rendered="#{(not user.deletable) and admin.currentUser!=user and admin.hasPermission(user)}" />
-												<h:commandButton class="btn btn-lg btn-danger"
+												<div class="btn-group confirmdelete">
+												<h:commandButton class="btn btn-danger"
 													value="Confirm delete"
 													action="#{admin.confirmUserDelete(user.userID)}"
 													update="@form" ajax="true" rendered="#{user.deletable and admin.hasPermission(user)}" />
-													<h:commandButton style="margin-left: 30px" class="btn btn-lg btn-primary"
-													value="Cancel"
-													action="#{supercategory.deleteSubCategory(subcategory)}"
-													rendered="#{user.deletable}" />
+													</div>
+													<div class="btn-group cancel">
+													<h:button class="btn btn-primary"
+													value="Cancel"/>
+													</div>
 											</h:column>
 										</h:dataTable>
 

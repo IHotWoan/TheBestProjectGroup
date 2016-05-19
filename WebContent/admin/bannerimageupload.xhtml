@@ -63,6 +63,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							Manage products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
+							<li><a href="managemainpage.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -99,9 +101,15 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 										<h:inputFile id="file" value="#{fileuploadbean.file}"
 											validator="#{fileuploadbean.validateFile}"></h:inputFile>
 										<br />
+										<div class="btn-group upload">
 										<h:commandButton class="btn btn-lg btn-primary" value="Upload"
 											action="#{fileuploadbean.bannerUpload()}" />
-										<h:messages class="error" for="uploadform" style="color:red;" />
+											</div>
+											<div class="btn-group cancel">
+										<h:commandButton class="btn btn-lg btn-danger" value="Cancel"
+									     action="managemainpage" />
+									     </div>
+										<strong class="bg-warning"><h:messages class="error" for="uploadform" style="color:red;" /></strong>
 									</h:form>
 								</div>
 							</div>

@@ -63,6 +63,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							Manage products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
+							<li><a href="managemainpage.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -102,7 +104,12 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
  											<f:selectItems value="#{ordertable.statusValues}" />
  										</h:selectOneMenu>
  										<br/>
- 										<h:commandButton class="btn btn-lg btn-primary" action="#{ordertable.updateOrderStatus}" value="update" />
+ 									    <div class="btn-group update">
+ 										<h:commandButton class="btn btn-lg btn-success" action="#{ordertable.updateOrderStatus}" value="update" />
+ 										</div>
+ 										 <div class="btn-group return">
+ 										<h:commandButton class="btn btn-lg btn-primary" action="manageorders" value="Return to manage orders" />
+ 										</div>
  										<hr/>
 										<h:dataTable
 											class="table table-bordered table-hover table-striped"

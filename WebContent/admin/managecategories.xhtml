@@ -63,6 +63,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							Manage products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
+							<li><a href="managemainpage.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -136,8 +138,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Confirm delete"
 													action="#{supercategory.confirmCategoryDelete(category.categoryID)}"
 													update="@form" ajax="true" rendered="#{category.deletable}" />
-													<h:commandButton style="margin-left: 30px" class="btn btn-lg btn-primary"
-													value="Cancel"
+												<h:commandButton style="margin-left: 30px"
+													class="btn btn-lg btn-primary" value="Cancel"
 													action="#{supercategory.deleteSubCategory(subcategory)}"
 													rendered="#{subcategory.deletable}" />
 											</h:column>
@@ -200,9 +202,9 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													action="#{supercategory.confirmSubCategoryDelete(subcategory.subCategoryID)}"
 													update="@form" ajax="true"
 													rendered="#{subcategory.deletable}" />
-												
-													<h:commandButton style="margin-left: 30px" class="btn btn-lg btn-primary"
-													value="Cancel"
+
+												<h:commandButton style="margin-left: 30px"
+													class="btn btn-lg btn-primary" value="Cancel"
 													action="#{supercategory.deleteSubCategory(subcategory)}"
 													rendered="#{subcategory.deletable}" />
 											</h:column>

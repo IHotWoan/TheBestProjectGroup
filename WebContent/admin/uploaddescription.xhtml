@@ -10,7 +10,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Change password</title>
+	<title>Upload image</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
@@ -73,52 +73,41 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-10">
-						<h1 class="page-header">Confirm password</h1>
+						<h1 class="page-header">
+							Upload image file for product id:
+							<h:outputLabel value="#{fileuploadbean.productID}" />
+						</h1>
 						<ol class="breadcrumb">
 							<li class="active"><i class="fa fa-dashboard"></i> <a
 								href="dashboard.xhtml">Dashboard</a></li>
 							<li class="active"><i class="fa fa-edit"></i><a
 								href="manage products.xhtml">Manage products</a></li>
-							<li class="active"><i class="fa fa-fw fa-table"></i> Change
-								password</li>
+							<li class="active"><i class="fa fa-fw fa-wrench"></i> Upload
+								image</li>
 						</ol>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-5">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-									<i class="fa fa-fw fa-wrench"></i> Change password
-								</h3>
+				
+					<form>
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>Short description</label>
+								<input type="text" placeholder="description" class="form-control"/>
 							</div>
-							<div class="panel-body">
-								<div class="table-responsive">
-									<h:form>
-										<label>New password</label>
-										<h:inputSecret style="max-width: 300px" class="form-control"
-											value="#{admin.newPassword}" />
-										<br />
-										<label>Confirm Password</label>
-										<h:inputSecret style="max-width: 300px" class="form-control"
-											value="#{admin.confirmPassword}" />
-										<br />
-										<br />
-										<h:commandButton class="btn btn-lg btn-primary"
-											action="#{admin.changePassword}" update=":userform:usertable"
-											ajax="true" value="Submit" />
-										<h:outputText value="Password update failed, please try again"
-											rendered="#{admin.fail}" />
-									</h:form>
-								</div>
-							</div>
-						</div>
+						</div>					
+						<div class="form-group">
+							<label>Product specification</label>
+							<textarea placeholder="product specification" rows="3" class="form-control"></textarea>
+						</div>	
+					<button type="button" class="btn btn-lg btn-info">Submit</button>					
 					</div>
+				</form> 
 				</div>
+									
 			</div>
 		</div>
-	</div>
-
+	
 
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 	<h:outputScript library="bootstrap" name="js/jquery.js" />
