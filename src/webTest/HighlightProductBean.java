@@ -10,8 +10,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import webTest.Order.Status;
-
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +18,7 @@ import java.util.Comparator;
 
 
 /**
- * Pick up top selling products
+ * Pick up top selling products for main page.
  * @author songhokun
  *
  */
@@ -30,6 +28,7 @@ public class HighlightProductBean implements Serializable{
 	private static final long serialVersionUID = 4038383404714180997L;
 	
 	private Product[] topProducts = new Product[10];
+	private Product[] specialSelection = new Product[3];
 	
 	public Product[] getTopProducts() {
 		return topProducts;
@@ -56,6 +55,7 @@ public class HighlightProductBean implements Serializable{
 				productsales.add(new Productmatch(String.valueOf(i),counts));
 				
 			}
+			rs = db.query("SELECT banner_productID FROM shopdb.banners;");
 			
 			db.close();
 			db = null;

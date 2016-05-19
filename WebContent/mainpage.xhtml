@@ -138,8 +138,10 @@
 										<h:graphicImage class="img-circle" width="140" height="140" value="/productImageServlet?id=#{topproducts.productID}" />
 										<h2><h:outputLabel value="#{topproducts.name}" /> </h2>
 										<p>
-											<a class="btn btn-default" href="#" role="button">View
-												details;</a>
+											<h:commandButton action="catalogue" value="View details" class="btn btn-default">
+												<f:setPropertyActionListener target="#{productbean.selectedProduct}" value="#{topproducts}" />
+											</h:commandButton>
+											
 										</p>
 									</div>
 								</ui:repeat>
