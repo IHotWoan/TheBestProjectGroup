@@ -103,6 +103,7 @@ public class HighlightProductBean implements Serializable{
 		
 	}
 	
+	//this one is not working. it does not receive proper inputs from select one menu in managemainpage (admin page).
 	public String saveSelection(){
 		try {
 			MysqlConnect db = new MysqlConnect();

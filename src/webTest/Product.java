@@ -14,6 +14,7 @@ public class Product {
 	private String brandID;
 	private String brandName;
 	private String description;
+	private String spec;
 	private Double price;
 	private int quantity;
 	private boolean editable;
@@ -96,6 +97,12 @@ public class Product {
 	}
 	public void setBrandName(String brandName) {
 		this.brandName = brandName;
+	}
+	public String getSpec() {
+		return spec;
+	}
+	public void setSpec(String spec) {
+		this.spec = spec;
 	}
 	
 	

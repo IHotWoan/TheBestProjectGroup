@@ -126,8 +126,9 @@
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane fade in active" id="service-one">
-
-								<section class="container product-info"></section>
+								<h:form>
+									<h:outputText value="#{productbean.selectedProduct.spec}" escape="false" />
+								</h:form>
 
 							</div>
 						</div>

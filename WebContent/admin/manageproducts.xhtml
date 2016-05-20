@@ -155,10 +155,11 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</h:column>
 											<h:column>
 												<f:facet name="header">Product Description</f:facet>
-												<h:inputText value="#{product.description}"
-													style="width: 300px" rendered="#{product.editable}" />
-												<h:outputText value="#{product.description}"
-													rendered="#{not product.editable}" />
+												<h:commandLink action="updatedescription" value="#{product.description}">
+													<f:setPropertyActionListener
+														target="#{descriptionbean.selectedProduct}"
+														value="#{product}" />
+												</h:commandLink>
 											</h:column>
 											<h:column>
 												<f:facet name="header">Product Price</f:facet>

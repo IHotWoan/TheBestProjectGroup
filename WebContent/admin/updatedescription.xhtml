@@ -10,7 +10,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Upload image</title>
+	<title>Update description</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
@@ -74,43 +74,36 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				<div class="row">
 					<div class="col-lg-10">
 						<h1 class="page-header">
-							Upload image file for product id:
-							<h:outputLabel value="#{fileuploadbean.productID}" />
+							Edit description of
+							<h:outputLabel value="#{descriptionbean.selectedProduct.name}" />
 						</h1>
 						<ol class="breadcrumb">
 							<li class="active"><i class="fa fa-dashboard"></i> <a
 								href="dashboard.xhtml">Dashboard</a></li>
 							<li class="active"><i class="fa fa-edit"></i><a
 								href="manage products.xhtml">Manage products</a></li>
-							<li class="active"><i class="fa fa-fw fa-wrench"></i> Upload
-								image</li>
+							<li class="active"><i class="fa fa-fw fa-wrench"></i>modify description</li>
 						</ol>
 					</div>
 				</div>
-				
 					<h:form>
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-6 form-group">
-								<label>Short description</label>
-								<input type="text" placeholder="description" class="form-control"/>
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-6 form-group">
+									<label>Short description</label>
+									<p:inputText value="#{descriptionbean.selectedProduct.description}" required="true" id="desc" requiredMessage="Description cannot be empty!"/>
+									<p:message for="desc" /> <br />
+								</div>
+							</div>					
+							<div class="form-group">
+								<label>Product specification</label> <br/>
+								<p:editor id="spec" widgetVar="editorWidget" value="#{descriptionbean.selectedProduct.spec}" width="600"/>
+								 <h:panelGrid columns="2" style="margin-top: 10px">
+								 	<p:commandButton value="submit" action="#{descriptionbean.savechanges}" ajax="false"/>
+								 	<p:commandButton class="btn btn-lg btn-success" value="Go back to manage products" action="manageproducts"/>
+								 </h:panelGrid>
 							</div>
-						</div>					
-						<div class="form-group">
-							<label>Product specification</label>
-							<textarea placeholder="product specification" rows="3" class="form-control"></textarea>
 						</div>
-					
-						
-						<div class="btn-group submit">	
-					<h:commandButton type="button" class="btn btn-lg btn-info" value="submit"/>
-					</div>
-					<div class="btn-group cancel">
-						<h:commandButton class="btn btn-lg btn-success" value="Go back to manage products"
-									     action="manageproducts"/>					
-					</div>
-					
-				</div>
 				</h:form> 
 				</div>
 									
@@ -119,7 +112,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 	
 
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
-	<h:outputScript library="bootstrap" name="js/jquery.js" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
 	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
 
