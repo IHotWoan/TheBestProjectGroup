@@ -17,6 +17,9 @@ import javax.faces.model.SelectItem;
 
 import webTest.Order.Status;
 /**
+ * The Order table is a bean class of orders called in Admin page (manageorders)
+ * Please use orderbean instead, when order class needs to be called in store mode.
+ * 
  * @author songhokun
  *
  */

@@ -3,12 +3,9 @@
  */
 package webTest;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+//import javax.faces.bean.ViewScoped;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -30,12 +27,30 @@ public class HighlightProductBean implements Serializable{
 	private Product[] topProducts = new Product[10];
 	private Product[] specialSelection = new Product[3];
 	
+	
 	public Product[] getTopProducts() {
 		return topProducts;
 	}
-	
-	
+
+	public Product[] getSpecialSelection() {
+		return specialSelection;
+	}
+
+	public void setTopProducts(Product[] topProducts) {
+		this.topProducts = topProducts;
+	}
+
+	public void setSpecialSelection(Product[] specialSelection) {
+		this.specialSelection = specialSelection;
+	}
+
+	/**
+	 * Constructor of the highlight product bean.
+	 */
 	public HighlightProductBean(){
+		/**
+		 * Temporry array list which is used to count sales of product
+		 */
 		ArrayList<Productmatch> productsales = new ArrayList<Productmatch>();
 		//SELECT COUNT(*) FROM shopdb.products;
 		try {
@@ -56,7 +71,11 @@ public class HighlightProductBean implements Serializable{
 				
 			}
 			rs = db.query("SELECT banner_productID FROM shopdb.banners;");
-			
+			for(int i=0;i<specialSelection.length;i++){
+				rs.next();
+				String receivedID = rs.getString(1);
+				specialSelection[i]=SuperCategory.getSpecificProduct(receivedID);
+			}
 			db.close();
 			db = null;
 		} catch (SQLException e) {
@@ -82,5 +101,22 @@ public class HighlightProductBean implements Serializable{
 			this.count = c;
 		}
 		
+	}
+	
+	public String saveSelection(){
+		try {
+			MysqlConnect db = new MysqlConnect();
+			
+			for(int i=0;i<specialSelection.length;i++){
+				db.insert("UPDATE `shopdb`.`banners` SET `banner_productID`='"+specialSelection[i].getProductID()+"' WHERE `banner_id`="+i);			
+			}
+			
+			db.close();
+			db = null;
+		} catch (SQLException e) {
+			System.err.println("There was an error during saving the selection!!");
+			e.printStackTrace();
+		}
+		return "managemainpage";
 	}
 }

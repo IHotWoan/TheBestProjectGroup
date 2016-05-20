@@ -186,8 +186,8 @@ public class SuperCategory implements Serializable{
 	}
 	/**
 	 * Songho
-	 * @param name
-	 * @return
+	 * @param Product ID in string 
+	 * @return a product
 	 */
 	public static Product getSpecificProduct(String id){
 		for(Product p : productArray){

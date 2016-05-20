@@ -94,24 +94,39 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							<div class="panel-body">
 								<h:form>
 								<h1>Banner upload</h1>
-								<div class="btn-group banner1">
+								
 									<h:commandButton class="btn btn-lg btn-info"
 									value="Change banner 1" action="bannerimageupload">
 										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="1" />
 									</h:commandButton>
-									</div>
-									<div class="btn-group banner2">
+									
+									
 									<h:commandButton class="btn btn-lg btn-info"
 									value="Change banner 2" action="bannerimageupload">
 										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="2" />
 									</h:commandButton>
-									</div>
-									<div class="btn-group banner3">
+									
+									
 									<h:commandButton class="btn btn-lg btn-info"
 									value="Change banner 3" action="bannerimageupload">
 										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="3" />
 									</h:commandButton>
-									</div>
+
+								</h:form>
+								<h:form>
+									<h1>Select highlighted products</h1>
+									<h:dataTable value="#{highlight.specialSelection}" var="highlightproduct">
+										<h:column>
+											<h:selectOneMenu value="#{hightlightproduct}" class="form-control" style="max-width: 150px">
+												<f:selectItems value="#{supercategory.productArray}" var="products"
+														itemLabel="#{products.name}" itemValue="#{products}" />
+											</h:selectOneMenu>
+										</h:column>
+									</h:dataTable>
+									
+									<h:commandButton class="btn btn-lg btn-info"
+									value="Save changes" action="#{highlight.saveSelection()}">
+									</h:commandButton>
 								</h:form>
 							</div>
 						</div>

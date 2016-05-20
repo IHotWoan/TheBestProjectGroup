@@ -88,6 +88,8 @@ public class ShoppingCart implements Serializable {
 			return "viewcart";
 		}
 	}
+	
+	//Now getters and setters begin.
 	public String getCartID() {
 		return cartID;
 	}
