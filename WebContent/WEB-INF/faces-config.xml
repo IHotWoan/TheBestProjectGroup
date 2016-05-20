@@ -29,6 +29,13 @@
    <to-view-id>/admin/manageorders.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/admin/manageproducts.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>index</from-outcome>
+   <to-view-id>/admin/manageproducts.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
  <application>
   <message-bundle>resources.application</message-bundle>
   <locale-config>

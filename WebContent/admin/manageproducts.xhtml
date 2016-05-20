@@ -88,18 +88,16 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 						<div class="form-group">
 							<h:form>
 								<Label>Search product </Label>
-								<h:inputText class="form-control" value="#{ordertable.selected}" />
+								<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}" />
 								<div class="btn-toolbar">
 									<br />
 									<h:commandButton class="btn btn-lg btn-primary"
-										action="#{ordertable.searchOrder('deliveredorders')}"
-										value="search" />
+										action="#{supercategory.productSearch}" value="Search" update=":productsform:productstable" ajax="true"  />
 
 									<h:commandButton class="btn btn-lg btn-success"
-										action="#{ordertable.clearSearch('deliveredorders')}"
-										value="Show All" />
+										action="#{supercategory.refreshAllProducts}" value="Show All" update=":productsform:productstable" ajax="true" />
 								</div>
-							</h:form>
+								</h:form>
 						</div>
 					</div>
 				</div>

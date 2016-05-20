@@ -43,12 +43,12 @@
 							class="fa fa-user" aria-hidden="true"></span></a></li>
 				</ul>
 				</h:form>
-				<form class="navbar-form navbar-right">
-					<input type="text" class="form-control" placeholder="Search..." />
-					<button class="btn btn-success" type="submit">
+				<h:form class="navbar-form navbar-right">
+					<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}" />
+					<h:commandButton class="btn btn-success" action="#{supercategory.productSearch}" update=":productsform:productstable" ajax="true" >
 						<i class="fa fa-search"></i>
-					</button>
-				</form>
+					</h:commandButton>
+				</h:form>
 			</div>
 		</div>
 	</nav>

@@ -39,4 +39,13 @@
   PATH="/admin/dashboard.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#admin#manageorders.xhtml"
   PATH="/admin/manageorders.xhtml" SHAPE="240,289,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#manageproducts.xhtml"
+  PATH="/admin/manageproducts.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#manageproducts.xhtml:0" NAME="item"
+   PATH="/admin/manageproducts.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index::#admin#manageproducts.xhtml"
+    NAME="output" PATH="/admin/manageproducts.xhtml"
+    TARGET="rules:#admin#manageproducts.xhtml" TITLE="index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

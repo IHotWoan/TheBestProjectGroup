@@ -21,6 +21,8 @@ public class SuperCategory implements Serializable{
 	private ArrayList<Category> categoryArray = new ArrayList<Category>();
 	private static ArrayList<Product> productArray = new ArrayList<Product>();
 	private ArrayList<SubCategory> subCategoryArray = new ArrayList<SubCategory>();
+	
+	private String searchString = "";
 
 	private MysqlConnect db;
 	private ResultSet rs;
@@ -127,6 +129,84 @@ public class SuperCategory implements Serializable{
 
 
 	public SuperCategory(){
+		
+		refreshAllProducts();
+		
+	}
+	
+	public String productSearch(){
+		
+		db = new MysqlConnect();
+		
+		try {
+			
+			productArray.clear();
+			
+			rs = db.query("SELECT * FROM products inner join category on products.product_category=category.category_id inner join brands on products.product_brand=brands.brand_ID");
+			
+			while(rs.next()){
+				
+				Product searchProduct = new Product();
+				
+				if(rs.getString("product_name").toUpperCase().contains(searchString.toUpperCase())){
+					
+					searchProduct.setProductID(rs.getString("product_ID"));
+					searchProduct.setName(rs.getString("product_name"));
+					searchProduct.setCategoryID(rs.getString("category_ID"));
+					searchProduct.setCategoryName(rs.getString("category_name"));
+					searchProduct.setBrandName(rs.getString("brand_name"));
+					searchProduct.setBrandID(rs.getString("brand_ID"));
+					searchProduct.setDescription(rs.getString("product_description"));
+					searchProduct.setPrice(Double.parseDouble(rs.getString("product_price")));
+					searchProduct.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
+					
+					productArray.add(searchProduct);
+					
+				}
+				else if(rs.getString("brand_name").toUpperCase().contains(searchString.toUpperCase())){
+					
+					searchProduct.setProductID(rs.getString("product_ID"));
+					searchProduct.setName(rs.getString("product_name"));
+					searchProduct.setCategoryID(rs.getString("category_ID"));
+					searchProduct.setCategoryName(rs.getString("category_name"));
+					searchProduct.setBrandName(rs.getString("brand_name"));
+					searchProduct.setBrandID(rs.getString("brand_ID"));
+					searchProduct.setDescription(rs.getString("product_description"));
+					searchProduct.setPrice(Double.parseDouble(rs.getString("product_price")));
+					searchProduct.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
+					
+					productArray.add(searchProduct);
+					
+				}
+				else if(rs.getString("category_name").toUpperCase().contains(searchString.toUpperCase())){
+					
+					searchProduct.setProductID(rs.getString("product_ID"));
+					searchProduct.setName(rs.getString("product_name"));
+					searchProduct.setCategoryID(rs.getString("category_ID"));
+					searchProduct.setCategoryName(rs.getString("category_name"));
+					searchProduct.setBrandName(rs.getString("brand_name"));
+					searchProduct.setBrandID(rs.getString("brand_ID"));
+					searchProduct.setDescription(rs.getString("product_description"));
+					searchProduct.setPrice(Double.parseDouble(rs.getString("product_price")));
+					searchProduct.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
+					
+					productArray.add(searchProduct);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		db=null;
+		
+		return "index";
+		
+	}
+	
+	public String refreshAllProducts(){
+		
 		categoryArray.clear();
 		productArray.clear();
 		subCategoryArray.clear();
@@ -165,6 +245,8 @@ public class SuperCategory implements Serializable{
 			e.printStackTrace();
 		}
 		db=null;
+		
+		return "index";
 		
 	}
 	
@@ -511,6 +593,14 @@ public class SuperCategory implements Serializable{
 
 		}
 
+	}
+
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
 	}
 	
 }
