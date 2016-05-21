@@ -85,10 +85,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				</div>
 				<div class="row">
 					<div class="col-lg-10">
-						<div class="form-group">
+						<div class="form-group col-sm-6">
 							<h:form>
 								<Label>Search product </Label>
-								<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}" />
+								<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}"/>
 								<div class="btn-toolbar">
 									<br />
 									<h:commandButton class="btn btn-lg btn-primary"
@@ -203,8 +203,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												<h:commandButton class="btn btn-lg btn-info"
 													value="Edit info" action="updatedescription">
 													<f:setPropertyActionListener
-														target="#{descriptionbean.selectedProduct}"
-														value="#{product}" />
+														target="#{fileuploadbean.productID}"
+														value="#{product.productID}" />
 												</h:commandButton>
 											</h:column>
 											<h:column>
@@ -219,13 +219,11 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Confirm delete"
 													action="#{supercategory.confirmProductDelete(product.productID)}"
 													update="@form" ajax="true" rendered="#{product.deletable}" />
-												</div>
-												<div class="btn-group cancel">
-												<h:commandButton class="btn btn-primary"
-													value="Cancel" 
-													action="#{supercategory.deleteAction(product)}" 
-													rendered="#{product.deletable}"/>
-												</div>
+													</div>
+													<div class="btn-group cancel">
+													<h:button class="btn btn-primary"
+													value="Cancel"/>
+													</div>
 													
 											</h:column>
 										</h:dataTable>
