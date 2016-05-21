@@ -104,7 +104,10 @@ public class Product {
 	public void setSpec(String spec) {
 		this.spec = spec;
 	}
-	
+	@Override
+	public String toString(){
+		return name;
+	}
 	
 	
 }

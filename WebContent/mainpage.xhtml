@@ -93,7 +93,7 @@
 									<h:graphicImage value="/bannerImageServlet?id=1" class="first-slide" alt="First slide"/>
 									<div class="container">
 										<div class="carousel-caption" style="text-align: center">
-											<h1>Highlight Product #{highlight.specialSelection[0].name}</h1>
+											<h1>Highlight Product #{highlight.specialSelection[0]}</h1>
 											<p>
 												<h:commandButton action="catalogue" value="Go to product" class="btn btn-lg btn-primary">
 													<f:setPropertyActionListener target="#{productbean.selectedProduct}" value="#{highlight.specialSelection[0]}" />
@@ -106,7 +106,7 @@
 									<h:graphicImage value="/bannerImageServlet?id=2" class="second-slide" alt="Second slide"/>
 									<div class="container">
 										<div class="carousel-caption" style="text-align: center">
-											<h1>Highlight Product #{highlight.specialSelection[1].name}</h1>
+											<h1>Highlight Product #{highlight.specialSelection[1]}</h1>
 											<p>
 												<h:commandButton action="catalogue" value="Go to product" class="btn btn-lg btn-primary">
 													<f:setPropertyActionListener target="#{productbean.selectedProduct}" value="#{highlight.specialSelection[1]}" />
@@ -119,7 +119,7 @@
 									<h:graphicImage value="/bannerImageServlet?id=3" class="third-slide" alt="Third slide"/>
 									<div class="container">
 										<div class="carousel-caption" style="text-align: center">
-											<h1>Highlight Product #{highlight.specialSelection[2].name}</h1>
+											<h1>Highlight Product #{highlight.specialSelection[2]}</h1>
 											<p>
 												<h:commandButton action="catalogue" value="Go to product" class="btn btn-lg btn-primary">
 													<f:setPropertyActionListener target="#{productbean.selectedProduct}" value="#{highlight.specialSelection[2]}" />
