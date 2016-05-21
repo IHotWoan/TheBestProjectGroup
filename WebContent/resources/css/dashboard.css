@@ -17,6 +17,13 @@ body {
   border-bottom: 1px solid #eee;
 }
 
+.ui-growl {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    width: 301px;
+}
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
