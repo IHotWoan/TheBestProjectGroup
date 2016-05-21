@@ -40,11 +40,11 @@
 						<li><a href="aboutus.xhtml">About us <span
 								class="fa fa-user" aria-hidden="true"></span></a></li>
 					</ul>
-					<h:form class="navbar-form navbar-right">
+				<h:form class="navbar-form navbar-right">
 					<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}" />
-					<h:commandButton class="btn btn-success" action="#{supercategory.productSearch}" update=":productsform:productstable" ajax="true" >
-						<i class="fa fa-search"></i>
-					</h:commandButton>
+					<h:commandLink action="#{supercategory.productSearch}" update=":productsform:productstable" ajax="true" styleClass="btn btn-success">
+						<i class="fa fa-search"/>
+					</h:commandLink>
 				</h:form>
 				</div>
 			</div>
@@ -55,8 +55,11 @@
 				<div class="col-sm-3 col-md-2 sidebar">
 					<h:form>
 						<ul class="nav nav-sidebar">
-						<li class="active"><a href="index.xhtml">All products<span
-								class="sr-only">(current)</span></a></li>
+						<li class="active">
+									<h:commandButton action="#{supercategory.refreshAllProducts}"
+										 immediate="true" value="All products" class="btn btn-lg btn-link">
+									</h:commandButton>
+								</li>
 							<ui:repeat value="#{supercategory.categoryArray}" var="category">
 								<li><h:commandLink value="#{category.categoryName}"
 										action="#{category.filterProductCategory(category.categoryName)}"
@@ -75,7 +78,7 @@
 						</ul>
 					</h:form>
 				</div>
-
+			</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 					<h:form>
 						<div id="myCarousel" class="carousel" data-ride="carousel">
@@ -190,7 +193,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	<!-- /.container -->
 
 	<!-- Bootstrap core JavaScript

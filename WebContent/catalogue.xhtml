@@ -42,39 +42,41 @@
 				</ul>
 				<h:form class="navbar-form navbar-right">
 					<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}" />
-					<h:commandButton class="btn btn-success" action="#{supercategory.productSearch}" update=":productsform:productstable" ajax="true" >
-						<i class="fa fa-search"></i>
-					</h:commandButton>
+					<h:commandLink action="#{supercategory.productSearch}" update=":productsform:productstable" ajax="true" styleClass="btn btn-success">
+						<i class="fa fa-search"/>
+					</h:commandLink>
 				</h:form>
 			</div>
 		</div>
 	</nav>
-
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<h:form>
-					<ul class="nav nav-sidebar">
-						<li class="active"><a href="index.xhtml">All products<span
-								class="sr-only">(current)</span></a></li>
-						<ui:repeat value="#{supercategory.categoryArray}" var="category">
-							<li><h:commandLink value="#{category.categoryName}"
-									action="#{category.filterProductCategory(category.categoryName)}"
-									update=":productsform:productstable" ajax="true">
-									<f:actionListener binding="#{supercategory.hideBrands()}" />
-									<f:setPropertyActionListener target="#{category.displayBrands}"
-										value="#{'True'}" />
-								</h:commandLink> <ui:repeat value="#{category.subCategoryArray}"
-									var="subcategory">
-									<li><h:commandLink value="#{subcategory.subCategoryName}"
-											action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}"
-											rendered="#{category.displayBrands}"
-											update=":productsform:productstable" ajax="true" /></li>
-								</ui:repeat></li>
-						</ui:repeat>
-					</ul>
-				</h:form>
-			</div>
+<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<h:form>
+						<ul class="nav nav-sidebar">
+						<li class="active">
+									<h:commandButton action="#{supercategory.refreshAllProducts}"
+										 immediate="true" value="All products" class="btn btn-link">
+									</h:commandButton>
+								</li>
+							<ui:repeat value="#{supercategory.categoryArray}" var="category">
+								<li><h:commandLink value="#{category.categoryName}"
+										action="#{category.filterProductCategory(category.categoryName)}"
+										update=":productsform:productstable" ajax="true">
+										<f:actionListener binding="#{supercategory.hideBrands()}" />
+										<f:setPropertyActionListener
+											target="#{category.displayBrands}" value="#{'True'}" />
+									</h:commandLink> <ui:repeat value="#{category.subCategoryArray}"
+										var="subcategory">
+										<li><h:commandLink value="#{subcategory.subCategoryName}"
+												action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}"
+												rendered="#{category.displayBrands}"
+												update=":productsform:productstable" ajax="true" /></li>
+									</ui:repeat></li>
+							</ui:repeat>
+						</ul>
+					</h:form>
+				</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="margin-top:10px">
 				<h:form id="productinfo">
 						<p:growl id="growl" showDetail="true" sticky="true" />
@@ -110,7 +112,7 @@
 										<hr />
 										<div class="btn-group cart">
 											<h:commandButton action="#{productbean.addToShoppingCart()}"
-												value="Add to cart" class="btn btn-success" />
+												value="Add to cart" class="btn btn-lg btn-success" />
 										</div>
 									</div>
 						 </h:form>
@@ -169,7 +171,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+</div>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

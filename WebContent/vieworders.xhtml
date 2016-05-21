@@ -35,10 +35,12 @@
 						<li><a href="contactus.xhtml">Contact us <span class="fa fa-fax" aria-hidden="true"></span></a></li>
 						<li><a href="aboutus.xhtml">About us <span class="fa fa-user" aria-hidden="true"></span></a></li>
 					</ul>	
-					<form class="navbar-form navbar-right">
-						<input type="text" class="form-control" placeholder="Search..."/>
-                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
-					</form>
+						<h:form class="navbar-form navbar-right">
+					<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}" />
+					<h:commandLink action="#{supercategory.productSearch}" update=":productsform:productstable" ajax="true" styleClass="btn btn-success">
+						<i class="fa fa-search"/>
+					</h:commandLink>
+				</h:form>
 				</div>
 			</div>
 		</nav>
