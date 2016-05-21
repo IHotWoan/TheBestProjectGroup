@@ -58,11 +58,11 @@
 				<div class="col-sm-3 col-md-2 sidebar">
 					<h:form>
 					<ul class="list-group" style="list-style-type:none" id="menu">
-					<li class="active"><h:form class="navbar-form pull-right">
+					<li class="active">
 									<h:commandButton action="#{supercategory.refreshAllProducts}"
 										 immediate="true" value="All products" class="btn btn-lg btn-link">
 									</h:commandButton>
-								</h:form></li>
+								</li>
 						<ui:repeat value="#{supercategory.categoryArray}" var="category">
 							<li class="list-group-item">
 							<h:commandLink value="#{category.categoryName}"

@@ -17,13 +17,12 @@ body {
   border-bottom: 1px solid #eee;
 }
 
-.ui-growl {
+.ui-growl2 {
     position: fixed;
-    top: 100px;
+    top: 60px;
     right: 20px;
     width: 301px;
 }
-
 
 /*
  * Top navigation
