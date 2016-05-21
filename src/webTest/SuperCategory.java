@@ -161,6 +161,7 @@ public class SuperCategory implements Serializable{
 					searchProduct.setBrandName(rs.getString("brand_name"));
 					searchProduct.setBrandID(rs.getString("brand_ID"));
 					searchProduct.setDescription(rs.getString("product_description"));
+					searchProduct.setSpec(rs.getString("product_spec"));
 					searchProduct.setPrice(Double.parseDouble(rs.getString("product_price")));
 					searchProduct.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
 					
@@ -176,6 +177,7 @@ public class SuperCategory implements Serializable{
 					searchProduct.setBrandName(rs.getString("brand_name"));
 					searchProduct.setBrandID(rs.getString("brand_ID"));
 					searchProduct.setDescription(rs.getString("product_description"));
+					searchProduct.setSpec(rs.getString("product_spec"));
 					searchProduct.setPrice(Double.parseDouble(rs.getString("product_price")));
 					searchProduct.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
 					
@@ -191,6 +193,7 @@ public class SuperCategory implements Serializable{
 					searchProduct.setBrandName(rs.getString("brand_name"));
 					searchProduct.setBrandID(rs.getString("brand_ID"));
 					searchProduct.setDescription(rs.getString("product_description"));
+					searchProduct.setSpec(rs.getString("product_spec"));
 					searchProduct.setPrice(Double.parseDouble(rs.getString("product_price")));
 					searchProduct.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
 					
@@ -400,8 +403,13 @@ public class SuperCategory implements Serializable{
 	}
 	
 	public String deleteAction(Product product) {
-	    
-		product.setDeletable(true);
+		
+	    if(product.isDeletable()){
+	    	product.setDeletable(false);
+	    }
+	    else{
+	    	product.setDeletable(true);
+	    }
 		return null;
 	}
 
@@ -434,8 +442,14 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String deleteCategory(Category category) {
-
-		category.setDeletable(true);
+		
+		if(category.isDeletable()){
+			
+			category.setDeletable(false);
+		}
+		else{
+			category.setDeletable(true);
+		}
 		return null;
 	}
 	
@@ -584,8 +598,13 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String deleteSubCategory(SubCategory subcategory) {
-
-		subcategory.setDeletable(true);
+		
+		if(subcategory.isDeletable()){
+			subcategory.setDeletable(false);
+		}
+		else{
+			subcategory.setDeletable(true);
+		}
 		return null;
 	}
 

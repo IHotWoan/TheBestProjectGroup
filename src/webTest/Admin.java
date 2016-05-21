@@ -129,7 +129,13 @@ public class Admin {
 	
 	public String deleteAction(User user) {
 		if(!this.currentUser.equals(user))
-			user.setDeletable(true);
+			if(user.isDeletable()){
+				user.setDeletable(false);
+			}
+			else{
+				user.setDeletable(true);
+			}
+		
 		return null;
 	}
 

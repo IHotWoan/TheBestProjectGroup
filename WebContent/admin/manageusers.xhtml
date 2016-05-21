@@ -133,8 +133,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													update="@form" ajax="true" rendered="#{user.deletable and admin.hasPermission(user)}" />
 													</div>
 													<div class="btn-group cancel">
-													<h:button class="btn btn-primary"
-													value="Cancel"/>
+													<h:commandButton class="btn btn-primary"
+													value="Cancel" 
+													action="#{admin.deleteAction(user)}" 
+													rendered="#{user.deletable and admin.hasPermission(user)}"/>
 													</div>
 											</h:column>
 										</h:dataTable>

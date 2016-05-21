@@ -139,9 +139,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													action="#{supercategory.confirmCategoryDelete(category.categoryID)}"
 													update="@form" ajax="true" rendered="#{category.deletable}" />
 												<h:commandButton style="margin-left: 30px"
-													class="btn btn-lg btn-primary" value="Cancel"
-													action="#{supercategory.deleteSubCategory(subcategory)}"
-													rendered="#{subcategory.deletable}" />
+													class="btn btn-primary"
+													value="Cancel" 
+													action="#{supercategory.deleteCategory(category)}" 
+													rendered="#{category.deletable}"/>	
 											</h:column>
 										</h:dataTable>
 										<div class="form-group">
@@ -202,11 +203,11 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													action="#{supercategory.confirmSubCategoryDelete(subcategory.subCategoryID)}"
 													update="@form" ajax="true"
 													rendered="#{subcategory.deletable}" />
-
 												<h:commandButton style="margin-left: 30px"
-													class="btn btn-lg btn-primary" value="Cancel"
-													action="#{supercategory.deleteSubCategory(subcategory)}"
-													rendered="#{subcategory.deletable}" />
+													class="btn btn-primary"
+													value="Cancel" 
+													action="#{supercategory.deleteSubCategory(subcategory)}" 
+													rendered="#{subcategory.deletable}"/>
 											</h:column>
 										</h:dataTable>
 										<div class="form-group">

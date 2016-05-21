@@ -53,6 +53,7 @@ public class SubCategory implements Serializable{
 			
 			Product product = new Product();
 			
+			//what gets changed here must be changed in SuperCategory (productSearch method) aswell.
 			product.setProductID(rs.getString("product_ID"));
 			product.setName(rs.getString("product_name"));
 			product.setCategoryID(categoryID);
