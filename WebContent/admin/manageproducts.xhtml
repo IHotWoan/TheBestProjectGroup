@@ -221,15 +221,14 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													update="@form" ajax="true" rendered="#{product.deletable}" />
 													</div>
 													<div class="btn-group cancel">
-													<h:button class="btn btn-primary"
-													value="Cancel"/>
+													<h:commandButton class="btn btn-primary"
+													value="Cancel" 
+													action="#{supercategory.deleteAction(product)}"
+													rendered="#{product.deletable}" />
 													</div>
 													
 											</h:column>
 										</h:dataTable>
-
-
-
 
 										<h2>Add New Product</h2>
 										<table class="table table-bordered table-hover table-striped">
