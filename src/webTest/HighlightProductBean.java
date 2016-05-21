@@ -6,6 +6,7 @@ package webTest;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 //import javax.faces.bean.ViewScoped;
+import javax.servlet.http.HttpSession;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ public class HighlightProductBean implements Serializable{
 	
 	private Product[] topProducts = new Product[10];
 	private Product[] specialSelection = new Product[3];
-	
+	private ArrayList<String> idSelection = new ArrayList<String>();
 	
 	public Product[] getTopProducts() {
 		return topProducts;
@@ -43,11 +44,24 @@ public class HighlightProductBean implements Serializable{
 	public void setSpecialSelection(Product[] specialSelection) {
 		this.specialSelection = specialSelection;
 	}
+	
+
+	public ArrayList<String> getIdSelection() {
+		return idSelection;
+	}
+
+	public void setIdSelection(ArrayList<String> idSelection) {
+		this.idSelection = idSelection;
+	}
 
 	/**
 	 * Constructor of the highlight product bean.
 	 */
 	public HighlightProductBean(){
+		HttpSession session = SessionBean.getSession();
+        if(session.getAttribute("supercategory")==null)
+        	new SuperCategory();
+        
 		/**
 		 * Temporry array list which is used to count sales of product
 		 */
@@ -75,6 +89,7 @@ public class HighlightProductBean implements Serializable{
 				rs.next();
 				String receivedID = rs.getString(1);
 				specialSelection[i]=SuperCategory.getSpecificProduct(receivedID);
+				idSelection.add(specialSelection[i].getProductID());
 			}
 			db.close();
 			db = null;
@@ -109,7 +124,8 @@ public class HighlightProductBean implements Serializable{
 			MysqlConnect db = new MysqlConnect();
 			
 			for(int i=0;i<specialSelection.length;i++){
-				db.insert("UPDATE `shopdb`.`banners` SET `banner_productID`='"+specialSelection[i].getProductID()+"' WHERE `banner_id`="+i);			
+				db.insert("UPDATE `shopdb`.`banners` SET `banner_productID`='"+idSelection.get(i)+"' WHERE `banner_id`="+i);
+				specialSelection[i]=SuperCategory.getSpecificProduct(idSelection.get(i));
 			}
 			
 			db.close();

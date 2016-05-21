@@ -2,6 +2,8 @@ package webTest;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpSession;
+
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -132,6 +134,8 @@ public class SuperCategory implements Serializable{
 		
 		refreshAllProducts();
 		
+		HttpSession session = SessionBean.getSession();
+        session.setAttribute("supercategory", this);
 	}
 	
 	public String productSearch(){

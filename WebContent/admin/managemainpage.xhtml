@@ -113,19 +113,21 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 									</h:commandButton>
 
 								</h:form>
+								<h1>Select highlighted products</h1>
 								<h:form>
-									<h1>Select highlighted products</h1>
-									<h:dataTable value="#{highlight.specialSelection}" var="highlightproduct">
-										<h:column>
-											<h:selectOneMenu value="#{hightlightproduct}" class="form-control" style="max-width: 150px">
+									First product: <h:selectOneMenu value="#{highlight.idSelection[0]}" class="form-control" style="max-width: 150px">
 												<f:selectItems value="#{supercategory.productArray}" var="products"
-														itemLabel="#{products.name}" itemValue="#{products}" />
+														itemLabel="#{products.name}" itemValue="#{products.productID}" />
 											</h:selectOneMenu>
-										</h:column>
-									</h:dataTable>
-									
-									<h:commandButton class="btn btn-lg btn-info"
-									value="Save changes" action="#{highlight.saveSelection()}">
+									Second product: <h:selectOneMenu value="#{highlight.idSelection[1]}" class="form-control" style="max-width: 150px">
+												<f:selectItems value="#{supercategory.productArray}" var="products"
+														itemLabel="#{products.name}" itemValue="#{products.productID}" />
+												</h:selectOneMenu>
+									third product: <h:selectOneMenu value="#{highlight.idSelection[2]}" class="form-control" style="max-width: 150px">
+												<f:selectItems value="#{supercategory.productArray}" var="products"
+														itemLabel="#{products.name}" itemValue="#{products.productID}" />
+												</h:selectOneMenu>			
+									<h:commandButton class="btn btn-lg btn-info" value="Save changes" action="#{highlight.saveSelection}">
 									</h:commandButton>
 								</h:form>
 							</div>
