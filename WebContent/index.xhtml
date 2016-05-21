@@ -57,28 +57,30 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 					<h:form>
-						<ul class="nav nav-sidebar">
-						<li class="active"><h:form class="navbar-form pull-right">
-									<h:commandButton action="#{supercategory.refreshAllProducts}"
-										 immediate="true" value="All products" class="btn btn-lg btn-link">
-									</h:commandButton>
-								</h:form></li>
-							<ui:repeat value="#{supercategory.categoryArray}" var="category">
-								<li><h:commandLink value="#{category.categoryName}"
-										action="#{category.filterProductCategory(category.categoryName)}"
-										update=":productsform:productstable" ajax="true">
-										<f:actionListener binding="#{supercategory.hideBrands()}" />
-										<f:setPropertyActionListener
-											target="#{category.displayBrands}" value="#{'True'}" />
-									</h:commandLink> <ui:repeat value="#{category.subCategoryArray}"
-										var="subcategory">
-										<li><h:commandLink value="#{subcategory.subCategoryName}"
-												action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}"
-												rendered="#{category.displayBrands}"
-												update=":productsform:productstable" ajax="true" /></li>
-									</ui:repeat></li>
-							</ui:repeat>
-						</ul>
+					<ul class="list-group" id="menu">
+						<ui:repeat value="#{supercategory.categoryArray}" var="category">
+							<li class="list-group-item">
+							<h:commandLink value="#{category.categoryName}"
+									action="#{category.filterProductCategory(category.categoryName)}"
+									update=":productsform:productstable" ajax="true">
+									<f:actionListener binding="#{supercategory.hideBrands()}" />
+									<f:setPropertyActionListener target="#{category.displayBrands}"
+										value="#{'True'}"
+										class="navbar-toggle" data-toggle="collapse" data-parent="#menu" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"/>
+								</h:commandLink>
+								<h:panelGroup rendered="#{category.displayBrands}">
+									<ul style="margin-top: 10px" id="collapseOne">
+										<ui:repeat value="#{category.subCategoryArray}"
+									var="subcategory">
+									<li ><h:commandLink style="color: rgb(180,82,205)" value="#{subcategory.subCategoryName}"
+											action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}"
+											
+											update=":productsform:productstable" ajax="true" /></li>
+								</ui:repeat>
+							  </ul>
+							</h:panelGroup>
+						</li></ui:repeat>
+					</ul>
 					</h:form>
 				</div>
 

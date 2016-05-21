@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>ThePCShop page</title>
+	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
+</h:head>
+<h:body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><h:outputText
+						value="#{userLogin.userName}" /></a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="checkorder.xhtml">Track order</a></li>
+					<li><a href="index.xhtml">Products</a></li>
+					<li><a href="viewcart.xhtml">Shopping cart</a></li>
+					<li><a href="contactus.xhtml">Contact us</a></li>
+					<li><a href="aboutus.xhtml">About us</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search..." />
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<h2>Vertical Menu Bar / Navigation / Tabs</h2>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+
+				<div class="panel-group" id="accordion" role="tablist"
+					aria-multiselectable="true">
+
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingThree">
+							<h4 class="panel-title">
+								<a class="" role="button" data-toggle="collapse"
+									data-parent="#accordion" href="#collapseThree"
+									aria-expanded="true" aria-controls="collapseThree">
+									Collapsible Group Item #3 <span
+									class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+								</a>
+							</h4>
+						</div>
+						
+						
+						<div id="collapseThree" class="panel-collapse collapse in"
+							role="tabpanel" aria-labelledby="headingThree"
+							aria-expanded="true">
+							<div class="panel-body">
+								<div class="list-group">
+
+									<a href="#" class="list-group-item"> <span
+										class="glyphicon glyphicon-link" aria-hidden="true"></span>
+										Menu Item
+									</a> <a href="#" class="list-group-item"> <span
+										class="glyphicon glyphicon-link" aria-hidden="true"></span>
+										Menu Item
+									</a> <a href="#" class="list-group-item"> <span
+										class="glyphicon glyphicon-link" aria-hidden="true"></span>
+										Menu Item
+									</a>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+
+
+			<div class="col-md-8">
+
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+						src="//www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen=""></iframe>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+	</div>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
+	<h:outputScript library="bootstrap" name="js/jquery.js" />
+
+	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/raphael.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/morris.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/morris-data.js" />
+</h:body>
+</html>

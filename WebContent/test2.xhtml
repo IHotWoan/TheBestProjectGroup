@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>ThePCShop page</title>
+	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
+	<h:outputStylesheet library="bootstrap" name="/css/carousel.css" />
+	<h:outputStylesheet library="css" name="dashboard.css" />
+	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
+</h:head>
+<h:body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Computer Equipment</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.xhtml">Products <i
+							class="fa fa-product-hunt" aria-hidden="true"></i></a></li>
+					<li><a href="viewcart.xhtml">Shopping cart <span
+							class="fa fa-shopping-cart" aria-hidden="true"></span></a></li>
+					<li><a href="checkorder.xhtml">Track order <i
+							class="fa fa-map-marker" aria-hidden="true"></i></a></li>
+					<li><a href="contactus.xhtml">Contact us <i
+							class="fa fa-fax" aria-hidden="true"></i></a></li>
+					<li><a href="aboutus.xhtml">About us <i
+							class="fa fa-user" aria-hidden="true"></i></a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search..." />
+					<button class="btn btn-success" type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row"></div>
+		<h1 class="page-header">Shopping cart</h1>
+		<div class="table-responsive">
+			<h:form id="productsform">
+				<h:dataTable id="productstable"
+					value="#{shoppingcartbean.cart.products}" var="items"
+					class="table table-striped">
+					<h:column>
+						<h:graphicImage value="/productImageServlet?id=#{items.productID}"
+							width="100" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Product Name</f:facet>
+						<h:outputText value="#{items.name}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Product Category</f:facet>
+						<h:outputText value="#{items.categoryName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Product Price</f:facet>
+						<h:outputText value="#{items.price}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Product Quantity</f:facet>
+						<h:outputText value="#{shoppingcartbean.cart.getQuantity(items)}" />
+					</h:column>
+
+				</h:dataTable>
+				Total cost: <h:outputLabel
+					value="#{shoppingcartbean.cart.totalCost}" /> Kr
+				</h:form>
+			<div class="container">
+
+				<div class="row marketing">
+					<div class="col-lg-6">
+						<h4>
+							<b>Your detail</b>
+						</h4>
+						<hr />
+						
+							<form class="form-horizontal" role="form">
+								<fieldset>
+								<h:form method="post" id="checkout-order-form">
+						        <p:growl id="growl" showDetail="true" sticky="true" /> 
+									<!-- Text input-->
+									<div class="form-group">
+										<div class="col-sm-12">
+											<h:inputText name="email" id="email" type="text"
+												a:placeholder="Email Address" size="100"
+												value="#{shoppingcartbean.order.email}"
+												style=" height : 40px;" class="form-control" />
+										</div>
+									</div>
+									<hr />
+									<p>
+										<b>Shipping Details</b>
+									</p>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<div class="col-sm-12">
+											<h:inputText name="name" id="name"
+												value="#{shoppingcartbean.order.customerName}"
+												class="form-control" size="100" style=" height : 30px;"
+												a:placeholder="Name" />
+										</div>
+									</div>
+									<!-- Text input-->
+									<div class="form-group">
+										<div class="col-sm-12">
+											<h:inputText name="address" id="address"
+												value="#{shoppingcartbean.order.customerAddress}"
+												class="form-control" size="100" style=" height : 30px;"
+												a:placeholder="Shipping Adress" />
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<div class="col-sm-12">
+											<h:inputText name="city" id="city"
+												value="#{shoppingcartbean.order.city}" class="form-control"
+												size="100" style=" height : 30px;" a:placeholder="City" />
+										</div>
+									</div>
+
+									<!-- Text input-->
+									<div class="form-group">
+										<div class="col-sm-6">
+											<h:inputText name="phone" id="phone"
+												value="#{shoppingcartbean.order.phone}" class="form-control"
+												size="40" style=" height : 30px;"
+												a:placeholder="Phone number" />
+										</div>
+										<div class="col-sm-6">
+											<h:inputText name="zip" id="zip"
+												value="#{shoppingcartbean.order.zipCode}"
+												class="form-control" size="40" style=" height : 30px;"
+												a:placeholder="ZIP code" />
+										</div>
+									</div>
+
+									<!-- Select Basic -->
+									<div class="form-group">
+										<div class="col-md-12">
+											<select id="Country" name="Country" class="form-control">
+												<option value="1">Sverige</option>
+												<option value="2">England</option>
+												<option value="3">Tyskland</option>
+												<option value="4">Korea</option>
+											</select>
+										</div>
+									</div>
+										<h:commandButton value="back to shopping" action="index" class="btn btn-danger"/>
+							       <h:commandButton value="submit"
+								action="#{shoppingcartbean.proceedOrder()}" class="btn btn-success"/>
+						        </h:form>
+								</fieldset>
+							</form>
+
+							<hr />
+						<!-- /input-group -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+	<!-- /.container -->
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+
+</h:body>
+</html>
