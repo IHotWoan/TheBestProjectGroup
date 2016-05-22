@@ -133,16 +133,14 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-										<h:dataTable
-											class="table table-bordered table-hover table-striped"
+										<p:dataTable
 											value="#{ordertable.undeliveredOrderarray}"
-											var="undeliveredorder">
-											<h:column>
+											var="undeliveredorder" rows="20" paginator="true" paginatorPosition="bottom">
+											<p:column style="width:30px;">
 												<h:selectBooleanCheckbox
 													value="#{ordertable.checked[undeliveredorder.orderID]}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Order ID</f:facet>
+											</p:column>
+											<p:column headerText="Order ID" style="width:120px;" sortBy="#{deliveredorder.orderID}">
 												<h:commandLink value="#{undeliveredorder.orderID}"
 													action="ordernumbers">
 													<f:setPropertyActionListener
@@ -152,20 +150,17 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 														target="#{ordertable.selected}"
 														value="#{undeliveredorder.orderID}" />
 												</h:commandLink>
-											</h:column>
-											<h:column>
-												<f:facet name="header">Customer Name</f:facet>
-    										#{undeliveredorder.customerName}
-    										</h:column>
-											<h:column>
-												<f:facet name="header">Ordered products</f:facet>
-    										#{undeliveredorder.summary}
-    										</h:column>
-											<h:column>
-												<f:facet name="header">Order status</f:facet>
+											</p:column>
+											<p:column headerText="Customer Name" style="width:180px;">
+    											#{undeliveredorder.customerName}
+    										</p:column>
+											<p:column headerText="Ordered products">
+    											#{undeliveredorder.summary}
+    										</p:column>
+											<p:column headerText="Order status" style="width:80px;" sortBy="#{undeliveredorder.orderstatus}">
     										#{undeliveredorder.orderstatus}
-    										</h:column>
-										</h:dataTable>
+    										</p:column>
+										</p:dataTable>
 								</div>
 							</div>
 						</div>

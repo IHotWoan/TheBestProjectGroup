@@ -115,10 +115,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 
 									<h:form id="productsform">
 										<p:growl id="growl" showDetail="true" sticky="false" />
-										<h:dataTable
-											class="table table-bordered table-hover table-striped"
-											id="productstable" value="#{supercategory.productArray}"
-											var="product">
+										<p:dataTable id="productstable" value="#{supercategory.productArray}"
+											var="product" rows="20" paginator="true" paginatorPosition="bottom">
 											<!--
 											<h:column>
 												<f:facet name="header">Product ID</f:facet>
@@ -128,15 +126,13 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													rendered="#{not product.editable}" />
 											</h:column>
 											-->
-											<h:column>
-												<f:facet name="header">Product Name</f:facet>
+											<p:column headerText="Product Name">
 												<h:inputText value="#{product.name}"
 													rendered="#{product.editable}" />
 												<h:outputText value="#{product.name}"
 													rendered="#{not product.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Product Category</f:facet>
+											</p:column>
+											<p:column headerText="Product Category">
 												<!--<h:inputText value="#{product.categoryID}" rendered="#{product.editable}" /> -->
 												<h:selectOneMenu value="#{product.categoryID}" class="form-control" style="max-width: 150px" rendered="#{product.editable}">
 													<f:selectItems value="#{supercategory.categoryArray}" var="category"
@@ -144,9 +140,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												</h:selectOneMenu>
 												<h:outputText value="#{product.categoryName}"
 													rendered="#{not product.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Product Brand</f:facet>
+											</p:column>
+											<p:column headerText="Brand">
 												<!--<h:inputText value="#{product.categoryID}" rendered="#{product.editable}" /> -->
 												<h:selectOneMenu value="#{product.brandID}" class="form-control" style="max-width: 150px" rendered="#{product.editable}">
 													<f:selectItems value="#{supercategory.subCategoryArray}" var="brands"
@@ -154,31 +149,20 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												</h:selectOneMenu>
 												<h:outputText value="#{product.brandName}"
 													rendered="#{not product.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Product Description</f:facet>
-												<h:commandLink action="updatedescription" value="#{product.description}">
-													<f:setPropertyActionListener
-														target="#{descriptionbean.selectedProduct}"
-														value="#{product}" />
-												</h:commandLink>
-											</h:column>
-											<h:column>
-												<f:facet name="header">Product Price</f:facet>
+											</p:column>
+											<p:column headerText="Price" style="width:80px;">
 												<h:inputText value="#{product.price}"
-													rendered="#{product.editable}" />
+													rendered="#{product.editable}" size="5"/>
 												<h:outputText value="#{product.price}"
 													rendered="#{not product.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Product Quantity</f:facet>
+											</p:column>
+											<p:column headerText="Quantity" style="width:65px;">
 												<h:inputText value="#{product.quantity}"
-													rendered="#{product.editable}" />
+													rendered="#{product.editable}" size="2"/>
 												<h:outputText value="#{product.quantity}"
 													rendered="#{not product.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Edit</f:facet>
+											</p:column>
+											<p:column headerText="Edit" style="width:80px;">
 												<h:commandButton class="btn btn-lg btn-info" value="Edit"
 													action="#{supercategory.editAction(product)}"
 													rendered="#{not product.editable}">
@@ -187,30 +171,27 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 														value="#{product.productID}" />
 												</h:commandButton>
 												<h:commandButton class="btn btn-lg btn-success"
-													value="Save Changes"
+													value="Save"
 													action="#{supercategory.confirmProductEdit}"
 													rendered="#{product.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Add image</f:facet>
+											</p:column>
+											<p:column headerText="Change image" style="width:100px;">
 												<h:commandButton class="btn btn-lg btn-info"
-													value="Change image" action="productimageupload">
+													value="image" action="productimageupload">
 													<f:setPropertyActionListener
 														target="#{fileuploadbean.productID}"
 														value="#{product.productID}" />
 												</h:commandButton>
-											</h:column>
-											<h:column>
-											<f:facet name="header">Add information</f:facet>
+											</p:column>
+											<p:column headerText="Modify description" style="width:110px;" >
 												<h:commandButton class="btn btn-lg btn-info"
-													value="Edit info" action="updatedescription">
+													value="description" action="updatedescription">
 													<f:setPropertyActionListener
 														target="#{descriptionbean.selectedProduct}"
 														value="#{product}" />
 												</h:commandButton>
-											</h:column>
-											<h:column>
-												<f:facet name="header">Delete</f:facet>
+											</p:column>
+											<p:column headerText="Delete" style="width:90px;">
 												<h:commandButton class="btn btn-lg btn-warning"
 													value="Delete"
 													action="#{supercategory.deleteAction(product)}"
@@ -229,14 +210,14 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													rendered="#{product.deletable}" />
 													</div>
 													
-											</h:column>
-										</h:dataTable>
+											</p:column>
+										</p:dataTable>
 
 										<h2>Add New Product</h2>
 										<table class="table table-bordered table-hover table-striped">
 											<tr>
 												<td>Product Name:</td>
-												<td><h:inputText size="10"
+												<td><h:inputText size="30"
 														value="#{supercategory.productName}" /></td>
 											</tr>
 											<tr>
@@ -260,17 +241,17 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</tr>
 											<tr>
 												<td>Product Price:</td>
-												<td><h:inputText size="10"
+												<td><h:inputText size="30"
 														value="#{supercategory.productPrice}" /></td>
 											</tr>
 											<tr>
 												<td>Product Description:</td>
-												<td><h:inputText size="10"
+												<td><h:inputText size="30"
 														value="#{supercategory.productDescription}" /></td>
 											</tr>
 											<tr>
 												<td>Product Quantity:</td>
-												<td><h:inputText size="10"
+												<td><h:inputText size="30"
 														value="#{supercategory.productQuantity}" /></td>
 											</tr>
 										</table>

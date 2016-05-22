@@ -120,12 +120,11 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<div class="table-responsive">
 									<h:form>
 
-										<h:dataTable
+										<p:dataTable
 											class="table table-bordered table-hover table-striped"
 											value="#{ordertable.deliveredOrderarray}"
-											var="deliveredorder">
-											<h:column>
-												<f:facet name="header">Order ID</f:facet>
+											var="deliveredorder" rows="20" paginator="true" paginatorPosition="bottom" >
+											<p:column headerText="Order ID" style="width:120px;" sortBy="#{deliveredorder.orderID}">
 												<h:commandLink value="#{deliveredorder.orderID}"
 													action="ordernumbers">
 													<f:setPropertyActionListener
@@ -135,20 +134,17 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 														target="#{ordertable.selected}"
 														value="#{deliveredorder.orderID}" />
 												</h:commandLink>
-											</h:column>
-											<h:column>
-												<f:facet name="header">Customer Name</f:facet>
+											</p:column>
+											<p:column headerText="Customer Name" style="width:180px;">
     											#{deliveredorder.customerName}
-    											</h:column>
-											<h:column>
-												<f:facet name="header">Ordered products</f:facet>
+    										</p:column>
+											<p:column headerText="Ordered products">
     											#{deliveredorder.summary}
-    											</h:column>
-											<h:column>
-												<f:facet name="header">Order status</f:facet>
+    										</p:column>
+											<p:column headerText="Order status" style="width:80px;">
     											#{deliveredorder.orderstatus}
-    											</h:column>
-										</h:dataTable>
+    										</p:column>
+										</p:dataTable>
 									</h:form>
 								</div>
 								<div class="text-right">
