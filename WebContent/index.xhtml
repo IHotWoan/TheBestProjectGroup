@@ -94,36 +94,34 @@
 				<h1 class="page-header">Our products</h1>
 				<div class="table-responsive">
 					<h:form id="productsform">
-						<h:dataTable id="productstable"
+						<p:dataTable id="productstable"
 							value="#{supercategory.productArray}" var="displayedproduct"
-							class="table table-striped">
-							<h:column>
+							class="table table-striped" rows="10" paginator="true" paginatorPosition="bottom" >
+							<p:column style="width:130px;">
 								<h:graphicImage
 									value="/productImageServlet?id=#{displayedproduct.productID}"
-									width="100" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Product Name</f:facet>
+									width="110" />
+							</p:column>
+							<p:column headerText="Product name">
 								<h:commandLink action="catalogue"
 									value="#{displayedproduct.name}">
 									<f:setPropertyActionListener
 										target="#{productbean.selectedProduct}"
 										value="#{displayedproduct}" />
 								</h:commandLink>
-							</h:column>
-							<h:column>
-								<f:facet name="header">Product Category</f:facet>
+							</p:column>
+							<p:column headerText="Product Category" style="width:110px;">
 								<h:outputText value="#{displayedproduct.categoryName}" />
-							</h:column>
-							<h:column>
+							</p:column>
+							<p:column headerText="Product Description">
 								<f:facet name="header">Product Description</f:facet>
 								<h:outputText value="#{displayedproduct.description}" />
-							</h:column>
-							<h:column>
+							</p:column>
+							<p:column headerText="Prodct Price" sortBy="#{displayedproduct.price}" style="width:90px;">
 								<f:facet name="header">Product Price</f:facet>
 								<h:outputText value="#{displayedproduct.price}" />
-							</h:column>
-						</h:dataTable>
+							</p:column>
+						</p:dataTable>
 					</h:form>
 				</div>
 				<footer>
@@ -164,8 +162,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
 	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
 
 </h:body>
