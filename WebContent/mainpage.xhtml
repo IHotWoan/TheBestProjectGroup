@@ -5,6 +5,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
+	<title>TechPhive</title>
 	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.min.css" />
 	<h:outputStylesheet library="bootstrap" name="/css/carousel.css" />
 	<h:outputStylesheet library="css" name="dashboard.css" />
@@ -74,7 +75,7 @@
 									var="subcategory">
 									<li ><h:commandLink style="color: rgb(180,82,205)" value="#{subcategory.subCategoryName}"
 											action="#{subcategory.filterProductBrand(subcategory.subCategoryName,category.categoryName)}"
-											
+
 											update=":productsform:productstable" ajax="true" /></li>
 								</ui:repeat>
 							  </ul>
@@ -146,15 +147,16 @@
 							<div class="container marketing">
 								<!-- Three columns of text below the carousel -->
 								<div class="row">
+								<h2>Our bestselling products</h2>
 								<ui:repeat value="#{highlight.topProducts}" var="topproducts">
-									<div class="col-lg-4">
-										<h:graphicImage class="img-circle" width="140" height="140" value="/productImageServlet?id=#{topproducts.productID}" />
-										<h2><h:outputLabel value="#{topproducts.name}" /> </h2>
+									<div class="col-lg-5">
+										<h:graphicImage class="img-circle" width="120" height="120" value="/productImageServlet?id=#{topproducts.productID}" />
+										<h3><h:outputLabel value="#{topproducts.name}" /> </h3>
 										<p>
 											<h:commandButton action="catalogue" value="View details" class="btn btn-default">
 												<f:setPropertyActionListener target="#{productbean.selectedProduct}" value="#{topproducts}" />
 											</h:commandButton>
-											
+
 										</p>
 									</div>
 								</ui:repeat>

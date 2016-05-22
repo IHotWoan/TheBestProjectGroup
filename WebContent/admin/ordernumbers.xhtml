@@ -152,8 +152,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="#{ordertable.selectedOrder.customerName}" /></li>
 											<li class="list-group-item">Address: <h:outputLabel
 													value="#{ordertable.selectedOrder.customerAddress}" /><br />
-												<h:outputLabel value="#{ordertable.selectedOrder.zipCode}" />
-												<h:outputLabel value="#{ordertable.selectedOrder.city}" />
+												#{ordertable.selectedOrder.zipCode}  #{ordertable.selectedOrder.city}
 												<br /></li>
 											<li class="list-group-item">Mobile number: <h:outputLabel
 													value="#{ordertable.selectedOrder.phone}" /></li>
