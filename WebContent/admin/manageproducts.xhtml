@@ -203,8 +203,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												<h:commandButton class="btn btn-lg btn-info"
 													value="Edit info" action="updatedescription">
 													<f:setPropertyActionListener
-														target="#{fileuploadbean.productID}"
-														value="#{product.productID}" />
+														target="#{descriptionbean.selectedProduct}"
+														value="#{product}" />
 												</h:commandButton>
 											</h:column>
 											<h:column>
