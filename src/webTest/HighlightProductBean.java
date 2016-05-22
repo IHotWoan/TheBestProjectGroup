@@ -24,9 +24,11 @@ import java.util.Comparator;
 @SessionScoped
 public class HighlightProductBean implements Serializable{
 	private static final long serialVersionUID = 4038383404714180997L;
+	private final int NUMBER_OF_TOP_PRODUCTS=10;
+	private final int NUMBER_OF_SPECIAL=3;
 	
-	private Product[] topProducts = new Product[10];
-	private Product[] specialSelection = new Product[3];
+	private Product[] topProducts = new Product[NUMBER_OF_TOP_PRODUCTS];
+	private Product[] specialSelection = new Product[NUMBER_OF_SPECIAL];
 	private ArrayList<String> idSelection = new ArrayList<String>();
 	
 	public Product[] getTopProducts() {
@@ -85,7 +87,7 @@ public class HighlightProductBean implements Serializable{
 				
 			}
 			rs = db.query("SELECT banner_productID FROM shopdb.banners;");
-			for(int i=0;i<specialSelection.length;i++){
+			for(int i=0;i<NUMBER_OF_SPECIAL;i++){
 				rs.next();
 				String receivedID = rs.getString(1);
 				specialSelection[i]=SuperCategory.getSpecificProduct(receivedID);
@@ -103,7 +105,7 @@ public class HighlightProductBean implements Serializable{
 			}
 		});
 		
-		for(int i=0;i<10;i++){
+		for(int i=0;i<NUMBER_OF_TOP_PRODUCTS;i++){
 			topProducts[i]=SuperCategory.getSpecificProduct(productsales.get(i).ID);
 		}
 	}
@@ -123,7 +125,7 @@ public class HighlightProductBean implements Serializable{
 		try {
 			MysqlConnect db = new MysqlConnect();
 			
-			for(int i=0;i<specialSelection.length;i++){
+			for(int i=0;i<NUMBER_OF_SPECIAL;i++){
 				db.insert("UPDATE `shopdb`.`banners` SET `banner_productID`='"+idSelection.get(i)+"' WHERE `banner_id`="+i);
 				specialSelection[i]=SuperCategory.getSpecificProduct(idSelection.get(i));
 			}

@@ -41,6 +41,12 @@ public class UserLogin implements Serializable {
 		if (isValidIDPW()) {
             HttpSession session = SessionBean.getSession();
             session.setAttribute("username", userName);
+            
+            //Refresh all products (remove filter)
+            SuperCategory supercat = (SuperCategory) session.getAttribute("supercategory");
+            if(supercat!=null)
+            	supercat.refreshAllProducts();
+            
             return "success";
         } else {
 			FacesContext.getCurrentInstance().addMessage("loginform",

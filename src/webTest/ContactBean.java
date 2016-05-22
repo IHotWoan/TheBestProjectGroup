@@ -43,6 +43,7 @@ public class ContactBean implements Serializable{
 			String command = "INSERT INTO `shopdb`.`messages` (`message_subject`, `message_name`, `message_email`, `message_content`,`message_read`,`message_time`)"
 					+ "VALUES ('"+input.getSubject()+"', '"+input.getCustomerName()+"', '"+input.getCustomerEmail()+"', '"+input.getCustomerMessage()+"','0',NOW());";
 			
+			unreadMessages.add(input);
 			db.insert(command);
 			db.close();
 			
@@ -147,9 +148,9 @@ public class ContactBean implements Serializable{
 	public void setReadMessages(ArrayList<Contact> readMessages) {
 		this.readMessages = readMessages;
 	}
-	
-	
-	
+	public int getUnreadCount(){
+		return unreadMessages.size();
+	}
 	
 	
 }

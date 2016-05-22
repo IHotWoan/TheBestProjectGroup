@@ -135,7 +135,8 @@ public class SuperCategory implements Serializable{
 		refreshAllProducts();
 		
 		HttpSession session = SessionBean.getSession();
-        session.setAttribute("supercategory", this);
+		if(session.getAttribute("supercategory")==null)
+			session.setAttribute("supercategory", this);
 	}
 	
 	public String productSearch(){
@@ -255,11 +256,6 @@ public class SuperCategory implements Serializable{
 		
 		return "index";
 		
-	}
-	
-	public String refreshInAdmin(){
-		refreshAllProducts();
-		return "manageproducts";
 	}
 	public ArrayList<Category> getCategoryArray(){
 		

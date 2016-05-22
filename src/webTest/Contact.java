@@ -32,7 +32,7 @@ public class Contact {
 	private String customerName;
 	private String customerEmail;
 	private String customerMessage;
-	private Date date;
+	private Date date = new Date();
 	private boolean read;
 	private int id;
 	

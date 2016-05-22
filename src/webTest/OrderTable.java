@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
@@ -29,16 +28,7 @@ public class OrderTable implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Order> undeliveredOrderarray = new ArrayList<Order>();
-	private ArrayList<Order> deliveredOrderarray = new ArrayList<Order>();
-
-	public ArrayList<String> getEmailOrderList() {
-		return emailOrderList;
-	}
-
-	public void setEmailOrderList(ArrayList<String> emailOrderList) {
-		this.emailOrderList = emailOrderList;
-	}
-
+	private ArrayList<Order> deliveredOrderarray = new ArrayList<Order>();	
 	private ArrayList<String> emailOrderList = new ArrayList<String>();
 	
 	//These fields below are used for 'selected products' in ordernumbers page.
@@ -48,42 +38,12 @@ public class OrderTable implements Serializable{
     private Map<String, Boolean> checked = new HashMap<String, Boolean>();
 
 
-	public String getEmail() {
-		return email;
+    /**
+     * Constructor
+     */
+	public OrderTable(){
+		retrieveOrders();
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	private String email;
-	
-	public SelectItem[] getStatusValues(){
-		  SelectItem[] items = new SelectItem[Status.values().length];
-		  int i = 0;
-		  for(Status s: Status.values())
-			  items[i++] = new SelectItem(s, s.getLabel());
-		  
-		  return items;
-	}
-	
-	public String getSelected() {
-		return selected;
-	}
-
-	public void setSelected(String selected) {
-		this.selected = selected;
-	}
-
-	public Order getSelectedOrder() {
-		return selectedOrder;
-	}
-
-	public void setSelectedOrder(Order selectedOrder) {
-		this.selectedOrder = selectedOrder;
-	}
-
-	@PostConstruct
 	public void retrieveOrders(){
 		deliveredOrderarray.clear();
 		undeliveredOrderarray.clear();
@@ -134,41 +94,8 @@ public class OrderTable implements Serializable{
 		return "vieworders";
 	}
 
-
-
 	public String display(){
 		return "ordernumbers";
-	}
-
-	public ArrayList<Order> getUndeliveredOrderarray() {
-		return undeliveredOrderarray;
-	}
-
-	public void setUndeliveredOrderarray(ArrayList<Order> undeliveredOrderarray) {
-		this.undeliveredOrderarray = undeliveredOrderarray;
-	}
-
-	public ArrayList<Order> getDeliveredOrderarray() {
-		return deliveredOrderarray;
-	}
-
-	public void setDeliveredOrderarray(ArrayList<Order> deliveredOrderarray) {
-		this.deliveredOrderarray = deliveredOrderarray;
-	}
-
-	/**
-	 * @return the selectedStatus
-	 */
-	public Status getSelectedStatus() {
-		return selectedStatus;
-	}
-
-	/**
-	 * @param selectedStatus the selectedStatus to set
-	 */
-	public void setSelectedStatus(Status selectedStatus) {
-		this.selectedStatus = selectedStatus;
-		
 	}
 	
 	public String updateOrderStatus(){
@@ -245,13 +172,6 @@ public class OrderTable implements Serializable{
 		checked.clear();
 		return "manageorders";
 	}
-	public Map<String, Boolean> getChecked() {
-		return checked;
-	}
-
-	public void setChecked(Map<String, Boolean> checked) {
-		this.checked = checked;
-	}
 	/**
 	 * The method overwrites the current array with queried order.
 	 * @param whereToNavigateAfterwards
@@ -294,4 +214,88 @@ public class OrderTable implements Serializable{
 		retrieveOrders();
 		return whereToNavigateAfterwards;
 	}
+	
+	//begin getters and setters
+	public Map<String, Boolean> getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Map<String, Boolean> checked) {
+		this.checked = checked;
+	}
+	public ArrayList<Order> getUndeliveredOrderarray() {
+		return undeliveredOrderarray;
+	}
+
+	public void setUndeliveredOrderarray(ArrayList<Order> undeliveredOrderarray) {
+		this.undeliveredOrderarray = undeliveredOrderarray;
+	}
+
+	public ArrayList<Order> getDeliveredOrderarray() {
+		return deliveredOrderarray;
+	}
+
+	public void setDeliveredOrderarray(ArrayList<Order> deliveredOrderarray) {
+		this.deliveredOrderarray = deliveredOrderarray;
+	}
+
+	/**
+	 * @return the selectedStatus
+	 */
+	public Status getSelectedStatus() {
+		return selectedStatus;
+	}
+
+	/**
+	 * @param selectedStatus the selectedStatus to set
+	 */
+	public void setSelectedStatus(Status selectedStatus) {
+		this.selectedStatus = selectedStatus;
+		
+	}
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	private String email;
+	
+	public SelectItem[] getStatusValues(){
+		  SelectItem[] items = new SelectItem[Status.values().length];
+		  int i = 0;
+		  for(Status s: Status.values())
+			  items[i++] = new SelectItem(s, s.getLabel());
+		  
+		  return items;
+	}
+	
+	public String getSelected() {
+		return selected;
+	}
+
+	public void setSelected(String selected) {
+		this.selected = selected;
+	}
+
+	public Order getSelectedOrder() {
+		return selectedOrder;
+	}
+
+	public void setSelectedOrder(Order selectedOrder) {
+		this.selectedOrder = selectedOrder;
+	}
+	public ArrayList<String> getEmailOrderList() {
+		return emailOrderList;
+	}
+
+	public void setEmailOrderList(ArrayList<String> emailOrderList) {
+		this.emailOrderList = emailOrderList;
+	}
+	public int getUndeliveredCount(){
+		return undeliveredOrderarray.size();
+	}
+	
 }
