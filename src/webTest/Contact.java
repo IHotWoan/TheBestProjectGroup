@@ -3,6 +3,8 @@
  */
 package webTest;
 
+import java.util.Date;
+
 /**
  * The class for contact formula.
  * @author songhokun
@@ -10,9 +12,10 @@ package webTest;
  */
 public class Contact {
 	public enum Matter{
+		ordernumber("I forgot my order number"),
 		general("General customer service"),
 		order("Order takes too long time!"),
-		guarantee("Product support"),
+		guarantee("Product related issues(gurantee)"),
 		rejected("Why is my order rejected?");
 		
 		private String label;
@@ -29,6 +32,7 @@ public class Contact {
 	private String customerName;
 	private String customerEmail;
 	private String customerMessage;
+	private Date date;
 	private boolean read;
 	private int id;
 	
@@ -82,6 +86,12 @@ public class Contact {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	

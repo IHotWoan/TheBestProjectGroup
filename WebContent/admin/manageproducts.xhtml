@@ -156,7 +156,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												<h:outputText value="#{product.price}"
 													rendered="#{not product.editable}" />
 											</p:column>
-											<p:column headerText="Quantity" style="width:65px;">
+											<p:column headerText="Quantity" style="width:65px;" sortBy="#{product.quantity}">
 												<h:inputText value="#{product.quantity}"
 													rendered="#{product.editable}" size="2"/>
 												<h:outputText value="#{product.quantity}"

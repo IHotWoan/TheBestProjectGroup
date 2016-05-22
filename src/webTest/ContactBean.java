@@ -40,8 +40,8 @@ public class ContactBean implements Serializable{
 	public String registerMessage(){
 		try {
 			MysqlConnect db = new MysqlConnect();
-			String command = "INSERT INTO `shopdb`.`messages` (`message_subject`, `message_name`, `message_email`, `message_content`,`message_read`)"
-					+ "VALUES ('"+input.getSubject()+"', '"+input.getCustomerName()+"', '"+input.getCustomerEmail()+"', '"+input.getCustomerMessage()+"','0');";
+			String command = "INSERT INTO `shopdb`.`messages` (`message_subject`, `message_name`, `message_email`, `message_content`,`message_read`,`message_time`)"
+					+ "VALUES ('"+input.getSubject()+"', '"+input.getCustomerName()+"', '"+input.getCustomerEmail()+"', '"+input.getCustomerMessage()+"','0',NOW());";
 			
 			db.insert(command);
 			db.close();
@@ -74,6 +74,8 @@ public class ContactBean implements Serializable{
 				temp.setCustomerMessage(rs.getString("message_content"));
 				temp.setRead(rs.getBoolean("message_read"));
 				temp.setId(rs.getInt("message_id"));
+				temp.setDate(rs.getTimestamp("message_time"));
+				
 				if(temp.isRead())
 					readMessages.add(temp);
 				else
