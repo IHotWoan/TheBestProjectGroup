@@ -102,10 +102,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<p:editor id="spec" widgetVar="editorWidget" value="#{descriptionbean.selectedProduct.spec}" width="600"/>
 								 <h:panelGrid columns="2" style="margin-top: 10px">
 								 <div class="btn-group submit">
-								 	<p:commandButton class="btn btn-lg btn-info" value="submit" action="#{descriptionbean.savechanges}" ajax="false"/>
+								 	<p:commandButton class="btn btn-lg btn-success" value="submit" action="#{descriptionbean.savechanges}" ajax="false"/>
 								 	</div>
 								 	<div class="btn-group submit">
-								 	<p:commandButton class="btn btn-lg btn-success" value="Go back to manage products" action="manageproducts"/>
+								 	<p:commandButton class="btn btn-danger" value="Go back to manage products" action="manageproducts"/>
 								 	</div>
 								 </h:panelGrid>
 							</div>

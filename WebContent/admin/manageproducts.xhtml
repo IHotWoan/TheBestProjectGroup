@@ -93,7 +93,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 									<h:commandButton class="btn btn-lg btn-primary"
 										action="#{supercategory.productSearch}" value="Search" update=":productsform:productstable" ajax="true"  />
 
-									<h:commandButton class="btn btn-lg btn-success"
+									<h:commandButton class="btn btn-lg btn-info"
 										action="#{supercategory.refreshAllProducts}" value="Show All" update=":productsform:productstable" ajax="true" />
 								</div>
 								</h:form>
@@ -221,7 +221,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													update="@form" ajax="true" rendered="#{product.deletable}" />
 													</div>
 													<div class="btn-group cancel">
-													<h:commandButton class="btn btn-primary"
+													<h:commandButton class="btn btn-success"
 													value="Cancel" 
 													action="#{supercategory.deleteAction(product)}"
 													rendered="#{product.deletable}" />
@@ -273,7 +273,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</tr>
 										</table>
 
-										<h:commandButton class="btn btn-lg btn-primary"
+										<h:commandButton class="btn btn-lg btn-success"
 											value="Add Product" action="#{supercategory.addProduct}"
 											update=":productsform:productstable" ajax="true" />
 

@@ -130,7 +130,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													update="@form" ajax="true" rendered="#{user.deletable and admin.hasPermission(user)}" />
 													</div>
 													<div class="btn-group cancel">
-													<h:commandButton class="btn btn-primary"
+													<h:commandButton class="btn btn-success"
 													value="Cancel" 
 													action="#{admin.deleteAction(user)}" 
 													rendered="#{user.deletable and admin.hasPermission(user)}"/>
@@ -151,7 +151,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</tr>
 										</table>
 
-										<h:commandButton class="btn btn-lg btn-primary"
+										<h:commandButton class="btn btn-lg btn-success"
 											value="Add User" action="#{admin.addUser}"
 											update=":userform:usertable" ajax="true" />
 									</h:form>

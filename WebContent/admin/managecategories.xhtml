@@ -134,15 +134,19 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Delete"
 													action="#{supercategory.deleteCategory(category)}"
 													rendered="#{not category.deletable}" />
-												<h:commandButton class="btn btn-lg btn-danger"
+													<div class="btn-group confirmdelete">
+												<h:commandButton class="btn btn-danger"
 													value="Confirm delete"
 													action="#{supercategory.confirmCategoryDelete(category.categoryID)}"
 													update="@form" ajax="true" rendered="#{category.deletable}" />
-												<h:commandButton style="margin-left: 30px"
-													class="btn btn-primary"
+													</div>
+													<div class="btn-group confirmdelete">
+												<h:commandButton
+													class="btn btn-success"
 													value="Cancel" 
 													action="#{supercategory.deleteCategory(category)}" 
-													rendered="#{category.deletable}"/>	
+													rendered="#{category.deletable}"/>
+													</div>	
 											</h:column>
 										</h:dataTable>
 										<div class="form-group">
@@ -152,7 +156,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												value="#{supercategory.categoryName}" />
 											<div class="btn-toolbar">
 												<br />
-												<h:commandButton class="btn btn-lg btn-primary"
+												<h:commandButton class="btn btn-lg btn-success"
 													action="#{supercategory.addCategory}" value="Add Category"
 													update=":categoryform:categorytable" ajax="true" />
 											</div>
@@ -198,16 +202,20 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Delete"
 													action="#{supercategory.deleteSubCategory(subcategory)}"
 													rendered="#{not subcategory.deletable}" />
-												<h:commandButton class="btn btn-lg btn-danger"
+												<div class="btn-group confirmdelete">
+												<h:commandButton class="btn btn-danger"
 													value="Confirm delete"
 													action="#{supercategory.confirmSubCategoryDelete(subcategory.subCategoryID)}"
 													update="@form" ajax="true"
 													rendered="#{subcategory.deletable}" />
-												<h:commandButton style="margin-left: 30px"
-													class="btn btn-primary"
+													</div>
+													<div class="btn-group cancel">
+												<h:commandButton
+													class="btn btn-success"
 													value="Cancel" 
 													action="#{supercategory.deleteSubCategory(subcategory)}" 
 													rendered="#{subcategory.deletable}"/>
+													</div>
 											</h:column>
 										</h:dataTable>
 										<div class="form-group">
@@ -217,7 +225,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												value="#{supercategory.subCategoryName}" />
 											<div class="btn-toolbar">
 												<br />
-												<h:commandButton class="btn btn-lg btn-primary"
+												<h:commandButton class="btn btn-lg btn-success"
 													action="#{supercategory.addSubCategory}" value="Add Brand"
 													update=":subcategoryform:subcategorytable" ajax="true" />
 											</div>

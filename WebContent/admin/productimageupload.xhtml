@@ -110,14 +110,14 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											validator="#{fileuploadbean.validateFile}"></h:inputFile>
 										<br />
 										<div class="btn-group upload">
-										<h:commandButton class="btn btn-lg btn-primary" value="Upload"
+										<h:commandButton class="btn btn-lg btn-success" value="Upload"
 											action="#{fileuploadbean.productUpload()}" />
 											</div>
 										<strong class="bg-warning"><h:messages class="error" for="uploadform" style="color:red;" /></strong>
 									</h:form>
 									<h:form>
 											<div class="btn-group cancel">
-										<h:commandButton class="btn btn-success" value="Go back to manage products"
+										<h:commandButton class="btn btn-danger" value="Go back to manage products"
 									     action="manageproducts" />
 									     </div>
 									</h:form>
