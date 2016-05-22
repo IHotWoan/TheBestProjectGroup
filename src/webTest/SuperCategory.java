@@ -467,6 +467,18 @@ public class SuperCategory implements Serializable{
 			product.setName(getProductName());
 			product.setCategoryID(getProductCategory());
 			product.setBrandID(getProductBrand());
+			for(Category c : categoryArray){
+				if(c.getCategoryID().equals(this.productCategory)){
+					product.setCategoryName(c.getCategoryName());
+					break;
+				}
+			}
+			for(SubCategory sc: subCategoryArray){
+				if(sc.getSubCategoryID().equals(this.productBrand)){
+					product.setBrandName(sc.getSubCategoryName());
+					break;
+				}
+			}
 			product.setPrice(getProductPrice());
 			product.setDescription(getProductDescription());
 			product.setQuantity(getProductQuantity());
@@ -478,6 +490,15 @@ public class SuperCategory implements Serializable{
 			productArray.add(product);
 			db.close();
 			db = null;
+			
+			//After adding the new product, the form should be reset // Songho
+			this.productName="";
+			this.productCategory="";
+			this.productBrand="";
+			this.productPrice=0.0;
+			this.productDescription="";
+			this.productQuantity=0;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
