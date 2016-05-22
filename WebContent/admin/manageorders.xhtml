@@ -141,7 +141,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="#{ordertable.checked[undeliveredorder.orderID]}" />
 											</p:column>
 											<p:column headerText="Order ID" style="width:120px;" sortBy="#{deliveredorder.orderID}">
-												<h:commandLink value="#{undeliveredorder.orderID}"
+												<h:commandLink value="#{undeliveredorder.orderID}" style="color: rgb(51,122,183)"
 													action="ordernumbers">
 													<f:setPropertyActionListener
 														target="#{ordertable.selectedOrder}"

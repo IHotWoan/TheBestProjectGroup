@@ -231,12 +231,7 @@ public class SuperCategory implements Serializable{
 				categoryArray.add(category);
 				
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		try {
-
+			
 			rs = db.query("SELECT * FROM brands");
 
 			while(rs.next()){

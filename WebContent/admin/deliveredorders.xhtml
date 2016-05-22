@@ -126,7 +126,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											var="deliveredorder" rows="20" paginator="true" paginatorPosition="bottom" >
 											<p:column headerText="Order ID" style="width:120px;" sortBy="#{deliveredorder.orderID}">
 												<h:commandLink value="#{deliveredorder.orderID}"
-													action="ordernumbers">
+													action="ordernumbers" style="color: rgb(51,122,183)">
 													<f:setPropertyActionListener
 														target="#{ordertable.selectedOrder}"
 														value="#{deliveredorder}" />

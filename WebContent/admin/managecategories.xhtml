@@ -98,26 +98,15 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<div class="table-responsive">
 
 									<h:form id="categoryform">
-										<h:dataTable
-											class="table table-bordered table-hover table-striped"
-											id="categorytable" value="#{supercategory.categoryArray}"
-											var="category">
-											<h:column>
-												<f:facet name="header">Category name</f:facet>
+										<p:dataTable id="categorytable" value="#{supercategory.categoryArray}"
+											var="category" rows="10" paginator="true" paginatorPosition="bottom">
+											<p:column headerText="Category name">
 												<h:inputText value="#{category.categoryName}" size="10"
 													rendered="#{category.editable}" />
 												<h:outputText value="#{category.categoryName}"
 													rendered="#{not category.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Category ID</f:facet>
-												<h:inputText value="#{category.categoryID}" size="10"
-													rendered="#{category.editable}" />
-												<h:outputText value="#{category.categoryID}"
-													rendered="#{not category.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Edit</f:facet>
+											</p:column>
+											<p:column headerText="Edit">
 												<h:commandButton class="btn btn-lg btn-info" value="Edit"
 													action="#{supercategory.editCategory(category)}"
 													rendered="#{not category.editable}">
@@ -129,9 +118,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Save Changes"
 													action="#{supercategory.confirmCategoryEdit}"
 													rendered="#{category.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Delete</f:facet>
+											</p:column>
+											<p:column headerText="Delete">
 												<h:commandButton class="btn btn-lg btn-warning"
 													value="Delete"
 													action="#{supercategory.deleteCategory(category)}"
@@ -149,8 +137,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													action="#{supercategory.deleteCategory(category)}" 
 													rendered="#{category.deletable}"/>
 													</div>	
-											</h:column>
-										</h:dataTable>
+											</p:column>
+										</p:dataTable>
 										<div class="form-group">
 
 											<Label>Category Name: </Label>
@@ -166,26 +154,15 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 									</h:form>
 
 									<h:form id="subcategoryform">
-										<h:dataTable
-											class="table table-bordered table-hover table-striped"
-											id="subcategorytable"
-											value="#{supercategory.subCategoryArray}" var="subcategory">
-											<h:column>
-												<f:facet name="header">Brand name</f:facet>
+										<p:dataTable id="subcategorytable" value="#{supercategory.subCategoryArray}"
+										var="subcategory" rows="10" paginator="true" paginatorPosition="bottom">
+											<p:column headerText="Brand name">
 												<h:inputText value="#{subcategory.subCategoryName}"
 													size="10" rendered="#{subcategory.editable}" />
 												<h:outputText value="#{subcategory.subCategoryName}"
 													rendered="#{not subcategory.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Brand ID</f:facet>
-												<h:inputText value="#{subcategory.subCategoryID}" size="10"
-													rendered="#{subcategory.editable}" />
-												<h:outputText value="#{subcategory.subCategoryID}"
-													rendered="#{not subcategory.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Edit</f:facet>
+											</p:column>
+											<p:column headerText="Edit">
 												<h:commandButton class="btn btn-lg btn-info" value="Edit"
 													action="#{supercategory.editSubCategory(subcategory)}"
 													rendered="#{not subcategory.editable}">
@@ -197,9 +174,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													value="Save Changes"
 													action="#{supercategory.confirmSubCategoryEdit}"
 													rendered="#{subcategory.editable}" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Delete</f:facet>
+											</p:column>
+										<p:column headerText="Delete">
 												<h:commandButton class="btn btn-lg btn-warning"
 													value="Delete"
 													action="#{supercategory.deleteSubCategory(subcategory)}"
@@ -218,8 +194,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													action="#{supercategory.deleteSubCategory(subcategory)}" 
 													rendered="#{subcategory.deletable}"/>
 													</div>
-											</h:column>
-										</h:dataTable>
+											</p:column>
+										</p:dataTable>
 										<div class="form-group">
 
 											<Label>Brand Name: </Label>

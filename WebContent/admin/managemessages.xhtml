@@ -108,7 +108,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
     												#{newmsg.date}
     										</p:column>
 											<p:column headerText="view detail">
-												<h:commandLink action="#{contactbean.readMessage}" value="view message">
+												<h:commandLink action="#{contactbean.readMessage}" value="view message" style="color: rgb(51,122,183)">
 													<f:setPropertyActionListener target="#{contactbean.input}"
 														value="#{newmsg}" />
 												</h:commandLink>
@@ -131,7 +131,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
     												#{oldmsg.date}
     										</p:column>
 											<p:column headerText="view detail">
-												<h:commandLink action="#{contactbean.readMessage}" value="view message">
+												<h:commandLink action="#{contactbean.readMessage}" value="view message" style="color: rgb(51,122,183)">
 													<f:setPropertyActionListener target="#{contactbean.input}"
 														value="#{oldmsg}" />
 												</h:commandLink>
