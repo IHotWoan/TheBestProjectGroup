@@ -257,6 +257,10 @@ public class SuperCategory implements Serializable{
 		
 	}
 	
+	public String refreshInAdmin(){
+		refreshAllProducts();
+		return "manageproducts";
+	}
 	public ArrayList<Category> getCategoryArray(){
 		
 		return categoryArray;

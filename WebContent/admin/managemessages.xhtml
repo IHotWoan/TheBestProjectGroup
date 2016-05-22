@@ -8,9 +8,9 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-
-	<title>Dashboard</title>
+	<title>Manage users</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
@@ -21,7 +21,6 @@
 	<h:outputStylesheet library="bootstrap" name="css/plugins/morris.css" />
 	<!-- Custom Fonts -->
 
-
 </h:head>
 
 <h:body>
@@ -29,9 +28,9 @@
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
+
 					<p class="navbar-brand">Administrator</p>
-					<a class="navbar-brand" href="dashboard.xhtml"><h:outputText
-							value="#{userLogin.userName}" /></a>
+					<h:outputText class="navbar-brand" value="#{userLogin.userName}" />
 					<p class="navbar-brand" id="date"></p>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
@@ -51,7 +50,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				</div>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<h:form>
 				<ul class="nav navbar-nav side-nav">
 					<li><a href="dashboard.xhtml"><i
 							class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
@@ -59,71 +57,91 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							class="fa fa-fw fa-table"></i> Delivered orders</a></li>
 					<li><a href="manageorders.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage orders</a></li>
-					<li><a href="managecategories.xhtml"><i
-							class="fa fa-fw fa-wrench"></i> Manage categories</a></li>
-					<li><h:commandLink action="#{supercategory.refreshInAdmin()}" value="Manage products" /> </li>
-					<!-- <li><a href="manageproducts.xhtml"><i
-							class="fa fa-fw fa-wrench"></i> Manage products</a></li> -->
+					<li><a href="managecategories.xhtml"><i class="fa fa-edit"></i>
+							Manage categories</a></li>
+					<li><a href="manageproducts.xhtml"><i class="fa fa-edit"></i>
+							Manage products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
-					<li><a href="managemainpage.xhtml"><i
+							<li><a href="managemainpage.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
-					<li><h:commandLink action="#{contactbean.receiveMessages()}" value="Manage messages" /></li>
 				</ul>
-				</h:form>
 			</div>
 		</nav>
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<!-- Page Heading -->
 				<div class="row">
-					<div class="col-lg-12">
-						<h1 class="page-header">Dashboard</h1>
+					<div class="col-lg-10">
+						<h1 class="page-header">Manage Messages</h1>
+						<ol class="breadcrumb">
+							<li class="active"><i class="fa fa-dashboard"></i> <a
+								href="dashboard.xhtml">Dashboard</a></li>
+							<li class="active"><i class="fa fa-fw fa-table"></i> Manage Messages</li>
+						</ol>
 					</div>
 				</div>
+
 				<div class="row">
+
 					<div class="col-lg-10">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title"><i class="fa fa-fw fa-dashboard"></i>Items in need of attention</h3>
+								<h3 class="panel-title">
+									<i class="fa fa-fw fa-table"></i> All Messages
+								</h3>
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-									<h:form>
+									<h3>List of Unread messages</h3>
+									<h:form id="unread">
 										<h:dataTable
 											class="table table-bordered table-hover table-striped"
-											value="#{ordertable.undeliveredOrderarray}"
-											var="undeliveredorder">
+											id="unreadmessagetable" value="#{contactbean.unreadMessages}" var="newmsg">
+											
 											<h:column>
-												<f:facet name="header">Order ID</f:facet>
-												<h:commandLink value="#{undeliveredorder.orderID}"
-													action="ordernumbers">
-													<f:setPropertyActionListener
-														target="#{ordertable.selectedOrder}"
-														value="#{undeliveredorder}" />
-													<f:setPropertyActionListener
-														target="#{ordertable.selected}"
-														value="#{undeliveredorder.orderID}" />
+												<f:facet name="header">Subject</f:facet>
+    												#{newmsg.subject}
+    										</h:column>
+											<h:column>
+												<f:facet name="header">Customer name</f:facet>
+    												#{newmsg.customerName}
+    										</h:column>
+											<h:column>
+												<f:facet name="header">view detail</f:facet>
+												<h:commandLink action="#{contactbean.readMessage}" value="view message">
+													<f:setPropertyActionListener target="#{contactbean.input}"
+														value="#{newmsg}" />
 												</h:commandLink>
+												
 											</h:column>
-											<h:column>
-												<f:facet name="header">Customer Name</f:facet>
-    												#{undeliveredorder.customerName}
-    												</h:column>
-											<h:column>
-												<f:facet name="header">Ordered products</f:facet>
-    												#{undeliveredorder.summary}
-    												</h:column>
-											<h:column>
-												<f:facet name="header">Order status</f:facet>
-    													#{undeliveredorder.orderstatus}
-    												</h:column>
 										</h:dataTable>
 									</h:form>
-								</div>
-								<div class="text-right">
-									<a href="manageorders.xhtml">View All Orders <i
-										class="fa fa-arrow-circle-right"></i></a>
+									<h3>List of read messages</h3>
+										<h:form id="read">
+										<h:dataTable
+											class="table table-bordered table-hover table-striped"
+											id="unreadmessagetable" value="#{contactbean.readMessages}" var="oldmsg">
+											
+											<h:column>
+												<f:facet name="header">Subject</f:facet>
+    												#{oldmsg.subject}
+    										</h:column>
+											<h:column>
+												<f:facet name="header">Customer name</f:facet>
+    												#{oldmsg.customerName}
+    										</h:column>
+											<h:column>
+												<f:facet name="header">view detail</f:facet>
+												<h:commandLink action="#{contactbean.readMessage}" value="view message">
+													<f:setPropertyActionListener target="#{contactbean.input}"
+														value="#{oldmsg}" />
+												</h:commandLink>
+												
+											</h:column>
+										</h:dataTable>
+										</h:form>
+										
 								</div>
 							</div>
 						</div>
@@ -132,6 +150,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 			</div>
 		</div>
 	</div>
+
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 	<h:outputScript library="bootstrap" name="js/jquery.js" />
 
