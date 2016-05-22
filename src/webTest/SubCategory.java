@@ -102,11 +102,11 @@ public class SubCategory implements Serializable{
 		this.subCategoryID = subCategoryID;
 	}
 
-	public void filterProductBrand(String brandName, String categoryName){
+	public String filterProductBrand(String brandName, String categoryName){
 		
 		SuperCategory.clearProductArray();
 		new SubCategory(brandName, categoryName);
-		
+		return "index";
 	}
 	
 }
