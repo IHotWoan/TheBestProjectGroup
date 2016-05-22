@@ -41,6 +41,8 @@ public class FileUploadBean implements Serializable {
     private byte[] image;
 	  
 	public String productUpload(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		
 		try{
 		  InputStream inputStream = file.getInputStream();   
 		  
@@ -64,6 +66,7 @@ public class FileUploadBean implements Serializable {
 			  
 			  db.close();
 			  db=null;
+			  context.addMessage(null, new FacesMessage("Product image was sucessfully updated.") );
 			  
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -74,11 +77,13 @@ public class FileUploadBean implements Serializable {
 		}
 		catch(IOException e){
 			System.err.println("ERROR OCCURRED IN FILE UPLOAING");
+			context.addMessage(null, new FacesMessage("ERROR occurred in file uploading!") );
 			e.printStackTrace();
 		}
 	        return "productimageupload";
 	}
 	public String bannerUpload(){
+		FacesContext context = FacesContext.getCurrentInstance();
 		try{
 		  InputStream inputStream = file.getInputStream();   
 		  
@@ -102,6 +107,7 @@ public class FileUploadBean implements Serializable {
 			  
 			  db.close();
 			  db=null;
+			  context.addMessage(null, new FacesMessage("Banner image was sucessfully updated.") );
 			  
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

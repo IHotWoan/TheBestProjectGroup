@@ -13,9 +13,6 @@
 	<title>Manage products</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
-	<!-- Custom CSS -->
-
-	<h:outputStylesheet library="bootstrap" name="css/sb-admin.css" />
 	<!-- Morris Charts CSS -->
 
 	<h:outputStylesheet library="bootstrap" name="css/plugins/morris.css" />
@@ -24,6 +21,8 @@
 </h:head>
 
 <h:body>
+	<!-- Custom CSS  Overwrites primefaces' css-->
+	<h:outputStylesheet library="bootstrap" name="css/sb-admin.css" />
 	<div id="wrapper">
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
@@ -113,6 +112,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<div class="table-responsive">
 
 									<h:form id="productsform">
+										<p:growl id="growl" showDetail="true" sticky="false" />
 										<h:dataTable
 											class="table table-bordered table-hover table-striped"
 											id="productstable" value="#{supercategory.productArray}"

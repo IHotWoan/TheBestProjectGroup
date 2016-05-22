@@ -73,10 +73,12 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-10">
+					<h:form>
 						<h1 class="page-header">
 							Upload image file for product id:
 							<h:outputLabel value="#{fileuploadbean.productID}" />
 						</h1>
+					</h:form>
 						<ol class="breadcrumb">
 							<li class="active"><i class="fa fa-dashboard"></i> <a
 								href="dashboard.xhtml">Dashboard</a></li>
@@ -96,6 +98,12 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								</h3>
 							</div>
 							<div class="panel-body">
+								Current image: <br/>
+								<h:form>
+								<h:graphicImage
+									value="/productImageServlet?id=#{fileuploadbean.productID}"
+									width="100" />
+								</h:form>
 								<div class="table-responsive">
 									<h:form id="uploadform" enctype="multipart/form-data">
 										<h:inputFile id="file" value="#{fileuploadbean.file}"

@@ -14,6 +14,13 @@ body {
 	display: inline;
 }
 
+.ui-growl {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    width: 301px;
+}
+
 ul#menu{
 	margin-top: 40px;
 	padding: 0;
