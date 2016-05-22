@@ -65,6 +65,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
 							<li><a href="managemainpage.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
+							<li><a href="managemessages.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage messages</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -82,7 +84,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 					</div>
 				</div>
 
-				<div class="row">
+			
 
 					<div class="col-lg-10">
 						<div class="panel panel-default">
@@ -97,7 +99,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								Customer name: <h:outputLabel value="#{contactbean.input.customerName}" /> <br />
 								Customer e-mail: <h:outputLabel value="#{contactbean.input.customerEmail}" /> <br />
 								Message:<br/> <h:outputLabel value="#{contactbean.input.customerMessage}" /> <br />
-								<h:commandButton action="#{contactbean.goback()}" value="Back to manage messages" />
+								<h:commandButton action="#{contactbean.goback()}" value="Back to manage messages" class="btn btn-danger"/>
 							</h:form>
 							</div>
 						</div>
@@ -105,7 +107,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				</div>
 			</div>
 		</div>
-	</div>
+
 
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
 	<h:outputScript library="bootstrap" name="js/jquery.js" />

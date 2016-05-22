@@ -51,7 +51,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				</div>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<h:form>
 				<ul class="nav navbar-nav side-nav">
 					<li><a href="dashboard.xhtml"><i
 							class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
@@ -61,16 +60,15 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							class="fa fa-fw fa-wrench"></i> Manage orders</a></li>
 					<li><a href="managecategories.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage categories</a></li>
-					<li><h:commandLink action="#{supercategory.refreshInAdmin()}" value="Manage products" /> </li>
-					<!-- <li><a href="manageproducts.xhtml"><i
-							class="fa fa-fw fa-wrench"></i> Manage products</a></li> -->
+					<li><a href="manageproducts.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
-					<li><a href="managemainpage.xhtml"><i
+							<li><a href="managemainpage.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
-					<li><h:commandLink action="#{contactbean.receiveMessages()}" value="Manage messages" /></li>
+							<li><a href="managemessages.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage messages</a></li>
 				</ul>
-				</h:form>
 			</div>
 		</nav>
 		<div id="page-wrapper">

@@ -1,0 +1,82 @@
+body {
+	background-color: white;
+}
+
+#header, h2 a{
+	padding-right: 50px;
+	background-color: #336600;
+	color: white;
+	padding: 3px 10px;
+	display: inline-block;
+}
+
+#header h1, p, h2 {
+	display: inline;
+}
+
+ul#menu{
+	margin-top: 40px;
+	padding: 0;
+	list-style-type: none;
+	width: 3em;
+	height: 0em;
+}
+
+ul#menu li a {
+	color: white;
+	background-color: green;
+	width: 200px;
+	padding: 7px 7px 7px 40px;
+	text-decoration: none;
+	border-bottom: 1px solid #FFF;
+	font-weight: bold;
+	float: left;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+
+ul#menu li a:hover{
+	background-color: #555;
+	color: white;
+}
+
+h3, #search, #button {
+	margin-left: 350px;
+}
+
+#button {
+	margin-top: 30px;
+}
+
+table, th, td, #costumer {
+	width: 500px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin-left: 350px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+table th, td, #costumer li {
+	padding: 6px;
+}
+tab1 { padding-left: 4em; }
+tab2 { padding-left: 2em; }
+
+#checkbox {
+	width: 10px;
+}
+
+#delete {
+	width: 20px;
+}
+
+#resetpw {
+	width: 40px;
+}
+
+#footer{
+	float: right;
+	display: inline-block;
+}
