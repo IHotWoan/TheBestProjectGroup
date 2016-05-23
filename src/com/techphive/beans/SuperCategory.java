@@ -154,7 +154,7 @@ public class SuperCategory implements Serializable{
 			
 			productArray.clear();
 			
-			rs = db.query("SELECT * FROM products inner join category on products.product_category=category.category_id inner join brands on products.product_brand=brands.brand_ID");
+			rs = db.query("SELECT * FROM products inner join category on products.product_category=category.category_id inner join brands on products.product_brand=brands.brand_ID where product_deleted=false");
 			
 			while(rs.next()){
 				
@@ -383,7 +383,7 @@ public class SuperCategory implements Serializable{
 			
 			if(product.getProductID().equals(productID)){
 				try {
-					db.insert("DELETE FROM products WHERE product_id='"+productID+"'");
+					db.insert("UPDATE `shopdb`.`products` set product_deleted=true WHERE product_id='"+productID+"'");
 					product.setDeletable(false);
 					productArray.remove(product);
 					break;
