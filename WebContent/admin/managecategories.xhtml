@@ -15,15 +15,13 @@
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
 
-	<h:outputStylesheet library="bootstrap" name="css/sb-admin.css" />
-	<!-- Morris Charts CSS -->
-
 	<h:outputStylesheet library="bootstrap" name="css/plugins/morris.css" />
 	<!-- Custom Fonts -->
 
 </h:head>
 
 <h:body>
+	<h:outputStylesheet library="bootstrap" name="css/sb-admin.css" />
 	<div id="wrapper">
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
@@ -98,6 +96,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<div class="table-responsive">
 
 									<h:form id="categoryform">
+										<p:growl id="categorygrowl" showDetail="true"/>
 										<p:dataTable id="categorytable" value="#{supercategory.categoryArray}"
 											var="category" rows="10" paginator="true" paginatorPosition="bottom">
 											<p:column headerText="Category name">
@@ -142,7 +141,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 										<div class="form-group">
 
 											<Label>Category Name: </Label>
-											<h:inputText style="max-width: 300px" class="form-control"
+											<h:inputText style="max-width: 300px" class="form-control" requiredMessage="Please enter category name!"  required="true"
 												value="#{supercategory.categoryName}" />
 											<div class="btn-toolbar">
 												<br />
@@ -154,6 +153,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 									</h:form>
 
 									<h:form id="subcategoryform">
+										<p:growl id="subcategorygrowl" showDetail="true"/>
 										<p:dataTable id="subcategorytable" value="#{supercategory.subCategoryArray}"
 										var="subcategory" rows="10" paginator="true" paginatorPosition="bottom">
 											<p:column headerText="Brand name">
@@ -199,7 +199,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 										<div class="form-group">
 
 											<Label>Brand Name: </Label>
-											<h:inputText style="max-width: 300px" class="form-control"
+											<h:inputText style="max-width: 300px" class="form-control" requiredMessage="Please enter Brand name!" required="true"
 												value="#{supercategory.subCategoryName}" />
 											<div class="btn-toolbar">
 												<br />

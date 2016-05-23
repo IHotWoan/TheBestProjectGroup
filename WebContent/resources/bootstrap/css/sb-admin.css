@@ -16,6 +16,12 @@ body {
         margin-top: 50px;
     }
 }
+.ui-growl {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    width: 301px;
+}
 
 #wrapper {
     padding-left: 0;

@@ -183,7 +183,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 														value="#{product.productID}" />
 												</h:commandButton>
 											</p:column>
-											<p:column headerText="Modify description" style="width:110px;" >
+											<p:column headerText="Modify description" style="width:125px;" >
 												<h:commandButton class="btn btn-lg btn-info"
 													value="description" action="updatedescription">
 													<f:setPropertyActionListener
@@ -217,8 +217,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 										<table class="table table-bordered table-hover table-striped">
 											<tr>
 												<td>Product Name:</td>
-												<td><h:inputText size="30"
-														value="#{supercategory.productName}" /></td>
+												<td><h:inputText size="30" requiredMessage="Please enter product name!"
+														value="#{supercategory.productName}" required="true" id="productname"/>
+												</td>
+												
 											</tr>
 											<tr>
 												<td>Product Category:</td>
@@ -241,8 +243,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</tr>
 											<tr>
 												<td>Product Price:</td>
-												<td><h:inputText size="30"
-														value="#{supercategory.productPrice}" /></td>
+												<td><h:inputText size="30" requiredMessage="Please enter product price!"  required="true" id="productprice"
+														value="#{supercategory.productPrice}" />
+												</td>
+												
 											</tr>
 											<tr>
 												<td>Product Description:</td>
@@ -251,8 +255,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</tr>
 											<tr>
 												<td>Product Quantity:</td>
-												<td><h:inputText size="30"
-														value="#{supercategory.productQuantity}" /></td>
+												<td><h:inputText size="30" requiredMessage="Please enter quantity!"  required="true" id="productquantity"
+														value="#{supercategory.productQuantity}" />
+												</td>
+												
 											</tr>
 										</table>
 
@@ -272,7 +278,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 	</div>
 
 	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
-	<h:outputScript library="bootstrap" name="js/jquery.js" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
 	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
 

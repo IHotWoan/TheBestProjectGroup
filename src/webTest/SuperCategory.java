@@ -1,7 +1,9 @@
 package webTest;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import java.io.Serializable;
@@ -552,6 +554,7 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String confirmSubCategoryEdit() {
+		FacesContext context = FacesContext.getCurrentInstance();
 		db = new MysqlConnect();
 		for (SubCategory subcategory : subCategoryArray){
 
@@ -562,7 +565,9 @@ public class SuperCategory implements Serializable{
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					context.addMessage("subcategorygrowl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 				}
+				context.addMessage("subcategorygrowl", new FacesMessage("Brand was sucessfully updated.") );
 				subcategory.setEditable(false);
 				break;
 			}
@@ -587,6 +592,7 @@ public class SuperCategory implements Serializable{
 
 
 	public String confirmSubCategoryDelete(String subCategoryID) {
+		FacesContext context = FacesContext.getCurrentInstance();
 		db = new MysqlConnect();
 		for (SubCategory subcategory : subCategoryArray){
 
@@ -595,11 +601,13 @@ public class SuperCategory implements Serializable{
 					db.insert("DELETE FROM brands WHERE brand_id='"+subCategoryID+"'");
 					subcategory.setDeletable(false);
 					subCategoryArray.remove(subcategory);
+					context.addMessage("subcategorygrowl", new FacesMessage("Brand was sucessfully deleted.") );
 					break;
 				}
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					context.addMessage("subcategorygrowl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 				}
 			}
 		}
