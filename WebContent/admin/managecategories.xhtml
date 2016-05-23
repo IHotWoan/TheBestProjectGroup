@@ -106,26 +106,26 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													rendered="#{not category.editable}" />
 											</p:column>
 											<p:column headerText="Edit">
-												<h:commandButton class="btn btn-lg btn-info" value="Edit"
+												<h:commandButton class="btn btn-info" value="Edit"
 													action="#{supercategory.editCategory(category)}"
 													rendered="#{not category.editable}">
 													<f:setPropertyActionListener
 														target="#{supercategory.categoryID}"
 														value="#{category.categoryID}" />
 												</h:commandButton>
-												<h:commandButton class="btn btn-lg btn-success"
+												<h:commandButton class="btn btn-success"
 													value="Save Changes"
 													action="#{supercategory.confirmCategoryEdit}"
 													rendered="#{category.editable}" />
 											</p:column>
 											<p:column headerText="Delete">
-												<h:commandButton class="btn btn-lg btn-warning"
+												<h:commandButton class="btn btn-warning"
 													value="Delete"
 													action="#{supercategory.deleteCategory(category)}"
 													rendered="#{not category.deletable}" />
 													<div class="btn-group confirmdelete">
 												<h:commandButton class="btn btn-danger"
-													value="Confirm delete"
+													value="Confirm"
 													action="#{supercategory.confirmCategoryDelete(category.categoryID)}"
 													update="@form" ajax="true" rendered="#{category.deletable}" />
 													</div>
@@ -147,7 +147,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												value="#{supercategory.categoryName}" />
 											<div class="btn-toolbar">
 												<br />
-												<h:commandButton class="btn btn-lg btn-success"
+												<h:commandButton class="btn btn-success"
 													action="#{supercategory.addCategory}" value="Add Category"
 													update=":categoryform:categorytable" ajax="true" />
 											</div>
@@ -165,26 +165,26 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													rendered="#{not subcategory.editable}" />
 											</p:column>
 											<p:column headerText="Edit">
-												<h:commandButton class="btn btn-lg btn-info" value="Edit"
+												<h:commandButton class="btn btn-info" value="Edit"
 													action="#{supercategory.editSubCategory(subcategory)}"
 													rendered="#{not subcategory.editable}">
 													<f:setPropertyActionListener
 														target="#{supercategory.subCategoryID}"
 														value="#{subcategory.subCategoryID}" />
 												</h:commandButton>
-												<h:commandButton class="btn btn-lg btn-success"
+												<h:commandButton class="btn btn-success"
 													value="Save Changes"
 													action="#{supercategory.confirmSubCategoryEdit}"
 													rendered="#{subcategory.editable}" />
 											</p:column>
 										<p:column headerText="Delete">
-												<h:commandButton class="btn btn-lg btn-warning"
+												<h:commandButton class="btn btn-warning"
 													value="Delete"
 													action="#{supercategory.deleteSubCategory(subcategory)}"
 													rendered="#{not subcategory.deletable}" />
 												<div class="btn-group confirmdelete">
 												<h:commandButton class="btn btn-danger"
-													value="Confirm delete"
+													value="Confirm"
 													action="#{supercategory.confirmSubCategoryDelete(subcategory.subCategoryID)}"
 													update="@form" ajax="true"
 													rendered="#{subcategory.deletable}" />
@@ -207,7 +207,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												value="#{supercategory.subCategoryName}" />
 											<div class="btn-toolbar">
 												<br />
-												<h:commandButton class="btn btn-lg btn-success"
+												<h:commandButton class="btn btn-success"
 													action="#{supercategory.addSubCategory}" value="Add Brand"
 													update=":subcategoryform:subcategorytable" ajax="true" />
 											</div>

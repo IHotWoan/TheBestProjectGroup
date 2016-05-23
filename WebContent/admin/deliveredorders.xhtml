@@ -95,11 +95,11 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<h:inputText class="form-control" style="max-width: 300px" value="#{ordertable.selected}" />
 								<div class="btn-toolbar">
 								<br/>
-									<h:commandButton class="btn btn-lg btn-primary"
+									<h:commandButton class="btn btn-primary"
 										action="#{ordertable.searchOrder('deliveredorders')}"
 										value="Search" />
 
-									<h:commandButton class="btn btn-lg btn-info"
+									<h:commandButton class="btn btn-info"
 										action="#{ordertable.clearSearch('deliveredorders')}"
 										value="Show All" />
 								</div>

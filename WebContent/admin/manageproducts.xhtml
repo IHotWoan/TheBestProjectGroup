@@ -92,10 +92,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}"/>
 								<div class="btn-toolbar">
 									<br />
-									<h:commandButton class="btn btn-lg btn-primary"
+									<h:commandButton class="btn btn-primary"
 										action="#{supercategory.productSearch}" value="Search" update=":productsform:productstable" ajax="true"  />
 
-									<h:commandButton class="btn btn-lg btn-info"
+									<h:commandButton class="btn btn-info"
 										action="#{supercategory.refreshAllProducts}" value="Show All" update=":productsform:productstable" ajax="true" />
 								</div>
 								</h:form>
@@ -163,20 +163,20 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 													rendered="#{not product.editable}" />
 											</p:column>
 											<p:column headerText="Edit" style="width:80px;">
-												<h:commandButton class="btn btn-lg btn-info" value="Edit"
+												<h:commandButton class="btn btn-info" value="Edit"
 													action="#{supercategory.editAction(product)}"
 													rendered="#{not product.editable}">
 													<f:setPropertyActionListener
 														target="#{supercategory.productID}"
 														value="#{product.productID}" />
 												</h:commandButton>
-												<h:commandButton class="btn btn-lg btn-success"
+												<h:commandButton class="btn btn-success"
 													value="Save"
 													action="#{supercategory.confirmProductEdit}"
 													rendered="#{product.editable}" />
 											</p:column>
 											<p:column headerText="Change image" style="width:100px;">
-												<h:commandButton class="btn btn-lg btn-info"
+												<h:commandButton class="btn btn-info"
 													value="image" action="productimageupload">
 													<f:setPropertyActionListener
 														target="#{fileuploadbean.productID}"
@@ -184,7 +184,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												</h:commandButton>
 											</p:column>
 											<p:column headerText="Modify description" style="width:125px;" >
-												<h:commandButton class="btn btn-lg btn-info"
+												<h:commandButton class="btn btn-info"
 													value="description" action="updatedescription">
 													<f:setPropertyActionListener
 														target="#{descriptionbean.selectedProduct}"
@@ -192,14 +192,14 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												</h:commandButton>
 											</p:column>
 											<p:column headerText="Delete" style="width:90px;">
-												<h:commandButton class="btn btn-lg btn-warning"
+												<h:commandButton class="btn btn-warning"
 													value="Delete"
 													action="#{supercategory.deleteAction(product)}"
 													rendered="#{not product.deletable}" />
 													
 												<div class="btn-group confirmdelete">
 												<h:commandButton class="btn btn-danger"
-													value="Confirm delete"
+													value="Confirm"
 													action="#{supercategory.confirmProductDelete(product.productID)}"
 													update="@form" ajax="true" rendered="#{product.deletable}" />
 													</div>
@@ -264,7 +264,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</tr>
 										</table>
 
-										<h:commandButton class="btn btn-lg btn-success"
+										<h:commandButton class="btn btn-success"
 											value="Add Product" action="#{supercategory.addProduct}"
 											update=":productsform:productstable" ajax="true" />
 

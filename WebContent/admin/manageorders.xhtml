@@ -92,10 +92,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<h:inputText class="form-control" style="max-width: 300px" value="#{ordertable.selected}" />
 								<div class="btn-toolbar">
 									<br />
-									<h:commandButton class="btn btn-lg btn-primary"
+									<h:commandButton class="btn btn-primary"
 										action="#{ordertable.searchOrder('manageorders')}"
 										value="Search" />
-									<h:commandButton class="btn btn-lg btn-info"
+									<h:commandButton class="btn btn-info"
 										action="#{ordertable.clearSearch('manageorders')}"
 										value="Show all" />
 								</div>
@@ -108,13 +108,13 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 						<div class="col-lg-10">
 							<div class="form-group">
 									<div class="btn-toolbar">
-										<h:commandButton class="btn btn-lg btn-success"
+										<h:commandButton class="btn btn-success"
 											action="#{ordertable.updateQuick('delivered')}"
 											value="Set marked as delivered" />
-										<h:commandButton class="btn btn-lg btn-warning"
+										<h:commandButton class="btn btn-warning"
 											action="#{ordertable.updateQuick('delayed')}"
 											value="Set marked as delayed" />
-										<h:commandButton class="btn btn-lg btn-danger"
+										<h:commandButton class="btn btn-danger"
 											action="#{ordertable.updateQuick('rejected')}"
 											value="Set marked as rejected" />
 	

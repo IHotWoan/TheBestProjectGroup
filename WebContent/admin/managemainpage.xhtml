@@ -98,21 +98,21 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<h1>Banner upload</h1>
 								
 								<div class="btn-group bannner1">
-									<h:commandButton class="btn btn-lg btn-info"
+									<h:commandButton class="btn btn-info"
 									value="Change banner 1" action="bannerimageupload">
 										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="1" />
 									</h:commandButton>
 									</div>
 									
 									<div class="btn-group bannner2">
-									<h:commandButton class="btn btn-lg btn-info"
+									<h:commandButton class="btn btn-info"
 									value="Change banner 2" action="bannerimageupload">
 										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="2" />
 									</h:commandButton>
 									</div>
 									
 									<div class="btn-group bannner3">
-									<h:commandButton class="btn btn-lg btn-info"
+									<h:commandButton class="btn btn-info"
 									value="Change banner 3" action="bannerimageupload">
 										<f:setPropertyActionListener target="#{fileuploadbean.bannerID}" value="3" />
 									</h:commandButton>
@@ -131,7 +131,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 										</h:column>
 									</h:dataTable>
 									<br/>
-									<h:commandButton class="btn btn-lg btn-success"
+									<h:commandButton class="btn btn-success"
 									value="Save changes" action="#{highlight.saveSelection()}">
 									</h:commandButton>
 								</h:form>
