@@ -16,7 +16,9 @@ public class Contact {
 		general("General customer service"),
 		order("Order takes too long time!"),
 		guarantee("Product related issues(gurantee)"),
-		rejected("Why is my order rejected?");
+		rejected("Why is my order rejected?"),
+		suggestion("I have a suggestion.");
+		
 		
 		private String label;
 		
