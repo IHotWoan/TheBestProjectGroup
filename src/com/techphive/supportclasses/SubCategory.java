@@ -19,7 +19,7 @@ import com.techphive.beans.SuperCategory;
 public class SubCategory implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private String subCategoryName;
 	private String subCategoryID;
 	private boolean editable;
@@ -49,7 +49,7 @@ public class SubCategory implements Serializable{
 			String ID = rs.getString(1);
 			subCategoryID=ID;
 			
-			rs= db.query("SELECT * from products where product_brand='"+ID+"' and product_category='"+categoryID+"' and product_deleted=false");
+			rs= db.query("SELECT * from products where product_brand='"+ID+"' and product_category='"+categoryID+"'");
 		
 		while(rs.next()){
 			
@@ -67,7 +67,16 @@ public class SubCategory implements Serializable{
 			product.setPrice(Double.parseDouble(rs.getString("product_price")));
 			product.setQuantity(Integer.parseInt(rs.getString("product_quantity")));
 			
-			SuperCategory.addToProductArray(product);
+			Boolean isDeleted = rs.getBoolean("product_deleted");
+			
+			if(isDeleted){
+				
+				SuperCategory.addToDeletedProductArray(product);
+				
+			}
+			else{
+				SuperCategory.addToProductArray(product);
+			}
 			
 		}
 		db.close();

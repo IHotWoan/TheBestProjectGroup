@@ -30,6 +30,7 @@ public class SuperCategory implements Serializable{
 	private ArrayList<Category> categoryArray = new ArrayList<Category>();
 	private static ArrayList<Product> productArray = new ArrayList<Product>();
 	private ArrayList<SubCategory> subCategoryArray = new ArrayList<SubCategory>();
+	private static ArrayList<Product> deletedProductArray = new ArrayList<Product>();
 	
 	private String searchString = "";
 
@@ -275,6 +276,12 @@ public class SuperCategory implements Serializable{
 		
 		productArray.add(n);
 	}
+	
+	public static void addToDeletedProductArray(Product n){
+	
+		deletedProductArray.add(n);
+	} 
+	
 	/**
 	 * Songho
 	 * @param Product ID in string 
@@ -385,6 +392,7 @@ public class SuperCategory implements Serializable{
 				try {
 					db.insert("UPDATE `shopdb`.`products` set product_deleted=true WHERE product_id='"+productID+"'");
 					product.setDeletable(false);
+					deletedProductArray.add(product);
 					productArray.remove(product);
 					break;
 				} catch (SQLException e) {
@@ -653,6 +661,14 @@ public class SuperCategory implements Serializable{
 
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
+	}
+
+	public static ArrayList<Product> getDeletedProductArray() {
+		return deletedProductArray;
+	}
+
+	public static void setDeletedProductArray(ArrayList<Product> deletedProductArray) {
+		SuperCategory.deletedProductArray = deletedProductArray;
 	}
 	
 }
