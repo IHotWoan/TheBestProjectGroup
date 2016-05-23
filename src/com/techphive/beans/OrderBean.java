@@ -1,7 +1,7 @@
 /**
  * 
  */
-package webTest;
+package com.techphive.beans;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +12,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+
+import com.techphive.supportclasses.MysqlConnect;
+import com.techphive.supportclasses.Order;
 
 /**
  * @author songhokun

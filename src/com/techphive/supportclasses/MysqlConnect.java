@@ -1,4 +1,4 @@
-package webTest;
+package com.techphive.supportclasses;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

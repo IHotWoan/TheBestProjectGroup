@@ -1,7 +1,7 @@
 /**
  * 
  */
-package webTest;
+package com.techphive.supportclasses;
 
 import java.util.Date;
 

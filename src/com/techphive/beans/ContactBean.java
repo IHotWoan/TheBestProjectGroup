@@ -1,7 +1,7 @@
 /**
  * 
  */
-package webTest;
+package com.techphive.beans;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -14,7 +14,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import webTest.Contact.Matter;
+import com.techphive.supportclasses.Contact;
+import com.techphive.supportclasses.MysqlConnect;
+import com.techphive.supportclasses.Contact.Matter;
 
 /**
  * @author songhokun

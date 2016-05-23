@@ -1,7 +1,7 @@
 /**
  * 
  */
-package webTest;
+package com.techphive.beans;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -10,6 +10,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import com.techphive.supportclasses.MysqlConnect;
+import com.techphive.supportclasses.Product;
 
 /**
  * @author songhokun

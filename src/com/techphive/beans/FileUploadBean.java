@@ -1,7 +1,7 @@
 /**
  * 
  */
-package webTest;
+package com.techphive.beans;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,6 +21,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.persistence.Lob;
 import javax.servlet.http.Part;
+
+import com.techphive.supportclasses.MysqlConnect;
 
 /**
  * @author songhokun

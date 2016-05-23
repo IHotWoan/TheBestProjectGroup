@@ -1,12 +1,15 @@
 /**
  * 
  */
-package webTest;
+package com.techphive.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 //import javax.faces.bean.ViewScoped;
 import javax.servlet.http.HttpSession;
+
+import com.techphive.supportclasses.MysqlConnect;
+import com.techphive.supportclasses.Product;
 
 import java.io.Serializable;
 import java.sql.ResultSet;

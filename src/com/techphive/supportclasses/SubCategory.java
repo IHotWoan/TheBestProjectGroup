@@ -1,8 +1,10 @@
-package webTest;
+package com.techphive.supportclasses;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.techphive.beans.SuperCategory;
 
 //import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.SessionScoped;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package webTest;
+package com.techphive.beans;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -14,7 +14,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
-import webTest.Order.Status;
+import com.techphive.supportclasses.MysqlConnect;
+import com.techphive.supportclasses.Order;
+import com.techphive.supportclasses.Product;
+import com.techphive.supportclasses.Order.Status;
 /**
  * The Order table is a bean class of orders called in Admin page (manageorders)
  * Please use orderbean instead, when order class needs to be called in store mode.

@@ -1,4 +1,4 @@
-package webTest;
+package com.techphive.supportclasses;
 
 //import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.SessionScoped;
@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.techphive.beans.SuperCategory;
 
 /**
  * @author Jonathan

@@ -1,4 +1,4 @@
-package webTest;
+package com.techphive.supportclasses;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpSession;
+
+import com.techphive.beans.SessionBean;
 
 /**
  * @author Jonathan

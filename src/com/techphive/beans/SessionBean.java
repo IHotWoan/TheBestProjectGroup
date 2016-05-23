@@ -1,7 +1,7 @@
 /**
  * 
  */
-package webTest;
+package com.techphive.beans;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
