@@ -49,7 +49,7 @@ public class SubCategory implements Serializable{
 			String ID = rs.getString(1);
 			subCategoryID=ID;
 			
-			rs= db.query("SELECT * from products where product_brand='"+ID+"' and product_category='"+categoryID+"'");
+			rs= db.query("SELECT * from products where product_brand='"+ID+"' and product_category='"+categoryID+"' and product_deleted=false");
 		
 		while(rs.next()){
 			
