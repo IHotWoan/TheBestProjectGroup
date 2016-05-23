@@ -308,6 +308,7 @@ public class SuperCategory implements Serializable{
 		for (Product product : productArray){
 			
 			if(product.getProductID().equals(getProductID())){
+				product.setEditable(false);
 				try {
 					db.insert("UPDATE `shopdb`.`products` SET product_ID='"+product.getProductID()+"', product_name='"+product.getName()+"'"
 							+ ", product_category='"+product.getCategoryID()+"', product_description='"+product.getDescription()+"',"
@@ -329,7 +330,7 @@ public class SuperCategory implements Serializable{
 					e.printStackTrace();
 					context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 				}
-				product.setEditable(false);
+				
 				break;
 			}
 		}
@@ -358,6 +359,7 @@ public class SuperCategory implements Serializable{
 		for (Category category : categoryArray){
 
 			if(category.getCategoryID().equals(getCategoryID())){
+				category.setEditable(false);
 				try {
 					db.insert("UPDATE `shopdb`.`category` SET category_ID='"+category.getCategoryID()+"', category_name='"+category.getCategoryName()
 							+"' where category_ID='"+getCategoryID()+"'");
@@ -365,8 +367,8 @@ public class SuperCategory implements Serializable{
 					e.printStackTrace();
 					context.addMessage("categorygrowl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 				}
-				category.setEditable(false);
 				context.addMessage(null, new FacesMessage("Success",  "Change is saved in the database") );
+				
 				break;
 			}
 		}
@@ -398,8 +400,8 @@ public class SuperCategory implements Serializable{
 			
 			if(product.getProductID().equals(productID)){
 				try {
-					db.insert("UPDATE `shopdb`.`products` set product_deleted=true WHERE product_id='"+productID+"'");
 					product.setDeletable(false);
+					db.insert("UPDATE `shopdb`.`products` set product_deleted=true WHERE product_id='"+productID+"'");
 					deletedProductArray.add(product);
 					productArray.remove(product);
 					context.addMessage(null, new FacesMessage("Success",  "Product is deleted") );
@@ -440,8 +442,8 @@ public class SuperCategory implements Serializable{
 
 			if(category.getCategoryID().equals(categoryID)){
 				try {
-					db.insert("DELETE FROM category WHERE category_id='"+categoryID+"'");
 					category.setDeletable(false);
+					db.insert("DELETE FROM category WHERE category_id='"+categoryID+"'");
 					categoryArray.remove(category);
 					context.addMessage(null, new FacesMessage("Success",  "Change is saved in the database") );
 					break;
@@ -585,6 +587,7 @@ public class SuperCategory implements Serializable{
 		for (SubCategory subcategory : subCategoryArray){
 
 			if(subcategory.getSubCategoryID().equals(getSubCategoryID())){
+				subcategory.setEditable(false);
 				try {
 					db.insert("UPDATE `shopdb`.`brands` SET brand_ID='"+subcategory.getSubCategoryID()+"', brand_name='"+subcategory.getSubCategoryName()
 							+"' where brand_ID='"+getSubCategoryID()+"'");
@@ -594,7 +597,7 @@ public class SuperCategory implements Serializable{
 					context.addMessage("subcategorygrowl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 				}
 				context.addMessage("subcategorygrowl", new FacesMessage("Brand was sucessfully updated.") );
-				subcategory.setEditable(false);
+				
 				break;
 			}
 		}
@@ -624,8 +627,8 @@ public class SuperCategory implements Serializable{
 
 			if(subcategory.getSubCategoryID().equals(subCategoryID)){
 				try {
-					db.insert("DELETE FROM brands WHERE brand_id='"+subCategoryID+"'");
 					subcategory.setDeletable(false);
+					db.insert("DELETE FROM brands WHERE brand_id='"+subCategoryID+"'");
 					subCategoryArray.remove(subcategory);
 					context.addMessage("subcategorygrowl", new FacesMessage("Brand was sucessfully deleted.") );
 					break;

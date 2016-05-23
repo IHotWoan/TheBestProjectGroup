@@ -47,8 +47,10 @@ public class UserLogin implements Serializable {
             
             //Refresh all products (remove filter)
             SuperCategory supercat = (SuperCategory) session.getAttribute("supercategory");
-            if(supercat!=null)
+            if(supercat!=null){
             	supercat.refreshAllProducts();
+            	supercat.setSearchString("");
+            }
             
             return "success";
         } else {
