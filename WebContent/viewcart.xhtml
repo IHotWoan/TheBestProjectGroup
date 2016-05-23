@@ -90,7 +90,10 @@
 	   			<h:commandButton value="Continue shopping" action="index" class="btn btn-primary" />
 	   			</div>
 	   			<div class="btn-group checkout">
-						<h:commandButton value="Checkout" class="btn btn-success" action="#{shoppingcartbean.cart.checkout()}" />
+						<h:commandButton value="Checkout" class="btn btn-success" action="#{shoppingcartbean.cart.checkout()}">
+							<f:setPropertyActionListener target="#{orderbean.selectedOrder}"
+														value="#{shoppingcartbean.order}" />
+						</h:commandButton>
 						</div>
 					</h:form>
 				</div>
