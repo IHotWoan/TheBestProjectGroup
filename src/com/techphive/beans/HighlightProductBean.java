@@ -81,13 +81,16 @@ public class HighlightProductBean implements Serializable{
 			int n = rs.getInt(1);
 			
 			for(int i=1;i<=n;i++){
-				rs = db.query("SELECT ordereditems_quantity FROM shopdb.ordereditems where ordereditems_product="+i);
+				String command="SELECT ordereditems_quantity FROM ordereditems inner join products on "
+						+ "ordereditems.ordereditems_product = products.product_ID where product_deleted=false "
+						+ "and ordereditems_product="+i;
+				rs = db.query(command);
 				int counts=0;
 				while(rs.next()){
 					counts+=rs.getInt(1);
 				}
-				productsales.add(new Productmatch(String.valueOf(i),counts));
-				
+				if(counts!=0)
+					productsales.add(new Productmatch(String.valueOf(i),counts));
 			}
 			rs = db.query("SELECT banner_productID FROM shopdb.banners;");
 			for(int i=0;i<NUMBER_OF_SPECIAL;i++){
