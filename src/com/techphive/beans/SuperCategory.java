@@ -154,7 +154,6 @@ public class SuperCategory implements Serializable{
 		try {
 			
 			productArray.clear();
-			deletedProductArray.clear();
 			
 			rs = db.query("SELECT * FROM products inner join category on products.product_category=category.category_id inner join brands on products.product_brand=brands.brand_ID where product_deleted=false");
 			
@@ -407,6 +406,37 @@ public class SuperCategory implements Serializable{
 					deletedProductArray.add(product);
 					productArray.remove(product);
 					context.addMessage(null, new FacesMessage("Success",  "Product is deleted") );
+					break;
+				} catch (SQLException e) {
+					context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		try {
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db = null;
+		return null;
+	}
+	
+	public String undoProductDelete(String productID){
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+		db = new MysqlConnect();
+		for (Product product : deletedProductArray){
+			
+			if(product.getProductID().equals(productID)){
+				try {
+					product.setDeletable(false);
+					db.insert("UPDATE `shopdb`.`products` set product_deleted=false WHERE product_id='"+productID+"'");
+					deletedProductArray.remove(product);
+					productArray.add(product);
+					context.addMessage(null, new FacesMessage("Success",  "Product is restored") );
 					break;
 				} catch (SQLException e) {
 					context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));

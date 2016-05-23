@@ -176,14 +176,14 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</p:column>
 											<p:column headerText="Delete" style="width:90px;">
 												<h:commandButton class="btn btn-lg btn-warning"
-													value="Delete"
+													value="Restore"
 													action="#{supercategory.deleteAction(product)}"
 													rendered="#{not product.deletable}" />
 													
 												<div class="btn-group confirmdelete">
 												<h:commandButton class="btn btn-danger"
-													value="Confirm delete"
-													action="#{supercategory.confirmProductDelete(product.productID)}"
+													value="Confirm"
+													action="#{supercategory.undoProductDelete(product.productID)}"
 													update="@form" ajax="true" rendered="#{product.deletable}" />
 													</div>
 													<div class="btn-group cancel">
