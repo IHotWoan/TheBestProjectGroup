@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Deleted products</title>
+
+	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+	<!-- Morris Charts CSS -->
+
+	<h:outputStylesheet library="bootstrap" name="css/plugins/morris.css" />
+	<!-- Custom Fonts -->
+
+</h:head>
+
+<h:body>
+	<!-- Custom CSS  Overwrites primefaces' css-->
+	<h:outputStylesheet library="bootstrap" name="css/sb-admin.css" />
+	<div id="wrapper">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+
+					<p class="navbar-brand">Administrator</p>
+					<h:outputText class="navbar-brand" value="#{userLogin.userName}" />
+					<p class="navbar-brand" id="date"></p>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<h:form>
+						<h:commandLink class="navbar-brand" action="#{userLogin.logout}"
+							value="log out" />
+					</h:form>
+					<h4 class="navbar-form navbar-center"
+						style="color: #9d9d9d; margin-top: 15px">
+						<script>
+var now = new Date();
+var dayNames = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+var monNames = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + now.getDate() + ", " + now.getFullYear());
+</script>
+					</h4>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav side-nav">
+					<li><a href="dashboard.xhtml"><i
+							class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
+					<li><a href="deliveredorders.xhtml"><i
+							class="fa fa-fw fa-table"></i> Delivered orders</a></li>
+					<li><a href="manageorders.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage orders</a></li>
+					<li><a href="managecategories.xhtml"><i class="fa fa-edit"></i>
+							Manage categories</a></li>
+					<li><a href="manageproducts.xhtml"><i class="fa fa-edit"></i>
+							Manage products</a></li>
+							<li><a href="deletedproducts.xhtml"><i class="fa fa-table"></i>
+							Deleted products</a></li>
+					<li><a href="manageusers.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
+							<li><a href="managemainpage.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
+								<li><a href="managemessages.xhtml"><i
+							class="fa fa-fw fa-wrench"></i> Manage messages</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-10">
+						<h1 class="page-header">Deleted products</h1>
+						<ol class="breadcrumb">
+							<li class="active"><i class="fa fa-dashboard"></i> <a
+								href="dashboard.xhtml">Dashboard</a></li>
+							<li class="active"><i class="fa fa-fw fa-table"></i> Deleted Products</li>
+						</ol>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									<i class="fa fa-fw fa-table"></i> Deleted products
+								</h3>
+							</div>
+							<div class="panel-body">
+								<div class="table-responsive">
+
+									<h:form id="productsform">
+										<p:growl id="growl" showDetail="true" sticky="false" />
+										<p:dataTable id="productstable" value="#{supercategory.deletedProductArray}"
+											var="product" rows="20" paginator="true" paginatorPosition="bottom">
+											<!--
+											<h:column>
+												<f:facet name="header">Product ID</f:facet>
+												<h:inputText value="#{product.productID}"
+													rendered="#{product.editable}" />
+												<h:outputText value="#{product.productID}"
+													rendered="#{not product.editable}" />
+											</h:column>
+											-->
+											<p:column headerText="Product Name">
+												<h:inputText value="#{product.name}"
+													rendered="#{product.editable}" />
+												<h:outputText value="#{product.name}"
+													rendered="#{not product.editable}" />
+											</p:column>
+											<p:column headerText="Product Category">
+												<!--<h:inputText value="#{product.categoryID}" rendered="#{product.editable}" /> -->
+												<h:selectOneMenu value="#{product.categoryID}" class="form-control" style="max-width: 150px" rendered="#{product.editable}">
+													<f:selectItems value="#{supercategory.categoryArray}" var="category"
+														itemLabel="#{category.categoryName}" itemValue="#{category.categoryID}" />
+												</h:selectOneMenu>
+												<h:outputText value="#{product.categoryName}"
+													rendered="#{not product.editable}" />
+											</p:column>
+											<p:column headerText="Brand">
+												<!--<h:inputText value="#{product.categoryID}" rendered="#{product.editable}" /> -->
+												<h:selectOneMenu value="#{product.brandID}" class="form-control" style="max-width: 150px" rendered="#{product.editable}">
+													<f:selectItems value="#{supercategory.subCategoryArray}" var="brands"
+														itemLabel="#{brands.subCategoryName}" itemValue="#{brands.subCategoryID}" />
+												</h:selectOneMenu>
+												<h:outputText value="#{product.brandName}"
+													rendered="#{not product.editable}" />
+											</p:column>
+											<p:column headerText="Price" style="width:80px;">
+												<h:inputText value="#{product.price}"
+													rendered="#{product.editable}" size="5"/>
+												<h:outputText value="#{product.price}"
+													rendered="#{not product.editable}" />
+											</p:column>
+											<p:column headerText="Quantity" style="width:65px;" sortBy="#{product.quantity}">
+												<h:inputText value="#{product.quantity}"
+													rendered="#{product.editable}" size="2"/>
+												<h:outputText value="#{product.quantity}"
+													rendered="#{not product.editable}" />
+											</p:column>
+											<p:column headerText="Edit" style="width:80px;">
+												<h:commandButton class="btn btn-lg btn-info" value="Edit"
+													action="#{supercategory.editAction(product)}"
+													rendered="#{not product.editable}">
+													<f:setPropertyActionListener
+														target="#{supercategory.productID}"
+														value="#{product.productID}" />
+												</h:commandButton>
+												<h:commandButton class="btn btn-lg btn-success"
+													value="Save"
+													action="#{supercategory.confirmProductEdit}"
+													rendered="#{product.editable}" />
+											</p:column>
+											<p:column headerText="Change image" style="width:100px;">
+												<h:commandButton class="btn btn-lg btn-info"
+													value="image" action="productimageupload">
+													<f:setPropertyActionListener
+														target="#{fileuploadbean.productID}"
+														value="#{product.productID}" />
+												</h:commandButton>
+											</p:column>
+											<p:column headerText="Modify description" style="width:125px;" >
+												<h:commandButton class="btn btn-lg btn-info"
+													value="description" action="updatedescription">
+													<f:setPropertyActionListener
+														target="#{descriptionbean.selectedProduct}"
+														value="#{product}" />
+												</h:commandButton>
+											</p:column>
+											<p:column headerText="Delete" style="width:90px;">
+												<h:commandButton class="btn btn-lg btn-warning"
+													value="Delete"
+													action="#{supercategory.deleteAction(product)}"
+													rendered="#{not product.deletable}" />
+													
+												<div class="btn-group confirmdelete">
+												<h:commandButton class="btn btn-danger"
+													value="Confirm delete"
+													action="#{supercategory.confirmProductDelete(product.productID)}"
+													update="@form" ajax="true" rendered="#{product.deletable}" />
+													</div>
+													<div class="btn-group cancel">
+													<h:commandButton class="btn btn-success"
+													value="Cancel" 
+													action="#{supercategory.deleteAction(product)}"
+													rendered="#{product.deletable}" />
+													</div>
+													
+											</p:column>
+										</p:dataTable>
+										</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://use.fontawesome.com/20a3eb8f1e.js"></script>
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
+	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/raphael.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/morris.min.js" />
+
+	<h:outputScript library="bootstrap"
+		name="js/plugins/morris/morris-data.js" />
+
+</h:body>
+</html>
