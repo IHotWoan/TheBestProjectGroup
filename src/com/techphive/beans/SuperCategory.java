@@ -301,6 +301,9 @@ public class SuperCategory implements Serializable{
 	}
 	
 	public String confirmProductEdit() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+		
 		db = new MysqlConnect();
 		for (Product product : productArray){
 			
@@ -323,8 +326,8 @@ public class SuperCategory implements Serializable{
 						}
 					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+					context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 				}
 				product.setEditable(false);
 				break;
@@ -349,6 +352,8 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String confirmCategoryEdit() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
 		db = new MysqlConnect();
 		for (Category category : categoryArray){
 
@@ -357,10 +362,11 @@ public class SuperCategory implements Serializable{
 					db.insert("UPDATE `shopdb`.`category` SET category_ID='"+category.getCategoryID()+"', category_name='"+category.getCategoryName()
 							+"' where category_ID='"+getCategoryID()+"'");
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+					context.addMessage("categorygrowl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 				}
 				category.setEditable(false);
+				context.addMessage(null, new FacesMessage("Success",  "Change is saved in the database") );
 				break;
 			}
 		}
@@ -385,6 +391,8 @@ public class SuperCategory implements Serializable{
 
 	
 	public String confirmProductDelete(String productID) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
 		db = new MysqlConnect();
 		for (Product product : productArray){
 			
@@ -394,9 +402,10 @@ public class SuperCategory implements Serializable{
 					product.setDeletable(false);
 					deletedProductArray.add(product);
 					productArray.remove(product);
+					context.addMessage(null, new FacesMessage("Success",  "Product is deleted") );
 					break;
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 					e.printStackTrace();
 				}
 			}
@@ -424,6 +433,8 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String confirmCategoryDelete(String categoryID) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
 		db = new MysqlConnect();
 		for (Category category : categoryArray){
 
@@ -432,10 +443,11 @@ public class SuperCategory implements Serializable{
 					db.insert("DELETE FROM category WHERE category_id='"+categoryID+"'");
 					category.setDeletable(false);
 					categoryArray.remove(category);
+					context.addMessage(null, new FacesMessage("Success",  "Change is saved in the database") );
 					break;
 				}
 				catch (SQLException e) {
-					// TODO Auto-generated catch block
+					context.addMessage("categorygrowl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 					e.printStackTrace();
 				}
 			}
@@ -568,6 +580,7 @@ public class SuperCategory implements Serializable{
 
 	public String confirmSubCategoryEdit() {
 		FacesContext context = FacesContext.getCurrentInstance();
+		
 		db = new MysqlConnect();
 		for (SubCategory subcategory : subCategoryArray){
 
@@ -618,7 +631,6 @@ public class SuperCategory implements Serializable{
 					break;
 				}
 				catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					context.addMessage("subcategorygrowl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
 				}

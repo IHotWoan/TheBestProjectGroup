@@ -158,7 +158,6 @@ public class Admin {
 			userArray.add(user);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
