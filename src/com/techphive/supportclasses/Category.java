@@ -14,8 +14,6 @@ import com.techphive.beans.SuperCategory;
  *
  */
 
-//@ManagedBean(name="category")
-//@SessionScoped
 public class Category implements Serializable{
 
 	private static final long serialVersionUID = 1L;

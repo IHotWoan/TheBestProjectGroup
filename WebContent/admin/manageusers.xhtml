@@ -153,6 +153,13 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 												<td><h:inputText size="20"
 														value="#{admin.userPassword}" /></td>
 											</tr>
+											<tr>
+												<h:selectOneRadio id="yesNoRadio" value ="#{admin.newuserstatus}" rendered="#{admin.currentUser.superuser}">
+													<f:selectItem itemValue="#{false}" itemLabel="Normal user" />
+													<f:selectItem itemValue="#{true}" itemLabel="Super user"/>
+													<f:ajax execute="@form"></f:ajax>
+												</h:selectOneRadio>
+											</tr>
 										</table>
 
 										<h:commandButton class="btn btn-success"

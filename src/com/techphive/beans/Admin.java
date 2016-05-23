@@ -1,4 +1,4 @@
-package com.techphive.supportclasses;
+package com.techphive.beans;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpSession;
 
-import com.techphive.beans.SessionBean;
+import com.techphive.supportclasses.MysqlConnect;
+import com.techphive.supportclasses.User;
 
 /**
  * @author Jonathan
@@ -32,6 +33,7 @@ public class Admin {
 	private String confirmPassword;
 	private String userID;
 	private boolean fail;
+	private boolean newuserstatus=false;
 
 	public Admin(){
 		
@@ -145,7 +147,7 @@ public class Admin {
 		
 		try {
 			db.insert("INSERT into `shopdb`.`users` (user_username,user_password,user_isSuperUser) "
-					+ "VALUES ('"+getUserName()+"','"+getUserPassword()+"',0)");
+					+ "VALUES ('"+getUserName()+"','"+getUserPassword()+"',"+isNewuserstatus()+")");
 			
 			User user = new User();
 			user.setUserName(getUserName());
@@ -228,6 +230,14 @@ public class Admin {
 		}
 		if(currentUser.isSuperuser())
 			this.permitted=true;
+	}
+
+	public boolean isNewuserstatus() {
+		return newuserstatus;
+	}
+
+	public void setNewuserstatus(boolean newuserstatus) {
+		this.newuserstatus = newuserstatus;
 	}
 	
 }
