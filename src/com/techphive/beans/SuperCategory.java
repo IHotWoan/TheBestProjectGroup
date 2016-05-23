@@ -154,6 +154,7 @@ public class SuperCategory implements Serializable{
 		try {
 			
 			productArray.clear();
+			deletedProductArray.clear();
 			
 			rs = db.query("SELECT * FROM products inner join category on products.product_category=category.category_id inner join brands on products.product_brand=brands.brand_ID where product_deleted=false");
 			
@@ -225,6 +226,7 @@ public class SuperCategory implements Serializable{
 		
 		categoryArray.clear();
 		productArray.clear();
+		deletedProductArray.clear();
 		subCategoryArray.clear();
 		
 		db = new MysqlConnect();
@@ -533,6 +535,7 @@ public class SuperCategory implements Serializable{
 	public static void clearProductArray() {
 		
 		productArray.clear();
+		deletedProductArray.clear();
 		
 	}
 
@@ -678,11 +681,11 @@ public class SuperCategory implements Serializable{
 		this.searchString = searchString;
 	}
 
-	public static ArrayList<Product> getDeletedProductArray() {
+	public ArrayList<Product> getDeletedProductArray() {
 		return deletedProductArray;
 	}
 
-	public static void setDeletedProductArray(ArrayList<Product> deletedProductArray) {
+	public void setDeletedProductArray(ArrayList<Product> deletedProductArray) {
 		SuperCategory.deletedProductArray = deletedProductArray;
 	}
 	
