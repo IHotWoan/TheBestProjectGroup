@@ -3,6 +3,7 @@
  */
 package com.techphive.beans;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 //import javax.faces.bean.ViewScoped;
@@ -62,13 +63,15 @@ public class HighlightProductBean implements Serializable{
 	/**
 	 * Constructor of the highlight product bean.
 	 */
-	public HighlightProductBean(){
+	@PostConstruct
+	public void init(){
 		HttpSession session = SessionBean.getSession();
-        if(session.getAttribute("supercategory")==null)
-        	new SuperCategory();
+		SuperCategory supercat = (SuperCategory) session.getAttribute("supercategory"); 
+        if(supercat==null)
+        	supercat = new SuperCategory();
         
 		/**
-		 * Temporry array list which is used to count sales of product
+		 * Temporary array list which is used to count sales of product
 		 */
 		ArrayList<Productmatch> productsales = new ArrayList<Productmatch>();
 		//SELECT COUNT(*) FROM shopdb.products;
