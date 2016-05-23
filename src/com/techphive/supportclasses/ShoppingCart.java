@@ -64,7 +64,6 @@ public class ShoppingCart implements Serializable {
 		if(selectedQuantity.get(p.getProductID())-1 <= 0)
 		{
 			this.remove(p);
-			itemsCounter--;
 			return true;
 		}
 		selectedQuantity.put(p.getProductID(), selectedQuantity.get(p.getProductID())-1);	
