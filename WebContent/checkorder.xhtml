@@ -62,8 +62,10 @@
 									<label for="checkordernumber">Enter your order number:</label>
 									<h:inputText name="userinputOrderNumber" id="userinputOrderNumber"
 										a:placeholder="Order number" class="form-control" size="20" value="#{orderbean.ordernumber}"/>
+										<br/>
 									<h:inputText name="checkemail" id="checkemail" a:placeholder="E-mail"
 										class="form-control" size="20" value="#{orderbean.email}"/>
+										<br/>
 									<h:commandButton value="view" action="#{orderbean.checkExisitingOrder()}"
 										class="btn btn-primary" /> <br />
 									<h:message class="error" for="checkout-order-form" id="errormessage" style="color:red;" />

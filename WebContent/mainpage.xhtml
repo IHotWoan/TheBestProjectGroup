@@ -149,15 +149,23 @@
 								<div class="row">
 								<h2>Our bestselling products</h2>
 								<ui:repeat value="#{highlight.topProducts}" var="topproducts">
-									<div class="col-lg-5">
+									<div class="col-lg-6">
 										<h:graphicImage class="img-circle" width="120" height="120" value="/productImageServlet?id=#{topproducts.productID}" />
 										<h3><h:outputLabel value="#{topproducts.name}" /> </h3>
+										<div class="product-price" >
+											<strong>Price: </strong>
+											<h:outputText value="#{topproducts.price}">
+											<f:convertNumber pattern="###,###:-" />
+											</h:outputText>
+										</div>
+										<br/>
 										<p>
 											<h:commandButton action="catalogue" value="View details" class="btn btn-default">
 												<f:setPropertyActionListener target="#{productbean.selectedProduct}" value="#{topproducts}" />
 											</h:commandButton>
 
 										</p>
+										<hr/>
 									</div>
 								</ui:repeat>
 								</div>

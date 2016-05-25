@@ -65,16 +65,22 @@
 								<f:facet name="header">Product Category</f:facet>
 								<h:outputText value="#{items.categoryName}" />
 							</h:column>
-							<h:column>
+							<h:column >
+							<div style="text-align: right; max-width: 100px">
 								<f:facet name="header">Product Price</f:facet>
-								<h:outputText value="#{items.price}" />
+								<h:outputText value="#{items.price}">
+								<f:convertNumber pattern="###,###:-" />
+								</h:outputText>
+								</div>
 							</h:column>
 							<h:column>
+							<div style="text-align: right; max-width: 100px">
 								<f:facet name="header">Product Quantity</f:facet>
 								<h:commandLink action="#{shoppingcartbean.cart.decrease(items)}" value="▼ " />
 								<h:outputText
 									value="#{shoppingcartbean.cart.getQuantity(items)}" />
 									<h:commandLink action="#{shoppingcartbean.cart.add(items)}" value=" ▲" />
+									</div>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Remove</f:facet>

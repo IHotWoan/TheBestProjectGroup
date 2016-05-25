@@ -117,9 +117,11 @@
 								<f:facet name="header">Product Description</f:facet>
 								<h:outputText value="#{displayedproduct.description}" />
 							</p:column>
-							<p:column headerText="Prodct Price" sortBy="#{displayedproduct.price}" style="width:90px;">
+							<p:column headerText="Prodct Price" sortBy="#{displayedproduct.price}" style="width:90px; text-align: right;">
 								<f:facet name="header">Product Price</f:facet>
-								<h:outputText value="#{displayedproduct.price}" />
+								<h:outputText value="#{displayedproduct.price}">
+								<f:convertNumber pattern="###,###:-" />
+								</h:outputText>
 							</p:column>
 						</p:dataTable>
 					</h:form>
@@ -129,7 +131,6 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-									<h2>Index</h2>
 									<h3>Find us at</h3>
 									<ul class="social">
 										<li><a href="#"> <i class=" fa fa-facebook"> </i>

@@ -108,9 +108,11 @@
 											<i class="fa fa-star-o"></i>
 										</div> -->
 										<hr />
-										<div class="product-price">
+										<div class="product-price" >
 											<strong>Price: </strong>
-											<h:outputText value="#{productbean.selectedProduct.price}" />Kr
+											<h:outputText value="#{productbean.selectedProduct.price}">
+											<f:convertNumber pattern="###,###:-" />
+											</h:outputText>
 										</div>
 										<div class="product-stock">
 											<strong class="bg-danger"><h:outputText
@@ -149,7 +151,6 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-									<h2>Index</h2>
 									<h3>Find us at</h3>
 									<ul class="social">
 										<li><a href="#"> <i class=" fa fa-facebook"> </i>
