@@ -49,8 +49,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav side-nav">
-					<li><a href="dashboard.xhtml"><i
-							class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
 					<li><a href="deliveredorders.xhtml"><i
 							class="fa fa-fw fa-table"></i> Delivered orders</a></li>
 					<li><a href="manageorders.xhtml"><i
@@ -59,8 +57,8 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							Manage categories</a></li>
 					<li><a href="manageproducts.xhtml"><i class="fa fa-edit"></i>
 							Manage products</a></li>
-							<li><a href="deletedproducts.xhtml"><i class="fa fa-table"></i>
-							Deleted products</a></li>
+							<li><a href="archivedproducts.xhtml"><i class="fa fa-table"></i>
+							Archived products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
 							<li><a href="managemainpage.xhtml"><i
@@ -76,12 +74,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				<div class="row">
 					<div class="col-lg-10">
 						<h1 class="page-header">Manage categories</h1>
-						<ol class="breadcrumb">
-							<li class="active"><i class="fa fa-dashboard"></i> <a
-								href="dashboard.xhtml">Dashboard</a></li>
-							<li class="active"><i class="fa fa-fw fa-table"></i> Manage
-								categories</li>
-						</ol>
 					</div>
 				</div>
 
@@ -144,6 +136,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 										<h:form>
 										<div class="form-group">
 
+											<br/>
 											<Label>Category Name: </Label>
 											<h:inputText style="max-width: 300px" class="form-control" requiredMessage="Please enter category name!"  required="true"
 												value="#{supercategory.categoryName}" />
@@ -204,6 +197,7 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 										<h:form>
 										<div class="form-group">
 
+											<br/>
 											<Label>Brand Name: </Label>
 											<h:inputText style="max-width: 300px" class="form-control" requiredMessage="Please enter Brand name!" required="true"
 												value="#{supercategory.subCategoryName}" />

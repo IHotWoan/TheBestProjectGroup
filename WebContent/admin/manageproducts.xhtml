@@ -50,8 +50,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav side-nav">
-					<li><a href="dashboard.xhtml"><i
-							class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
 					<li><a href="deliveredorders.xhtml"><i
 							class="fa fa-fw fa-table"></i> Delivered orders</a></li>
 					<li><a href="manageorders.xhtml"><i
@@ -60,13 +58,13 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							Manage categories</a></li>
 					<li><a href="manageproducts.xhtml"><i class="fa fa-edit"></i>
 							Manage products</a></li>
-							<li><a href="deletedproducts.xhtml"><i class="fa fa-table"></i>
-							Deleted products</a></li>
+					<li><a href="archivedproducts.xhtml"><i
+							class="fa fa-table"></i> Archived products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
-							<li><a href="managemainpage.xhtml"><i
+					<li><a href="managemainpage.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
-								<li><a href="managemessages.xhtml"><i
+					<li><a href="managemessages.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage messages</a></li>
 				</ul>
 			</div>
@@ -78,12 +76,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				<div class="row">
 					<div class="col-lg-10">
 						<h1 class="page-header">Manage products</h1>
-						<ol class="breadcrumb">
-							<li class="active"><i class="fa fa-dashboard"></i> <a
-								href="dashboard.xhtml">Dashboard</a></li>
-							<li class="active"><i class="fa fa-fw fa-table"></i> Manage
-								products</li>
-						</ol>
 					</div>
 				</div>
 				<div class="row">
@@ -91,16 +83,19 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 						<div class="form-group">
 							<h:form>
 								<Label>Search product </Label>
-								<h:inputText class="form-control" placeholder="Search..." value="#{supercategory.searchString}"/>
+								<h:inputText class="form-control" placeholder="Search..."
+									value="#{supercategory.searchString}" />
 								<div class="btn-toolbar">
 									<br />
 									<h:commandButton class="btn btn-primary"
-										action="#{supercategory.productSearch}" value="Search" update=":productsform:productstable" ajax="true"  />
+										action="#{supercategory.productSearch}" value="Search"
+										update=":productsform:productstable" ajax="true" />
 
 									<h:commandButton class="btn btn-info"
-										action="#{supercategory.refreshAllProducts}" value="Show All" update=":productsform:productstable" ajax="true" />
+										action="#{supercategory.refreshAllProducts}" value="Show All"
+										update=":productsform:productstable" ajax="true" />
 								</div>
-								</h:form>
+							</h:form>
 						</div>
 					</div>
 				</div>
@@ -117,8 +112,9 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 
 									<h:form id="productsform">
 										<p:growl id="growl" showDetail="true" sticky="false" />
-										<p:dataTable id="productstable" value="#{supercategory.productArray}"
-											var="product" rows="20" paginator="true" paginatorPosition="bottom">
+										<p:dataTable id="productstable"
+											value="#{supercategory.productArray}" var="product" rows="20"
+											paginator="true" paginatorPosition="bottom">
 											<!--
 											<h:column>
 												<f:facet name="header">Product ID</f:facet>
@@ -136,33 +132,46 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</p:column>
 											<p:column headerText="Product Category">
 												<!--<h:inputText value="#{product.categoryID}" rendered="#{product.editable}" /> -->
-												<h:selectOneMenu value="#{product.categoryID}" class="form-control" style="max-width: 150px" rendered="#{product.editable}">
-													<f:selectItems value="#{supercategory.categoryArray}" var="category"
-														itemLabel="#{category.categoryName}" itemValue="#{category.categoryID}" />
+												<h:selectOneMenu value="#{product.categoryID}"
+													class="form-control" style="max-width: 150px"
+													rendered="#{product.editable}">
+													<f:selectItems value="#{supercategory.categoryArray}"
+														var="category" itemLabel="#{category.categoryName}"
+														itemValue="#{category.categoryID}" />
 												</h:selectOneMenu>
 												<h:outputText value="#{product.categoryName}"
 													rendered="#{not product.editable}" />
 											</p:column>
 											<p:column headerText="Brand">
 												<!--<h:inputText value="#{product.categoryID}" rendered="#{product.editable}" /> -->
-												<h:selectOneMenu value="#{product.brandID}" class="form-control" style="max-width: 150px" rendered="#{product.editable}">
-													<f:selectItems value="#{supercategory.subCategoryArray}" var="brands"
-														itemLabel="#{brands.subCategoryName}" itemValue="#{brands.subCategoryID}" />
+												<h:selectOneMenu value="#{product.brandID}"
+													class="form-control" style="max-width: 150px"
+													rendered="#{product.editable}">
+													<f:selectItems value="#{supercategory.subCategoryArray}"
+														var="brands" itemLabel="#{brands.subCategoryName}"
+														itemValue="#{brands.subCategoryID}" />
 												</h:selectOneMenu>
 												<h:outputText value="#{product.brandName}"
 													rendered="#{not product.editable}" />
 											</p:column>
 											<p:column headerText="Price" style="width:80px;">
-												<h:inputText value="#{product.price}"
-													rendered="#{product.editable}" size="5"/>
-												<h:outputText value="#{product.price}"
-													rendered="#{not product.editable}" />
+												<div style="text-align: right;">
+													<h:inputText value="#{product.price}"
+														rendered="#{product.editable}" size="5" />
+													<h:outputText value="#{product.price}"
+														rendered="#{not product.editable}">
+														<f:convertNumber pattern="###,###:-" />
+													</h:outputText>
+												</div>
 											</p:column>
-											<p:column headerText="Quantity" style="width:65px;" sortBy="#{product.quantity}">
-												<h:inputText value="#{product.quantity}"
-													rendered="#{product.editable}" size="2"/>
-												<h:outputText value="#{product.quantity}"
-													rendered="#{not product.editable}" />
+											<p:column headerText="Quantity" style="width:80px;"
+												sortBy="#{product.quantity}">
+												<div style="text-align: right;">
+													<h:inputText value="#{product.quantity}"
+														rendered="#{product.editable}" size="2" />
+													<h:outputText value="#{product.quantity}"
+														rendered="#{not product.editable}" />
+												</div>
 											</p:column>
 											<p:column headerText="Edit" style="width:80px;">
 												<h:commandButton class="btn btn-info" value="Edit"
@@ -172,85 +181,89 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 														target="#{supercategory.productID}"
 														value="#{product.productID}" />
 												</h:commandButton>
-												<h:commandButton class="btn btn-success"
-													value="Save"
+												<h:commandButton class="btn btn-success" value="Save"
 													action="#{supercategory.confirmProductEdit}"
 													rendered="#{product.editable}" />
 											</p:column>
 											<p:column headerText="Change image" style="width:100px;">
-												<h:commandButton class="btn btn-info"
-													value="image" action="productimageupload">
+												<h:commandButton class="btn btn-info" value="image"
+													action="productimageupload">
 													<f:setPropertyActionListener
 														target="#{fileuploadbean.productID}"
 														value="#{product.productID}" />
 												</h:commandButton>
 											</p:column>
-											<p:column headerText="Modify description" style="width:125px;" >
-												<h:commandButton class="btn btn-info"
-													value="description" action="updatedescription">
+											<p:column headerText="Modify description"
+												style="width:125px;">
+												<h:commandButton class="btn btn-info" value="description"
+													action="updatedescription">
 													<f:setPropertyActionListener
 														target="#{descriptionbean.selectedProduct}"
 														value="#{product}" />
 												</h:commandButton>
 											</p:column>
 											<p:column headerText="Delete" style="width:90px;">
-												<h:commandButton class="btn btn-warning"
-													value="Delete"
+												<h:commandButton class="btn btn-warning" value="Delete"
 													action="#{supercategory.deleteAction(product)}"
 													rendered="#{not product.deletable}" />
-													
+
 												<div class="btn-group confirmdelete">
-												<h:commandButton class="btn btn-danger"
-													value="Confirm"
-													action="#{supercategory.confirmProductDelete(product.productID)}"
-													update="@form" ajax="true" rendered="#{product.deletable}" />
-													</div>
-													<div class="btn-group cancel">
-													<h:commandButton class="btn btn-success"
-													value="Cancel" 
-													action="#{supercategory.deleteAction(product)}"
-													rendered="#{product.deletable}" />
-													</div>
-													
+													<h:commandButton class="btn btn-danger" value="Confirm"
+														action="#{supercategory.confirmProductDelete(product.productID)}"
+														update="@form" ajax="true" rendered="#{product.deletable}" />
+												</div>
+												<div class="btn-group cancel">
+													<h:commandButton class="btn btn-success" value="Cancel"
+														action="#{supercategory.deleteAction(product)}"
+														rendered="#{product.deletable}" />
+												</div>
+
 											</p:column>
 										</p:dataTable>
-										</h:form>
-										<h:form>
+									</h:form>
+									<h:form>
 
 										<h2>Add New Product</h2>
 										<table class="table table-bordered table-hover table-striped">
 											<tr>
 												<td>Product Name:</td>
-												<td><h:inputText size="30" requiredMessage="Please enter product name!"
-														value="#{supercategory.productName}" required="true" id="productname"/>
-												</td>
-												
+												<td><h:inputText size="30"
+														requiredMessage="Please enter product name!"
+														value="#{supercategory.productName}" required="true"
+														id="productname" /></td>
+
 											</tr>
 											<tr>
 												<td>Product Category:</td>
-												<td><h:selectOneMenu value="#{supercategory.productCategory}" class="form-control" style="max-width: 150px">
-														<f:selectItems value="#{supercategory.categoryArray}" var="category"
-														itemLabel="#{category.categoryName}" itemValue="#{category.categoryID}" />
-														</h:selectOneMenu>
-												<!--<h:inputText size="20" value="#{supercategory.productCategory}" />-->
+												<td><h:selectOneMenu
+														value="#{supercategory.productCategory}"
+														class="form-control" style="max-width: 150px">
+														<f:selectItems value="#{supercategory.categoryArray}"
+															var="category" itemLabel="#{category.categoryName}"
+															itemValue="#{category.categoryID}" />
+													</h:selectOneMenu> <!--<h:inputText size="20" value="#{supercategory.productCategory}" />-->
 												</td>
-												
+
 											</tr>
 											<tr>
 												<td>Product Brand:</td>
-												<td><!--<h:inputText size="5" value="#{supercategory.productBrand}" />-->
-													<h:selectOneMenu value="#{supercategory.productBrand}" class="form-control" style="max-width: 150px">
-														<f:selectItems value="#{supercategory.subCategoryArray}" var="brand"
-														itemLabel="#{brand.subCategoryName}" itemValue="#{brand.subCategoryID}" />
-														</h:selectOneMenu>
-														</td>
+												<td>
+													<!--<h:inputText size="5" value="#{supercategory.productBrand}" />-->
+													<h:selectOneMenu value="#{supercategory.productBrand}"
+														class="form-control" style="max-width: 150px">
+														<f:selectItems value="#{supercategory.subCategoryArray}"
+															var="brand" itemLabel="#{brand.subCategoryName}"
+															itemValue="#{brand.subCategoryID}" />
+													</h:selectOneMenu>
+												</td>
 											</tr>
 											<tr>
 												<td>Product Price:</td>
-												<td><h:inputText size="30" requiredMessage="Please enter product price!"  required="true" id="productprice"
-														value="#{supercategory.productPrice}" />
-												</td>
-												
+												<td><h:inputText size="30"
+														requiredMessage="Please enter product price!"
+														required="true" id="productprice"
+														value="#{supercategory.productPrice}" /></td>
+
 											</tr>
 											<tr>
 												<td>Product Description:</td>
@@ -259,15 +272,16 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											</tr>
 											<tr>
 												<td>Product Quantity:</td>
-												<td><h:inputText size="30" requiredMessage="Please enter quantity!"  required="true" id="productquantity"
-														value="#{supercategory.productQuantity}" />
-												</td>
-												
+												<td><h:inputText size="30"
+														requiredMessage="Please enter quantity!" required="true"
+														id="productquantity"
+														value="#{supercategory.productQuantity}" /></td>
+
 											</tr>
 										</table>
 
-										<h:commandButton class="btn btn-success"
-											value="Add Product" action="#{supercategory.addProduct}"
+										<h:commandButton class="btn btn-success" value="Add Product"
+											action="#{supercategory.addProduct}"
 											update=":productsform:productstable" ajax="true" />
 
 									</h:form>

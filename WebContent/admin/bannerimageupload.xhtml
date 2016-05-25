@@ -51,8 +51,6 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav side-nav">
-					<li><a href="dashboard.xhtml"><i
-							class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
 					<li><a href="deliveredorders.xhtml"><i
 							class="fa fa-fw fa-table"></i> Delivered orders</a></li>
 					<li><a href="manageorders.xhtml"><i
@@ -61,11 +59,13 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 							Manage categories</a></li>
 					<li><a href="manageproducts.xhtml"><i class="fa fa-edit"></i>
 							Manage products</a></li>
+					<li><a href="archivedproducts.xhtml"><i
+							class="fa fa-table"></i> Archived products</a></li>
 					<li><a href="manageusers.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage users</a></li>
-							<li><a href="managemainpage.xhtml"><i
+					<li><a href="managemainpage.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage main page</a></li>
-							<li><a href="managemessages.xhtml"><i
+					<li><a href="managemessages.xhtml"><i
 							class="fa fa-fw fa-wrench"></i> Manage messages</a></li>
 				</ul>
 			</div>
@@ -75,20 +75,13 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-10">
-					<h:form>
-						<h1 class="page-header">
-							Upload image file for banner id:
-							<h:outputLabel value="#{fileuploadbean.bannerID}" />
-						</h1>
-					</h:form>
-						<ol class="breadcrumb">
-							<li class="active"><i class="fa fa-dashboard"></i> <a
-								href="dashboard.xhtml">Dashboard</a></li>
-							<li class="active"><i class="fa fa-edit"></i><a
-								href="manage products.xhtml">Manage products</a></li>
-							<li class="active"><i class="fa fa-fw fa-wrench"></i> Upload
-								image</li>
-						</ol>
+						<h:form>
+							<h1 class="page-header">
+								Upload image file for banner id:
+								<h:outputLabel value="#{fileuploadbean.bannerID}" />
+							</h1>
+						</h:form>
+
 					</div>
 				</div>
 				<div class="row">
@@ -100,11 +93,11 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								</h3>
 							</div>
 							<div class="panel-body">
-							Current image: <br/>
+								Current image: <br />
 								<h:form>
-								<h:graphicImage
-									value="/bannerImageServlet?id=#{fileuploadbean.bannerID}"
-									width="400" />
+									<h:graphicImage
+										value="/bannerImageServlet?id=#{fileuploadbean.bannerID}"
+										width="400" />
 								</h:form>
 								<div class="table-responsive">
 									<h:form id="uploadform" enctype="multipart/form-data">
@@ -112,17 +105,18 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 											validator="#{fileuploadbean.validateFile}"></h:inputFile>
 										<br />
 										<div class="btn-group upload">
-										<h:commandButton class="btn btn-primary" value="Upload"
-											action="#{fileuploadbean.bannerUpload()}" />
-											</div>
-										<strong class="bg-warning"><h:messages class="error" for="uploadform" style="color:red;" /></strong>
+											<h:commandButton class="btn btn-primary" value="Upload"
+												action="#{fileuploadbean.bannerUpload()}" />
+										</div>
+										<strong class="bg-warning"><h:messages class="error"
+												for="uploadform" style="color:red;" /></strong>
 									</h:form>
-									
+
 									<h:form>
 										<div class="btn-group cancel">
-										<h:commandButton class="btn btn-success" value="Return to manage main page"
-									     action="managemainpage" />
-									     </div>
+											<h:commandButton class="btn btn-success"
+												value="Return to manage main page" action="managemainpage" />
+										</div>
 									</h:form>
 								</div>
 							</div>

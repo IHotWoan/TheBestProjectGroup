@@ -10,7 +10,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Order numbers</title>
+	<title>Upload image</title>
 
 	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
 	<!-- Custom CSS -->
@@ -75,7 +75,10 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-10">
-						<h1 class="page-header">Ordernumbers</h1>
+						<h1 class="page-header">
+							Upload image file for product id:
+							<h:outputLabel value="#{fileuploadbean.productID}" />
+						</h1>
 					</div>
 				</div>
 				<div class="row">
@@ -83,82 +86,18 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">
-									<i class="fa fa-fw fa-table"></i> Products
+									<i class="fa fa-fw fa-table"></i> Upload
 								</h3>
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-
-									<h:form>
-										<h3>
-											Detailed information of order:
-											<h:outputLabel value="#{ordertable.selected}" />
-										</h3>
-										
-										<label>Change order status:</label>
- 										<h:selectOneMenu class="form-control" style="max-width: 150px" id="orderstatus" value="#{ordertable.selectedStatus}">
- 											<f:selectItems value="#{ordertable.statusValues}" />
- 										</h:selectOneMenu>
- 										<br/>
- 									    <div class="btn-group update">
- 										<h:commandButton class="btn btn-success" action="#{ordertable.updateOrderStatus}" value="update" />
- 										</div>
- 										 <div class="btn-group return">
- 										<h:commandButton class="btn btn-danger" action="manageorders" value="Return to manage orders" />
- 										</div>
- 										<hr/>
-										<h:dataTable
-											class="table table-bordered table-hover table-striped"
-											value="#{ordertable.selectedOrder.productarray}"
-											var="orderlist">
-											<h:column>
-												<f:facet name="header">Picture</f:facet>
-												<h:graphicImage
-													value="/productImageServlet?id=#{orderlist.productID}"
-													width="200" />
-											</h:column>
-											<h:column>
-												<f:facet name="header">Product name</f:facet>
-    												#{orderlist.name}
-    											</h:column>
-											<h:column>
-												<f:facet name="header">Brand</f:facet>
-    												#{orderlist.brandName}
-    											</h:column>
-											<h:column>
-												<f:facet name="header">Category</f:facet>
-    												#{orderlist.categoryName}
-    											</h:column>
-											<h:column>
-											<div style="text-align: right;">
-												<f:facet name="header">Quantity</f:facet>
-    												#{orderlist.quantity}
-    												</div>
-    											</h:column>
-											<h:column>
-											<div style="text-align: right;">
-												<f:facet name="header">Price</f:facet>
-    												<h:outputText value="#{orderlist.price}">
-    												<f:convertNumber pattern="###,###:-" />
-													</h:outputText>
-    												</div>
-    											</h:column>
-										</h:dataTable>
-									</h:form>
-
-									<h:form>
-										<ul class="list-group">
-											<li class="list-group-item">Customer Name: <h:outputLabel
-													value="#{ordertable.selectedOrder.customerName}" /></li>
-											<li class="list-group-item">Address: <h:outputLabel
-													value="#{ordertable.selectedOrder.customerAddress}" /><br />
-												#{ordertable.selectedOrder.zipCode}  #{ordertable.selectedOrder.city}
-												<br /></li>
-											<li class="list-group-item">Mobile number: <h:outputLabel
-													value="#{ordertable.selectedOrder.phone}" /></li>
-											<li class="list-group-item">E-mail: <h:outputLabel
-													value="#{ordertable.selectedOrder.email}" /></li>
-										</ul>
+									<h:form id="uploadform" enctype="multipart/form-data">
+										<h:inputFile id="file" value="#{fileuploadbean.file}"
+											validator="#{fileuploadbean.validateFile}"></h:inputFile>
+										<br />
+										<h:commandButton class="btn btn-lg btn-primary" value="Upload"
+											action="#{fileuploadbean.upload()}" />
+										<h:messages class="error" for="uploadform" style="color:red;" />
 									</h:form>
 								</div>
 							</div>
