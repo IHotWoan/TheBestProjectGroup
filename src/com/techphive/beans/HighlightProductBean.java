@@ -69,6 +69,8 @@ public class HighlightProductBean implements Serializable{
 		SuperCategory supercat = (SuperCategory) session.getAttribute("supercategory"); 
         if(supercat==null)
         	supercat = new SuperCategory();
+        else
+        	supercat.refreshAllProducts();
         
 		/**
 		 * Temporary array list which is used to count sales of product
