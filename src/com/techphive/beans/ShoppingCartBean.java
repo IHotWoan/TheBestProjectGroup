@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpSession;
 
+import com.techphive.supportclasses.Mail;
 import com.techphive.supportclasses.MysqlConnect;
 import com.techphive.supportclasses.Order;
 import com.techphive.supportclasses.Product;
@@ -86,6 +87,19 @@ public class ShoppingCartBean implements Serializable{
 				order.setProductarray(cart.getProducts());
 				order.setTotalcost((cart.getTotalCost()));
 				
+				Mail sendmail = new Mail();
+				
+				//Send order confirmation e-mail
+				StringBuilder content = new StringBuilder();
+				content.append("<pre>Thank you for your order from TechPhive!</pre>");
+				content.append("<p>Your order number is "+orderID);
+				content.append(", and you have ordered following products:</p>");
+				content.append("<table id=\"ordersummary:productstable\" class=\"table table-striped\"><thead>");
+				content.append("<tr><th scope=\"col\"></th><th scope=\"col\">Product Name</th><th scope=\"col\">Category</th><th scope=\"col\">Price</th>");
+				content.append("<th scope=\"col\">Quantity</th></tr></thead><tbody>");
+
+				// deduct db quantity;
+				
 				db.insert("INSERT into customers (customer_order_ID,customer_name,customer_streetaddress,customer_zipcode,customer_city,customer_phone,customer_email,customer_orderstatus) "
 						+ "VALUES ('"+orderID+"','"+order.getCustomerName()+"','"+order.getCustomerAddress()+"','"+order.getZipCode()+"','"+order.getCity()+"','"+order.getPhone()+"','"+order.getEmail()+"','neworder');");
 				for(Product p: order.getProductarray())
@@ -94,6 +108,8 @@ public class ShoppingCartBean implements Serializable{
 					db.insert("INSERT into ordereditems (ordereditems_order_ID,ordereditems_product,ordereditems_quantity,ordereditems_price) "+
 				"VALUES ('"+orderID+"','"+p.getProductID()+"','"+selectedq+"','"+p.getPrice()*selectedq+"');");
 					
+					content.append("<tr> <td><img src=\"http://songhohem.ddns.net/TechPhive/productImageServlet?id="+p.getProductID()+"\" width=\"100\" /></td>");
+					content.append("<td>"+p.getName()+"</td>"+"<td>"+p.getCategoryName()+"</td>"+"<td>"+p.getPrice()+"</td><td>"+selectedq+"</td></tr>");
 					//Save temporary quantity of the product to update the database. 
 					p.setQuantity(p.getQuantity()-selectedq);
 					db.insert("UPDATE products SET `product_quantity`='"+p.getQuantity()+"' WHERE `product_ID`='"+p.getProductID()+"'");
@@ -102,6 +118,14 @@ public class ShoppingCartBean implements Serializable{
 					p.setQuantity(selectedq);
 					
 				}
+				
+				content.append("</tbody></table><br /><br />Your order will normally processed within three days.</p>");
+				content.append("<p>If you have further questions, please feel free to contact us.</p>");
+				content.append("<p>Yours sincerely,</p><p><img src=\"http://homepage.lnu.se/student/sl222xk/logo.png\" alt=\"Logo\" width=\"332\" height=\"99\" /></p>");
+				
+				
+				sendmail.send(order.getEmail(), "Order confirmation from TechPhive", content.toString());
+				sendmail = null;
 				
 				//Emptying shopping cart.
 				HttpSession session = SessionBean.getSession();

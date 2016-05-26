@@ -14,6 +14,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,15 +42,17 @@ public class Mail {
 	    public void send(String addresses, String topic, String textMessage) {
 	 
 	        try {
-	 
+	        	session.getProperties().put("mail.smtp.starttls.enable", true);
 	        	MimeMessage message = new MimeMessage(session);
+	        	message.setSender(new InternetAddress("linuslee@web.de"));
+	        	message.setFrom(new InternetAddress("linuslee@web.de","TechPhive"));
 	            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresses));
 	            message.setSubject(topic);
-	            message.setText(textMessage);
+	            message.setContent(textMessage, "text/html; charset=utf-8");
 	            
 	            Transport.send(message);
 	 
-	        } catch (MessagingException e) {
+	        } catch (MessagingException | UnsupportedEncodingException e) {
 	            Logger.getLogger(Mail.class.getName()).log(Level.WARNING, "Cannot send mail", e);
 	        }
 	    }
