@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
+import com.techphive.supportclasses.Mail;
 import com.techphive.supportclasses.MysqlConnect;
 import com.techphive.supportclasses.Order;
 import com.techphive.supportclasses.Product;
@@ -124,6 +125,27 @@ public class OrderTable implements Serializable{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Mail sendmail = new Mail();
+		StringBuilder content = new StringBuilder();
+		content.append("<pre>Dear "+selectedOrder.getCustomerName()+", Thank you for your order from TechPhive!</pre>");
+		content.append("<p>Your order "+selectedOrder.getOrderID()+" is now "+selectedOrder.getOrderstatus()+"</p>");
+		if(!selectedOrder.getOrderstatus().equals(Status.delivered))
+			content.append("<p>We apologise to inform you that your order has been "+selectedOrder.getOrderstatus()+"</p>");
+		
+		content.append("<p>You ordered following items: </p>");
+		content.append("<table id=\"ordersummary:productstable\" class=\"table table-striped\"><thead>");
+		content.append("<tr><th scope=\"col\"></th><th scope=\"col\">Product Name</th><th scope=\"col\">Category</th><th scope=\"col\">Price</th>");
+		content.append("<th scope=\"col\">Quantity</th></tr></thead><tbody>");
+		
+		for(Product p : selectedOrder.getProductarray()){
+			content.append("<tr> <td><img src=\"http://songhohem.ddns.net/TechPhive/productImageServlet?id="+p.getProductID()+"\" width=\"100\" /></td>");
+			content.append("<td>"+p.getName()+"</td>"+"<td>"+p.getCategoryName()+"</td>"+"<td>"+p.getPrice()+"</td><td>"+p.getQuantity()+"</td></tr>");
+		}
+		content.append("<p>If you have further questions, please feel free to contact us.</p>");
+		content.append("<p>Yours sincerely,</p><p><img src=\"http://homepage.lnu.se/student/sl222xk/logo.png\" alt=\"Logo\" width=\"200\" height=\"60\" /></p>");
+		sendmail.send(selectedOrder.getEmail(), "Your order "+selectedOrder.getOrderID(), content.toString());
+		sendmail=null;
+		
 		retrieveOrders();
 		
 		this.selected=null;

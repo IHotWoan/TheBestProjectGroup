@@ -121,10 +121,10 @@ public class ShoppingCartBean implements Serializable{
 				
 				content.append("</tbody></table><br /><br />Your order will normally processed within three days.</p>");
 				content.append("<p>If you have further questions, please feel free to contact us.</p>");
-				content.append("<p>Yours sincerely,</p><p><img src=\"http://homepage.lnu.se/student/sl222xk/logo.png\" alt=\"Logo\" width=\"332\" height=\"99\" /></p>");
+				content.append("<p>Yours sincerely,</p><p><img src=\"http://homepage.lnu.se/student/sl222xk/logo.png\" alt=\"Logo\" width=\"200\" height=\"60\" /></p>");
 				
 				
-				sendmail.send(order.getEmail(), "Order confirmation from TechPhive", content.toString());
+				sendmail.send(order.getEmail(), "Order ID "+order.getOrderID()+" from TechPhive", content.toString());
 				sendmail = null;
 				
 				//Emptying shopping cart.
