@@ -1,4 +1,4 @@
-# TheBestProjectGroup
+# TechPhive
 Welcome to visit our repository of TechPhive webshop.
 
 This project is a webshop web-application intended to run on WildFLy(JBoss) with Java EE 7.
