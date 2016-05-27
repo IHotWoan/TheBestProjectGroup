@@ -21,7 +21,7 @@ import com.techphive.supportclasses.User;
 public class Admin {
 
 	private ArrayList<User> userArray = new ArrayList<User>();
-	private MysqlConnect db = new MysqlConnect();
+	private MysqlConnect db;
 	private ResultSet rs;
 	
 	private String userName;
@@ -37,6 +37,7 @@ public class Admin {
 
 	public Admin(){
 		
+		db = new MysqlConnect();
 		try{
 			rs = db.query("SELECT * from users");
 		
@@ -52,9 +53,11 @@ public class Admin {
 			
 		}
 		
+		db.close();
 		} catch (SQLException e) {
 		e.printStackTrace();
 		}
+		db=null;
 		
 		//adding current user
 		this.setCurrentUser();
@@ -76,9 +79,11 @@ public class Admin {
 			return "failed";
 		}
 		else if(newPassword.equals(confirmPassword)){
+			db = new MysqlConnect();
 			try{
 				db.insert("UPDATE `shopdb`.`users` SET `user_password`='"+getConfirmPassword()+"' WHERE `user_id`='"+getUserID()+"'");
-				
+				db.close();
+				db = null;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -112,7 +117,7 @@ public class Admin {
 	}
 
 	public String confirmUserDelete(String userID) {
-		
+		db = new MysqlConnect();
 		for (User user : userArray){
 			
 			if(user.getUserID().equals(userID)){
@@ -120,6 +125,8 @@ public class Admin {
 					db.insert("DELETE FROM users WHERE user_id='"+userID+"'");
 					user.setDeletable(false);
 					userArray.remove(user);
+					db.close();
+					db = null;
 					break;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -144,7 +151,7 @@ public class Admin {
 	}
 
 	public String addUser(){
-		
+		db = new MysqlConnect();
 		try {
 			db.insert("INSERT into `shopdb`.`users` (user_username,user_password,user_isSuperUser) "
 					+ "VALUES ('"+getUserName()+"','"+getUserPassword()+"',"+isNewuserstatus()+")");
@@ -158,6 +165,8 @@ public class Admin {
 			user.setUserID(rs.getString(1));
 			
 			userArray.add(user);
+			db.close();
+			db = null;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

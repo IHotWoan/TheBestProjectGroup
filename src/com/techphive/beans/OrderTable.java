@@ -141,7 +141,7 @@ public class OrderTable implements Serializable{
 			content.append("<tr> <td><img src=\"http://songhohem.ddns.net/TechPhive/productImageServlet?id="+p.getProductID()+"\" width=\"100\" /></td>");
 			content.append("<td>"+p.getName()+"</td>"+"<td>"+p.getCategoryName()+"</td>"+"<td>"+p.getPrice()+"</td><td>"+p.getQuantity()+"</td></tr>");
 		}
-		content.append("<p>If you have further questions, please feel free to contact us.</p>");
+		content.append("</tbody></table><br /><br /><p>If you have further questions, please feel free to contact us.</p>");
 		content.append("<p>Yours sincerely,</p><p><img src=\"http://homepage.lnu.se/student/sl222xk/logo.png\" alt=\"Logo\" width=\"200\" height=\"60\" /></p>");
 		sendmail.send(selectedOrder.getEmail(), "Your order "+selectedOrder.getOrderID(), content.toString());
 		sendmail=null;

@@ -210,7 +210,7 @@ public class SuperCategory implements Serializable{
 				}
 				
 			}
-			
+			db.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
