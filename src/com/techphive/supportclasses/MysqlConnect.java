@@ -64,5 +64,19 @@ public class MysqlConnect {
     }
     public void close() throws SQLException{
     	conn.close();
-    }  
+    }
+    
+    public String escapeString(String in){
+    	StringBuilder make = new StringBuilder (in);
+    	for(int i=0;i<make.length();i++)
+		{
+			if(make.charAt(i)=='\\' || make.charAt(i)=='\''|| make.charAt(i)=='\"'
+					|| make.charAt(i)=='%' || make.charAt(i)=='_'){
+				if(i-1>0 && make.charAt(i-1)!='\\')
+					make.insert(i++,'\\');
+			}
+				
+		}
+    	return make.toString();
+    }
 }

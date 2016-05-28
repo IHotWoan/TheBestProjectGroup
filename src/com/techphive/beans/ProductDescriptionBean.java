@@ -36,7 +36,11 @@ public class ProductDescriptionBean implements Serializable{
 		FacesContext context = FacesContext.getCurrentInstance();
 		MysqlConnect db = new MysqlConnect();
 		
+		selectedProduct.setSpec(db.escapeString(selectedProduct.getSpec()));
+		selectedProduct.setDescription(db.escapeString(selectedProduct.getDescription()));
+		
 		try {
+			
 			String command = "UPDATE `shopdb`.`products` SET `product_description`='"+selectedProduct.getDescription()+
 					"', `product_spec`='"+selectedProduct.getSpec()+"' WHERE `product_ID`='"+selectedProduct.getProductID()+"'";
 			db.insert(command);

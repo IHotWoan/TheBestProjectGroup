@@ -49,6 +49,11 @@ public class ContactBean implements Serializable{
 	public String registerMessage(){
 		try {
 			MysqlConnect db = new MysqlConnect();
+			
+			input.setCustomerEmail(db.escapeString(input.getCustomerEmail()));
+			input.setCustomerMessage(db.escapeString(input.getCustomerMessage()));
+			input.setCustomerName(db.escapeString(input.getCustomerName()));
+			
 			String command = "INSERT INTO `shopdb`.`messages` (`message_subject`, `message_name`, `message_email`, `message_content`,`message_read`,`message_time`)"
 					+ "VALUES ('"+input.getSubject()+"', '"+input.getCustomerName()+"', '"+input.getCustomerEmail()+"', '"+input.getCustomerMessage()+"','0',NOW());";
 			

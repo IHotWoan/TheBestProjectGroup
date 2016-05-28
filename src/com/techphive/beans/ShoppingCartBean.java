@@ -53,6 +53,8 @@ public class ShoppingCartBean implements Serializable{
 		
 		try {
 			MysqlConnect db = new MysqlConnect();
+			
+			//Check actual product quantity is enough for purchase. It prevents negative quantity - Songho
 			for(Product p: cart.getProducts())
 			{
 				p.getProductID();
@@ -73,8 +75,10 @@ public class ShoppingCartBean implements Serializable{
 				
 			}
 			
+			//If quantities in db are safe and ready to go
 			if(!failed){
 				
+				//Generating Order ID
 				DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
 				Date date = new Date();
 				String orderID=dateFormat.format(date)+"-";
@@ -87,12 +91,21 @@ public class ShoppingCartBean implements Serializable{
 				order.setProductarray(cart.getProducts());
 				order.setTotalcost((cart.getTotalCost()));
 				
+				//Safeguarding db by using escaping letters for input.
+				order.setCity(db.escapeString(order.getCity()));
+				order.setCustomerAddress(db.escapeString(order.getCustomerAddress()));
+				order.setCustomerName(db.escapeString(order.getCustomerName()));
+				order.setEmail(db.escapeString(order.getEmail()));
+				order.setPhone(db.escapeString(order.getPhone()));
+				order.setZipCode(db.escapeString(order.getZipCode()));
+				
+				
 				Mail sendmail = new Mail();
 				
 				//Send order confirmation e-mail
 				StringBuilder content = new StringBuilder();
-				content.append("<pre>Thank you for your order from TechPhive!</pre>");
-				content.append("<p>Your order number is "+orderID);
+				content.append("<p>Thank you for your order from TechPhive!<br />");
+				content.append("Your order number is "+orderID);
 				content.append(", and you have ordered following products:</p>");
 				content.append("<table id=\"ordersummary:productstable\" class=\"table table-striped\"><thead>");
 				content.append("<tr><th scope=\"col\"></th><th style=\"text-align: left\">Product Name</th><th style=\"text-align: left\">Category</th><th style=\"text-align: right\">Price</th>");

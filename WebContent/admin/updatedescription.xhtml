@@ -88,13 +88,13 @@ document.write(dayNames[now.getDay()] + " " + monNames[now.getMonth()] + " " + n
 								<h1>Product information</h1>
 									<label>Short description</label>
 									<br/>
-									<p:inputText value="#{descriptionbean.selectedProduct.description}" required="true" id="desc" requiredMessage="Description cannot be empty!"/>
+									<p:inputText value="#{descriptionbean.selectedProduct.description}" required="true" id="desc" requiredMessage="Description cannot be empty!" size="105"/>
 									<p:message for="desc" /> <br />
 								</div>
 							</div>					
 							<div class="form-group">
 								<label>Product specification</label> <br/>
-								<p:editor id="spec" widgetVar="editorWidget" value="#{descriptionbean.selectedProduct.spec}" width="600"/>
+								<p:editor id="spec" widgetVar="editorWidget" value="#{descriptionbean.selectedProduct.spec}" width="800"/>
 								 <h:panelGrid columns="2" style="margin-top: 10px">
 								 	<p:commandButton class="btn btn-lg btn-success" value="submit" action="#{descriptionbean.savechanges}" ajax="false"/>
 								 	<h:commandButton class="btn btn-danger" value="Go back to manage products" action="manageproducts"/>
