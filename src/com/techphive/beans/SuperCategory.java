@@ -514,6 +514,8 @@ public class SuperCategory implements Serializable{
 	 */
 	
 	public String addProduct(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		
 		db = new MysqlConnect();
 		try {
 			db.insert("INSERT into `shopdb`.`products` (product_name,product_category,product_brand,product_price,product_description,product_quantity) "
@@ -547,6 +549,7 @@ public class SuperCategory implements Serializable{
 			db.close();
 			db = null;
 			
+			context.addMessage(null, new FacesMessage("Sussess",  "The product is added to the database sucessfully") );
 			//After adding the new product, the form should be reset // Songho
 			this.productName="";
 			this.productCategory="";
@@ -556,7 +559,7 @@ public class SuperCategory implements Serializable{
 			this.productQuantity=0;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Product could not be added due to error in db!"));
 			e.printStackTrace();
 		}
 		return null;
@@ -570,6 +573,8 @@ public class SuperCategory implements Serializable{
 	}
 
 	public String addCategory(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		
 		db= new MysqlConnect();
 		try {
 			db.insert("INSERT into `shopdb`.`category` (category_name)" + "VALUES ('"+getCategoryName()+"')");
@@ -584,14 +589,18 @@ public class SuperCategory implements Serializable{
 			categoryArray.add(category);
 			db.close();
 			db = null;
+			context.addMessage(null, new FacesMessage("Sussess",  "The Category is added to the database sucessfully") );
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Category could not be added due to error in db!"));
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	public String addSubCategory(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		
 		db = new MysqlConnect();
 		try {
 			db.insert("INSERT into `shopdb`.`brands` (brand_name)" + "VALUES ('"+getSubCategoryName()+"')");
@@ -606,8 +615,10 @@ public class SuperCategory implements Serializable{
 			subCategoryArray.add(subcategory);
 			db.close();
 			db=null;
+			context.addMessage(null, new FacesMessage("Sussess",  "The brand is added to the database sucessfully") );
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Brand could not be added due to error in db!"));
 			e.printStackTrace();
 		}
 		return null;
