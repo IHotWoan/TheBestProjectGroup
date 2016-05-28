@@ -25,7 +25,7 @@ import javax.faces.context.FacesContext;
 
 /**
  * @author songhokun
- *
+ * A bean class which holds a shopping cart class.
  */
 @ManagedBean(name="shoppingcartbean")
 @SessionScoped
@@ -95,8 +95,8 @@ public class ShoppingCartBean implements Serializable{
 				content.append("<p>Your order number is "+orderID);
 				content.append(", and you have ordered following products:</p>");
 				content.append("<table id=\"ordersummary:productstable\" class=\"table table-striped\"><thead>");
-				content.append("<tr><th scope=\"col\"></th><th scope=\"col\">Product Name</th><th scope=\"col\">Category</th><th scope=\"col\">Price</th>");
-				content.append("<th scope=\"col\">Quantity</th></tr></thead><tbody>");
+				content.append("<tr><th scope=\"col\"></th><th style=\"text-align: left\">Product Name</th><th style=\"text-align: left\">Category</th><th style=\"text-align: right\">Price</th>");
+				content.append("<th style=\"text-align: right\">Quantity</th></tr></thead><tbody>");
 
 				// deduct db quantity;
 				
@@ -108,8 +108,8 @@ public class ShoppingCartBean implements Serializable{
 					db.insert("INSERT into ordereditems (ordereditems_order_ID,ordereditems_product,ordereditems_quantity,ordereditems_price) "+
 				"VALUES ('"+orderID+"','"+p.getProductID()+"','"+selectedq+"','"+p.getPrice()*selectedq+"');");
 					
-					content.append("<tr> <td><img src=\"http://songhohem.ddns.net/TechPhive/productImageServlet?id="+p.getProductID()+"\" width=\"100\" /></td>");
-					content.append("<td>"+p.getName()+"</td>"+"<td>"+p.getCategoryName()+"</td>"+"<td>"+p.getPrice()+"</td><td>"+selectedq+"</td></tr>");
+					content.append("<tr> <td style=\"text-align: center\"><img src=\"http://songhohem.ddns.net/TechPhive/productImageServlet?id="+p.getProductID()+"\" width=\"100\" /></td>");
+					content.append("<td style=\"text-align: left\">"+p.getName()+"</td>"+"<td style=\"text-align: left\">"+p.getCategoryName()+"</td>"+"<td style=\"text-align: right\">"+p.getPrice()+"</td><td style=\"text-align: right\">"+selectedq+"</td></tr>");
 					//Save temporary quantity of the product to update the database. 
 					p.setQuantity(p.getQuantity()-selectedq);
 					db.insert("UPDATE products SET `product_quantity`='"+p.getQuantity()+"' WHERE `product_ID`='"+p.getProductID()+"'");

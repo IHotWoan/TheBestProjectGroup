@@ -19,6 +19,8 @@ import com.techphive.supportclasses.Order;
 /**
  * @author songhokun
  *
+ * Bean which holds an Order class.
+ * Used in tracking order and showing order confirmation message after purchase.
  */
 @ManagedBean(name="orderbean")
 @SessionScoped

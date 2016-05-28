@@ -134,12 +134,12 @@ public class OrderTable implements Serializable{
 		
 		content.append("<p>You ordered following items: </p>");
 		content.append("<table id=\"ordersummary:productstable\" class=\"table table-striped\"><thead>");
-		content.append("<tr><th scope=\"col\"></th><th scope=\"col\">Product Name</th><th scope=\"col\">Category</th><th scope=\"col\">Price</th>");
-		content.append("<th scope=\"col\">Quantity</th></tr></thead><tbody>");
-		
+		content.append("<tr><th scope=\"col\"></th><th style=\"text-align: left\">Product Name</th><th style=\"text-align: left\">Category</th><th style=\"text-align: right\">Price</th>");
+		content.append("<th style=\"text-align: right\">Quantity</th></tr></thead><tbody>");
+
 		for(Product p : selectedOrder.getProductarray()){
-			content.append("<tr> <td><img src=\"http://songhohem.ddns.net/TechPhive/productImageServlet?id="+p.getProductID()+"\" width=\"100\" /></td>");
-			content.append("<td>"+p.getName()+"</td>"+"<td>"+p.getCategoryName()+"</td>"+"<td>"+p.getPrice()+"</td><td>"+p.getQuantity()+"</td></tr>");
+			content.append("<tr> <td style=\"text-align: center\"><img src=\"http://songhohem.ddns.net/TechPhive/productImageServlet?id="+p.getProductID()+"\" width=\"100\" /></td>");
+			content.append("<td style=\"text-align: left\">"+p.getName()+"</td>"+"<td style=\"text-align: left\">"+p.getCategoryName()+"</td>"+"<td style=\"text-align: right\">"+p.getPrice()+"</td><td style=\"text-align: right\">"+p.getQuantity()+"</td></tr>");
 		}
 		content.append("</tbody></table><br /><br /><p>If you have further questions, please feel free to contact us.</p>");
 		content.append("<p>Yours sincerely,</p><p><img src=\"http://homepage.lnu.se/student/sl222xk/logo.png\" alt=\"Logo\" width=\"200\" height=\"60\" /></p>");

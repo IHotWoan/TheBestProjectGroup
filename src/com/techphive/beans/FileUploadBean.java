@@ -27,6 +27,7 @@ import com.techphive.supportclasses.MysqlConnect;
 /**
  * @author songhokun
  *
+ * Bean class used for uploading images for product and highlight banners.
  */
 @SessionScoped
 @ManagedBean(name="fileuploadbean")

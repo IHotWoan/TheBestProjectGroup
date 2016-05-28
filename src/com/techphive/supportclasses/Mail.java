@@ -21,6 +21,8 @@ import java.util.logging.Logger;
 /**
  * @author songhokun
  *
+ * Mail is a supporting class for ShoppingCartBean class and OrderTable class.
+ * The class sends an e-mail 
  */
 
 public class Mail {
@@ -39,22 +41,21 @@ public class Mail {
 		}
 		 
 	 }
-	    public void send(String addresses, String topic, String textMessage) {
-	 
-	        try {
-	        	session.getProperties().put("mail.smtp.starttls.enable", true);
-	        	MimeMessage message = new MimeMessage(session);
-	        	message.setSender(new InternetAddress("linuslee@web.de"));
-	        	message.setFrom(new InternetAddress("linuslee@web.de","TechPhive"));
-	            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresses));
-	            message.setSubject(topic);
-	            message.setContent(textMessage, "text/html; charset=utf-8");
+	 public void send(String addresses, String topic, String textMessage) {
+		 try {
+			 	session.getProperties().put("mail.smtp.starttls.enable", true);
+			 	MimeMessage message = new MimeMessage(session);
+			 	message.setSender(new InternetAddress("linuslee@web.de"));
+			 	message.setFrom(new InternetAddress("linuslee@web.de","TechPhive"));
+			 	message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresses));
+			 	message.setSubject(topic);
+			 	message.setContent(textMessage, "text/html; charset=utf-8");
 	            
 	            Transport.send(message);
-	 
-	        } catch (MessagingException | UnsupportedEncodingException e) {
-	            Logger.getLogger(Mail.class.getName()).log(Level.WARNING, "Cannot send mail", e);
+	            }
+		 catch (MessagingException | UnsupportedEncodingException e) {
+	            	Logger.getLogger(Mail.class.getName()).log(Level.WARNING, "Cannot send mail", e);
 	        }
-	    }
+		 }
 
 }

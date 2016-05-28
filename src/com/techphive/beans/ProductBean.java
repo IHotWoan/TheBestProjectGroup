@@ -17,7 +17,12 @@ import java.io.Serializable;
 
 /**
  * @author songhokun
- *
+ * Product bean is the bean class which holds Product class.
+ * This holds product class picked up from the list of products inside supercategory class,
+ * and show detailed information of a selected product.
+ * 
+ * This class is made to reduce dependency of SuperCategoryClass.
+ * Mainly intended to use on customer mode.
  */
 @ManagedBean(name="productbean")
 @SessionScoped

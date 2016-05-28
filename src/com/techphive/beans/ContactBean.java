@@ -21,6 +21,8 @@ import com.techphive.supportclasses.Contact.Matter;
 /**
  * @author songhokun
  *
+ * Contact bean is the bean classes called for contact-us and received messages.
+ * This bean is supported by Contact class.
  */
 @ManagedBean(name="contactbean")
 @SessionScoped
@@ -39,6 +41,11 @@ public class ContactBean implements Serializable{
 	public ContactBean(){
 		receiveMessages();
 	}
+	/**
+	 * Receives messages from customer page and stores into database.
+	 * 
+	 * @return "contactregistered" to proceed over confirmation page. Otherwise stay on current page with error msg.
+	 */
 	public String registerMessage(){
 		try {
 			MysqlConnect db = new MysqlConnect();

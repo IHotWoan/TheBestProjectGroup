@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author songhokun
- *
+ * SessionBean is often called to push/pull an object to/from session.
+ * Mainly intended for ShoppingCart and AuthorisationFilter Class to varify logged in session in admin mode.
+ *  
  */
 public class SessionBean {
  
