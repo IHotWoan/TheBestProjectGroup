@@ -52,8 +52,6 @@ public class ProductBean implements Serializable{
 		this.selectedProduct = selectedProduct;
 	}
 	public String addToShoppingCart(){
-		
-		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = SessionBean.getSession();
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
 		 if(cart==null){
