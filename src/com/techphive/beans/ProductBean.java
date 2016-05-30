@@ -60,7 +60,6 @@ public class ProductBean implements Serializable{
 			 cart = new ShoppingCart();
 		 }
 		 if(!cart.add(selectedProduct)){
-			 context.addMessage(null, new FacesMessage("Fail!",  "We only have "+selectedProduct.getQuantity()+" items in stock for "+selectedProduct.getName()) );
 			 return "catalogue";
 		 }
 		 session.setAttribute("CART",cart);
