@@ -138,7 +138,7 @@ public class HighlightProductBean implements Serializable{
 			MysqlConnect db = new MysqlConnect();
 			
 			for(int i=0;i<NUMBER_OF_SPECIAL;i++){
-				db.insert("UPDATE `shopdb`.`banners` SET `banner_productID`='"+idSelection.get(i)+"' WHERE `banner_id`="+i);
+				db.insert("UPDATE `shopdb`.`banners` SET `banner_productID`='"+idSelection.get(i)+"' WHERE `banner_id`="+(i+1));
 				specialSelection[i]=SuperCategory.getSpecificProduct(idSelection.get(i));
 			}
 			
