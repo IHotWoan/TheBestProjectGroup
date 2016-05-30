@@ -402,10 +402,21 @@ public class SuperCategory implements Serializable{
 			if(product.getProductID().equals(productID)){
 				try {
 					product.setDeletable(false);
-					db.insert("UPDATE `shopdb`.`products` set product_deleted=true WHERE product_id='"+productID+"'");
-					deletedProductArray.add(product);
-					productArray.remove(product);
-					context.addMessage(null, new FacesMessage("Success",  "Product is deleted") );
+					ResultSet rs = db.query("SELECT COUNT(*) FROM shopdb.ordereditems where ordereditems_product='"+productID+"' ;");
+					rs.next();
+					if(rs.getInt(1)==0){
+						productArray.remove(product);
+						db.insert("DELETE FROM `shopdb`.`products` WHERE `product_ID`='"+productID+"';");
+						context.addMessage(null, new FacesMessage("Success",  "Product is deleted from the database.") );
+					}
+					else
+					{
+						db.insert("UPDATE `shopdb`.`products` set product_deleted=true WHERE product_id='"+productID+"'");
+						deletedProductArray.add(product);
+						productArray.remove(product);
+						context.addMessage(null, new FacesMessage("Success",  "Product is archieved") );
+					}
+					
 					break;
 				} catch (SQLException e) {
 					context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Error!", "Changes could not be saved due to error in db!"));
