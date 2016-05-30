@@ -52,11 +52,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 col-lg-12">
-					<h1 class="h1">Order track</h1>
-
-
+					<h1 class="h1">Trace order</h1>
 					<h:form method="post" id="checkout-order-form"
 						class="form-horizontal" role="form">
+						<p:growl id="growl" showDetail="true"/>
 							<div class="form-group">
 								<div class="col-sm-6 col-sm-4">
 									<label for="checkordernumber">Enter your order number:</label>
@@ -69,6 +68,20 @@
 									<h:commandButton value="view" action="#{orderbean.checkExisitingOrder()}"
 										class="btn btn-primary" /> <br />
 									<h:message class="error" for="checkout-order-form" id="errormessage" style="color:red;" />
+								</div>
+							</div>
+					</h:form>
+					<h:form method="post" id="find-orders-form"
+						class="form-horizontal" role="form">
+							<div class="form-group">
+								<div class="col-sm-6 col-sm-4">
+									<label for="checkordernumbers">Forgot your order number?:</label>
+									<h:inputText name="checkordersbyemail" id="checkordersbyemail" a:placeholder="E-mail"
+										class="form-control" size="20" value="#{orderbean.email}"/>
+										<br/>
+									<h:commandButton value="view" action="#{orderbean.orderIdByMail()}"
+										class="btn btn-primary" /> <br />
+									<h:message class="error" for="find-orders-form" id="errormessage" style="color:red;" />
 								</div>
 							</div>
 					</h:form>

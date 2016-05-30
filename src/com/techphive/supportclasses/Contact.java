@@ -12,7 +12,6 @@ import java.util.Date;
  */
 public class Contact {
 	public enum Matter{
-		ordernumber("I forgot my order number"),
 		general("General customer service"),
 		order("Order takes too long time!"),
 		guarantee("Product related issues(gurantee)"),
