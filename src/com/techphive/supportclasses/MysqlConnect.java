@@ -72,7 +72,7 @@ public class MysqlConnect {
 		{
 			if(make.charAt(i)=='\\' || make.charAt(i)=='\''|| make.charAt(i)=='\"'
 					|| make.charAt(i)=='%' || make.charAt(i)=='_'){
-				if(i-1>0 && make.charAt(i-1)!='\\')
+				if((i-1>0 && make.charAt(i-1)!='\\') || i==0)
 					make.insert(i++,'\\');
 			}
 				

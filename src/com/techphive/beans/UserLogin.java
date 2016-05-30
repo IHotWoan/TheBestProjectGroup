@@ -68,6 +68,7 @@ public class UserLogin implements Serializable {
 		
 		userName=db.escapeString(userName);
 		password=db.escapeString(password);
+		
 		try {
 			rs = db.query("SELECT user_username, user_password from users where user_username='"+userName+"' and user_password = '"+password+"' is TRUE");
 			while(rs.next()){
