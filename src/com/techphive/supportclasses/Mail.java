@@ -36,6 +36,7 @@ public class Mail {
 			session = (Session) initialContext.lookup("java:/shopmail");
 			
 		} catch (NamingException e) {
+			System.err.println("No SMTP information is set up from the WildFly");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -45,8 +46,10 @@ public class Mail {
 		 try {
 			 	session.getProperties().put("mail.smtp.starttls.enable", true);
 			 	MimeMessage message = new MimeMessage(session);
-			 	message.setSender(new InternetAddress("linuslee@web.de"));
-			 	message.setFrom(new InternetAddress("linuslee@web.de","TechPhive"));
+			 	String senderemail = session.getProperty("mail.smtp.user");
+			 	
+			 	message.setSender(new InternetAddress(senderemail));
+			 	message.setFrom(new InternetAddress(senderemail,"TechPhive"));
 			 	message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresses));
 			 	message.setSubject(topic);
 			 	message.setContent(textMessage, "text/html; charset=utf-8");

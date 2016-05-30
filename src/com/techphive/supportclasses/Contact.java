@@ -13,7 +13,7 @@ import java.util.Date;
 public class Contact {
 	public enum Matter{
 		general("General customer service"),
-		order("Order takes too long time!"),
+		ordertime("Order takes too long time!"),
 		guarantee("Product related issues(gurantee)"),
 		rejected("Why is my order rejected?"),
 		suggestion("I have a suggestion.");
