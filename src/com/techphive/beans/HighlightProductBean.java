@@ -33,6 +33,7 @@ public class HighlightProductBean implements Serializable{
 	
 	private Product[] topProducts = new Product[NUMBER_OF_TOP_PRODUCTS];
 	private Product[] specialSelection = new Product[NUMBER_OF_SPECIAL];
+	
 	private ArrayList<String> idSelection = new ArrayList<String>();
 	
 	public Product[] getTopProducts() {
