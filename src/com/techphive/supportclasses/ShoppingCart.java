@@ -46,8 +46,12 @@ public class ShoppingCart implements Serializable {
 		}
 			
 		else{
-			if(p.getQuantity()<1)
+			if(p.getQuantity()<1){
+				FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage("Fail!",p.getName()+" is sold out!") );
 				return false;
+			}
+				
 			
 			products.add(p);
 			selectedQuantity.put(p.getProductID(), 1);
